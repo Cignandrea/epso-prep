@@ -29,6 +29,13 @@ for (const b of Object.values(banks)) {
     const texts = q.options.map((o) => o.text.trim());
     if (new Set(letters).size !== letters.length) problems.push(`${ctx}: lettere duplicate`);
     if (new Set(texts).size !== texts.length) problems.push(`${ctx}: testi duplicati`);
+    // Opzioni numericamente equivalenti («1,8 €» e «1,80 €», «144 minuti» e «2 ore e 24 minuti»)
+    const numVal = (t) => {
+      const hm = t.match(/^(\d+) or[ae] e (\d+) minut/); if (hm) return Number(hm[1]) * 60 + Number(hm[2]);
+      const m = t.replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'); const v = parseFloat(m); return Number.isFinite(v) && /\d/.test(t) ? v : null;
+    };
+    const nums = (q.format === 'num5' ? texts.slice(0, 4) : []).map(numVal).filter((v) => v != null);
+    if (new Set(nums).size !== nums.length) problems.push(`${ctx}: opzioni numericamente equivalenti (${texts.join(' | ')})`);
     if (letters.join('') !== 'ABCDE'.slice(0, letters.length)) problems.push(`${ctx}: lettere non in ordine`);
     if (!Array.isArray(q.correct) || q.correct.length !== 1 || !letters.includes(q.correct[0])) problems.push(`${ctx}: correct non valido`);
     if (q.format === 'epso4') {

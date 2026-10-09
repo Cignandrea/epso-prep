@@ -1258,7 +1258,7 @@ registerBank({
    "correct": [
     "B"
    ],
-   "explanation": "L'apertura va da aprile a ottobre: gennaio cade fuori dal periodo di attività, quindi in quel mese l'ostello non accoglie ospiti — un'inferenza sicura dal calendario dichiarato. A contraddice la stagionalità; C contraddice l'apertura diurna ai non ospiti; D decuplica la capienza. Le date nel brano vanno proiettate sul caso chiesto."
+   "explanation": "L'apertura va da aprile a ottobre: gennaio cade fuori dal periodo di attività, quindi in quel mese l'ostello non accoglie ospiti, come dice B: un'inferenza sicura dal calendario dichiarato. A contraddice la stagionalità; C contraddice l'apertura diurna ai non ospiti; D decuplica la capienza. Le date nel brano vanno proiettate sul caso chiesto."
   },
   {
    "id": 1043,
@@ -1547,7 +1547,7 @@ registerBank({
    "correct": [
     "C"
    ],
-   "explanation": "Consegna al negativo: si cerca l'affermazione NON supportata. I laboratori attivi sono 62 e gli aderenti 35: poiché 35 supera la metà (31), la maggioranza HA aderito — quindi C, che afferma il contrario, è contraddetta dai numeri del brano. A è supportata (da 80 a 62), B è supportata (35 > 31), D riprende la definizione del marchio. Trappola doppia: la consegna negativa più il confronto aritmetico 35 contro 62, dove l'istinto \"35 sembra poco\" inganna chi non calcola la metà esatta."
+   "explanation": "Consegna al negativo: si cerca l'affermazione NON corretta, cioè non supportata dal brano. I laboratori attivi sono 62 e gli aderenti 35: poiché 35 supera la metà (31), la maggioranza HA aderito — quindi C, che afferma il contrario, è contraddetta dai numeri del brano. A è supportata (da 80 a 62), B è supportata (35 > 31), D riprende la definizione del marchio. Trappola doppia: la consegna negativa più il confronto aritmetico 35 contro 62, dove l'istinto \"35 sembra poco\" inganna chi non calcola la metà esatta."
   },
   {
    "id": 1052,
@@ -1836,7 +1836,7 @@ registerBank({
    "correct": [
     "C"
    ],
-   "explanation": "Consegna al negativo: si cerca l'affermazione che il brano NON sostiene. La certificazione è stata ottenuta \"per la pesca del coregone\": estenderla a tutte le specie (C) va oltre il testo. A è supportata (due terzi = maggioranza), B e D riprendono clausole esplicite. Nelle domande \"NON\", tre opzioni vere fanno da esca: serve trovare l'unica che eccede il brano."
+   "explanation": "Consegna al negativo: si cerca l'affermazione NON corretta, cioè che il brano non sostiene. La certificazione è stata ottenuta \"per la pesca del coregone\": estenderla a tutte le specie (C) va oltre il testo. A è supportata (due terzi = maggioranza), B e D riprendono clausole esplicite. Nelle domande \"NON\", tre opzioni vere fanno da esca: serve trovare l'unica che eccede il brano."
   },
   {
    "id": 1061,
@@ -2157,7 +2157,7 @@ registerBank({
    "correct": [
     "B"
    ],
-   "explanation": "Consegna al negativo. Il brano dice che i voli \"si interrompono\" oltre la soglia di vento: B, che li vuole operativi con qualunque vento, contraddice il testo ed è la NON supportata. A (8 contro 40 minuti), C (\"esclusivamente materiale sanitario\" esclude i passeggeri) e D (110 > 100) sono tutte sostenute. Nelle domande \"NON\", cercare la contraddizione o l'eccesso."
+   "explanation": "Consegna al negativo. Il brano dice che i voli \"si interrompono\" oltre la soglia di vento: B, che li vuole operativi con qualunque vento, contraddice il testo ed è l'affermazione NON corretta. A (8 contro 40 minuti), C (\"esclusivamente materiale sanitario\" esclude i passeggeri) e D (110 > 100) sono tutte sostenute. Nelle domande \"NON\", cercare la contraddizione o l'eccesso."
   },
   {
    "id": 1071,

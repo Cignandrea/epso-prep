@@ -51,15 +51,40 @@ App.calc = (() => {
     $('calc-display').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); press('='); } });
     $('tao-calc').addEventListener('click', () => toggle('tao-calc-widget'));
     $('tao-pad').addEventListener('click', () => toggle('tao-pad-widget'));
+    $('s-calc').addEventListener('click', () => toggle('tao-calc-widget'));
+    $('s-pad').addEventListener('click', () => toggle('tao-pad-widget'));
+    makeDraggable($('tao-calc-widget')); makeDraggable($('tao-pad-widget'));
     for (const b of document.querySelectorAll('[data-close]')) b.addEventListener('click', () => { $(b.dataset.close).hidden = true; });
   }
   function toggle(id) {
     const w = $(id);
-    const other = $(id === 'tao-calc-widget' ? 'tao-pad-widget' : 'tao-calc-widget');
     w.hidden = !w.hidden;
-    if (!w.hidden) { other.hidden = true; (w.querySelector('input, textarea') || w).focus(); }
+    if (!w.hidden) { bringToFront(w); (w.querySelector('input, textarea') || w).focus({ preventScroll: true }); }
   }
-  function reset() { $('calc-display').value = ''; $('pad-text').value = ''; $('tao-calc-widget').hidden = true; $('tao-pad-widget').hidden = true; }
+  let z = 10;
+  function bringToFront(w) { w.style.zIndex = String(++z); }
+  // Trascinamento dalla barra del titolo (mouse e tocco) sugli schermi larghi.
+  function makeDraggable(w) {
+    const head = w.querySelector('.tao-widget-head');
+    let drag = null;
+    head.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button') || window.innerWidth < 600) return;
+      const r = w.getBoundingClientRect();
+      drag = { dx: e.clientX - r.left, dy: e.clientY - r.top };
+      bringToFront(w);
+      head.setPointerCapture(e.pointerId);
+    });
+    head.addEventListener('pointermove', (e) => {
+      if (!drag) return;
+      const x = Math.max(0, Math.min(window.innerWidth - w.offsetWidth, e.clientX - drag.dx));
+      const y = Math.max(0, Math.min(window.innerHeight - 60, e.clientY - drag.dy));
+      w.style.left = `${x}px`; w.style.top = `${y}px`; w.style.right = 'auto'; w.style.bottom = 'auto';
+    });
+    const end = () => { drag = null; };
+    head.addEventListener('pointerup', end); head.addEventListener('pointercancel', end);
+  }
+  function hideAll() { $('tao-calc-widget').hidden = true; $('tao-pad-widget').hidden = true; }
+  function reset() { $('calc-display').value = ''; $('pad-text').value = ''; hideAll(); for (const id of ['tao-calc-widget', 'tao-pad-widget']) { const w = $(id); w.style.left = ''; w.style.top = ''; w.style.right = ''; w.style.bottom = ''; } }
 
-  return { init, evaluate, reset };
+  return { init, evaluate, reset, toggle, hideAll };
 })();

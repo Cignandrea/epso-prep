@@ -4,14 +4,15 @@ App.main = (() => {
   'use strict';
   const { el, dateIt, todayKey } = App.utils;
   const $ = (id) => document.getElementById(id);
-  const VERSION = '1.1.0-b2';
+  const VERSION = '1.1.0-b3';
 
   function home() {
     App.session.closeStale();
     App.sim.closeStale();
     const plan = App.plan.today();
     const week = App.plan.weekActivity();
-    $('home-date').textContent = dateIt();
+    const d = dateIt(); $('home-date').textContent = d.charAt(0).toUpperCase() + d.slice(1);
+    App.calc.hideAll();
     const title = $('next-title'), sub = $('next-sub'), label = $('next-label'), btn = $('btn-next'), note = $('next-note');
     note.hidden = true;
     btn.onclick = null;
@@ -68,10 +69,10 @@ App.main = (() => {
     // Ripasso errori in scadenza.
     const due = App.select.dueItems();
     $('btn-review').hidden = due.length === 0;
-    $('review-sub').textContent = `${due.length} ${due.length === 1 ? 'domanda sbagliata torna' : 'domande sbagliate tornano'} oggi`;
+    $('review-sub').textContent = due.length === 1 ? '1 domanda da rivedere oggi' : `${due.length} domande da rivedere oggi`;
     $('btn-review').onclick = () => App.session.start('review', App.utils.shuffle(due).slice(0, 10));
 
-    $('week-line').textContent = `Settimana: ${week.active} giorni attivi su ${week.target} (obiettivo), ${week.elapsed} trascorsi. Un giorno saltato non è un debito.`;
+    $('week-line').textContent = `Settimana: ${week.active} ${week.active === 1 ? 'giorno attivo' : 'giorni attivi'} su ${week.target} (obiettivo), ${week.elapsed} ${week.elapsed === 1 ? 'trascorso' : 'trascorsi'}. Un giorno saltato non è un debito.`;
     App.ui.show('home', { title: '' });
   }
 

@@ -32,7 +32,7 @@ registerBank({
     },
     {
      "letter": "C",
-     "text": "2.116 €"
+     "text": "1.524 €"
     },
     {
      "letter": "D",
@@ -60,19 +60,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "12,5 %"
+     "text": "12,5%"
     },
     {
      "letter": "B",
-     "text": "16 %"
+     "text": "16%"
     },
     {
      "letter": "C",
-     "text": "20 %"
+     "text": "20%"
     },
     {
      "letter": "D",
-     "text": "13,79 %"
+     "text": "13,79%"
     },
     {
      "letter": "E",
@@ -82,7 +82,7 @@ registerBank({
    "correct": [
     "B"
    ],
-   "explanation": "Variazione = (1.450 − 1.250) / 1.250 × 100 = 200 / 1.250 × 100 = 16 %. Trappola principale: dividere per il valore finale (200/1.450 ≈ 13,8%) invece che per quello iniziale."
+   "explanation": "Variazione = (1.450 − 1.250) / 1.250 × 100 = 200 / 1.250 × 100 = 16%. Trappola principale: dividere per il valore finale (200/1.450 ≈ 13,8%) invece che per quello iniziale."
   },
   {
    "id": 2003,
@@ -104,7 +104,7 @@ registerBank({
     },
     {
      "letter": "C",
-     "text": "675 €"
+     "text": "610 €"
     },
     {
      "letter": "D",
@@ -133,19 +133,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "18,25 %"
+     "text": "18,25%"
     },
     {
      "letter": "B",
-     "text": "13 %"
+     "text": "13%"
     },
     {
      "letter": "C",
-     "text": "27,08 %"
+     "text": "27,08%"
     },
     {
      "letter": "D",
-     "text": "19,40 %"
+     "text": "19,40%"
     },
     {
      "letter": "E",
@@ -155,7 +155,7 @@ registerBank({
    "correct": [
     "E"
    ],
-   "explanation": "Il valore corretto, 16,25 %, non compare tra le opzioni: la risposta è «Nessuna di queste risposte». Totale = 480+130+90+60+40 = 800 mila €. Energia = 130 / 800 × 100 = 16,25 %. Trappole: rapportare all'importo maggiore (130/480 ≈ 27,1%) o al totale al netto della voce stessa."
+   "explanation": "Il valore corretto, 16,25%, non compare tra le opzioni: la risposta è «Nessuna di queste risposte». Totale = 480+130+90+60+40 = 800 mila €. Energia = 130 / 800 × 100 = 16,25%. Trappole: rapportare all'importo maggiore (130/480 ≈ 27,1%) o al totale al netto della voce stessa."
   },
   {
    "id": 2005,
@@ -335,7 +335,7 @@ registerBank({
    "correct": [
     "C"
    ],
-   "explanation": "Tempo = 216 / 90 = 2,4 ore = 2,4 × 60 = 144 minuti, cioè 2 ore e 24 minuti. Trappole: leggere \"2,4 ore\" come 2 ore e 40 minuti o come 2 ore e 4 minuti; arrotondare a 2,5 ore (150 minuti); sottrarre invece di dividere (216 − 90 = 126)."
+   "explanation": "Tempo = 216 / 90 = 2,4 ore = 2,4 × 60 = 144 minuti, cioè 2 ore e 24 minuti. Trappole: leggere \"2,4 ore\" come 2 ore e 4 minuti (A); sottrarre invece di dividere, 216 − 90 = 126 (B); arrotondare a 2,5 ore, cioè 150 minuti (D)."
   },
   {
    "id": 2010,
@@ -408,7 +408,7 @@ registerBank({
    "correct": [
     "B"
    ],
-   "explanation": "Crescite: Nord +60/400 = 15 %; Centro +45/250 = 18 %; Sud +36/180 = 20 %; Isole +18/120 = 15 %. Vince il Sud. Trappola: scegliere il Nord perché ha l'aumento assoluto maggiore (+60), confondendo valore assoluto e percentuale."
+   "explanation": "Crescite: Nord +60/400 = 15%; Centro +45/250 = 18%; Sud +36/180 = 20%; Isole +18/120 = 15%. Vince il Sud. Trappola: scegliere il Nord perché ha l'aumento assoluto maggiore (+60), confondendo valore assoluto e percentuale."
   },
   {
    "id": 2012,
@@ -466,11 +466,11 @@ registerBank({
     },
     {
      "letter": "C",
-     "text": "230.000"
+     "text": "22.400"
     },
     {
      "letter": "D",
-     "text": "18.285,71"
+     "text": "230.000"
     },
     {
      "letter": "E",
@@ -603,19 +603,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "30 %"
+     "text": "30%"
     },
     {
      "letter": "B",
-     "text": "20 %"
+     "text": "20%"
     },
     {
      "letter": "C",
-     "text": "25 %"
+     "text": "25%"
     },
     {
      "letter": "D",
-     "text": "22,5 %"
+     "text": "22,5%"
     },
     {
      "letter": "E",
@@ -625,7 +625,7 @@ registerBank({
    "correct": [
     "C"
    ],
-   "explanation": "Differenza = 425 − 340 = 85; rispetto a Est: 85/340 × 100 = 25 %. Trappola: usare come base il valore maggiore (85/425 = 20%) — \"supera del…\" richiede la base del valore superato."
+   "explanation": "Differenza = 425 − 340 = 85; rispetto a Est: 85/340 × 100 = 25%. Trappola: usare come base il valore maggiore (85/425 = 20%) — \"supera del…\" richiede la base del valore superato."
   },
   {
    "id": 2018,
@@ -675,15 +675,15 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "550"
+     "text": "4.400"
     },
     {
      "letter": "B",
-     "text": "5.060"
+     "text": "550"
     },
     {
      "letter": "C",
-     "text": "480"
+     "text": "5.060"
     },
     {
      "letter": "D",
@@ -864,7 +864,7 @@ registerBank({
     },
     {
      "letter": "C",
-     "text": "763,64"
+     "text": "700"
     },
     {
      "letter": "D",
@@ -892,19 +892,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "1.525 €"
+     "text": "1.400 €"
     },
     {
      "letter": "B",
-     "text": "1.272 €"
+     "text": "1.525 €"
     },
     {
      "letter": "C",
-     "text": "975 €"
+     "text": "1.272 €"
     },
     {
      "letter": "D",
-     "text": "1.550 €"
+     "text": "975 €"
     },
     {
      "letter": "E",
@@ -912,7 +912,7 @@ registerBank({
     }
    ],
    "correct": [
-    "A"
+    "B"
    ],
    "explanation": "Totale = 1.250 × 1,22 = 1.525 €. Trappole: sommare 22 € come cifra fissa, applicare il 12%, o sottrarre l'IVA invece di aggiungerla."
   },
@@ -932,15 +932,15 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "1.427,40 €"
+     "text": "1.480 €"
     },
     {
      "letter": "C",
-     "text": "1.610,40 €"
+     "text": "1.427,40 €"
     },
     {
      "letter": "D",
-     "text": "1.808 €"
+     "text": "1.610,40 €"
     },
     {
      "letter": "E",
@@ -964,15 +964,15 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "935 $"
+     "text": "1.530 $"
     },
     {
      "letter": "B",
-     "text": "918 $"
+     "text": "935 $"
     },
     {
      "letter": "C",
-     "text": "787,04 $"
+     "text": "918 $"
     },
     {
      "letter": "D",
@@ -984,7 +984,7 @@ registerBank({
     }
    ],
    "correct": [
-    "B"
+    "C"
    ],
    "explanation": "850 × 1,08 = 918 $. Trappola principale: dividere invece di moltiplicare (850/1,08 ≈ 787 $), cioè applicare il cambio nel verso sbagliato."
   },
@@ -1037,19 +1037,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "4.000 ab./km²"
+     "text": "460 ab./km²"
     },
     {
      "letter": "B",
-     "text": "360 ab./km²"
+     "text": "4.000 ab./km²"
     },
     {
      "letter": "C",
-     "text": "400 ab./km²"
+     "text": "360 ab./km²"
     },
     {
      "letter": "D",
-     "text": "2,5 ab./km²"
+     "text": "400 ab./km²"
     },
     {
      "letter": "E",
@@ -1057,7 +1057,7 @@ registerBank({
     }
    ],
    "correct": [
-    "C"
+    "D"
    ],
    "explanation": "Densità = 184.000 / 460 = 400 abitanti per km². Trappole: invertire il rapporto o sbagliare di un fattore 10."
   },
@@ -1145,11 +1145,11 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "76,80 €"
+     "text": "53,76 €"
     },
     {
      "letter": "B",
-     "text": "64 €"
+     "text": "76,80 €"
     },
     {
      "letter": "C",
@@ -1254,11 +1254,11 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "1.440"
+     "text": "1.239"
     },
     {
      "letter": "B",
-     "text": "1.040,4"
+     "text": "1.440"
     },
     {
      "letter": "C",
@@ -1274,7 +1274,7 @@ registerBank({
     }
    ],
    "correct": [
-    "A"
+    "B"
    ],
    "explanation": "Iscritti iniziali × 0,85 = 1.224 → iniziali = 1.224 / 0,85 = 1.440. Trappola: aggiungere il 15% al valore finale (1.407,6), che usa la base sbagliata."
   },
@@ -1302,7 +1302,7 @@ registerBank({
     },
     {
      "letter": "D",
-     "text": "500"
+     "text": "940"
     },
     {
      "letter": "E",
@@ -1330,7 +1330,7 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "247 €"
+     "text": "230 €"
     },
     {
      "letter": "C",
@@ -1398,11 +1398,11 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "900 g"
+     "text": "750 g"
     },
     {
      "letter": "B",
-     "text": "750 g"
+     "text": "600 g"
     },
     {
      "letter": "C",
@@ -1418,7 +1418,7 @@ registerBank({
     }
    ],
    "correct": [
-    "B"
+    "A"
    ],
    "explanation": "Per persona: 450/6 = 75 g; per 10 persone: 75 × 10 = 750 g. Trappola: invertire la proporzione (270 g) o raddoppiare a occhio."
   },
@@ -1507,7 +1507,7 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "7 ore"
+     "text": "6 ore"
     },
     {
      "letter": "B",
@@ -1547,7 +1547,7 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "1,8 €"
+     "text": "1,80 €"
     },
     {
      "letter": "C",
@@ -1579,19 +1579,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "80 %"
+     "text": "80%"
     },
     {
      "letter": "B",
-     "text": "16 %"
+     "text": "16%"
     },
     {
      "letter": "C",
-     "text": "25 %"
+     "text": "25%"
     },
     {
      "letter": "D",
-     "text": "20 %"
+     "text": "20%"
     },
     {
      "letter": "E",
@@ -1615,11 +1615,11 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "4 ore e 30 minuti"
+     "text": "2 ore e 10 minuti"
     },
     {
      "letter": "B",
-     "text": "3 ore"
+     "text": "4 ore e 30 minuti"
     },
     {
      "letter": "C",
@@ -1692,15 +1692,15 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "160"
+     "text": "96"
     },
     {
      "letter": "C",
-     "text": "24"
+     "text": "160"
     },
     {
      "letter": "D",
-     "text": "240"
+     "text": "24"
     },
     {
      "letter": "E",
@@ -1724,19 +1724,19 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "60 %"
+     "text": "60%"
     },
     {
      "letter": "B",
-     "text": "65 %"
+     "text": "65%"
     },
     {
      "letter": "C",
-     "text": "70 %"
+     "text": "70%"
     },
     {
      "letter": "D",
-     "text": "35 %"
+     "text": "35%"
     },
     {
      "letter": "E",

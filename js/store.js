@@ -72,16 +72,19 @@ App.store = (() => {
     for (const e of log()) {
       if (e.mode === 'external' || e.id == null) continue;
       const key = `${e.bank}#${e.id}`;
-      const s = stats.get(key) || { bank: e.bank, id: e.id, seen: 0, wrong: 0, last: null, lastOk: null, box: 0, due: null, simSeen: false, modes: new Set() };
+      const s = stats.get(key) || { bank: e.bank, id: e.id, seen: 0, wrong: 0, blank: 0, last: null, lastOk: null, box: 0, due: null, simSeen: false, healedAt: null, modes: new Set() };
       s.seen++;
       s.last = e.t;
       s.lastOk = Boolean(e.ok);
       s.modes.add(e.mode);
       if (e.mode === 'sim') s.simSeen = true;
-      if (e.ok) {
+      if (e.unanswered) {
+        s.blank++; // lasciata in bianco: conta nel punteggio, non è una trappola e non entra nel ripasso
+      } else if (e.ok) {
         if (e.mode === 'review' && s.box > 0) {
-          s.box = s.box >= 3 ? 0 : s.box + 1; // 1→2→3→guarita
+          s.box = s.box >= 3 ? 0 : s.box + 1; // 1→2→3→guarita («disinnescata»)
           s.due = s.box === 0 ? null : addDays(e.t, s.box === 2 ? 3 : 7);
+          if (s.box === 0) s.healedAt = e.t;
         }
       } else {
         s.wrong++;

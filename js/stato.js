@@ -5,6 +5,7 @@ App.stato = (() => {
   const { el, minSec, dateTimeIt, copyText, mondayOf, todayKey, clock } = App.utils;
   const $ = (id) => document.getElementById(id);
   const MODE = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso', sim: 'Simulazione', external: 'Esterna' };
+  const todayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
 
   function render() {
     const sessions = App.store.sessions();
@@ -14,7 +15,7 @@ App.stato = (() => {
     grid.replaceChildren();
 
     // Settimana: 5 su 7, senza catene.
-    grid.append(tile(`${week.active}/${week.target}`, `giorni attivi questa settimana (${week.elapsed} trascorsi)`));
+    grid.append(tile(`${week.active}/${week.target}`, `giorni attivi questa settimana (${week.elapsed} ${week.elapsed === 1 ? 'trascorso' : 'trascorsi'})`));
 
     // Per prova: ultime 5 sessioni (allenamento, simulazione, esterne) e confronto con soglia/obiettivo.
     for (const bank of ['verbale', 'numerico', 'astratto']) {
@@ -27,10 +28,19 @@ App.stato = (() => {
     // Trappole negli ultimi 14 giorni.
     const since = new Date(); since.setDate(since.getDate() - 14);
     const tags = {};
-    for (const e of log) if (e.mode !== 'external' && !e.ok && e.tag && new Date(e.t) >= since) tags[e.tag] = (tags[e.tag] || 0) + 1;
-    for (const e of log) if (e.mode === 'external' && e.tag && new Date(e.t) >= since) tags[e.tag] = (tags[e.tag] || 0) + 1;
+    let blanks = 0;
+    for (const e of log) {
+      if (new Date(e.t) < since) continue;
+      if (e.mode === 'external') { if (e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1; continue; }
+      if (e.unanswered) { blanks++; continue; }
+      if (!e.ok && e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1;
+    }
+    if (blanks) tags.tempo_scaduto = (tags.tempo_scaduto || 0) + blanks;
+    // Trappole «disinnescate»: item usciti dal ripasso (tre risposte giuste a distanza) negli ultimi 14 giorni.
+    const healed = [...App.store.itemStats().values()].filter((x) => x.healedAt && new Date(x.healedAt) >= since).length;
     const entries = Object.entries(tags).sort((a, b) => b[1] - a[1]);
     const max = entries.length ? entries[0][1] : 1;
+    grid.append(tile(String(healed), 'trappole disinnescate (14 giorni): errori usciti dal ripasso'));
     $('stato-tags').replaceChildren(...(entries.length ? entries.map(([tag, n]) => el('div', { class: 'tagbar' },
       el('span', { class: 'tagbar-label' }, App.tagLabel(tag)),
       el('span', { class: 'tagbar-track' }, el('span', { class: 'tagbar-fill', style: `width:${Math.round((n / max) * 100)}%` })),
@@ -48,8 +58,8 @@ App.stato = (() => {
     // Ultime sessioni.
     $('stato-sessions').replaceChildren(...sessions.slice(-12).reverse().map((s) => el('div', { class: 'session-row' },
       el('span', { class: 'session-when' }, dateTimeIt(s.t)),
-      el('span', { class: 'session-what' }, `${MODE[s.mode] || s.mode}${s.partial ? ' (interrotta)' : ''} · ${(s.banks || []).map((b) => App.BANK_LABEL[b] || b).join(' + ')}${s.source ? ' · ' + s.source : ''}`),
-      el('span', { class: 'session-score' }, s.n ? `${s.correct}/${s.n}${s.sec ? ' · ' + minSec(s.sec / s.n) + '/dom' : ''}` : ''))));
+      el('span', { class: 'session-what' }, `${MODE[s.mode] || s.mode}${s.partial ? ' (interrotta)' : ''}${s.extra ? ' · extra' : ''} · ${(s.banks || []).map((b) => App.BANK_LABEL[b] || b).join(' + ')}${s.source ? ' · ' + s.source : ''}`),
+      el('span', { class: 'session-score' }, s.n ? `${s.correct}/${s.n}${s.sec ? ' · ' + minSec(s.sec / s.n) + ' per domanda' : ''}` : ''))));
     if (!sessions.length) $('stato-sessions').append(el('p', { class: 'muted' }, 'Ancora nessuna sessione.'));
 
     // Pool.
@@ -71,7 +81,7 @@ App.stato = (() => {
     const seg = (window.viewport && window.viewport.segments) ? window.viewport.segments.length : (window.visualViewport && window.visualViewport.segments ? window.visualViewport.segments.length : 1);
     const posture = navigator.devicePosture ? navigator.devicePosture.type : 'n/d';
     const sw = screen.width, sh = screen.height;
-    $('stato-device').textContent = `viewport ${window.innerWidth}×${window.innerHeight} CSS px · schermo ${sw}×${sh} · pixel ratio ${window.devicePixelRatio} · segmenti ${seg} · postura ${posture} · ${matchMedia('(pointer: coarse)').matches ? 'tocco' : 'mouse'} · ${matchMedia('(prefers-color-scheme: dark)').matches ? 'tema scuro' : 'tema chiaro'} · ${navigator.onLine ? 'online' : 'offline'}`;
+    $('stato-device').textContent = `viewport ${window.innerWidth}×${window.innerHeight} CSS px · schermo ${sw}×${sh} · pixel ratio ${Number(window.devicePixelRatio).toFixed(2)} · segmenti ${seg} · postura ${posture} · ${matchMedia('(pointer: coarse)').matches ? 'tocco' : 'mouse'} · ${matchMedia('(prefers-color-scheme: dark)').matches ? 'tema scuro' : 'tema chiaro'} · ${navigator.onLine ? 'online' : 'offline'}`;
   }
 
   function weekSummary() {

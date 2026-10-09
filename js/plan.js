@@ -52,8 +52,8 @@ App.plan = (() => {
     if (base.kind === 'flex') {
       const w = weakestBank();
       if (w.bank === 'astratto') plan = { ...WEEK[2], title: 'Flex: astratto', sub: 'È la prova con più errori: 2 blocchi da 10 sul PDF, poi registra' };
-      else if (w.bank === 'numerico') plan = { ...WEEK[4], title: 'Flex: numerico', sub: 'È la prova con più errori questa settimana · 5 domande + correzione' };
-      else plan = { ...WEEK[1], title: 'Flex: verbale', sub: w.rate < 0 ? 'Pochi dati: si parte dal verbale, che pesa di più' : 'È la prova con più errori questa settimana · 10 domande + correzione' };
+      else if (w.bank === 'numerico') plan = { ...WEEK[4], title: 'Flex: numerico', sub: `${WEEK[4].sub} · è la prova con più errori questa settimana` };
+      else plan = { ...WEEK[1], title: 'Flex: verbale', sub: `${WEEK[1].sub} · ${w.rate < 0 ? 'pochi dati: si parte dal verbale, che pesa di più' : 'è la prova con più errori questa settimana'}` };
     }
     const key = todayKey(d);
     const done = App.store.sessions().some((s) => !s.partial && todayKey(new Date(s.t)) === key && (s.mode === 'train' || s.mode === 'sim' || (s.mode === 'external' && (plan.kind === 'external' || plan.kind === 'sim'))));

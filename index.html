@@ -49,7 +49,7 @@
           <span class="alt-sub">Come la prova vera · sul PC</span>
         </button>
         <button type="button" class="alt-card" id="btn-review" hidden>
-          <span class="alt-title">Ripasso errori</span>
+          <span class="alt-title">Ripasso</span>
           <span class="alt-sub" id="review-sub"></span>
         </button>
         <button type="button" class="alt-card" id="btn-external">
@@ -65,11 +65,16 @@
       <div class="session-bar">
         <span class="session-counter" id="s-counter">1 / 10</span>
         <span class="session-mode" id="s-mode"></span>
-        <div class="pace" id="s-pace" title="Tempo su questa domanda rispetto al ritmo della prova">
+        <div class="pace" id="s-pace" aria-describedby="s-pace-desc">
           <span class="pace-time" id="s-time">0:00</span><span class="pace-sep">/</span><span class="pace-target" id="s-target">1:45</span>
           <span class="pace-bar" aria-hidden="true"><span class="pace-fill" id="s-pace-fill"></span></span>
+          <span class="visually-hidden" id="s-pace-desc">Tempo su questa domanda rispetto al ritmo della prova</span>
         </div>
-        <button type="button" class="link-btn" id="s-quit" aria-label="Interrompi la sessione">Esci</button>
+        <div class="session-tools" id="s-tools" hidden>
+          <button type="button" class="tool-btn" id="s-calc" title="Calcolatrice" aria-label="Calcolatrice">▦</button>
+          <button type="button" class="tool-btn" id="s-pad" title="Appunti" aria-label="Appunti">✎</button>
+        </div>
+        <button type="button" class="link-btn" id="s-quit" aria-label="Esci: metti in pausa la sessione">Esci</button>
       </div>
 
       <div class="item-layout" id="s-item">
@@ -80,9 +85,9 @@
           <p class="question" id="s-question"></p>
           <div class="options" id="s-options" role="group" aria-label="Opzioni di risposta"></div>
           <div class="answer-actions" id="s-actions">
-            <button type="button" class="btn btn-ghost" id="s-doubt" disabled>Dubbio</button>
-            <button type="button" class="btn btn-primary" id="s-sure" disabled>Sicuro</button>
-            <button type="button" class="btn btn-primary" id="s-answer" disabled hidden>Rispondi</button>
+            <button type="button" class="btn btn-ghost" id="s-doubt" disabled>Dubbio <kbd class="kbd">⌫</kbd></button>
+            <button type="button" class="btn btn-primary" id="s-sure" disabled>Sicuro <kbd class="kbd">⏎</kbd></button>
+            <button type="button" class="btn btn-primary" id="s-answer" disabled hidden>Rispondi <kbd class="kbd">⏎</kbd></button>
           </div>
           <div class="feedback" id="s-feedback" hidden>
             <p class="fb-head" id="s-fb-head"></p>
@@ -103,7 +108,7 @@
         <div class="end-numbers">
           <div class="num"><span class="num-big" id="e-score">0/0</span><span class="num-label">corrette</span></div>
           <div class="num"><span class="num-big" id="e-pace">—</span><span class="num-label">per domanda</span></div>
-          <div class="num"><span class="num-big" id="e-trap">—</span><span class="num-label">trappola da lavorare</span></div>
+          <div class="num"><span class="num-big" id="e-trap">—</span><span class="num-label">trappola su cui lavorare</span></div>
         </div>
         <p class="end-sentence" id="e-sentence"></p>
         <div class="end-actions">
@@ -126,7 +131,7 @@
         <p class="device-note" id="sim-device-note" hidden>Stai usando un telefono: la simulazione funziona, ma la prova vera sarà sul PC.</p>
         <fieldset class="fieldset">
           <legend>Prove</legend>
-          <label class="choice"><input type="radio" name="sim-scope" value="full" checked> Parte 1: verbale (20 · 35′) → numerico (10 · 20′). L'astratto arriva nella v1.3: nel frattempo si fa sul PDF e si registra come sessione esterna.</label>
+          <label class="choice"><input type="radio" name="sim-scope" value="full" checked> Parte 1: verbale (20 · 35′) → numerico (10 · 20′)</label>
           <label class="choice"><input type="radio" name="sim-scope" value="verbale"> Solo verbale (20 · 35′)</label>
           <label class="choice"><input type="radio" name="sim-scope" value="numerico"> Solo numerico (10 · 20′)</label>
         </fieldset>
@@ -136,6 +141,7 @@
           <label class="choice"><input type="radio" name="sim-timer" value="single"> Un solo timer per tutta la parte, come nel test di esempio EPSO (55′)</label>
         </fieldset>
         <p class="muted" id="sim-pool-note"></p>
+        <p class="muted">L'astratto arriva nella v1.3: nel frattempo si fa sul PDF e si registra come sessione esterna.</p>
         <div class="end-actions">
           <button type="button" class="btn btn-ghost" id="sim-cancel">Indietro</button>
           <button type="button" class="btn btn-primary btn-lg" id="sim-start">Avvia la simulazione</button>
@@ -146,11 +152,14 @@
     <!-- ════════ SIMULAZIONE: SEZIONE (clone TAO) ════════ -->
     <section id="view-sim" class="view tao" hidden>
       <div class="tao-header">
-        <div class="tao-crumbs"><span class="tao-logo">EPSO</span><span class="tao-crumb tao-crumb-app">EU Prep · Simulazione</span><span class="tao-sep tao-crumb-app">/</span><span class="tao-crumb">Part I</span><span class="tao-sep">/</span><span class="tao-crumb" id="tao-section-name">Verbal</span><span class="tao-sep">/</span><span class="tao-crumb tao-itemid" id="tao-item-id"></span></div>
+        <div class="tao-crumbs"><span class="tao-logo">EPSO</span><button type="button" class="tao-crumb tao-crumb-app tao-exit" id="tao-exit" aria-label="Esci dalla simulazione (abbandona, con conferma)" title="Esci dalla simulazione">EU Prep · Simulazione</button><span class="tao-sep tao-crumb-app">/</span><span class="tao-crumb">Part I</span><span class="tao-sep">/</span><span class="tao-crumb" id="tao-section-name">Verbal</span><span class="tao-sep" id="tao-item-sep">/</span><span class="tao-crumb tao-itemid" id="tao-item-id"></span></div>
         <div class="tao-timer" id="tao-timer" aria-live="off">--min --s</div>
         <div class="tao-tools">
-          <button type="button" class="tao-tool" id="tao-calc" title="Calculator" aria-label="Calculator">▦</button>
-          <button type="button" class="tao-tool" id="tao-pad" title="Scratchpad" aria-label="Scratchpad">✎</button>
+          <button type="button" class="tao-tool" id="tao-highlight" aria-pressed="false" title="Highlighter" aria-label="Highlighter"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 20h16" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 16l-1 1H4l2-4 8-8 3 3-8 8z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M12 7l3 3" stroke="currentColor" stroke-width="1.8"/></svg></button>
+          <button type="button" class="tao-tool" id="tao-calc" title="Calculator" aria-label="Calculator"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><rect x="8" y="6" width="8" height="3" fill="currentColor"/><circle cx="9" cy="13" r="1.1" fill="currentColor"/><circle cx="12" cy="13" r="1.1" fill="currentColor"/><circle cx="15" cy="13" r="1.1" fill="currentColor"/><circle cx="9" cy="17" r="1.1" fill="currentColor"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/><circle cx="15" cy="17" r="1.1" fill="currentColor"/></svg></button>
+          <button type="button" class="tao-tool" id="tao-pad" title="Scratchpad" aria-label="Scratchpad"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 9h8M8 12.5h8M8 16h5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <span class="tao-tool tao-tool-inert" title="Settings (not simulated)" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <span class="tao-tool tao-tool-inert" title="Accessibility (not simulated)" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="4.5" r="2" fill="currentColor"/><path d="M4 9h16M12 9v6M12 15l-4 6M12 15l4 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span>
         </div>
       </div>
       <div class="tao-intro" id="tao-intro" hidden>
@@ -169,16 +178,18 @@
         <button type="button" class="tao-nav-arrow" id="tao-prev" aria-label="Previous question">←</button>
         <div class="tao-bubbles" id="tao-bubbles"></div>
         <button type="button" class="tao-overview-btn" id="tao-overview-btn">OVERVIEW (<span id="tao-overview-n">0</span>)</button>
-        <button type="button" class="tao-bookmark" id="tao-bookmark" aria-pressed="false" aria-label="Bookmark this question" title="Bookmark">⚑</button>
-        <button type="button" class="tao-nav-arrow tao-next" id="tao-next" aria-label="Next question">→</button>
+        <div class="tao-next-col">
+          <button type="button" class="tao-bookmark" id="tao-bookmark" aria-pressed="false" aria-label="Bookmark this question" title="Bookmark"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg></button>
+          <button type="button" class="tao-nav-arrow tao-next" id="tao-next" aria-label="Next question">→</button>
+        </div>
       </div>
 
-      <div class="tao-overview" id="tao-overview" hidden>
+      <div class="tao-overview" id="tao-overview" role="dialog" aria-modal="true" aria-label="Overview" hidden>
         <div class="tao-overview-head"><button type="button" class="tao-close" id="tao-overview-close" aria-label="Close overview">✕</button><span>OVERVIEW · PART I</span></div>
-        <div class="tao-overview-tabs">
-          <button type="button" class="tao-tab active" data-filter="all">All questions</button>
-          <button type="button" class="tao-tab" data-filter="bookmarked">Bookmarked (<span id="ov-bm">0</span>)</button>
-          <button type="button" class="tao-tab" data-filter="incomplete">Incomplete (<span id="ov-inc">0</span>)</button>
+        <div class="tao-overview-tabs" role="tablist">
+          <button type="button" class="tao-tab active" role="tab" aria-selected="true" data-filter="all">All Questions</button>
+          <button type="button" class="tao-tab" role="tab" aria-selected="false" data-filter="bookmarked">Bookmarked (<span id="ov-bm">0</span>)</button>
+          <button type="button" class="tao-tab" role="tab" aria-selected="false" data-filter="incomplete">Incomplete (<span id="ov-inc">0</span>)</button>
         </div>
         <div class="tao-overview-body" id="tao-overview-body"></div>
         <div class="tao-overview-foot">
@@ -187,15 +198,6 @@
         </div>
       </div>
 
-      <div class="tao-widget" id="tao-calc-widget" hidden>
-        <div class="tao-widget-head">Calculator <button type="button" class="tao-close" data-close="tao-calc-widget" aria-label="Close">✕</button></div>
-        <input type="text" class="calc-display" id="calc-display" aria-label="Calculator display" autocomplete="off" inputmode="decimal" placeholder="0">
-        <div class="calc-keys" id="calc-keys"></div>
-      </div>
-      <div class="tao-widget" id="tao-pad-widget" hidden>
-        <div class="tao-widget-head">Scratchpad <button type="button" class="tao-close" data-close="tao-pad-widget" aria-label="Close">✕</button></div>
-        <textarea id="pad-text" class="pad-text" rows="8" aria-label="Scratchpad" placeholder="Appunti…"></textarea>
-      </div>
     </section>
 
     <!-- ════════ SIMULAZIONE: RISULTATI ════════ -->
@@ -286,6 +288,17 @@
     </section>
   </main>
 
+  <div class="widgets" id="widgets">
+      <div class="tao-widget" id="tao-calc-widget" hidden>
+        <div class="tao-widget-head">Calculator <button type="button" class="tao-close" data-close="tao-calc-widget" aria-label="Close">✕</button></div>
+        <input type="text" class="calc-display" id="calc-display" aria-label="Calculator display" autocomplete="off" inputmode="decimal" placeholder="0">
+        <div class="calc-keys" id="calc-keys"></div>
+      </div>
+      <div class="tao-widget" id="tao-pad-widget" hidden>
+        <div class="tao-widget-head">Scratchpad <button type="button" class="tao-close" data-close="tao-pad-widget" aria-label="Close">✕</button></div>
+        <textarea id="pad-text" class="pad-text" rows="8" aria-label="Scratchpad" placeholder="Notes…"></textarea>
+      </div>
+  </div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <div id="modal-root"></div>
 

@@ -66,6 +66,10 @@ const setOpt = (q, letter, text) => {
   byId('verbale', 1068).tag = 'parafrasi';
   byId('verbale', 1041).tag = 'inferenza';
   byId('verbale', 1055).tag = 'inferenza';
+  byId('verbale', 1042).explanation = byId('verbale', 1042).explanation.replace('quindi in quel mese l\'ostello non accoglie ospiti — un\'inferenza sicura dal calendario dichiarato.', 'quindi in quel mese l\'ostello non accoglie ospiti, come dice B: un\'inferenza sicura dal calendario dichiarato.');
+  byId('verbale', 1051).explanation = byId('verbale', 1051).explanation.replace('si cerca l\'affermazione NON supportata.', 'si cerca l\'affermazione NON corretta, cioè non supportata dal brano.');
+  byId('verbale', 1060).explanation = byId('verbale', 1060).explanation.replace('si cerca l\'affermazione che il brano NON sostiene.', 'si cerca l\'affermazione NON corretta, cioè che il brano non sostiene.');
+  byId('verbale', 1070).explanation = byId('verbale', 1070).explanation.replace('ed è la NON supportata.', 'ed è l\'affermazione NON corretta.');
 
   // Riequilibrio delle lettere corrette (bb. 2–3: 12/12/12/12), con spiegazioni riscritte.
   const swap = (id, a, b) => {
@@ -106,10 +110,11 @@ const setOpt = (q, letter, text) => {
     { letter: 'B', text: '126 minuti' },
     { letter: 'C', text: '144 minuti' },
     { letter: 'D', text: '150 minuti' },
-    { letter: 'E', text: '2 ore e 40 minuti' },
+    { letter: 'E', text: 'Nessuna di queste risposte' },
   ];
   q.correct = ['C'];
-  q.explanation = 'Tempo = 216 / 90 = 2,4 ore = 2,4 × 60 = 144 minuti, cioè 2 ore e 24 minuti. Trappole: leggere "2,4 ore" come 2 ore e 40 minuti o come 2 ore e 4 minuti; arrotondare a 2,5 ore (150 minuti); sottrarre invece di dividere (216 − 90 = 126).';
+  q.finalOptions = true; // già nel formato definitivo: il ciclo E non lo tocca
+  q.explanation = 'Tempo = 216 / 90 = 2,4 ore = 2,4 × 60 = 144 minuti, cioè 2 ore e 24 minuti. Trappole: leggere "2,4 ore" come 2 ore e 4 minuti (A); sottrarre invece di dividere, 216 − 90 = 126 (B); arrotondare a 2,5 ore, cioè 150 minuti (D).';
 
   // 2011 DUBBIO: le opzioni rivelavano le percentuali.
   const q11 = byId('numerico', 2011);
@@ -133,6 +138,7 @@ const setOpt = (q, letter, text) => {
 
   // Refusi e decimali.
   byId('numerico', 2038).passage = byId('numerico', 2038).passage.replace('del 85%', "dell'85%");
+  setOpt(byId('numerico', 2043), 'C', '1,80 €'); // lettera del sorgente v1
   setOpt(byId('numerico', 2003), 'B', '586,50 €');
   setOpt(byId('numerico', 2026), 'C', '1.427,40 €');
   setOpt(byId('numerico', 2026), 'D', '1.610,40 €');
@@ -152,8 +158,12 @@ const setOpt = (q, letter, text) => {
   const noneCorrect = new Set([2004, 2010, 2016, 2022, 2028, 2034, 2040, 2046]);
   const num = (s) => (s || '').replace(/[^\d,.-]/g, '');
   const keyCount = { A: 0, B: 0, C: 0, D: 0 }; // per bilanciare le lettere corrette tra i quesiti con chiave numerica
+  // Distrattore da eliminare scelto a mano dove la spiegazione descrive una trappola per concetto.
+  const dropByText = { 2019: '480', 2025: '1.550 €', 2032: '64 €' };
+  const toNum = (s) => { const m = (s || '').replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'); const v = parseFloat(m); return Number.isFinite(v) ? v : null; };
   for (const q of banks.numerico.questions) {
     q.format = 'num5';
+    if (q.finalOptions) { delete q.finalOptions; keyCount[q.correct[0]]++; continue; }
     const key = q.correct[0];
     const keyOpt = q.options.find((o) => o.letter === key);
     let kept;
@@ -166,7 +176,19 @@ const setOpt = (q, letter, text) => {
       // che la lettera della chiave risultante sia quella finora meno usata (equilibrio A/B/C/D).
       const distractors = q.options.filter((o) => o.letter !== key);
       const cited = (o) => q.explanation.includes(num(o.text)) && num(o.text).length >= 2;
-      const candidates = distractors.filter((o) => !cited(o)).length ? distractors.filter((o) => !cited(o)) : distractors;
+      let candidates = distractors.filter((o) => !cited(o)).length ? distractors.filter((o) => !cited(o)) : distractors;
+      if (dropByText[q.id]) candidates = distractors.filter((o) => o.text === dropByText[q.id]);
+      if (!candidates.length) throw new Error(`nessun candidato da eliminare in #${q.id}`);
+      // Se la chiave è un valore centrale, preferisci eliminare un estremo: così la chiave non è «mai l'estremo».
+      const vals = q.options.map((o) => toNum(o.text));
+      const kv = toNum(keyOpt.text);
+      if (kv != null && vals.every((v) => v != null)) {
+        const sorted = [...vals].sort((a, b) => a - b);
+        if (kv !== sorted[0] && kv !== sorted[sorted.length - 1]) {
+          const extremes = candidates.filter((o) => toNum(o.text) === sorted[0] || toNum(o.text) === sorted[sorted.length - 1]);
+          if (extremes.length) candidates = extremes;
+        }
+      }
       const resultLetter = (drop) => 'ABCD'[q.options.filter((o) => o !== drop).indexOf(keyOpt)];
       let drop = candidates[0];
       for (const c of candidates) if (keyCount[resultLetter(c)] < keyCount[resultLetter(drop)]) drop = c;
@@ -201,6 +223,13 @@ const setOpt = (q, letter, text) => {
   banks.digital.hidden = true;
   for (const q of banks.euknowledge.questions) q.format = 'mc4';
   for (const q of banks.digital.questions) q.format = 'mc4';
+}
+
+// Convenzione unica per le percentuali: «16%» senza spazio, in brani, domande, opzioni e spiegazioni.
+for (const q of banks.numerico.questions) {
+  const fix = (t) => (t || '').replace(/(\d)\s+%/g, '$1%');
+  q.passage = fix(q.passage); q.question = fix(q.question); q.explanation = fix(q.explanation);
+  for (const o of q.options) o.text = fix(o.text);
 }
 
 // ───────────────────────── SCRITTURA ─────────────────────────

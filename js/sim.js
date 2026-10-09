@@ -22,9 +22,9 @@ App.sim = (() => {
 
   // ── Setup ──
   function showSetup() {
-    $('sim-device-note').hidden = !isTouchPhone();
+    $('sim-device-note').hidden = !(matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 1);
     const rep = App.select.poolReport();
-    $('sim-pool-note').textContent = `Domande mai usate in simulazione: verbale ${rep.verbale.freshForSim}/${rep.verbale.total}, numerico ${rep.numerico.freshForSim}/${rep.numerico.total}. Le batterie L2 (livello EPSO) arrivano con la v1.2.`;
+    $('sim-pool-note').textContent = `Domande mai usate in simulazione: verbale ${rep.verbale.freshForSim}/${rep.verbale.total}, numerico ${rep.numerico.freshForSim}/${rep.numerico.total} (livello L1; il livello EPSO arriva con la v1.2).`;
     App.ui.show('sim-setup', { title: 'Simulazione' });
   }
 
@@ -36,7 +36,7 @@ App.sim = (() => {
     for (const d of defs) {
       const pick = App.select.pickSim(d.bank, d.n);
       if (pick.items.length < d.n) {
-        App.ui.toast(`Domande insufficienti per ${d.label}: ${pick.items.length}/${d.n}. Servono le batterie L2.`);
+        App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}. Servono le batterie L2.`);
         if (pick.items.length === 0) return;
       }
       const n = pick.items.length;
@@ -89,10 +89,10 @@ App.sim = (() => {
     const secs = u.sections.map((si) => SIM.sections[si]);
     $('tao-intro').hidden = false; $('tao-body').hidden = true; document.querySelector('.tao-footer').hidden = true;
     $('tao-section-name').textContent = secs.map((s) => s.name).join(' + ');
-    $('tao-item-id').textContent = '';
+    $('tao-item-id').textContent = ''; $('tao-item-sep').hidden = true;
     $('tao-timer').textContent = taoClock(u.minutes * 60);
     $('tao-intro-title').textContent = secs.map((s) => `${s.label} · ${s.n} questions${s.reduced ? ' (reduced: question pool)' : ''}`).join(' / ');
-    $('tao-intro-text').textContent = `${u.minutes} minutes. You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections, as in the EPSO sample test.' : 'The timer starts when you press Start.'}`;
+    $('tao-intro-text').textContent = `${u.minutes} minutes. You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections, as in the EPSO sample test.' : 'The timer starts when you press Start.'} Contenuti di livello L1: brani più corti e tabelle più semplici della prova reale (livello EPSO dalla v1.2).`;
     $('tao-intro-start').onclick = startUnit;
   }
 
@@ -112,7 +112,6 @@ App.sim = (() => {
     if (!SIM || (SIM.phase !== 'running' && SIM.phase !== 'overview')) return;
     const left = (SIM.deadline - Date.now()) / 1000;
     $('tao-timer').textContent = taoClock(left);
-    $('tao-timer').classList.toggle('warn', left <= 300);
     if (left <= 0) submitUnit(true);
   }
 
@@ -131,10 +130,11 @@ App.sim = (() => {
     const s = SIM.sections[it.si];
     const q = App.banks.question(it.bank, it.id);
     $('tao-section-name').textContent = s.name;
-    $('tao-item-id').textContent = `IT${String(q.id).padStart(4, '0')}`;
+    $('tao-item-id').textContent = `IT${String(q.id).padStart(4, '0')}`; $('tao-item-sep').hidden = false;
     const p = $('tao-passage');
     p.hidden = !q.passage;
-    App.session && renderPassageInto(p, q.passage);
+    renderPassageInto(p, q.passage);
+    applyHighlights(p, (s.hl && s.hl[it.id]) || []);
     $('tao-question').textContent = q.question;
     const sel = s.answers[it.id] || null;
     $('tao-options').replaceChildren(...q.options.map((o) => el('label', { class: `tao-opt${sel === o.letter ? ' checked' : ''}` },
@@ -163,16 +163,91 @@ App.sim = (() => {
     } else for (const l of lines) node.append(el('p', {}, l));
   }
 
+  // Barra di navigazione come in TAO: al massimo 11 bolle visibili, «…» ai lati per spostare la finestra.
+  let bubbleStart = 0;
   function renderBubbles() {
     const items = unitItems();
     const box = $('tao-bubbles');
-    box.replaceChildren(...items.map((it, i) => {
+    const W = Math.max(5, Math.min(11, Math.floor((box.clientWidth || 480) / 44)));
+    if (SIM.pos < bubbleStart || SIM.pos >= bubbleStart + W) bubbleStart = Math.max(0, Math.min(items.length - W, SIM.pos - Math.floor(W / 2)));
+    bubbleStart = Math.max(0, Math.min(bubbleStart, Math.max(0, items.length - W)));
+    const nodes = [];
+    if (bubbleStart > 0) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Previous questions', tabindex: '-1', onclick: () => { bubbleStart = Math.max(0, bubbleStart - W); renderBubbles(); } }, '…'));
+    for (let i = bubbleStart; i < Math.min(items.length, bubbleStart + W); i++) {
+      const it = items[i];
       const s = SIM.sections[it.si];
-      const b = el('button', { type: 'button', class: `tao-bubble${i === SIM.pos ? ' current' : ''}${s.answers[it.id] ? ' answered' : ''}${s.bookmarks[it.id] ? ' marked' : ''}`, 'aria-label': `Question ${i + 1}${s.answers[it.id] ? ', answered' : ''}`, onclick: () => goTo(i) }, String(i + 1));
-      return b;
-    }));
-    const cur = box.querySelector('.current');
-    if (cur) cur.scrollIntoView({ block: 'nearest', inline: 'center' });
+      const answered = Boolean(s.answers[it.id]), marked = Boolean(s.bookmarks[it.id]);
+      nodes.push(el('button', { type: 'button', class: `tao-bubble${i === SIM.pos ? ' current' : ''}${answered ? ' answered' : ''}${marked ? ' marked' : ''}`, tabindex: i === SIM.pos ? '0' : '-1', 'aria-current': i === SIM.pos ? 'true' : null, 'aria-label': `Question ${i + 1}${answered ? ', answered' : ', not answered'}${marked ? ', bookmarked' : ''}`, onclick: () => goTo(i) }, String(i + 1)));
+    }
+    if (bubbleStart + W < items.length) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Next questions', tabindex: '-1', onclick: () => { bubbleStart = Math.min(items.length - W, bubbleStart + W); renderBubbles(); } }, '…'));
+    box.replaceChildren(...nodes);
+  }
+
+  // ── Evidenziatore: la selezione nel brano diventa <mark>; un click sulla marca la toglie. Salvato per item. ──
+  let highlightMode = false;
+  function textOffsets(root, range) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let pos = 0, start = -1, end = -1, node;
+    while ((node = walker.nextNode())) {
+      if (node === range.startContainer) start = pos + range.startOffset;
+      if (node === range.endContainer) end = pos + range.endOffset;
+      pos += node.nodeValue.length;
+    }
+    return start >= 0 && end > start ? [start, end] : null;
+  }
+  function applyHighlights(root, ranges) {
+    for (const r of [...ranges].sort((a, b) => b[0] - a[0])) {
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      let pos = 0, node;
+      const pieces = [];
+      while ((node = walker.nextNode())) {
+        const len = node.nodeValue.length;
+        const a = Math.max(r[0], pos), b = Math.min(r[1], pos + len);
+        if (a < b) pieces.push([node, a - pos, b - pos]);
+        pos += len;
+      }
+      for (const [n, a, b] of pieces) {
+        const range = document.createRange();
+        range.setStart(n, a); range.setEnd(n, b);
+        const mark = document.createElement('mark'); mark.className = 'tao-hl';
+        range.surroundContents(mark);
+      }
+    }
+  }
+  function onPassageMouseUp() {
+    if (!highlightMode || !SIM || SIM.phase !== 'running') return;
+    const sel = window.getSelection();
+    if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    const root = $('tao-passage');
+    if (!root.contains(range.commonAncestorContainer)) return;
+    const off = textOffsets(root, range);
+    sel.removeAllRanges();
+    if (!off) return;
+    const it = unitItems()[SIM.pos];
+    const s = SIM.sections[it.si];
+    s.hl = s.hl || {};
+    const list = (s.hl[it.id] || []).filter((r) => r[1] <= off[0] || r[0] >= off[1]);
+    list.push(off);
+    s.hl[it.id] = list;
+    persist();
+    renderPassageInto(root, App.banks.question(it.bank, it.id).passage);
+    applyHighlights(root, list);
+  }
+  function onPassageClick(e) {
+    const mark = e.target.closest('mark.tao-hl');
+    if (!mark || !SIM) return;
+    const root = $('tao-passage');
+    const range = document.createRange(); range.selectNodeContents(mark);
+    const off = textOffsets(root, range);
+    const it = unitItems()[SIM.pos];
+    const s = SIM.sections[it.si];
+    if (off && s.hl && s.hl[it.id]) {
+      s.hl[it.id] = s.hl[it.id].filter((r) => !(r[0] <= off[0] && r[1] >= off[1]));
+      persist();
+      renderPassageInto(root, App.banks.question(it.bank, it.id).passage);
+      applyHighlights(root, s.hl[it.id]);
+    }
   }
 
   function select(letter) {
@@ -207,7 +282,7 @@ App.sim = (() => {
     const bm = items.filter((it) => SIM.sections[it.si].bookmarks[it.id]).length;
     const inc = items.filter((it) => !SIM.sections[it.si].answers[it.id]).length;
     $('ov-bm').textContent = bm; $('ov-inc').textContent = inc;
-    for (const t of document.querySelectorAll('.tao-tab')) t.classList.toggle('active', t.dataset.filter === overviewFilter);
+    for (const t of document.querySelectorAll('.tao-tab')) { t.classList.toggle('active', t.dataset.filter === overviewFilter); t.setAttribute('aria-selected', String(t.dataset.filter === overviewFilter)); }
     const body = $('tao-overview-body');
     body.replaceChildren();
     for (const si of SIM.units[SIM.unit].sections) {
@@ -276,9 +351,10 @@ App.sim = (() => {
   }
   function trapOf(entries) {
     const c = {};
-    for (const e of entries) if (!e.ok && e.tag) c[e.tag] = (c[e.tag] || 0) + 1;
+    for (const e of entries) if (!e.ok && !e.unanswered && e.tag) c[e.tag] = (c[e.tag] || 0) + 1;
     const top = Object.entries(c).sort((a, b) => b[1] - a[1])[0];
-    return top ? top[0] : null;
+    if (top) return top[0];
+    return entries.some((e) => e.unanswered) ? 'tempo_scaduto' : null;
   }
 
   function showResults() {
@@ -309,14 +385,14 @@ App.sim = (() => {
     const review = $('sim-review');
     review.replaceChildren();
     for (const s of SIM.sections) {
-      review.append(el('h3', {}, s.label));
+      review.append(el('h3', {}, App.BANK_LABEL[s.bank]));
       s.items.forEach((it, i) => {
         const q = App.banks.question(it.bank, it.id);
         const sel = s.answers[it.id] || null;
         const ok = sel === q.correct[0];
         const co = q.options.find((o) => o.letter === q.correct[0]);
         review.append(el('details', { class: `review-item ${ok ? 'ok' : 'ko'}` },
-          el('summary', {}, `${i + 1}. ${ok ? '✓' : '✗'} · tua ${sel || '—'} · corretta ${co.letter} · ${minSec(s.time[it.id] || 0)} · ${App.tagLabel(q.tag)}`),
+          el('summary', {}, `${i + 1}. ${ok ? '✓' : '✗'} · ${sel ? 'tua ' + sel : 'in bianco'} · corretta ${co.letter} · ${minSec(s.time[it.id] || 0)} · ${App.tagLabel(q.tag)}`),
           q.passage ? el('div', { class: 'review-passage' }, ...q.passage.split('\n').map((l) => el('p', {}, l))) : null,
           el('p', { class: 'review-q' }, q.question),
           el('ul', { class: 'review-opts' }, ...q.options.map((o) => el('li', { class: o.letter === q.correct[0] ? 'is-correct' : o.letter === sel ? 'is-wrong' : '' }, `${o.letter}) ${o.text}`))),
@@ -359,6 +435,12 @@ App.sim = (() => {
     $('tao-submit').addEventListener('click', () => submitUnit(false));
     for (const t of document.querySelectorAll('.tao-tab')) t.addEventListener('click', () => { overviewFilter = t.dataset.filter; renderOverview(); });
     document.querySelector('.tao-logo').addEventListener('click', abandon);
+    $('tao-exit').addEventListener('click', abandon);
+    $('tao-highlight').addEventListener('click', () => { highlightMode = !highlightMode; $('tao-highlight').setAttribute('aria-pressed', String(highlightMode)); $('tao-highlight').classList.toggle('on', highlightMode); $('tao-passage').classList.toggle('hl-mode', highlightMode); });
+    $('tao-passage').addEventListener('mouseup', onPassageMouseUp);
+    $('tao-passage').addEventListener('touchend', () => setTimeout(onPassageMouseUp, 0));
+    $('tao-passage').addEventListener('click', onPassageClick);
+    window.addEventListener('resize', () => { if (SIM && SIM.phase === 'running') renderBubbles(); });
     window.addEventListener('keydown', (e) => {
       if (App.ui.view() !== 'sim' || !SIM || SIM.phase !== 'running' || App.ui.modalOpen()) return;
       if (e.target.closest('input[type=text], textarea')) return;

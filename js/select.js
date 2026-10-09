@@ -13,7 +13,7 @@ App.select = (() => {
     const since = new Date(); since.setDate(since.getDate() - 14);
     const w = {};
     for (const e of App.store.log()) {
-      if (e.mode === 'external' || e.ok || !e.tag) continue;
+      if (e.mode === 'external' || e.ok || e.unanswered || !e.tag) continue;
       if (new Date(e.t) < since) continue;
       w[e.tag] = Math.min(4, (w[e.tag] || 1) + 1);
     }

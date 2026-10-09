@@ -7,7 +7,7 @@ App.session = (() => {
   const { el, clock, minSec, paragraphs, uid, copyText, dateTimeIt, shuffle } = App.utils;
   const $ = (id) => document.getElementById(id);
 
-  const MODE_LABEL = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso errori' };
+  const MODE_LABEL = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso' };
   let S = null;          // stato della sessione corrente
   let tickId = null;
   let itemShownAt = 0;   // epoch ms: quando l'item corrente è apparso (per il tempo)
@@ -17,8 +17,10 @@ App.session = (() => {
 
   function start(mode, questions, { bankLabel = '' } = {}) {
     if (!questions.length) { App.ui.toast('Nessuna domanda disponibile.'); return; }
+    const extra = App.plan.today().done; // oltre la sessione del giorno: si registra come «extra», senza pressione
+    App.calc.reset();
     S = {
-      id: uid(), mode, bankLabel, startedAt: new Date().toISOString(),
+      id: uid(), mode, bankLabel, extra, startedAt: new Date().toISOString(),
       items: questions.map((q) => ({ bank: q.bank, id: q.id })),
       index: 0, phase: 'answer', selected: null, elapsed: 0,
       answers: [], // { bank, id, sel, ok, sec, conf, tag }
@@ -55,15 +57,19 @@ App.session = (() => {
     const pace = App.plan.PACE[q.bank] || 90;
     $('s-counter').textContent = `${S.index + 1} / ${S.items.length}`;
     $('s-mode').textContent = `${MODE_LABEL[S.mode]} · ${App.BANK_LABEL[q.bank] || q.bank}${q.level ? ' L' + q.level : ''}${q.format === 'vfn' ? ' · fondamenta' : ''}`;
-    $('s-target').textContent = clock(pace);
+    $('s-target').textContent = minSec(pace);
+    $('s-tools').hidden = q.bank !== 'numerico';
+    if (q.bank !== 'numerico') App.calc.hideAll();
     const p = $('s-passage');
     p.hidden = !q.passage;
     renderPassage(p, q.passage);
-    $('s-question').textContent = q.question;
+    const qn = $('s-question');
+    if (q.format === 'vfn') { qn.replaceChildren(el('span', { class: 'q-lead' }, 'In base al brano, questa affermazione è vera, falsa o indecidibile?'), el('br'), el('span', {}, q.question)); }
+    else qn.textContent = q.question;
     $('s-options').replaceChildren(...q.options.map((o) => el('button', {
       type: 'button', class: 'opt', 'aria-pressed': String(S.selected === o.letter), dataset: { letter: o.letter },
       onclick: () => choose(o.letter),
-    }, el('span', { class: 'opt-letter' }, o.letter), el('span', { class: 'opt-text' }, o.text))));
+    }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, `${o.letter})`), el('span', { class: 'opt-text' }, o.text))));
     const conf = App.store.settings().confidence;
     $('s-sure').hidden = !conf; $('s-doubt').hidden = !conf; $('s-answer').hidden = conf;
     setActions(S.selected != null);
@@ -100,7 +106,7 @@ App.session = (() => {
     const pace = App.plan.PACE[q.bank] || 90;
     const sec = elapsedBefore + (Date.now() - itemShownAt) / 1000;
     S.elapsed = sec;
-    $('s-time').textContent = clock(sec);
+    $('s-time').textContent = minSec(sec);
     const fill = $('s-pace-fill');
     fill.style.width = `${Math.min(100, (sec / pace) * 100)}%`;
     $('s-pace').classList.toggle('over', sec > pace);
@@ -145,7 +151,7 @@ App.session = (() => {
     const fb = $('s-feedback');
     fb.hidden = false;
     fb.className = `feedback ${a.ok ? 'ok' : 'ko'}`;
-    $('s-fb-head').textContent = a.ok ? `Corretta · ${minSec(a.sec)}${a.sec > pace ? ' (oltre il ritmo di ' + clock(pace) + ')' : ''}` : `Sbagliata · ${minSec(a.sec)}`;
+    $('s-fb-head').textContent = a.ok ? `Corretta · ${minSec(a.sec)}${a.sec > pace ? ' (oltre il ritmo di ' + minSec(pace) + ')' : ''}` : `Sbagliata · ${minSec(a.sec)}`;
     const correctOpt = q.options.find((o) => o.letter === q.correct[0]);
     $('s-fb-correct').textContent = a.ok ? '' : `Risposta corretta: ${correctOpt.letter}) ${correctOpt.text}`;
     const calib = $('s-fb-calib');
@@ -157,7 +163,8 @@ App.session = (() => {
     $('s-fb-tag').textContent = q.tag ? `Trappola: ${App.tagLabel(q.tag)}` : '';
     const last = S.index === S.items.length - 1;
     $('s-next').textContent = last ? 'Fine sessione' : 'Prossima';
-    if (!resumed) setTimeout(() => $('s-next').focus(), 60);
+    // Si porta in vista l'esito, non il pulsante: il brano resta raggiungibile sopra, la correzione sotto.
+    if (!resumed) setTimeout(() => { $('s-fb-head').scrollIntoView({ block: 'start', behavior: 'auto' }); $('s-next').focus({ preventScroll: true }); }, 30);
   }
 
   function next() {
@@ -173,6 +180,7 @@ App.session = (() => {
     if (!ok) return;
     clearInterval(tickId);
     persist();
+    App.calc.hideAll();
     App.main.home();
   }
 
@@ -186,7 +194,7 @@ App.session = (() => {
     const sec = answers.reduce((s, a) => s + a.sec, 0);
     const banks = [...new Set(answers.map((a) => a.bank))];
     const trap = dominantTrap(answers);
-    const summary = { mode: S.mode, id: S.id, banks, n, correct, sec, trap, sure_wrong: answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: answers.filter((a) => a.conf === 'doubt' && a.ok).length };
+    const summary = { mode: S.mode, id: S.id, banks, n, correct, sec, trap, extra: Boolean(S.extra), sure_wrong: answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: answers.filter((a) => a.conf === 'doubt' && a.ok).length };
     App.store.addSession(summary);
     App.store.setCurrent(null);
     renderEnd(summary, answers);
@@ -206,7 +214,7 @@ App.session = (() => {
     $('e-score').textContent = `${sum.correct}/${sum.n}`;
     const avg = sum.n ? sum.sec / sum.n : 0;
     const paceRef = sum.banks.length === 1 ? App.plan.PACE[sum.banks[0]] : null;
-    $('e-pace').textContent = minSec(avg) + (paceRef ? ` / ${clock(paceRef)}` : '');
+    $('e-pace').textContent = minSec(avg) + (paceRef ? ` / ${minSec(paceRef)}` : '');
     $('e-trap').textContent = sum.trap ? App.tagLabel(sum.trap) : 'nessuna';
     const sentence = [];
     if (sum.n && sum.correct === sum.n) sentence.push('Tutte giuste.');
@@ -263,6 +271,9 @@ App.session = (() => {
       } else if (S.phase === 'answer' && e.key === 'Enter' && S.selected) {
         e.preventDefault();
         answer(App.store.settings().confidence ? 'sure' : null);
+      } else if (S.phase === 'answer' && (e.key === 'Backspace' || e.key === '?') && S.selected && App.store.settings().confidence) {
+        e.preventDefault();
+        answer('doubt');
       } else if (S.phase === 'feedback' && (e.key === 'Enter' || e.key === 'ArrowRight')) {
         e.preventDefault();
         next();
