@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>EU Prep Suite</title>
   <meta name="description" content="Preparazione EPSO/AD/427/26, Parte 1: micro-sessioni, allenamento a tempo e simulazione fedele alla piattaforma TAO.">
   <meta name="color-scheme" content="light dark">
@@ -152,7 +153,7 @@
     <!-- ════════ SIMULAZIONE: SEZIONE (clone TAO) ════════ -->
     <section id="view-sim" class="view tao" hidden>
       <div class="tao-header">
-        <div class="tao-crumbs"><span class="tao-logo">EPSO</span><button type="button" class="tao-crumb tao-crumb-app tao-exit" id="tao-exit" aria-label="Esci dalla simulazione (abbandona, con conferma)" title="Esci dalla simulazione">EU Prep · Simulazione</button><span class="tao-sep tao-crumb-app">/</span><span class="tao-crumb">Part I</span><span class="tao-sep">/</span><span class="tao-crumb" id="tao-section-name">Verbal</span><span class="tao-sep" id="tao-item-sep">/</span><span class="tao-crumb tao-itemid" id="tao-item-id"></span></div>
+        <div class="tao-crumbs"><button type="button" class="tao-logo" id="tao-logo" aria-label="Esci dalla simulazione (abbandona, con conferma)" title="Esci dalla simulazione">EPSO</button><button type="button" class="tao-crumb tao-crumb-app tao-exit" id="tao-exit" aria-label="Esci dalla simulazione (abbandona, con conferma)" title="Esci dalla simulazione">EU Prep · Simulazione</button><span class="tao-sep tao-crumb-app">/</span><span class="tao-crumb">Part I</span><span class="tao-sep">/</span><span class="tao-crumb" id="tao-section-name">Verbal</span><span class="tao-sep" id="tao-item-sep">/</span><span class="tao-crumb tao-itemid" id="tao-item-id"></span></div>
         <div class="tao-timer" id="tao-timer" aria-live="off">--min --s</div>
         <div class="tao-tools">
           <button type="button" class="tao-tool" id="tao-highlight" aria-pressed="false" title="Highlighter" aria-label="Highlighter"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 20h16" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 16l-1 1H4l2-4 8-8 3 3-8 8z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M12 7l3 3" stroke="currentColor" stroke-width="1.8"/></svg></button>
@@ -241,6 +242,7 @@
               <option>Altro</option>
             </select>
           </label>
+          <label class="field">Data <input type="date" id="ext-date" required></label>
           <div class="field-row">
             <label class="field">Corrette <input type="number" id="ext-score" min="0" max="200" inputmode="numeric" required></label>
             <label class="field">su <input type="number" id="ext-max" min="1" max="200" inputmode="numeric" required></label>

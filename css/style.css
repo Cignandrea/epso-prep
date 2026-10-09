@@ -207,7 +207,8 @@ body[data-view="sim"] .main { max-width: none; padding: 0; }
 .tao-exit { background: none; border: 0; padding: 4px 2px; font: inherit; color: #333; cursor: pointer; border-radius: 6px; }
 .tao-exit:hover { background: #f0f0f0; }
 .tao-crumbs { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: #333; overflow: hidden; white-space: nowrap; }
-.tao-logo { font-weight: 800; color: #003399; letter-spacing: .04em; cursor: pointer; padding: 6px 4px; }
+.tao-logo { font: inherit; font-weight: 800; color: #003399; letter-spacing: .04em; cursor: pointer; padding: 6px 6px; min-height: 44px; min-width: 44px; background: none; border: 0; border-radius: 6px; }
+.tao-logo:hover { background: #f0f0f0; }
 .tao-sep { color: #999; }
 .tao-itemid { color: #666; }
 .tao-timer { color: #1a56db; font-weight: 600; font-variant-numeric: tabular-nums; font-size: .9rem; padding-left: 2px; }
@@ -279,7 +280,7 @@ mark.tao-hl { background: #fff3b0; color: inherit; padding: 0 1px; border-radius
   .tao-overview-btn { padding: 10px 10px; font-size: .72rem; }
   .tao-footer { gap: 6px; }
   .tao-crumbs { font-size: .8rem; }
-  .tao-crumb-app { display: none; }
+  .tao-crumb-app { display: none; } /* l'uscita resta sul logo «EPSO» (pulsante 44 px) */
   .end-numbers { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

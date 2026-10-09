@@ -5,20 +5,30 @@
 window.App = window.App || {};
 App.sim = (() => {
   'use strict';
-  const { el, taoClock, minSec, clock, paragraphs, uid, copyText, dateTimeIt, isTouchPhone } = App.utils;
+  const { el, taoClock, minSec, paragraphs, uid, copyText, dateTimeIt, renderPassage } = App.utils;
   const $ = (id) => document.getElementById(id);
 
-  const SECTION_DEF = {
-    verbale: { bank: 'verbale', name: 'Verbal', label: 'Verbal Reasoning', n: 20, minutes: 35 },
-    numerico: { bank: 'numerico', name: 'Numerical', label: 'Numerical Reasoning', n: 10, minutes: 20 },
+  // Nomi come in TAO; numero di domande e minuti dai metadati della banca (data/bank-*.js, exam), con riserva.
+  const SECTION_NAMES = {
+    verbale: { name: 'Verbal', label: 'Verbal Reasoning', n: 20, minutes: 35 },
+    numerico: { name: 'Numerical', label: 'Numerical Reasoning', n: 10, minutes: 20 },
   };
+  function sectionDef(bank) {
+    const exam = (App.banks.get(bank) || {}).exam || {};
+    const d = SECTION_NAMES[bank];
+    return { bank, name: d.name, label: d.label, n: exam.num || d.n, minutes: exam.totalMin || d.minutes };
+  }
+
+  // Una simulazione ferma da più di STALE_MS oltre la sua scadenza si considera abbandonata.
+  const STALE_MS = 6 * 3600 * 1000;
 
   let SIM = null;
   let tickId = null;
   let shownAt = 0;
   let overviewFilter = 'all';
 
-  const persist = () => App.store.setSim(SIM);
+  const persist = () => { if (SIM) App.store.setSim(SIM); };
+  const inUnit = () => SIM && (SIM.phase === 'running' || SIM.phase === 'overview');
 
   // ── Setup ──
   function showSetup() {
@@ -31,7 +41,7 @@ App.sim = (() => {
   function startFromSetup() {
     const scope = document.querySelector('input[name="sim-scope"]:checked').value;
     const timerMode = document.querySelector('input[name="sim-timer"]:checked').value;
-    const defs = scope === 'full' ? [SECTION_DEF.verbale, SECTION_DEF.numerico] : [SECTION_DEF[scope]];
+    const defs = scope === 'full' ? [sectionDef('verbale'), sectionDef('numerico')] : [sectionDef(scope)];
     const sections = [];
     for (const d of defs) {
       const pick = App.select.pickSim(d.bank, d.n);
@@ -41,7 +51,7 @@ App.sim = (() => {
       }
       const n = pick.items.length;
       const minutes = n === d.n ? d.minutes : Math.max(1, Math.round((n * d.minutes) / d.n));
-      sections.push({ ...d, n, minutes, reduced: n < d.n, items: pick.items.map((q) => ({ bank: q.bank, id: q.id })), fresh: pick.fresh, answers: {}, bookmarks: {}, time: {}, status: 'pending', deadline: null, startedAt: null, submittedAt: null, byTimeout: false });
+      sections.push({ ...d, n, minutes, reduced: n < d.n, items: pick.items.map((q) => ({ bank: q.bank, id: q.id })), fresh: pick.fresh, answers: {}, bookmarks: {}, time: {}, hl: {}, status: 'pending', deadline: null, startedAt: null, submittedAt: null, byTimeout: false });
     }
     // In modalità "timer unico" le sezioni formano una sola unità navigabile, come nel test di esempio.
     const units = timerMode === 'single'
@@ -54,14 +64,24 @@ App.sim = (() => {
     renderIntro();
   }
 
-  // Una simulazione iniziata in un giorno precedente e mai consegnata si chiude come abbandonata:
-  // non consuma il pool e non entra nel registro.
+  // Simulazione ferma da ore oltre la scadenza (T-071: conta la scadenza, non il giorno di calendario):
+  // le sezioni già consegnate restano e vanno nei risultati; quella interrotta non consuma il pool.
   function closeStale() {
     const sim = App.store.sim();
     if (!sim || sim.phase === 'results') return;
-    if (App.utils.todayKey(new Date(sim.startedAt)) === App.utils.todayKey()) return;
-    App.store.setSim(null);
-    App.ui.toast('La simulazione lasciata a metà in un giorno precedente è stata chiusa senza conteggio.', 5000);
+    const total = sim.units.reduce((s, u) => s + u.minutes, 0) * 60000;
+    const ref = (sim.phase === 'running' || sim.phase === 'overview') && sim.deadline ? sim.deadline : new Date(sim.startedAt).getTime() + total;
+    if (Date.now() - ref < STALE_MS) return;
+    clearInterval(tickId);
+    const done = sim.sections.filter((s) => s.status === 'done');
+    if (done.length) {
+      SIM = { ...sim, sections: done, stale: true };
+      finish({ show: false });
+      App.ui.toast('Simulazione lasciata a metà: chiusa. Conta solo la parte già consegnata; il resto non consuma il pool.', 6000);
+    } else {
+      App.store.setSim(null); SIM = null;
+      App.ui.toast('La simulazione lasciata a metà è stata chiusa senza conteggio.', 5000);
+    }
   }
 
   function resume() {
@@ -74,20 +94,24 @@ App.sim = (() => {
       return false;
     }
     App.ui.show('sim');
-    if (SIM.phase === 'intro') renderIntro();
-    else if (SIM.phase === 'running' || SIM.phase === 'overview') { startTick(); renderItem(); if (SIM.phase === 'overview') openOverview(); }
-    else if (SIM.phase === 'results') showResults();
+    shownAt = 0;
+    if (SIM.phase === 'results') { showResults(); return true; }
+    if (SIM.phase === 'intro') { renderIntro(); return true; }
+    // Scadenza già passata mentre l'app era chiusa: la parte si consegna per tempo scaduto, come in TAO (T-060).
+    if (SIM.deadline <= Date.now()) { submitUnit(true); return true; }
+    startTick();
+    renderItem();
+    if (SIM.phase === 'overview') openOverview();
     return true;
   }
 
   // ── Unità (una sezione, o tutte con timer unico) ──
   const unitItems = () => SIM.units[SIM.unit].sections.flatMap((si) => SIM.sections[si].items.map((it, k) => ({ ...it, si, k })));
-  const sectionOf = (pos) => SIM.sections[unitItems()[pos].si];
 
   function renderIntro() {
     const u = SIM.units[SIM.unit];
     const secs = u.sections.map((si) => SIM.sections[si]);
-    $('tao-intro').hidden = false; $('tao-body').hidden = true; document.querySelector('.tao-footer').hidden = true;
+    $('tao-intro').hidden = false; $('tao-body').hidden = true; document.querySelector('.tao-footer').hidden = true; $('tao-overview').hidden = true;
     $('tao-section-name').textContent = secs.map((s) => s.name).join(' + ');
     $('tao-item-id').textContent = ''; $('tao-item-sep').hidden = true;
     $('tao-timer').textContent = taoClock(u.minutes * 60);
@@ -109,18 +133,20 @@ App.sim = (() => {
 
   function startTick() { clearInterval(tickId); tickId = setInterval(tick, 500); tick(); }
   function tick() {
-    if (!SIM || (SIM.phase !== 'running' && SIM.phase !== 'overview')) return;
+    if (!inUnit()) return;
     const left = (SIM.deadline - Date.now()) / 1000;
     $('tao-timer').textContent = taoClock(left);
     if (left <= 0) submitUnit(true);
   }
 
+  // Il tempo sull'item corrente si accredita e si salva (T-082) a ogni cambio di item, segnalibro, overview, background.
   function accrue() {
     if (!SIM || SIM.phase !== 'running' || !shownAt) return;
     const it = unitItems()[SIM.pos];
     const s = SIM.sections[it.si];
     s.time[it.id] = (s.time[it.id] || 0) + (Date.now() - shownAt) / 1000;
     shownAt = Date.now();
+    persist();
   }
 
   function renderItem() {
@@ -133,15 +159,14 @@ App.sim = (() => {
     $('tao-item-id').textContent = `IT${String(q.id).padStart(4, '0')}`; $('tao-item-sep').hidden = false;
     const p = $('tao-passage');
     p.hidden = !q.passage;
-    renderPassageInto(p, q.passage);
+    renderPassage(p, q.passage, { tableClass: 'data-table tao-table' });
     applyHighlights(p, (s.hl && s.hl[it.id]) || []);
     $('tao-question').textContent = q.question;
     const sel = s.answers[it.id] || null;
     $('tao-options').replaceChildren(...q.options.map((o) => el('label', { class: `tao-opt${sel === o.letter ? ' checked' : ''}` },
       el('input', { type: 'radio', name: 'tao-answer', value: o.letter, checked: sel === o.letter, onchange: () => select(o.letter) }),
       el('span', { class: 'tao-opt-letter' }, `${o.letter})`), el('span', { class: 'tao-opt-text' }, o.text))));
-    $('tao-bookmark').setAttribute('aria-pressed', String(Boolean(s.bookmarks[it.id])));
-    $('tao-bookmark').classList.toggle('on', Boolean(s.bookmarks[it.id]));
+    paintBookmark(Boolean(s.bookmarks[it.id]));
     $('tao-prev').disabled = SIM.pos === 0;
     $('tao-next').disabled = SIM.pos === items.length - 1;
     $('tao-overview-n').textContent = items.length;
@@ -150,18 +175,7 @@ App.sim = (() => {
     shownAt = Date.now();
     persist();
   }
-
-  function renderPassageInto(node, text) {
-    node.replaceChildren();
-    if (!text) return;
-    const lines = text.split('\n');
-    if (lines.length > 2 && lines.filter((l) => l.includes(' — ') || /:\s/.test(l)).length >= lines.length - 1) {
-      const intro = lines[0].includes(' — ') ? null : lines[0];
-      if (intro) node.append(el('p', {}, intro));
-      const rows = lines.slice(intro ? 1 : 0).map((l) => (l.includes(' — ') ? l.split(' — ') : l.split(/:\s+/)));
-      node.append(el('table', { class: 'data-table tao-table' }, el('tbody', {}, rows.map((r) => el('tr', {}, r.map((c, i) => el(i === 0 ? 'th' : 'td', {}, c)))))));
-    } else for (const l of lines) node.append(el('p', {}, l));
-  }
+  function paintBookmark(on) { $('tao-bookmark').setAttribute('aria-pressed', String(on)); $('tao-bookmark').classList.toggle('on', on); }
 
   // Barra di navigazione come in TAO: al massimo 11 bolle visibili, «…» ai lati per spostare la finestra.
   let bubbleStart = 0;
@@ -185,15 +199,27 @@ App.sim = (() => {
 
   // ── Evidenziatore: la selezione nel brano diventa <mark>; un click sulla marca la toglie. Salvato per item. ──
   let highlightMode = false;
+  let lastDragAt = 0;
+  // Offset di un punto (contenitore, offset) nel testo del brano: vale anche per contenitori elemento (T-068).
+  function pointOffset(root, container, offset) {
+    const r = document.createRange();
+    r.setStart(root, 0); r.setEnd(container, offset);
+    return r.toString().length;
+  }
   function textOffsets(root, range) {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    let pos = 0, start = -1, end = -1, node;
-    while ((node = walker.nextNode())) {
-      if (node === range.startContainer) start = pos + range.startOffset;
-      if (node === range.endContainer) end = pos + range.endOffset;
-      pos += node.nodeValue.length;
+    try {
+      const start = pointOffset(root, range.startContainer, range.startOffset);
+      const end = pointOffset(root, range.endContainer, range.endOffset);
+      return end > start ? [start, end] : null;
+    } catch { return null; }
+  }
+  function mergeRanges(list) {
+    const out = [];
+    for (const r of [...list].sort((a, b) => a[0] - b[0])) {
+      const last = out[out.length - 1];
+      if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]); else out.push([r[0], r[1]]);
     }
-    return start >= 0 && end > start ? [start, end] : null;
+    return out;
   }
   function applyHighlights(root, ranges) {
     for (const r of [...ranges].sort((a, b) => b[0] - a[0])) {
@@ -214,6 +240,16 @@ App.sim = (() => {
       }
     }
   }
+  function currentHl() {
+    const it = unitItems()[SIM.pos];
+    const s = SIM.sections[it.si];
+    s.hl = s.hl || {};
+    return { it, s, list: s.hl[it.id] || [] };
+  }
+  function repaint(root, it, list) {
+    renderPassage(root, App.banks.question(it.bank, it.id).passage, { tableClass: 'data-table tao-table' });
+    applyHighlights(root, list);
+  }
   function onPassageMouseUp() {
     if (!highlightMode || !SIM || SIM.phase !== 'running') return;
     const sel = window.getSelection();
@@ -224,30 +260,25 @@ App.sim = (() => {
     const off = textOffsets(root, range);
     sel.removeAllRanges();
     if (!off) return;
-    const it = unitItems()[SIM.pos];
-    const s = SIM.sections[it.si];
-    s.hl = s.hl || {};
-    const list = (s.hl[it.id] || []).filter((r) => r[1] <= off[0] || r[0] >= off[1]);
-    list.push(off);
-    s.hl[it.id] = list;
+    lastDragAt = Date.now();
+    const { it, s, list } = currentHl();
+    s.hl[it.id] = mergeRanges([...list, off]); // una selezione che sconfina in una marca la estende
     persist();
-    renderPassageInto(root, App.banks.question(it.bank, it.id).passage);
-    applyHighlights(root, list);
+    repaint(root, it, s.hl[it.id]);
   }
   function onPassageClick(e) {
     const mark = e.target.closest('mark.tao-hl');
-    if (!mark || !SIM) return;
+    if (!mark || !SIM || SIM.phase !== 'running' || Date.now() - lastDragAt < 400) return;
     const root = $('tao-passage');
     const range = document.createRange(); range.selectNodeContents(mark);
     const off = textOffsets(root, range);
-    const it = unitItems()[SIM.pos];
-    const s = SIM.sections[it.si];
-    if (off && s.hl && s.hl[it.id]) {
-      s.hl[it.id] = s.hl[it.id].filter((r) => !(r[0] <= off[0] && r[1] >= off[1]));
-      persist();
-      renderPassageInto(root, App.banks.question(it.bank, it.id).passage);
-      applyHighlights(root, s.hl[it.id]);
-    }
+    if (!off) return;
+    const { it, s, list } = currentHl();
+    const next = list.filter((r) => !(r[0] <= off[0] && r[1] >= off[1]));
+    if (next.length === list.length) return;
+    s.hl[it.id] = next;
+    persist();
+    repaint(root, it, next);
   }
 
   function select(letter) {
@@ -262,12 +293,14 @@ App.sim = (() => {
     persist();
   }
   function goTo(i) { accrue(); SIM.pos = Math.max(0, Math.min(unitItems().length - 1, i)); SIM.phase = 'running'; renderItem(); }
+  // Il segnalibro non tocca il tempo dell'item (T-067): si aggiornano solo pulsante e bolle.
   function toggleBookmark() {
     const it = unitItems()[SIM.pos];
     const s = SIM.sections[it.si];
-    s.bookmarks[it.id] = !s.bookmarks[it.id];
-    if (!s.bookmarks[it.id]) delete s.bookmarks[it.id];
-    renderItem();
+    if (s.bookmarks[it.id]) delete s.bookmarks[it.id]; else s.bookmarks[it.id] = true;
+    paintBookmark(Boolean(s.bookmarks[it.id]));
+    renderBubbles();
+    persist();
   }
 
   // ── Overview ──
@@ -276,6 +309,7 @@ App.sim = (() => {
     SIM.phase = 'overview'; persist();
     $('tao-overview').hidden = false;
     renderOverview();
+    $('tao-overview-close').focus();
   }
   function renderOverview() {
     const items = unitItems();
@@ -300,16 +334,19 @@ App.sim = (() => {
       body.append(group);
     }
   }
-  function closeOverview() { $('tao-overview').hidden = true; SIM.phase = 'running'; shownAt = Date.now(); persist(); }
+  function closeOverview() {
+    $('tao-overview').hidden = true; SIM.phase = 'running'; shownAt = Date.now(); persist();
+    $('tao-overview-btn').focus({ preventScroll: true });
+  }
 
   async function submitUnit(byTimeout) {
-    if (!SIM || SIM.phase === 'results' || SIM.phase === 'done' || SIM.phase === 'intro') return;
+    if (!inUnit()) return;
     if (!byTimeout) {
       const token = `${SIM.id}:${SIM.unit}`;
       const inc = unitItems().filter((it) => !SIM.sections[it.si].answers[it.id]).length;
       const ok = await App.ui.confirm({ title: 'Submit this part?', message: inc ? `You have ${inc} unanswered question${inc === 1 ? '' : 's'}. Unanswered questions count as incorrect.` : 'All questions answered.', okText: 'Submit', cancelText: 'Go back' });
       // Se nel frattempo il timer ha consegnato (o la sim è cambiata), questa conferma non vale più.
-      if (!ok || !SIM || `${SIM.id}:${SIM.unit}` !== token || (SIM.phase !== 'running' && SIM.phase !== 'overview')) return;
+      if (!ok || !SIM || `${SIM.id}:${SIM.unit}` !== token || !inUnit()) return;
     } else {
       App.ui.closeModal();
     }
@@ -319,12 +356,12 @@ App.sim = (() => {
     for (const si of SIM.units[SIM.unit].sections) { const s = SIM.sections[si]; s.status = 'done'; s.submittedAt = now; s.byTimeout = Boolean(byTimeout); }
     $('tao-overview').hidden = true;
     App.calc.reset();
-    if (SIM.unit < SIM.units.length - 1) { SIM.unit++; SIM.pos = 0; SIM.phase = 'intro'; persist(); renderIntro(); return; }
+    if (SIM.unit < SIM.units.length - 1) { SIM.unit++; SIM.pos = 0; SIM.phase = 'intro'; SIM.deadline = null; persist(); renderIntro(); return; }
     finish();
   }
 
   // ── Fine ──
-  function finish() {
+  function finish({ show = true } = {}) {
     SIM.phase = 'results';
     SIM.finishedAt = new Date().toISOString();
     const entries = [];
@@ -345,13 +382,13 @@ App.sim = (() => {
     }
     SIM.results = results;
     App.store.addLogMany(entries);
-    for (const r of results) App.store.addSession({ mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout });
+    for (const r of results) App.store.addSession({ mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined });
     persist();
-    showResults();
+    if (show) showResults();
   }
   function trapOf(entries) {
     const c = {};
-    for (const e of entries) if (!e.ok && !e.unanswered && e.tag) c[e.tag] = (c[e.tag] || 0) + 1;
+    for (const e of entries) if (App.utils.isTrapError(e)) c[e.tag] = (c[e.tag] || 0) + 1;
     const top = Object.entries(c).sort((a, b) => b[1] - a[1])[0];
     if (top) return top[0];
     return entries.some((e) => e.unanswered) ? 'tempo_scaduto' : null;
@@ -361,12 +398,16 @@ App.sim = (() => {
     const r = SIM.results || [];
     $('sim-scores').replaceChildren(...r.map((x) => {
       const t = App.plan.TARGET[x.bank];
+      const seen = x.fresh < x.n ? ` · ${x.n - x.fresh} domande già viste in allenamento` : '';
+      // Il verbale ha una soglia propria; numerico e astratto hanno un obiettivo e una soglia combinata 10/20 (T-090).
+      const note = !t ? null : t.min ? `soglia ${t.min}/${t.max} · obiettivo ${t.score}/${t.max}` : `obiettivo ${t.score}/${t.max} · soglia combinata numerico + astratto 10/20`;
       return el('div', { class: 'sim-score' },
         el('span', { class: 'num-big' }, `${x.correct}/${x.n}`),
         el('span', { class: 'num-label' }, `${App.BANK_LABEL[x.bank]} · ${minSec(x.time)} totali · ${x.answered}/${x.n} risposte${x.byTimeout ? ' · tempo scaduto' : ''}`),
-        t ? el('span', { class: 'num-note' }, `soglia ${t.min || t.score}/${t.max}${t.min ? ` · obiettivo ${t.score}/${t.max}` : ''}${x.fresh < x.n ? ` · ${x.n - x.fresh} domande già viste in allenamento` : ''}`) : null);
+        note ? el('span', { class: 'num-note' }, note + seen) : null);
     }));
     const sentences = [];
+    if (SIM.stale) sentences.push('Simulazione interrotta: qui conta solo la parte consegnata.');
     for (const x of r) {
       const t = App.plan.TARGET[x.bank];
       if (!t) continue;
@@ -405,7 +446,7 @@ App.sim = (() => {
   }
 
   function summaryText() {
-    const lines = [`EU Prep Suite — Simulazione (${SIM.timerMode === 'single' ? 'timer unico' : 'timer per prova'}) · ${dateTimeIt(SIM.finishedAt || new Date().toISOString())}`];
+    const lines = [`EU Prep Suite — Simulazione (${SIM.timerMode === 'single' ? 'timer unico' : 'timer per prova'}${SIM.stale ? ', interrotta' : ''}) · ${dateTimeIt(SIM.finishedAt || new Date().toISOString())}`];
     for (const s of SIM.sections) {
       const r = SIM.results.find((x) => x.bank === s.bank);
       const wrong = s.items.filter((it) => (s.answers[it.id] || null) !== App.banks.question(it.bank, it.id).correct[0]);
@@ -415,11 +456,13 @@ App.sim = (() => {
     return lines.join('\n');
   }
 
+  // Abbandono senza conferma (usato dalla home quando si inizia altro con una sim in sospeso).
+  function discard() { clearInterval(tickId); App.store.setSim(null); SIM = null; shownAt = 0; }
+
   async function abandon() {
     const ok = await App.ui.confirm({ title: 'Abbandonare la simulazione?', message: 'Non verrà conteggiata. Le domande resteranno disponibili per una prossima simulazione.', okText: 'Abbandona', cancelText: 'Continua', danger: true });
     if (!ok) return;
-    clearInterval(tickId);
-    App.store.setSim(null); SIM = null;
+    discard();
     App.main.home();
   }
 
@@ -434,25 +477,30 @@ App.sim = (() => {
     $('tao-overview-back').addEventListener('click', closeOverview);
     $('tao-submit').addEventListener('click', () => submitUnit(false));
     for (const t of document.querySelectorAll('.tao-tab')) t.addEventListener('click', () => { overviewFilter = t.dataset.filter; renderOverview(); });
-    document.querySelector('.tao-logo').addEventListener('click', abandon);
+    $('tao-logo').addEventListener('click', abandon);
     $('tao-exit').addEventListener('click', abandon);
     $('tao-highlight').addEventListener('click', () => { highlightMode = !highlightMode; $('tao-highlight').setAttribute('aria-pressed', String(highlightMode)); $('tao-highlight').classList.toggle('on', highlightMode); $('tao-passage').classList.toggle('hl-mode', highlightMode); });
     $('tao-passage').addEventListener('mouseup', onPassageMouseUp);
     $('tao-passage').addEventListener('touchend', () => setTimeout(onPassageMouseUp, 0));
     $('tao-passage').addEventListener('click', onPassageClick);
-    window.addEventListener('resize', () => { if (SIM && SIM.phase === 'running') renderBubbles(); });
+    window.addEventListener('resize', () => { if (SIM && SIM.phase === 'running' && App.ui.view() === 'sim') renderBubbles(); });
     window.addEventListener('keydown', (e) => {
-      if (App.ui.view() !== 'sim' || !SIM || SIM.phase !== 'running' || App.ui.modalOpen()) return;
+      if (App.ui.view() !== 'sim' || !SIM || App.ui.modalOpen()) return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return; // Ctrl+C sulla tabella non è una risposta (T-069)
+      if (SIM.phase === 'overview') { if (e.key === 'Escape') { e.preventDefault(); closeOverview(); } return; }
+      if (SIM.phase !== 'running') return;
       if (e.target.closest('input[type=text], textarea')) return;
-      if (e.key === 'ArrowRight') goTo(SIM.pos + 1);
-      else if (e.key === 'ArrowLeft') goTo(SIM.pos - 1);
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(SIM.pos + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(SIM.pos - 1); }
       else if ('ABCDE'.includes(e.key.toUpperCase()) && e.key.length === 1) {
         const q = App.banks.question(unitItems()[SIM.pos].bank, unitItems()[SIM.pos].id);
         if (q.options.some((o) => o.letter === e.key.toUpperCase())) select(e.key.toUpperCase());
       }
     });
-    window.addEventListener('visibilitychange', () => { if (SIM && SIM.phase === 'running') { if (document.hidden) accrue(); else shownAt = Date.now(); } });
+    document.addEventListener('visibilitychange', () => { if (SIM && SIM.phase === 'running' && App.ui.view() === 'sim') { if (document.hidden) accrue(); else shownAt = Date.now(); } });
+    window.addEventListener('pagehide', () => { if (SIM && SIM.phase === 'running' && App.ui.view() === 'sim') accrue(); });
+    App.store.onReset(() => discard());
   }
 
-  return { init, showSetup, resume, closeStale, isActive: () => Boolean(App.store.sim()) };
+  return { init, showSetup, resume, closeStale, discard, isActive: () => Boolean(App.store.sim()) };
 })();

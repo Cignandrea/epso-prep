@@ -33,7 +33,13 @@ App.ui = (() => {
   function confirm({ title, message, okText = 'OK', cancelText = 'Annulla', danger = false }) {
     return new Promise((resolve) => {
       const root = document.getElementById('modal-root');
-      const close = (v) => { root.replaceChildren(); resolve(v); };
+      // Il fuoco torna a chi ha aperto la modale (T-083), se è ancora a schermo.
+      const opener = document.activeElement;
+      const close = (v) => {
+        root.replaceChildren();
+        if (opener && opener !== document.body && document.contains(opener) && !opener.hidden && opener.offsetParent !== null) { try { opener.focus({ preventScroll: true }); } catch { /* ignora */ } }
+        resolve(v);
+      };
       const box = el('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 'modal-title' },
         el('h2', { id: 'modal-title' }, title),
         message ? el('p', {}, message) : null,

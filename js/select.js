@@ -1,23 +1,32 @@
 // Selezione degli item — namespace App.select
-// Regole: mai item già visti nelle simulazioni; priorità ai ripassi in scadenza; poi item mai visti,
-// pesati sulle trappole con più errori recenti; infine i meno recenti.
+// Regole: mai item già visti nelle simulazioni (né quelli di una simulazione in sospeso); priorità ai ripassi
+// in scadenza; poi item mai visti, pesati sulle trappole con più errori recenti; infine i meno recenti.
 window.App = window.App || {};
 App.select = (() => {
   'use strict';
-  const { shuffle } = App.utils;
+  const { shuffle, isTrapError } = App.utils;
 
   const key = (q) => `${q.bank}#${q.id}`;
 
-  // Pesi delle trappole: 1 + errori negli ultimi 14 giorni (max 4).
+  // Pesi delle trappole: 1 + errori veri negli ultimi 14 giorni (max 4). Le bianche non contano.
   function tagWeights() {
     const since = new Date(); since.setDate(since.getDate() - 14);
     const w = {};
     for (const e of App.store.log()) {
-      if (e.mode === 'external' || e.ok || e.unanswered || !e.tag) continue;
+      if (!isTrapError(e)) continue;
       if (new Date(e.t) < since) continue;
       w[e.tag] = Math.min(4, (w[e.tag] || 1) + 1);
     }
     return w;
+  }
+
+  // Item di una simulazione in sospeso (non ancora nel registro): non devono comparire altrove, con la soluzione.
+  function pendingSimKeys() {
+    const sim = App.store.sim();
+    const out = new Set();
+    if (!sim || sim.phase === 'results') return out;
+    for (const s of sim.sections) for (const it of s.items) out.add(`${it.bank}#${it.id}`);
+    return out;
   }
 
   function pool(bankId, { formats = null, levels = null, includeExtra = false } = {}) {
@@ -29,11 +38,12 @@ App.select = (() => {
   // Ripassi in scadenza (Leitner), tutte le banche visibili.
   function dueItems(stats = App.store.itemStats()) {
     const now = new Date().toISOString();
+    const pending = pendingSimKeys();
     const out = [];
     for (const s of stats.values()) {
       if (s.due && s.due <= now) {
         const q = App.banks.question(s.bank, s.id);
-        if (q && !App.banks.get(s.bank).hidden) out.push(q);
+        if (q && !App.banks.get(s.bank).hidden && !pending.has(key(q))) out.push(q);
       }
     }
     return out;
@@ -51,40 +61,55 @@ App.select = (() => {
     return scored.sort((a, b) => b.score - a.score).map((x) => x.q);
   }
 
+  // Candidati di una banca: mai usati in simulazione, non nella sim in sospeso, non già scelti.
+  function candidates(bankId, fmt, stats, chosen, pending, includeExtra = false) {
+    return pool(bankId, { formats: fmt, includeExtra }).filter((q) => !chosen.includes(q) && !pending.has(key(q)) && !(stats.get(key(q)) || {}).simSeen);
+  }
+
   // Allenamento: n item di una banca, formato d'esame.
   function pickTraining(bankId, n) {
     const stats = App.store.itemStats();
     const weights = tagWeights();
+    const pending = pendingSimKeys();
     const fmt = bankId === 'verbale' ? ['epso4'] : ['num5'];
     const due = dueItems(stats).filter((q) => q.bank === bankId && fmt.includes(q.format)).slice(0, Math.max(1, Math.floor(n / 3)));
     const chosen = [...due];
-    const rest = pool(bankId, { formats: fmt }).filter((q) => !chosen.includes(q) && !(stats.get(key(q)) || {}).simSeen);
-    for (const q of rank(rest, stats, weights)) { if (chosen.length >= n) break; chosen.push(q); }
-    if (chosen.length < n) for (const q of pool(bankId, { formats: fmt })) { if (chosen.length >= n) break; if (!chosen.includes(q)) chosen.push(q); }
+    for (const q of rank(candidates(bankId, fmt, stats, chosen, pending), stats, weights)) { if (chosen.length >= n) break; chosen.push(q); }
+    if (chosen.length < n) for (const q of pool(bankId, { formats: fmt })) { if (chosen.length >= n) break; if (!chosen.includes(q) && !pending.has(key(q))) chosen.push(q); }
     return shuffle(chosen);
   }
 
   // Micro: 3 item alternati (verbale, numerico, …), con un ripasso se in scadenza e,
-  // se attivo, un item Vero/Falso/Non si può dire mai visto.
+  // se attivo, un item Vero/Falso/Non si può dire mai visto al posto dell'ultimo verbale (mai del numerico: T-063).
   function pickMicro(n = 3) {
     const stats = App.store.itemStats();
     const weights = tagWeights();
     const settings = App.store.settings();
+    const pending = pendingSimKeys();
     const chosen = [];
-    const due = dueItems(stats);
+    const due = dueItems(stats).filter((q) => q.bank === 'verbale' || q.bank === 'numerico');
     if (due.length) chosen.push(shuffle(due)[0]);
-    const seqBanks = ['verbale', 'numerico', 'verbale'];
-    let i = 0;
-    while (chosen.length < n && i < 12) {
-      const bankId = seqBanks[i % seqBanks.length]; i++;
-      const fmt = bankId === 'verbale' ? ['epso4'] : ['num5'];
-      const cand = pool(bankId, { formats: fmt, includeExtra: true }).filter((q) => !chosen.includes(q) && !(stats.get(key(q)) || {}).simSeen);
-      const r = rank(cand, stats, weights)[0];
-      if (r) chosen.push(r);
+    // Composizione: per 3 item, 2 verbali + 1 numerico (il ripasso conta nella sua banca). Si riempie la banca più indietro.
+    const want = { numerico: Math.max(1, Math.floor(n / 3)) };
+    want.verbale = n - want.numerico;
+    const have = (b) => chosen.filter((q) => q.bank === b).length;
+    for (let guard = 0; chosen.length < n && guard < 8; guard++) {
+      const order = ['verbale', 'numerico'].sort((a, b) => (want[b] - have(b)) - (want[a] - have(a)));
+      let picked = null;
+      for (const bankId of order) {
+        picked = rank(candidates(bankId, bankId === 'verbale' ? ['epso4'] : ['num5'], stats, chosen, pending, true), stats, weights)[0];
+        if (picked) break;
+      }
+      if (!picked) break;
+      chosen.push(picked);
     }
-    if (settings.microVfn) {
-      const vfn = pool('verbale', { formats: ['vfn'] }).filter((q) => !stats.has(key(q)));
-      if (vfn.length && chosen.length >= 2) chosen[chosen.length - 1] = shuffle(vfn)[0];
+    if (settings.microVfn && chosen.length >= 2) {
+      const vfn = pool('verbale', { formats: ['vfn'] }).filter((q) => !stats.has(key(q)) && !pending.has(key(q)));
+      const dueSet = new Set(due.map(key));
+      // L'ultimo verbale d'esame non in ripasso cede il posto al V/F/NSP.
+      let idx = -1;
+      for (let k = chosen.length - 1; k >= 0; k--) { const q = chosen[k]; if (q.bank === 'verbale' && q.format === 'epso4' && !dueSet.has(key(q))) { idx = k; break; } }
+      if (vfn.length && idx >= 0) chosen[idx] = shuffle(vfn)[0];
     }
     return chosen.slice(0, n);
   }
@@ -92,8 +117,9 @@ App.select = (() => {
   function pickOneMore(exclude) {
     const stats = App.store.itemStats();
     const weights = tagWeights();
+    const pending = pendingSimKeys();
     const ex = new Set(exclude.map(key));
-    const cand = [...pool('verbale', { formats: ['epso4'] }), ...pool('numerico', { formats: ['num5'] })].filter((q) => !ex.has(key(q)) && !(stats.get(key(q)) || {}).simSeen);
+    const cand = [...pool('verbale', { formats: ['epso4'] }), ...pool('numerico', { formats: ['num5'] })].filter((q) => !ex.has(key(q)) && !pending.has(key(q)) && !(stats.get(key(q)) || {}).simSeen);
     return rank(cand, stats, weights)[0] || null;
   }
 
@@ -124,5 +150,5 @@ App.select = (() => {
     return rep;
   }
 
-  return { pool, dueItems, pickTraining, pickMicro, pickOneMore, pickSim, poolReport, tagWeights };
+  return { pool, dueItems, pickTraining, pickMicro, pickOneMore, pickSim, poolReport, tagWeights, pendingSimKeys };
 })();

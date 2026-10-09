@@ -1,19 +1,21 @@
 // Sessioni Micro / Allenamento / Ripasso — namespace App.session
 // Un item per volta, ritmo visibile, «Sicuro/Dubbio», feedback subito, registro per item,
-// ripresa automatica dopo un'interruzione (stato salvato a ogni passo).
+// ripresa dalla home dopo un'interruzione (stato salvato a ogni passo).
 window.App = window.App || {};
 App.session = (() => {
   'use strict';
-  const { el, clock, minSec, paragraphs, uid, copyText, dateTimeIt, shuffle } = App.utils;
+  const { el, minSec, paragraphs, uid, copyText, dateTimeIt, renderPassage } = App.utils;
   const $ = (id) => document.getElementById(id);
 
   const MODE_LABEL = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso' };
-  let S = null;          // stato della sessione corrente
+  let S = null;          // stato della sessione corrente (null quando nessuna sessione è a schermo)
   let tickId = null;
   let itemShownAt = 0;   // epoch ms: quando l'item corrente è apparso (per il tempo)
-  let elapsedBefore = 0; // secondi già spesi sull'item (se ripreso)
+  let elapsedBefore = 0; // secondi già spesi sull'item (se ripreso o tornati dal background)
+  let hiddenSince = 0;   // epoch ms: da quando l'app è in secondo piano (0 = visibile)
 
-  const persist = () => App.store.setCurrent(S);
+  const persist = () => { if (S) App.store.setCurrent(S); };
+  const live = () => Boolean(S) && !S.finished && App.ui.view() === 'session';
 
   function start(mode, questions, { bankLabel = '' } = {}) {
     if (!questions.length) { App.ui.toast('Nessuna domanda disponibile.'); return; }
@@ -84,37 +86,25 @@ App.session = (() => {
     window.scrollTo(0, 0);
   }
 
-  // Dati tabellari del numerico: righe "a — b — c" diventano una tabella leggibile.
-  function renderPassage(node, text) {
-    node.replaceChildren();
-    if (!text) return;
-    const lines = text.split('\n');
-    const tableLines = lines.filter((l) => l.includes(' — ') || l.includes(': '));
-    if (lines.length > 2 && tableLines.length >= lines.length - 1) {
-      const intro = lines[0].includes(' — ') ? null : lines[0];
-      if (intro) node.append(el('p', {}, intro));
-      const rows = lines.slice(intro ? 1 : 0).map((l) => (l.includes(' — ') ? l.split(' — ') : l.split(/:\s+/)));
-      node.append(el('table', { class: 'data-table' }, el('tbody', {}, rows.map((r) => el('tr', {}, r.map((c, i) => el(i === 0 ? 'th' : 'td', { scope: i === 0 ? 'row' : null }, c)))))));
-    } else {
-      for (const l of lines) node.append(el('p', {}, l));
-    }
+  function paint(sec, pace) {
+    $('s-time').textContent = minSec(sec);
+    $('s-pace-fill').style.width = `${Math.min(100, (sec / pace) * 100)}%`;
+    $('s-pace').classList.toggle('over', sec > pace);
   }
 
   function tick() {
-    if (!S || S.phase !== 'answer') return;
+    if (!S || S.finished || S.phase !== 'answer') return;
+    if (document.hidden && hiddenSince) return; // in secondo piano il tempo è fermo: fa fede l'ultimo tick prima di nascondere
     const q = current();
     const pace = App.plan.PACE[q.bank] || 90;
     const sec = elapsedBefore + (Date.now() - itemShownAt) / 1000;
     S.elapsed = sec;
-    $('s-time').textContent = minSec(sec);
-    const fill = $('s-pace-fill');
-    fill.style.width = `${Math.min(100, (sec / pace) * 100)}%`;
-    $('s-pace').classList.toggle('over', sec > pace);
+    paint(sec, pace);
     if (Math.round(sec * 2) % 4 === 0) persist();
   }
 
   function choose(letter) {
-    if (S.phase !== 'answer') return;
+    if (!S || S.phase !== 'answer') return;
     S.selected = letter;
     for (const b of $('s-options').querySelectorAll('.opt')) b.setAttribute('aria-pressed', String(b.dataset.letter === letter));
     setActions(true);
@@ -123,7 +113,7 @@ App.session = (() => {
   function setActions(enabled) { for (const id of ['s-sure', 's-doubt', 's-answer']) $(id).disabled = !enabled; }
 
   function answer(conf) {
-    if (S.phase !== 'answer' || S.selected == null) return;
+    if (!S || S.phase !== 'answer' || S.selected == null) return;
     clearInterval(tickId);
     const q = current();
     const sec = Math.round(elapsedBefore + (Date.now() - itemShownAt) / 1000);
@@ -140,6 +130,7 @@ App.session = (() => {
   function showFeedback(a, resumed) {
     const q = App.banks.question(a.bank, a.id);
     const pace = App.plan.PACE[q.bank] || 90;
+    paint(a.sec, pace); // anche alla ripresa: il tempo mostrato è quello dell'item appena risposto
     $('s-actions').hidden = true;
     const opts = $('s-options');
     opts.classList.add('revealed');
@@ -175,11 +166,14 @@ App.session = (() => {
     renderItem();
   }
 
+  // Pausa: lo stato resta salvato (eps2.current), la sessione esce dalla memoria. Si riprende dalla home.
   async function quit() {
     const ok = await App.ui.confirm({ title: 'Interrompere?', message: 'Le risposte date restano nel registro. Puoi riprendere più tardi dalla home, oggi stesso.', okText: 'Metti in pausa', cancelText: 'Continua' });
-    if (!ok) return;
+    if (!ok || !S) return;
     clearInterval(tickId);
+    if (S.phase === 'answer') tick();
     persist();
+    S = null;
     App.calc.hideAll();
     App.main.home();
   }
@@ -198,7 +192,6 @@ App.session = (() => {
     App.store.addSession(summary);
     App.store.setCurrent(null);
     renderEnd(summary, answers);
-    S = { ...S, finished: true };
     App.ui.show('end', { title: 'Fine sessione' });
   }
 
@@ -210,6 +203,7 @@ App.session = (() => {
   }
 
   function renderEnd(sum, answers) {
+    const items = S.items;
     $('e-mode').textContent = `${MODE_LABEL[sum.mode]} · ${sum.banks.map((b) => App.BANK_LABEL[b] || b).join(' + ')} · ${dateTimeIt(new Date().toISOString())}`;
     $('e-score').textContent = `${sum.correct}/${sum.n}`;
     const avg = sum.n ? sum.sec / sum.n : 0;
@@ -237,8 +231,9 @@ App.session = (() => {
         el('div', { class: 'review-expl' }, ...paragraphs(q.explanation)));
     }));
     $('e-copy').onclick = async () => { (await copyText(summaryText(sum, answers))) ? App.ui.toast('Riepilogo copiato: incollalo in chat.') : App.ui.toast('Copia non riuscita.'); };
-    $('e-more').onclick = () => {
-      const more = App.select.pickOneMore(S.items);
+    $('e-more').onclick = async () => {
+      if (!(await App.main.closePausedIfAny())) return;
+      const more = App.select.pickOneMore(items);
       if (!more) { App.ui.toast('Nessuna domanda nuova disponibile.'); return; }
       start('micro', [more]);
     };
@@ -262,9 +257,11 @@ App.session = (() => {
     $('s-next').addEventListener('click', next);
     $('s-quit').addEventListener('click', quit);
     window.addEventListener('keydown', (e) => {
-      if (App.ui.view() !== 'session' || !S || S.finished) return;
-      if (App.ui.modalOpen()) return;
+      if (!live() || App.ui.modalOpen()) return;
+      if (e.ctrlKey || e.altKey || e.metaKey) return; // Ctrl+C e simili non sono risposte
       if (e.target.closest('input, textarea, select')) return;
+      // Con il fuoco su un pulsante («Dubbio», «Esci», «Prossima»…) Invio e Spazio fanno la loro azione: nessun dirottamento.
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('button, a')) return;
       const k = e.key.toUpperCase();
       if (S.phase === 'answer' && 'ABCDE'.includes(k) && k.length === 1) {
         if (current().options.some((o) => o.letter === k)) choose(k);
@@ -279,9 +276,19 @@ App.session = (() => {
         next();
       }
     });
-    // T-017: il tempo speso sull'item corrente si salva anche quando l'app va in secondo piano.
-    document.addEventListener('visibilitychange', () => { if (S && !S.finished && S.phase === 'answer' && document.hidden) { tick(); persist(); } });
-    window.addEventListener('pagehide', () => { if (S && !S.finished && S.phase === 'answer') { tick(); persist(); } });
+    // T-017/T-066: in secondo piano il tempo dell'item si salva; al ritorno il tempo passato fuori non conta
+    // (stesso schema della simulazione). Solo quando la sessione è davvero a schermo.
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (live() && S.phase === 'answer') { tick(); persist(); }
+        hiddenSince = Date.now();
+      } else {
+        hiddenSince = 0;
+        if (live() && S.phase === 'answer') { elapsedBefore = S.elapsed || 0; itemShownAt = Date.now(); }
+      }
+    });
+    window.addEventListener('pagehide', () => { if (live() && S.phase === 'answer') { tick(); persist(); } });
+    App.store.onReset(() => { clearInterval(tickId); S = null; });
   }
 
   // Sessione lasciata a metà in un giorno precedente: si chiude e si conta ciò che è stato fatto.
@@ -300,7 +307,7 @@ App.session = (() => {
       App.store.addSession({ t: c.startedAt, mode: c.mode, id: c.id, banks: [...new Set(c.answers.map((a) => a.bank))], n: c.answers.length, correct, sec: c.answers.reduce((s, a) => s + a.sec, 0), trap: dominantTrap(c.answers), partial: true, sure_wrong: c.answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: c.answers.filter((a) => a.conf === 'doubt' && a.ok).length });
     }
     App.store.setCurrent(null);
-    if (S && S.id === c.id) S = null;
+    if (S && S.id === c.id) { clearInterval(tickId); S = null; }
   }
 
   return { start, resume, init, closeStale, closeAsPartial, MODE_LABEL, isActive: () => Boolean(App.store.current()) };

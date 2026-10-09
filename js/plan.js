@@ -21,7 +21,7 @@ App.plan = (() => {
     0: { kind: 'sim', title: 'Simulazione', sub: 'Sul PC, 65′ di fila, poi correzione' },
   };
 
-  // Errori per banca negli ultimi 7 giorni (per il venerdì "flex").
+  // Errori veri per banca negli ultimi 7 giorni (per il venerdì "flex"); le bianche delle simulazioni non sono errori di trappola (T-072).
   function weakestBank() {
     const since = new Date(); since.setDate(since.getDate() - 7);
     const counts = { verbale: { n: 0, w: 0 }, numerico: { n: 0, w: 0 }, astratto: { n: 0, w: 0 } };
@@ -31,7 +31,7 @@ App.plan = (() => {
         if (counts[e.bank] && e.max) { counts[e.bank].n += e.max; counts[e.bank].w += e.max - e.score; }
         continue;
       }
-      if (!counts[e.bank]) continue;
+      if (!counts[e.bank] || e.unanswered) continue;
       counts[e.bank].n++;
       if (!e.ok) counts[e.bank].w++;
     }
@@ -56,7 +56,10 @@ App.plan = (() => {
       else plan = { ...WEEK[1], title: 'Flex: verbale', sub: `${WEEK[1].sub} · ${w.rate < 0 ? 'pochi dati: si parte dal verbale, che pesa di più' : 'è la prova con più errori questa settimana'}` };
     }
     const key = todayKey(d);
-    const done = App.store.sessions().some((s) => !s.partial && todayKey(new Date(s.t)) === key && (s.mode === 'train' || s.mode === 'sim' || (s.mode === 'external' && (plan.kind === 'external' || plan.kind === 'sim'))));
+    // «Fatto per oggi»: un allenamento o una simulazione nell'app; una sessione esterna solo se è quella prevista
+    // (la banca del giorno, o la simulazione completa nel weekend) (T-080).
+    const externalCounts = (s) => plan.kind === 'external' ? (s.banks || []).includes(plan.bank) : plan.kind === 'sim' ? (s.banks || []).includes('sim') : false;
+    const done = App.store.sessions().some((s) => !s.partial && todayKey(new Date(s.t)) === key && (s.mode === 'train' || s.mode === 'sim' || (s.mode === 'external' && externalCounts(s))));
     return { ...plan, done, dayKey: key };
   }
 

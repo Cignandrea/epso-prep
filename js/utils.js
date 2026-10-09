@@ -43,7 +43,6 @@ App.utils = (() => {
     x.setDate(x.getDate() - day);
     return x;
   }
-  const daysAgo = (n) => { const d = new Date(); d.setDate(d.getDate() - n); d.setHours(0, 0, 0, 0); return d; };
 
   // Paragrafi leggibili da una spiegazione in un solo blocco.
   function paragraphs(text) {
@@ -58,15 +57,35 @@ App.utils = (() => {
   }
 
   const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-  const isTouchPhone = () => Math.min(window.innerWidth, window.innerHeight) < 600 && matchMedia('(pointer: coarse)').matches;
+
+  // Un errore «di trappola» è una risposta data e sbagliata: le bianche e le sessioni esterne non lo sono.
+  const isTrapError = (e) => e && e.mode !== 'external' && !e.ok && !e.unanswered && Boolean(e.tag);
+
+  // Dati del numerico: le righe «a — b — c» (o «Etichetta: valore») diventano una tabella; il resto paragrafi.
+  // Unico renderer per allenamento e simulazione.
+  function renderPassage(node, text, { tableClass = 'data-table' } = {}) {
+    node.replaceChildren();
+    if (!text) return;
+    const lines = text.split('\n');
+    const isRow = (l) => l.includes(' — ') || /^[^:]{1,40}:\s+\S/.test(l);
+    const rowLines = lines.filter(isRow);
+    if (lines.length > 2 && rowLines.length >= lines.length - 1 && lines.some((l) => l.includes(' — ') || /\d/.test(l))) {
+      const intro = isRow(lines[0]) ? null : lines[0];
+      if (intro) node.append(el('p', {}, intro));
+      const rows = lines.slice(intro ? 1 : 0).map((l) => (l.includes(' — ') ? l.split(' — ') : l.split(/:\s+/)));
+      node.append(el('table', { class: tableClass }, el('tbody', {}, rows.map((r) => el('tr', {}, r.map((c, i) => el(i === 0 ? 'th' : 'td', i === 0 ? { scope: 'row' } : {}, c)))))));
+    } else {
+      for (const l of lines) node.append(el('p', {}, l));
+    }
+  }
 
   async function copyText(text) {
     try { await navigator.clipboard.writeText(text); return true; } catch { /* fallback */ }
     try {
-      const ta = el('textarea', { style: 'position:fixed;opacity:0' }, text);
+      const ta = el('textarea', {}, text); ta.style.position = 'fixed'; ta.style.opacity = '0';
       document.body.append(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return ok;
     } catch { return false; }
   }
 
-  return { shuffle, el, clock, taoClock, minSec, todayKey, dateIt, timeIt, dateTimeIt, mondayOf, daysAgo, paragraphs, uid, isTouchPhone, copyText, pad2 };
+  return { shuffle, el, clock, taoClock, minSec, todayKey, dateIt, timeIt, dateTimeIt, mondayOf, paragraphs, uid, isTrapError, renderPassage, copyText, pad2 };
 })();

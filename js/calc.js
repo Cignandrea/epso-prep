@@ -13,7 +13,7 @@ App.calc = (() => {
     const tokens = src.match(/(\d+\.?\d*|\.\d+)|[-+*/()]/g);
     if (!tokens || tokens.join('') !== src) throw new Error('Espressione non valida');
     const out = [], ops = [];
-    const prec = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, 'u-': 3 };
+    const prec = { '+': 1, '-': 1, '*': 2, '/': 2, 'u-': 3 };
     let prev = null;
     for (const t of tokens) {
       if (/^[\d.]/.test(t)) { out.push(parseFloat(t)); prev = 'num'; continue; }
@@ -30,7 +30,7 @@ App.calc = (() => {
       if (t === 'u-') { st.push(-st.pop()); continue; }
       const b = st.pop(), a = st.pop();
       if (a == null || b == null) throw new Error('Espressione incompleta');
-      st.push(t === '+' ? a + b : t === '-' ? a - b : t === '*' ? a * b : t === '/' ? a / b : (a * b) / 100);
+      st.push(t === '+' ? a + b : t === '-' ? a - b : t === '*' ? a * b : a / b);
     }
     if (st.length !== 1 || !Number.isFinite(st[0])) throw new Error('Risultato non valido');
     return Math.round(st[0] * 1e10) / 1e10;
@@ -42,8 +42,12 @@ App.calc = (() => {
     if (k === '⌫') { d.value = d.value.slice(0, -1); return; }
     if (k === '=') { try { d.value = String(evaluate(d.value)); } catch { d.classList.add('calc-err'); setTimeout(() => d.classList.remove('calc-err'), 400); } return; }
     d.value += k;
-    d.focus();
+    focusIfKeyboard(d);
   }
+  // Sul telefono il fuoco programmatico sull'input aprirebbe la tastiera di sistema sopra tabella e opzioni (T-076):
+  // il tastierino del widget basta. Con mouse e tastiera fisica il fuoco serve per digitare.
+  const finePointer = () => matchMedia('(pointer: fine)').matches;
+  function focusIfKeyboard(node) { if (finePointer()) node.focus({ preventScroll: true }); }
 
   function init() {
     const keys = $('calc-keys');
@@ -59,10 +63,11 @@ App.calc = (() => {
   function toggle(id) {
     const w = $(id);
     w.hidden = !w.hidden;
-    if (!w.hidden) { bringToFront(w); (w.querySelector('input, textarea') || w).focus({ preventScroll: true }); }
+    if (!w.hidden) { bringToFront(w); focusIfKeyboard(w.querySelector('input, textarea') || w); }
   }
-  let z = 10;
-  function bringToFront(w) { w.style.zIndex = String(++z); }
+  // Due soli livelli, sempre sotto toast (60) e modali (70): il widget toccato per ultimo sta sopra l'altro (T-085).
+  const WIDGETS = ['tao-calc-widget', 'tao-pad-widget'];
+  function bringToFront(w) { for (const id of WIDGETS) $(id).style.zIndex = '41'; w.style.zIndex = '42'; }
   // Trascinamento dalla barra del titolo (mouse e tocco) sugli schermi larghi.
   function makeDraggable(w) {
     const head = w.querySelector('.tao-widget-head');
@@ -84,7 +89,7 @@ App.calc = (() => {
     head.addEventListener('pointerup', end); head.addEventListener('pointercancel', end);
   }
   function hideAll() { $('tao-calc-widget').hidden = true; $('tao-pad-widget').hidden = true; }
-  function reset() { $('calc-display').value = ''; $('pad-text').value = ''; hideAll(); for (const id of ['tao-calc-widget', 'tao-pad-widget']) { const w = $(id); w.style.left = ''; w.style.top = ''; w.style.right = ''; w.style.bottom = ''; } }
+  function reset() { $('calc-display').value = ''; $('pad-text').value = ''; hideAll(); for (const id of WIDGETS) { const w = $(id); w.style.left = ''; w.style.top = ''; w.style.right = ''; w.style.bottom = ''; w.style.zIndex = ''; } }
 
   return { init, evaluate, reset, toggle, hideAll };
 })();

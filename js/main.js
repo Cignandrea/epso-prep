@@ -2,9 +2,10 @@
 window.App = window.App || {};
 App.main = (() => {
   'use strict';
-  const { el, dateIt, todayKey } = App.utils;
+  const { dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
-  const VERSION = '1.1.0-b3';
+  // Versione dell'app: deve coincidere con VERSION in sw.js (controllo in tests/smoke.py).
+  const VERSION = '1.1.0-b4';
 
   function home() {
     App.session.closeStale();
@@ -17,22 +18,23 @@ App.main = (() => {
     note.hidden = true;
     btn.onclick = null;
 
-    if (App.store.sim() && App.store.sim().phase === 'results') {
+    const sim = App.store.sim();
+    const cur = App.store.current();
+    if (sim && sim.phase === 'results') {
       label.textContent = 'Simulazione completata';
       title.textContent = 'Rivedi i risultati';
       sub.textContent = 'La revisione resta disponibile finché non premi «Chiudi».';
       btn.textContent = 'Rivedi i risultati';
       btn.onclick = () => App.sim.resume();
-    } else if (App.store.sim()) {
+    } else if (sim) {
       label.textContent = 'In corso';
       title.textContent = 'Simulazione';
       sub.textContent = 'Il tempo continua a scorrere, come nella prova vera: riprendi subito.';
       btn.textContent = 'Riprendi la simulazione';
       btn.onclick = () => App.sim.resume();
-    } else if (App.store.current()) {
-      const c = App.store.current();
+    } else if (cur) {
       label.textContent = 'In corso';
-      title.textContent = `${App.session.MODE_LABEL[c.mode]} · ${c.answers.length}/${c.items.length} fatte`;
+      title.textContent = `${App.session.MODE_LABEL[cur.mode]} · ${cur.answers.length}/${cur.items.length} fatte`;
       sub.textContent = 'Riprendi da dove eri: la domanda corrente riparte senza perdere il tempo già speso.';
       btn.textContent = 'Riprendi';
       btn.onclick = () => App.session.resume();
@@ -70,14 +72,25 @@ App.main = (() => {
     const due = App.select.dueItems();
     $('btn-review').hidden = due.length === 0;
     $('review-sub').textContent = due.length === 1 ? '1 domanda da rivedere oggi' : `${due.length} domande da rivedere oggi`;
-    $('btn-review').onclick = () => App.session.start('review', App.utils.shuffle(due).slice(0, 10));
+    $('btn-review').onclick = async () => { if (await closePausedIfAny()) App.session.start('review', App.utils.shuffle(App.select.dueItems()).slice(0, 10)); };
 
     $('week-line').textContent = `Settimana: ${week.active} ${week.active === 1 ? 'giorno attivo' : 'giorni attivi'} su ${week.target} (obiettivo), ${week.elapsed} ${week.elapsed === 1 ? 'trascorso' : 'trascorsi'}. Un giorno saltato non è un debito.`;
     App.ui.show('home', { title: '' });
   }
 
-  // Una sessione in pausa non si perde in silenzio: si chiude come parziale, con conferma.
+  // Prima di iniziare qualcosa di nuovo: una sessione in pausa si chiude come parziale, una simulazione in sospeso
+  // si abbandona, risultati non ancora chiusi si archiviano. Sempre con conferma (T-009, T-064, T-065).
   async function closePausedIfAny() {
+    const sim = App.store.sim();
+    if (sim && sim.phase === 'results') {
+      const ok = await App.ui.confirm({ title: 'Risultati da rivedere', message: 'Hai i risultati di una simulazione ancora aperti. Chiuderli e iniziare qualcos\'altro? Punteggi ed errori restano nel registro.', okText: 'Chiudi e vai avanti', cancelText: 'Torna indietro' });
+      if (!ok) return false;
+      App.sim.discard();
+    } else if (sim) {
+      const ok = await App.ui.confirm({ title: 'Hai una simulazione in corso', message: 'Iniziare qualcos\'altro la abbandona: non verrà conteggiata e le sue domande resteranno disponibili per una prossima simulazione.', okText: 'Abbandona e vai avanti', cancelText: 'Torna indietro', danger: true });
+      if (!ok) return false;
+      App.sim.discard();
+    }
     const c = App.store.current();
     if (!c) return true;
     const ok = await App.ui.confirm({ title: 'Hai una sessione in pausa', message: `${App.session.MODE_LABEL[c.mode]}, ${c.answers.length}/${c.items.length} fatte. Vuoi chiuderla (le risposte date restano nel registro) e iniziare qualcos'altro?`, okText: 'Chiudi e vai avanti', cancelText: 'Torna indietro' });
@@ -106,7 +119,7 @@ App.main = (() => {
     $('btn-micro').addEventListener('click', startMicro);
     $('btn-sim').addEventListener('click', async () => { if (await closePausedIfAny()) App.sim.showSetup(); });
     $('btn-external').addEventListener('click', () => App.stato.showExternal());
-    // Avvio: ripresa automatica di ciò che era in corso.
+    // Avvio: la home mostra ciò che era in corso (sessione in pausa, simulazione, risultati) e lo si riprende con un tocco.
     home();
     registerSW();
   }
@@ -128,5 +141,5 @@ App.main = (() => {
   }
 
   document.addEventListener('DOMContentLoaded', init);
-  return { home, startMicro, VERSION };
+  return { home, startMicro, closePausedIfAny, VERSION };
 })();

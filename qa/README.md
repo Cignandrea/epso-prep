@@ -11,4 +11,6 @@ Processo (come in un'azienda che funziona):
 4. **Triage** del responsabile di rilascio: fix → nuovo commit → **regressione** (round successivo) → chiusura con `fixed_in`.
 5. Rilascio solo con **zero P0/P1 aperti**.
 
+Suite: `tests/smoke.py` (percorso felice), `tests/regress.py` (round 1), `tests/regress2.py` (round 2 Codice). Ogni suite accetta la porta come argomento; nessun errore di console ammesso.
+
 Report dei round in `QA-REPORT.md`.

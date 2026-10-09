@@ -2,7 +2,7 @@
 window.App = window.App || {};
 App.stato = (() => {
   'use strict';
-  const { el, minSec, dateTimeIt, copyText, mondayOf, todayKey, clock } = App.utils;
+  const { el, minSec, dateTimeIt, copyText, mondayOf, todayKey, isTrapError } = App.utils;
   const $ = (id) => document.getElementById(id);
   const MODE = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso', sim: 'Simulazione', external: 'Esterna' };
   const todayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
@@ -27,24 +27,20 @@ App.stato = (() => {
 
     // Trappole negli ultimi 14 giorni.
     const since = new Date(); since.setDate(since.getDate() - 14);
-    const tags = {};
-    let blanks = 0;
-    for (const e of log) {
-      if (new Date(e.t) < since) continue;
-      if (e.mode === 'external') { if (e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1; continue; }
-      if (e.unanswered) { blanks++; continue; }
-      if (!e.ok && e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1;
-    }
-    if (blanks) tags.tempo_scaduto = (tags.tempo_scaduto || 0) + blanks;
+    const tags = trapCounts(log.filter((e) => new Date(e.t) >= since));
     // Trappole «disinnescate»: item usciti dal ripasso (tre risposte giuste a distanza) negli ultimi 14 giorni.
     const healed = [...App.store.itemStats().values()].filter((x) => x.healedAt && new Date(x.healedAt) >= since).length;
     const entries = Object.entries(tags).sort((a, b) => b[1] - a[1]);
     const max = entries.length ? entries[0][1] : 1;
     grid.append(tile(String(healed), 'trappole disinnescate (14 giorni): errori usciti dal ripasso'));
-    $('stato-tags').replaceChildren(...(entries.length ? entries.map(([tag, n]) => el('div', { class: 'tagbar' },
-      el('span', { class: 'tagbar-label' }, App.tagLabel(tag)),
-      el('span', { class: 'tagbar-track' }, el('span', { class: 'tagbar-fill', style: `width:${Math.round((n / max) * 100)}%` })),
-      el('span', { class: 'tagbar-n' }, String(n)))) : [el('p', { class: 'muted' }, 'Nessun errore registrato negli ultimi 14 giorni.')]));
+    $('stato-tags').replaceChildren(...(entries.length ? entries.map(([tag, n]) => {
+      const fill = el('span', { class: 'tagbar-fill' });
+      fill.style.width = `${Math.round((n / max) * 100)}%`;
+      return el('div', { class: 'tagbar' },
+        el('span', { class: 'tagbar-label' }, App.tagLabel(tag)),
+        el('span', { class: 'tagbar-track' }, fill),
+        el('span', { class: 'tagbar-n' }, String(n)));
+    }) : [el('p', { class: 'muted' }, 'Nessun errore registrato negli ultimi 14 giorni.')]));
 
     // Calibrazione.
     const recent = log.filter((e) => e.mode !== 'external' && e.conf && new Date(e.t) >= since);
@@ -77,6 +73,20 @@ App.stato = (() => {
 
   function tile(big, label) { return el('div', { class: 'tile' }, el('span', { class: 'num-big' }, big), el('span', { class: 'num-label' }, label)); }
 
+  // Un'unica regola per contare le trappole (Stato, riepilogo settimana): errori veri per tag, bianche come «tempo scaduto»,
+  // sessioni esterne con la trappola dichiarata.
+  function trapCounts(entries) {
+    const tags = {};
+    let blanks = 0;
+    for (const e of entries) {
+      if (e.mode === 'external') { if (e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1; continue; }
+      if (e.unanswered) { blanks++; continue; }
+      if (isTrapError(e)) tags[e.tag] = (tags[e.tag] || 0) + 1;
+    }
+    if (blanks) tags.tempo_scaduto = (tags.tempo_scaduto || 0) + blanks;
+    return tags;
+  }
+
   function renderDevice() {
     const seg = (window.viewport && window.viewport.segments) ? window.viewport.segments.length : (window.visualViewport && window.visualViewport.segments ? window.visualViewport.segments.length : 1);
     const posture = navigator.devicePosture ? navigator.devicePosture.type : 'n/d';
@@ -96,11 +106,9 @@ App.stato = (() => {
       const n = ss.reduce((a, s) => a + s.n, 0), c = ss.reduce((a, s) => a + s.correct, 0);
       lines.push(`${App.BANK_LABEL[bank]}: ${ss.length} sessioni · ${c}/${n} (${Math.round((c / n) * 100)}%) · ${ss.map((s) => `${MODE[s.mode]} ${s.correct}/${s.n}`).join(', ')}`);
     }
-    const tags = {};
-    for (const e of log) if (e.mode !== 'external' && !e.ok && e.tag) tags[e.tag] = (tags[e.tag] || 0) + 1;
-    const top = Object.entries(tags).sort((a, b) => b[1] - a[1]).slice(0, 4);
+    const top = Object.entries(trapCounts(log)).sort((a, b) => b[1] - a[1]).slice(0, 4);
     lines.push(`Trappole: ${top.length ? top.map(([t, n]) => `${App.tagLabel(t)} ×${n}`).join(' · ') : 'nessun errore'}`);
-    const sw = log.filter((e) => e.conf === 'sure' && !e.ok).length, dok = log.filter((e) => e.conf === 'doubt' && e.ok).length;
+    const sw = log.filter((e) => e.mode !== 'external' && e.conf === 'sure' && !e.ok).length, dok = log.filter((e) => e.mode !== 'external' && e.conf === 'doubt' && e.ok).length;
     lines.push(`Calibrazione: ${sw} sbagliate da sicuro · ${dok} giuste in dubbio`);
     const rep = App.select.poolReport();
     lines.push(`Pool: verbale ${rep.verbale.unseen} mai viste / ${rep.verbale.freshForSim} per simulazioni · numerico ${rep.numerico.unseen} / ${rep.numerico.freshForSim}`);
@@ -118,18 +126,33 @@ App.stato = (() => {
     $('ext-bank').onchange = fill;
     fill();
     const plan = App.plan.today();
-    if (plan.kind === 'external') $('ext-bank').value = plan.bank, fill();
+    if (plan.kind === 'external') { $('ext-bank').value = plan.bank; fill(); }
+    const date = $('ext-date');
+    date.value = todayKey(); date.max = todayKey();
     App.ui.show('external', { title: 'Sessione esterna' });
     $('ext-score').focus();
+  }
+  // Data della sessione (T-081): oggi → adesso; un giorno passato → le 12:00 locali di quel giorno.
+  function externalTime(value) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+    if (!m) return null;
+    const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0, 0);
+    if (Number.isNaN(d.getTime())) return null;
+    if (todayKey(d) === todayKey()) return new Date().toISOString();
+    const now = Date.now();
+    if (d.getTime() > now || now - d.getTime() > 400 * 86400000) return null;
+    return d.toISOString();
   }
   function saveExternal(e) {
     e.preventDefault();
     const score = Number($('ext-score').value), max = Number($('ext-max').value), min = Number($('ext-min').value) || 0;
     if (!(max > 0) || score < 0 || score > max) { App.ui.toast('Controlla punteggio e totale.'); return; }
+    const t = externalTime($('ext-date').value);
+    if (!t) { App.ui.toast('Controlla la data: non può essere futura.'); return; }
     const bank = $('ext-bank').value;
-    const entry = { mode: 'external', bank, source: $('ext-source').value, score, max, min, tag: $('ext-tag').value || null, note: $('ext-note').value.trim() || null };
+    const entry = { t, mode: 'external', bank, source: $('ext-source').value, score, max, min, tag: $('ext-tag').value || null, note: $('ext-note').value.trim() || null };
     App.store.addLog(entry);
-    App.store.addSession({ mode: 'external', banks: [bank], n: max, correct: score, sec: min * 60, trap: entry.tag, source: entry.source });
+    App.store.addSession({ t, mode: 'external', banks: [bank], n: max, correct: score, sec: min * 60, trap: entry.tag, source: entry.source });
     $('ext-form').reset();
     App.ui.toast('Registrata.');
     App.main.home();
