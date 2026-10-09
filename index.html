@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>EU Prep Suite</title>
+  <meta name="description" content="Preparazione EPSO/AD/427/26, Parte 1: micro-sessioni, allenamento a tempo e simulazione fedele alla piattaforma TAO.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="EU Prep">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <header class="topbar" id="topbar">
+    <button type="button" class="topbar-home" id="btn-home" aria-label="Home">EU Prep</button>
+    <span class="topbar-title" id="topbar-title"></span>
+    <nav class="topbar-nav" aria-label="Sezioni">
+      <button type="button" class="link-btn" id="nav-stato">Stato</button>
+    </nav>
+  </header>
+
+  <main id="main" class="main">
+
+    <!-- ════════ HOME ════════ -->
+    <section id="view-home" class="view" hidden>
+      <p class="today" id="home-date"></p>
+      <div class="next-card" id="next-card">
+        <p class="next-label" id="next-label">Prossima</p>
+        <h1 class="next-title" id="next-title">…</h1>
+        <p class="next-sub" id="next-sub"></p>
+        <button type="button" class="btn btn-primary btn-xl" id="btn-next">Inizia</button>
+        <p class="next-note" id="next-note" hidden></p>
+      </div>
+      <div class="alt-row">
+        <button type="button" class="alt-card" id="btn-micro">
+          <span class="alt-title">Micro</span>
+          <span class="alt-sub">3 domande · ~5′ · anche una sola conta</span>
+        </button>
+        <button type="button" class="alt-card" id="btn-sim">
+          <span class="alt-title">Simulazione</span>
+          <span class="alt-sub">Come la prova vera · sul PC</span>
+        </button>
+        <button type="button" class="alt-card" id="btn-review" hidden>
+          <span class="alt-title">Ripasso errori</span>
+          <span class="alt-sub" id="review-sub"></span>
+        </button>
+        <button type="button" class="alt-card" id="btn-external">
+          <span class="alt-title">Registra sessione esterna</span>
+          <span class="alt-sub">Libro, PDF astratto, test EPSO</span>
+        </button>
+      </div>
+      <p class="week-line" id="week-line"></p>
+    </section>
+
+    <!-- ════════ SESSIONE (Micro / Allenamento / Ripasso) ════════ -->
+    <section id="view-session" class="view" hidden>
+      <div class="session-bar">
+        <span class="session-counter" id="s-counter">1 / 10</span>
+        <span class="session-mode" id="s-mode"></span>
+        <div class="pace" id="s-pace" title="Tempo su questa domanda rispetto al ritmo della prova">
+          <span class="pace-time" id="s-time">0:00</span><span class="pace-sep">/</span><span class="pace-target" id="s-target">1:45</span>
+          <span class="pace-bar" aria-hidden="true"><span class="pace-fill" id="s-pace-fill"></span></span>
+        </div>
+        <button type="button" class="link-btn" id="s-quit" aria-label="Interrompi la sessione">Esci</button>
+      </div>
+
+      <div class="item-layout" id="s-item">
+        <div class="item-content">
+          <div class="passage" id="s-passage" hidden></div>
+        </div>
+        <div class="item-question">
+          <p class="question" id="s-question"></p>
+          <div class="options" id="s-options" role="group" aria-label="Opzioni di risposta"></div>
+          <div class="answer-actions" id="s-actions">
+            <button type="button" class="btn btn-ghost" id="s-doubt" disabled>Dubbio</button>
+            <button type="button" class="btn btn-primary" id="s-sure" disabled>Sicuro</button>
+            <button type="button" class="btn btn-primary" id="s-answer" disabled hidden>Rispondi</button>
+          </div>
+          <div class="feedback" id="s-feedback" hidden>
+            <p class="fb-head" id="s-fb-head"></p>
+            <p class="fb-correct" id="s-fb-correct"></p>
+            <p class="fb-calib" id="s-fb-calib" hidden></p>
+            <div class="fb-expl" id="s-fb-expl"></div>
+            <p class="fb-tag" id="s-fb-tag"></p>
+            <button type="button" class="btn btn-primary btn-lg" id="s-next">Prossima</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ FINE SESSIONE ════════ -->
+    <section id="view-end" class="view" hidden>
+      <div class="end-card">
+        <p class="end-mode" id="e-mode"></p>
+        <div class="end-numbers">
+          <div class="num"><span class="num-big" id="e-score">0/0</span><span class="num-label">corrette</span></div>
+          <div class="num"><span class="num-big" id="e-pace">—</span><span class="num-label">per domanda</span></div>
+          <div class="num"><span class="num-big" id="e-trap">—</span><span class="num-label">trappola da lavorare</span></div>
+        </div>
+        <p class="end-sentence" id="e-sentence"></p>
+        <div class="end-actions">
+          <button type="button" class="btn btn-ghost" id="e-copy">Copia riepilogo</button>
+          <button type="button" class="btn btn-ghost" id="e-more" hidden>Ancora una</button>
+          <button type="button" class="btn btn-primary btn-lg" id="e-done">Fatto per oggi</button>
+        </div>
+        <details class="end-review" id="e-review-wrap">
+          <summary>Rivedi gli errori</summary>
+          <div id="e-review"></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ════════ SIMULAZIONE: CONFIGURAZIONE ════════ -->
+    <section id="view-sim-setup" class="view" hidden>
+      <div class="card">
+        <h1>Simulazione</h1>
+        <p class="muted">Replica della piattaforma TAO: navigazione libera, segnalibro, panoramica, consegna; nessuna correzione prima della fine. Da fare sul PC con cui sosterrai la prova, in Chrome, uno schermo solo.</p>
+        <p class="device-note" id="sim-device-note" hidden>Stai usando un telefono: la simulazione funziona, ma la prova vera sarà sul PC.</p>
+        <fieldset class="fieldset">
+          <legend>Prove</legend>
+          <label class="choice"><input type="radio" name="sim-scope" value="full" checked> Parte 1: verbale (20 · 35′) → numerico (10 · 20′). L'astratto arriva nella v1.3: nel frattempo si fa sul PDF e si registra come sessione esterna.</label>
+          <label class="choice"><input type="radio" name="sim-scope" value="verbale"> Solo verbale (20 · 35′)</label>
+          <label class="choice"><input type="radio" name="sim-scope" value="numerico"> Solo numerico (10 · 20′)</label>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend>Timer</legend>
+          <label class="choice"><input type="radio" name="sim-timer" value="section" checked> Un timer per prova, come nel bando (35′ e 20′)</label>
+          <label class="choice"><input type="radio" name="sim-timer" value="single"> Un solo timer per tutta la parte, come nel test di esempio EPSO (55′)</label>
+        </fieldset>
+        <p class="muted" id="sim-pool-note"></p>
+        <div class="end-actions">
+          <button type="button" class="btn btn-ghost" id="sim-cancel">Indietro</button>
+          <button type="button" class="btn btn-primary btn-lg" id="sim-start">Avvia la simulazione</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ SIMULAZIONE: SEZIONE (clone TAO) ════════ -->
+    <section id="view-sim" class="view tao" hidden>
+      <div class="tao-header">
+        <div class="tao-crumbs"><span class="tao-logo">EPSO</span><span class="tao-crumb">EU Prep · Simulazione</span><span class="tao-sep">/</span><span class="tao-crumb">Part I</span><span class="tao-sep">/</span><span class="tao-crumb" id="tao-section-name">Verbal</span><span class="tao-sep">/</span><span class="tao-crumb tao-itemid" id="tao-item-id"></span></div>
+        <div class="tao-timer" id="tao-timer" aria-live="off">--min --s</div>
+        <div class="tao-tools">
+          <button type="button" class="tao-tool" id="tao-calc" title="Calculator" aria-label="Calculator">▦</button>
+          <button type="button" class="tao-tool" id="tao-pad" title="Scratchpad" aria-label="Scratchpad">✎</button>
+        </div>
+      </div>
+      <div class="tao-intro" id="tao-intro" hidden>
+        <h2 id="tao-intro-title"></h2>
+        <p id="tao-intro-text"></p>
+        <button type="button" class="tao-btn-next" id="tao-intro-start">Start</button>
+      </div>
+      <div class="tao-body" id="tao-body">
+        <div class="tao-item" id="tao-item">
+          <div class="tao-passage" id="tao-passage" hidden></div>
+          <p class="tao-question" id="tao-question"></p>
+          <div class="tao-options" id="tao-options" role="radiogroup" aria-label="Answer options"></div>
+        </div>
+      </div>
+      <div class="tao-footer">
+        <button type="button" class="tao-nav-arrow" id="tao-prev" aria-label="Previous question">←</button>
+        <div class="tao-bubbles" id="tao-bubbles"></div>
+        <button type="button" class="tao-overview-btn" id="tao-overview-btn">OVERVIEW (<span id="tao-overview-n">0</span>)</button>
+        <button type="button" class="tao-bookmark" id="tao-bookmark" aria-pressed="false" aria-label="Bookmark this question" title="Bookmark">⚑</button>
+        <button type="button" class="tao-nav-arrow tao-next" id="tao-next" aria-label="Next question">→</button>
+      </div>
+
+      <div class="tao-overview" id="tao-overview" hidden>
+        <div class="tao-overview-head"><button type="button" class="tao-close" id="tao-overview-close" aria-label="Close overview">✕</button><span>OVERVIEW · PART I</span></div>
+        <div class="tao-overview-tabs">
+          <button type="button" class="tao-tab active" data-filter="all">All questions</button>
+          <button type="button" class="tao-tab" data-filter="bookmarked">Bookmarked (<span id="ov-bm">0</span>)</button>
+          <button type="button" class="tao-tab" data-filter="incomplete">Incomplete (<span id="ov-inc">0</span>)</button>
+        </div>
+        <div class="tao-overview-body" id="tao-overview-body"></div>
+        <div class="tao-overview-foot">
+          <button type="button" class="tao-link" id="tao-overview-back">↩ GO BACK TO THE QUESTION</button>
+          <button type="button" class="tao-submit" id="tao-submit">SUBMIT THIS PART ⊳</button>
+        </div>
+      </div>
+
+      <div class="tao-widget" id="tao-calc-widget" hidden>
+        <div class="tao-widget-head">Calculator <button type="button" class="tao-close" data-close="tao-calc-widget" aria-label="Close">✕</button></div>
+        <input type="text" class="calc-display" id="calc-display" aria-label="Calculator display" autocomplete="off" inputmode="decimal" placeholder="0">
+        <div class="calc-keys" id="calc-keys"></div>
+      </div>
+      <div class="tao-widget" id="tao-pad-widget" hidden>
+        <div class="tao-widget-head">Scratchpad <button type="button" class="tao-close" data-close="tao-pad-widget" aria-label="Close">✕</button></div>
+        <textarea id="pad-text" class="pad-text" rows="8" aria-label="Scratchpad" placeholder="Appunti…"></textarea>
+      </div>
+    </section>
+
+    <!-- ════════ SIMULAZIONE: RISULTATI ════════ -->
+    <section id="view-sim-results" class="view" hidden>
+      <div class="card">
+        <h1>Simulazione completata</h1>
+        <div class="sim-scores" id="sim-scores"></div>
+        <p class="end-sentence" id="sim-sentence"></p>
+        <div class="end-actions">
+          <button type="button" class="btn btn-ghost" id="sim-copy">Copia riepilogo</button>
+          <button type="button" class="btn btn-primary btn-lg" id="sim-close">Chiudi</button>
+        </div>
+        <h2>Revisione</h2>
+        <div id="sim-review"></div>
+      </div>
+    </section>
+
+    <!-- ════════ SESSIONE ESTERNA ════════ -->
+    <section id="view-external" class="view" hidden>
+      <div class="card">
+        <h1>Registra una sessione esterna</h1>
+        <p class="muted">Per ciò che fai fuori dall'app: PDF astratto, test del libro, test di esempio EPSO. Così il registro resta uno solo.</p>
+        <form id="ext-form" class="form">
+          <label class="field">Prova
+            <select id="ext-bank">
+              <option value="astratto">Astratto</option>
+              <option value="verbale">Verbale</option>
+              <option value="numerico">Numerico</option>
+              <option value="sim">Simulazione completa (le tre prove)</option>
+            </select>
+          </label>
+          <label class="field">Fonte
+            <select id="ext-source">
+              <option>PDF astratto Maggioli</option>
+              <option>Maggioli esercizi guidati</option>
+              <option>Maggioli allenamento</option>
+              <option>Maggioli test n. 1</option>
+              <option>Maggioli test n. 2</option>
+              <option>Maggioli test n. 3</option>
+              <option>Test di esempio EPSO</option>
+              <option>Altro</option>
+            </select>
+          </label>
+          <div class="field-row">
+            <label class="field">Corrette <input type="number" id="ext-score" min="0" max="200" inputmode="numeric" required></label>
+            <label class="field">su <input type="number" id="ext-max" min="1" max="200" inputmode="numeric" required></label>
+            <label class="field">Minuti <input type="number" id="ext-min" min="0" max="300" inputmode="numeric"></label>
+          </div>
+          <label class="field">Trappola dominante
+            <select id="ext-tag"></select>
+          </label>
+          <label class="field">Nota (facoltativa) <input type="text" id="ext-note" maxlength="140"></label>
+          <div class="end-actions">
+            <button type="button" class="btn btn-ghost" id="ext-cancel">Annulla</button>
+            <button type="submit" class="btn btn-primary">Salva</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ════════ STATO ════════ -->
+    <section id="view-stato" class="view" hidden>
+      <div class="card">
+        <h1>Stato</h1>
+        <div class="stato-grid" id="stato-grid"></div>
+        <h2>Trappole, ultimi 14 giorni</h2>
+        <div id="stato-tags" class="tagbars"></div>
+        <h2>Calibrazione</h2>
+        <p id="stato-calib" class="muted"></p>
+        <h2>Ultime sessioni</h2>
+        <div id="stato-sessions" class="sessions"></div>
+        <h2>Pool di domande</h2>
+        <p id="stato-pools" class="muted"></p>
+        <h2>Dati</h2>
+        <div class="end-actions wrap">
+          <button type="button" class="btn btn-ghost" id="st-copy-week">Copia riepilogo settimana</button>
+          <button type="button" class="btn btn-ghost" id="st-export">Esporta JSON</button>
+          <label class="btn btn-ghost file-btn">Importa JSON<input type="file" id="st-import" accept="application/json,.json" hidden></label>
+          <button type="button" class="btn btn-ghost danger" id="st-reset">Azzera tutto</button>
+        </div>
+        <h2>Impostazioni</h2>
+        <label class="choice"><input type="checkbox" id="set-conf"> Chiedi «Sicuro / Dubbio» prima di rivelare la risposta</label>
+        <label class="choice"><input type="checkbox" id="set-vfn"> Nelle Micro includi la batteria Vero/Falso/Non si può dire (fondamenta)</label>
+        <h2>Dispositivo</h2>
+        <p id="stato-device" class="muted mono"></p>
+        <p class="muted small">EU Prep Suite v2 · <span id="app-version"></span> · contenuti L1 corretti l'08–09/10/2026</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <div id="modal-root"></div>
+
+  <script src="js/banks.js"></script>
+  <script src="data/bank-verbale.js"></script>
+  <script src="data/bank-numerico.js"></script>
+  <script src="data/bank-euknowledge.js"></script>
+  <script src="data/bank-digital.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/plan.js"></script>
+  <script src="js/select.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/sim.js"></script>
+  <script src="js/stato.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
