@@ -171,9 +171,7 @@ App.session = (() => {
     const ok = await App.ui.confirm({ title: 'Interrompere?', message: 'Le risposte date restano nel registro. Puoi riprendere più tardi dalla home, oggi stesso.', okText: 'Metti in pausa', cancelText: 'Continua' });
     if (!ok || !S) return;
     clearInterval(tickId);
-    if (S.phase === 'answer') tick();
-    persist();
-    S = null;
+    try { if (S.phase === 'answer') tick(); persist(); } finally { S = null; }
     App.calc.hideAll();
     App.main.home();
   }
@@ -261,7 +259,8 @@ App.session = (() => {
       if (e.ctrlKey || e.altKey || e.metaKey) return; // Ctrl+C e simili non sono risposte
       if (e.target.closest('input, textarea, select')) return;
       // Con il fuoco su un pulsante («Dubbio», «Esci», «Prossima»…) Invio e Spazio fanno la loro azione: nessun dirottamento.
-      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('button, a')) return;
+      // Le opzioni (.opt) sono escluse: dopo un click col mouse su A, Invio conferma (F2-03).
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('button:not(.opt), a')) return;
       const k = e.key.toUpperCase();
       if (S.phase === 'answer' && 'ABCDE'.includes(k) && k.length === 1) {
         if (current().options.some((o) => o.letter === k)) choose(k);
@@ -291,11 +290,14 @@ App.session = (() => {
     App.store.onReset(() => { clearInterval(tickId); S = null; });
   }
 
-  // Sessione lasciata a metà in un giorno precedente: si chiude e si conta ciò che è stato fatto.
+  // Sessione lasciata a metà in un giorno precedente (e da almeno 3 ore: una pausa alle 00:05 di una Micro
+  // iniziata alle 23:55 non è «di ieri», F2-10): si chiude e si conta ciò che è stato fatto.
+  const STALE_MS = 3 * 3600 * 1000;
   function closeStale() {
     const c = App.store.current();
     if (!c) return;
-    if (App.utils.todayKey(new Date(c.startedAt)) === App.utils.todayKey()) return;
+    const started = new Date(c.startedAt);
+    if (App.utils.todayKey(started) === App.utils.todayKey() || Date.now() - started.getTime() < STALE_MS) return;
     closeAsPartial(c);
   }
 

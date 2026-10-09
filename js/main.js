@@ -5,9 +5,24 @@ App.main = (() => {
   const { dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo in tests/smoke.py).
-  const VERSION = '1.1.0-b4';
+  const VERSION = '1.1.0-b5';
 
+  // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
+    try { homeView(); } catch (err) {
+      console.warn('home: dati non leggibili', err);
+      $('next-label').textContent = 'Dati non leggibili';
+      $('next-title').textContent = 'Qualcosa nei dati salvati non va';
+      $('next-sub').textContent = `Apri Stato: esporta il JSON, poi «Azzera tutto». Dettaglio: ${err && err.message ? err.message : err}`;
+      $('next-note').hidden = true;
+      $('btn-next').textContent = 'Apri Stato';
+      $('btn-next').onclick = () => App.stato.open();
+      $('btn-review').hidden = true;
+      $('week-line').textContent = '';
+      App.ui.show('home', { title: '' });
+    }
+  }
+  function homeView() {
     App.session.closeStale();
     App.sim.closeStale();
     const plan = App.plan.today();
@@ -107,6 +122,7 @@ App.main = (() => {
 
   function init() {
     $('app-version').textContent = `v${VERSION}`;
+    App.store.settings(); // lettura all'avvio: impostazioni illeggibili segnalate subito, non alla prima Micro (F2-12)
     App.session.init();
     App.sim.init();
     App.calc.init();

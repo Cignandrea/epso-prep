@@ -13,6 +13,29 @@ App.store = (() => {
   let storageOk = true;
 
   const corrupt = [];
+  const isoT = (t) => typeof t === 'string' && !Number.isNaN(Date.parse(t));
+  const isObj = (v) => Boolean(v) && typeof v === 'object' && !Array.isArray(v);
+  // Forma attesa per chiave: una voce non valida viene scartata (copia in <k>.corrupt), mai lasciata a far cadere la home.
+  const SHAPES = {
+    log: { list: true, ok: (e) => isObj(e) && isoT(e.t) && typeof e.mode === 'string' },
+    sessions: { list: true, ok: (e) => isObj(e) && isoT(e.t) && typeof e.mode === 'string', fix: (s) => (Array.isArray(s.banks) ? s : { ...s, banks: typeof s.banks === 'string' ? [s.banks] : [] }) },
+    settings: { list: false, ok: isObj },
+  };
+  function setAside(k, raw) { try { localStorage.setItem(`${k}.corrupt`, typeof raw === 'string' ? raw : JSON.stringify(raw)); } catch { /* ignora */ } }
+  function sanitize(name, v) {
+    const shape = SHAPES[name];
+    if (!shape) return v;
+    const k = PREFIX + name;
+    if (shape.list) {
+      if (!Array.isArray(v)) { setAside(k, v); corrupt.push(name); notify(`Dati «${name}» di forma inattesa: messi da parte (${name}.corrupt), ripartiti da zero.`); return []; }
+      const good = v.filter(shape.ok).map(shape.fix || ((x) => x));
+      if (good.length !== v.length) { setAside(k, v); corrupt.push(name); notify(`Dati «${name}»: ${v.length - good.length} voci illeggibili messe da parte (${name}.corrupt).`); write(name, good); }
+      return good;
+    }
+    if (!shape.ok(v)) { setAside(k, v); corrupt.push(name); notify(`Dati «${name}» di forma inattesa: messi da parte (${name}.corrupt), ripristinati i valori predefiniti.`); return {}; }
+    return v;
+  }
+  function notify(msg) { if (window.App && App.ui) App.ui.toast(msg, 7000); }
   function read(name, fallback) {
     const k = PREFIX + name;
     if (k in memory) return memory[k];
@@ -20,14 +43,15 @@ App.store = (() => {
     try { raw = localStorage.getItem(k); } catch { return fallback; }
     if (raw == null) return fallback;
     try {
-      const v = JSON.parse(raw);
+      const v = sanitize(name, JSON.parse(raw));
       memory[k] = v;
       return v;
     } catch {
       // Valore illeggibile: si conserva a parte, non si sovrascrive in silenzio.
-      try { localStorage.setItem(`${k}.corrupt`, raw); localStorage.removeItem(k); } catch { /* ignora */ }
+      setAside(k, raw);
+      try { localStorage.removeItem(k); } catch { /* ignora */ }
       corrupt.push(name);
-      if (window.App && App.ui) App.ui.toast(`Dati «${name}» illeggibili: messi da parte (${name}.corrupt), ripartiti da zero.`, 7000);
+      notify(`Dati «${name}» illeggibili: messi da parte (${name}.corrupt), ripartiti da zero.`);
       return fallback;
     }
   }
@@ -47,25 +71,26 @@ App.store = (() => {
   const settings = () => ({ ...DEFAULT_SETTINGS, ...read('settings', {}) });
   const setSetting = (k, v) => write('settings', { ...settings(), [k]: v });
 
-  // ── Registro per item ──
-  const log = () => { const v = read('log', []); return Array.isArray(v) ? v : []; };
-  function addLog(entry) {
-    const l = log();
-    l.push({ t: new Date().toISOString(), ...entry });
-    write('log', l);
-  }
+  // ── Registro per item ── (una voce con `t` esplicito nel passato tiene l'ordine cronologico: Leitner legge in sequenza)
+  const byT = (a, b) => a.t.localeCompare(b.t);
+  const log = () => read('log', []);
+  function addLog(entry) { addLogMany([entry]); }
   function addLogMany(entries) {
     const l = log();
-    const t = new Date().toISOString();
-    for (const e of entries) l.push({ t, ...e });
+    const now = new Date().toISOString();
+    const last = l.length ? l[l.length - 1].t : '';
+    let reorder = false;
+    for (const e of entries) { const row = { t: now, ...e }; if (row.t < last) reorder = true; l.push(row); }
+    if (reorder) l.sort(byT);
     write('log', l);
   }
 
-  // ── Sessioni ──
-  const sessions = () => { const v = read('sessions', []); return Array.isArray(v) ? v : []; };
+  // ── Sessioni ── (sempre in ordine cronologico)
+  const sessions = () => read('sessions', []);
   function addSession(s) {
     const l = sessions();
     l.push({ t: new Date().toISOString(), ...s });
+    l.sort(byT);
     write('sessions', l.slice(-500));
   }
 
@@ -78,9 +103,23 @@ App.store = (() => {
     if (window.App && App.ui) App.ui.toast(`Stato «${name}» non valido: scartato.`, 6000);
     return null;
   }
-  const current = () => validShape('current', read('current', null), (c) => Array.isArray(c.items) && Array.isArray(c.answers) && typeof c.index === 'number' && typeof c.startedAt === 'string' && ['answer', 'feedback'].includes(c.phase));
+  const current = () => validShape('current', read('current', null), (c) => isObj(c)
+    && Array.isArray(c.items) && c.items.length > 0 && c.items.every((it) => isObj(it) && typeof it.bank === 'string')
+    && Array.isArray(c.answers) && c.answers.every(isObj)
+    && Number.isInteger(c.index) && c.index >= 0 && c.index < c.items.length
+    && isoT(c.startedAt) && ['answer', 'feedback'].includes(c.phase) && (c.phase !== 'feedback' || c.answers.length > 0));
   const setCurrent = (v) => write('current', v);
-  const sim = () => validShape('sim', read('sim', null), (x) => Array.isArray(x.sections) && Array.isArray(x.units) && typeof x.unit === 'number' && typeof x.startedAt === 'string' && ['intro', 'running', 'overview', 'results'].includes(x.phase) && x.sections.every((sec) => Array.isArray(sec.items) && sec.answers && sec.bookmarks && sec.time));
+  const sim = () => validShape('sim', read('sim', null), (x) => {
+    if (!isObj(x) || !Array.isArray(x.sections) || !x.sections.length || !Array.isArray(x.units) || !x.units.length) return false;
+    if (!Number.isInteger(x.unit) || x.unit < 0 || x.unit >= x.units.length || !isoT(x.startedAt)) return false;
+    if (!['intro', 'running', 'overview', 'results'].includes(x.phase)) return false;
+    if (!x.sections.every((sec) => isObj(sec) && Array.isArray(sec.items) && sec.items.length > 0 && isObj(sec.answers) && isObj(sec.bookmarks) && isObj(sec.time))) return false;
+    if (!x.units.every((u) => isObj(u) && Array.isArray(u.sections) && u.sections.length > 0 && u.sections.every((si) => Number.isInteger(si) && si >= 0 && si < x.sections.length))) return false;
+    const n = x.units[x.unit].sections.reduce((s, si) => s + x.sections[si].items.length, 0);
+    if (!Number.isInteger(x.pos) || x.pos < 0 || x.pos >= n) return false;
+    if ((x.phase === 'running' || x.phase === 'overview') && typeof x.deadline !== 'number') return false;
+    return x.phase !== 'results' || Array.isArray(x.results);
+  });
   const setSim = (v) => write('sim', v);
 
   // ── Statistiche derivate dal registro ──
@@ -88,7 +127,7 @@ App.store = (() => {
   function itemStats() {
     const stats = new Map();
     for (const e of log()) {
-      if (e.mode === 'external' || e.id == null) continue;
+      if (e.mode === 'external' || e.id == null || !isoT(e.t)) continue;
       const key = `${e.bank}#${e.id}`;
       const s = stats.get(key) || { bank: e.bank, id: e.id, seen: 0, wrong: 0, blank: 0, last: null, lastOk: null, box: 0, due: null, simSeen: false, healedAt: null, modes: new Set() };
       s.seen++;
@@ -126,7 +165,6 @@ App.store = (() => {
     let data;
     try { data = JSON.parse(json); } catch { throw new Error('non è un file JSON.'); }
     if (!data || typeof data !== 'object' || !Array.isArray(data.log)) throw new Error('manca il registro (log).');
-    const isoT = (t) => typeof t === 'string' && !Number.isNaN(Date.parse(t));
     data.log.forEach((e, i) => {
       if (!e || typeof e !== 'object' || !isoT(e.t) || typeof e.mode !== 'string' || typeof e.bank !== 'string') throw new Error(`voce ${i + 1} del registro non valida.`);
     });

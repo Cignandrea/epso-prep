@@ -96,7 +96,7 @@ body[data-view="session"] #nav-stato { display: none; }
 .answer-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; position: sticky; bottom: 0; background: var(--bg); padding: 8px 0 max(8px, env(safe-area-inset-bottom)); }
 .answer-actions .btn { flex: 1; max-width: 220px; }
 .feedback { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
-.fb-head { font-weight: 700; }
+.fb-head { font-weight: 700; scroll-margin-top: calc(var(--topbar) + 8px); }
 .feedback.ok .fb-head { color: var(--ok); }
 .feedback.ko .fb-head { color: var(--warn); }
 .fb-correct { font-weight: 600; }
@@ -158,7 +158,7 @@ details.review-item.ko summary { color: var(--warn); }
 .passage .data-table { display: block; overflow-x: auto; max-width: 100%; }
 
 /* ── Toast e dialoghi ── */
-.toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; z-index: 60; max-width: 92vw; box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+.toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 10px; z-index: 60; max-width: 92vw; box-shadow: 0 4px 16px rgba(0,0,0,.2); white-space: pre-line; }
 .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: grid; place-items: center; z-index: 70; padding: 16px; }
 .modal { background: var(--bg); color: var(--ink); border-radius: 14px; padding: 20px; max-width: 440px; width: 100%; box-shadow: 0 10px 40px rgba(0,0,0,.3); }
 .modal h2 { margin-top: 0; }
@@ -171,11 +171,13 @@ body[data-view="sim"] .modal .btn-ghost { color: #111; border-color: #ccc; }
   .item-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
   .item-content { position: sticky; top: calc(var(--topbar) + 8px); }
   .passage { max-height: calc(100dvh - var(--topbar) - 90px); }
+  /* Con un widget agganciato la colonna di sinistra scorre al suo interno (schermi bassi): i tasti restano raggiungibili. */
+  .item-content.has-dock { max-height: calc(100dvh - var(--topbar) - 90px); overflow: auto; }
 }
 /* Telefono chiuso in orizzontale (basso e largo): intestazioni compatte, brano contenuto. */
 @media (max-height: 600px) and (min-aspect-ratio: 4/3) {
-  :root { --topbar: 40px; }
-  .topbar-home { padding: 6px 4px; min-height: 36px; }
+  :root { --topbar: 44px; }
+  .topbar-home { padding: 0 6px; min-height: 44px; }
   .main { padding-top: 8px; }
   .session-bar { padding: 2px 0 6px; }
   .passage { max-height: calc(100dvh - var(--topbar) - 70px); font-size: .98rem; }
@@ -262,11 +264,26 @@ mark.tao-hl { background: #fff3b0; color: inherit; padding: 0 1px; border-radius
 .tao-overview-foot { display: flex; justify-content: flex-end; gap: 18px; padding: 12px 24px max(12px, env(safe-area-inset-bottom)); border-top: 1px solid #e3e3e3; flex-wrap: wrap; }
 .tao-link { background: none; border: 0; font-weight: 700; letter-spacing: .03em; min-height: 44px; }
 .tao-submit { border: 1.5px solid #222; background: #fff; border-radius: 24px; padding: 10px 18px; font-weight: 700; letter-spacing: .03em; min-height: 44px; }
-.tao-widget { position: fixed; top: 64px; width: min(320px, 92vw); background: #fff; color: #111; color-scheme: light; border: 1px solid #bbb; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,.2); z-index: 40; padding: 8px; }
+.tao-widget { position: fixed; top: 64px; width: min(320px, 92vw); max-height: calc(100dvh - 80px); overflow: auto; background: #fff; color: #111; color-scheme: light; border: 1px solid #bbb; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,.2); z-index: 40; padding: 8px; }
 #tao-calc-widget { right: 16px; }
-#tao-pad-widget { left: 16px; top: auto; bottom: 90px; }
+#tao-pad-widget { left: 16px; top: auto; bottom: 118px; } /* sopra il footer TAO (~105 px) */
+/* In Micro/Allenamento su una colonna (telefono) i widget fluttuano in basso, sopra «Dubbio/Sicuro»: la barra di sessione
+   (Esci, ritmo, strumenti) resta libera. Su due colonne si agganciano nella colonna di sinistra (.s-dock, vedi js/calc.js). */
+body[data-view="session"] .tao-widget { top: auto; bottom: 76px; right: auto; left: 16px; max-height: calc(100dvh - var(--topbar) - 150px); }
+.s-dock { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.s-dock .tao-widget { position: static; width: auto; max-width: 360px; max-height: none; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+.s-dock .tao-widget-head { cursor: default; }
+.s-dock .calc-key { min-height: 36px; }
+.s-dock .pad-text { min-height: 110px; }
+.item-content.has-dock .passage { max-height: 28dvh; }
 .tao-widget-head { cursor: move; touch-action: none; }
-@media (max-width: 599px) { .tao-widget { top: auto; bottom: 76px; left: 8px; right: 8px; width: auto; } .tao-widget-head { cursor: default; } .calc-key { min-height: 40px; } }
+@media (max-width: 599px) {
+  .tao-widget, #tao-pad-widget { top: auto; bottom: 116px; left: 8px; right: 8px; width: auto; } /* sopra il footer della simulazione */
+  body[data-view="session"] .tao-widget, body[data-view="session"] #tao-pad-widget { bottom: 76px; left: 8px; right: 8px; }
+  .tao-widget-head { cursor: default; }
+  .calc-key { min-height: 40px; }
+}
+@media (max-height: 600px) { .calc-key { min-height: 34px; font-size: .95rem; } .calc-keys { gap: 4px; } .calc-display { font-size: 1rem; padding: 6px; } .pad-text { min-height: 90px; } }
 .tao-widget-head { display: flex; justify-content: space-between; align-items: center; font-weight: 700; padding: 2px 4px 6px; }
 .calc-display { width: 100%; border: 1px solid #bbb; border-radius: 6px; padding: 8px; text-align: right; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
 .calc-display.calc-err { border-color: #b3261e; }
@@ -275,12 +292,21 @@ mark.tao-hl { background: #fff3b0; color: inherit; padding: 0 1px; border-radius
 .calc-eq { grid-column: span 4; background: #1a56db; color: #fff; border-color: #1a56db; }
 .pad-text { width: 100%; border: 1px solid #bbb; border-radius: 6px; padding: 8px; resize: vertical; min-height: 140px; }
 
-/* La simulazione resta a una colonna, come TAO (brano sopra, domanda, opzioni). */
+/* La simulazione resta a una colonna, come TAO (brano sopra, domanda, opzioni). Sul telefono: bersagli ≥ 44 px, testo a sinistra. */
+@media (max-width: 599px) {
+  .tao-bubble { width: 44px; height: 44px; font-size: .9rem; }
+  .tao-bubbles { gap: 4px; }
+  .tao-ellipsis { width: 24px; }
+  .tao-close { width: 44px; height: 44px; }
+  .tao-bookmark { height: 44px; }
+  .tao-passage { text-align: left; }
+}
 @media (max-width: 480px) {
-  .tao-overview-btn { padding: 10px 10px; font-size: .72rem; }
+  .tao-overview-btn { padding: 10px 8px; font-size: .68rem; letter-spacing: 0; }
   .tao-footer { gap: 6px; }
   .tao-crumbs { font-size: .8rem; }
   .tao-crumb-app { display: none; } /* l'uscita resta sul logo «EPSO» (pulsante 44 px) */
+  .tao-tool-inert { display: none; } /* spazio al breadcrumb: sezione e ID restano leggibili */
   .end-numbers { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

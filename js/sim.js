@@ -59,10 +59,12 @@ App.sim = (() => {
       : sections.map((_, i) => ({ sections: [i], minutes: sections[i].minutes }));
     SIM = { id: uid(), startedAt: new Date().toISOString(), scope, timerMode, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false };
     persist();
-    App.calc.reset();
+    resetUi();
     App.ui.show('sim');
     renderIntro();
   }
+  // Strumenti e panoramica ripartono puliti a ogni simulazione e a ogni unità (F2-09).
+  function resetUi() { App.calc.reset(); setHighlightMode(false); overviewFilter = 'all'; bubbleStart = 0; }
 
   // Simulazione ferma da ore oltre la scadenza (T-071: conta la scadenza, non il giorno di calendario):
   // le sezioni già consegnate restano e vanno nei risultati; quella interrotta non consuma il pool.
@@ -75,7 +77,7 @@ App.sim = (() => {
     clearInterval(tickId);
     const done = sim.sections.filter((s) => s.status === 'done');
     if (done.length) {
-      SIM = { ...sim, sections: done, stale: true };
+      SIM = { ...sim, sections: done, units: [{ sections: done.map((_, i) => i), minutes: done.reduce((t, x) => t + x.minutes, 0) }], unit: 0, pos: 0, stale: true };
       finish({ show: false });
       App.ui.toast('Simulazione lasciata a metà: chiusa. Conta solo la parte già consegnata; il resto non consuma il pool.', 6000);
     } else {
@@ -178,28 +180,35 @@ App.sim = (() => {
   function paintBookmark(on) { $('tao-bookmark').setAttribute('aria-pressed', String(on)); $('tao-bookmark').classList.toggle('on', on); }
 
   // Barra di navigazione come in TAO: al massimo 11 bolle visibili, «…» ai lati per spostare la finestra.
+  // La finestra segue l'item corrente (follow) tranne quando è l'utente a spostarla con «…» (F2-01).
   let bubbleStart = 0;
-  function renderBubbles() {
+  function renderBubbles(follow = true) {
     const items = unitItems();
     const box = $('tao-bubbles');
-    const W = Math.max(5, Math.min(11, Math.floor((box.clientWidth || 480) / 44)));
-    if (SIM.pos < bubbleStart || SIM.pos >= bubbleStart + W) bubbleStart = Math.max(0, Math.min(items.length - W, SIM.pos - Math.floor(W / 2)));
+    const narrow = window.innerWidth < 600;
+    const per = narrow ? 48 : 42, ell = narrow ? 56 : 58; // bolla + spazio; due «…» con i loro spazi
+    const W = Math.max(3, Math.min(11, Math.floor(((box.clientWidth || 480) - ell) / per)));
+    if (follow && (SIM.pos < bubbleStart || SIM.pos >= bubbleStart + W)) bubbleStart = Math.max(0, Math.min(items.length - W, SIM.pos - Math.floor(W / 2)));
     bubbleStart = Math.max(0, Math.min(bubbleStart, Math.max(0, items.length - W)));
     const nodes = [];
-    if (bubbleStart > 0) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Previous questions', tabindex: '-1', onclick: () => { bubbleStart = Math.max(0, bubbleStart - W); renderBubbles(); } }, '…'));
+    if (bubbleStart > 0) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Previous questions', tabindex: '-1', onclick: () => { bubbleStart = Math.max(0, bubbleStart - W); renderBubbles(false); } }, '…'));
     for (let i = bubbleStart; i < Math.min(items.length, bubbleStart + W); i++) {
       const it = items[i];
       const s = SIM.sections[it.si];
       const answered = Boolean(s.answers[it.id]), marked = Boolean(s.bookmarks[it.id]);
       nodes.push(el('button', { type: 'button', class: `tao-bubble${i === SIM.pos ? ' current' : ''}${answered ? ' answered' : ''}${marked ? ' marked' : ''}`, tabindex: i === SIM.pos ? '0' : '-1', 'aria-current': i === SIM.pos ? 'true' : null, 'aria-label': `Question ${i + 1}${answered ? ', answered' : ', not answered'}${marked ? ', bookmarked' : ''}`, onclick: () => goTo(i) }, String(i + 1)));
     }
-    if (bubbleStart + W < items.length) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Next questions', tabindex: '-1', onclick: () => { bubbleStart = Math.min(items.length - W, bubbleStart + W); renderBubbles(); } }, '…'));
+    if (bubbleStart + W < items.length) nodes.push(el('button', { type: 'button', class: 'tao-ellipsis', 'aria-label': 'Next questions', tabindex: '-1', onclick: () => { bubbleStart = Math.min(items.length - W, bubbleStart + W); renderBubbles(false); } }, '…'));
     box.replaceChildren(...nodes);
   }
 
   // ── Evidenziatore: la selezione nel brano diventa <mark>; un click sulla marca la toglie. Salvato per item. ──
   let highlightMode = false;
   let lastDragAt = 0;
+  function setHighlightMode(on) {
+    highlightMode = on;
+    $('tao-highlight').setAttribute('aria-pressed', String(on)); $('tao-highlight').classList.toggle('on', on); $('tao-passage').classList.toggle('hl-mode', on);
+  }
   // Offset di un punto (contenitore, offset) nel testo del brano: vale anche per contenitori elemento (T-068).
   function pointOffset(root, container, offset) {
     const r = document.createRange();
@@ -356,17 +365,20 @@ App.sim = (() => {
     for (const si of SIM.units[SIM.unit].sections) { const s = SIM.sections[si]; s.status = 'done'; s.submittedAt = now; s.byTimeout = Boolean(byTimeout); }
     $('tao-overview').hidden = true;
     App.calc.reset();
-    if (SIM.unit < SIM.units.length - 1) { SIM.unit++; SIM.pos = 0; SIM.phase = 'intro'; SIM.deadline = null; persist(); renderIntro(); return; }
+    if (SIM.unit < SIM.units.length - 1) { SIM.unit++; SIM.pos = 0; SIM.phase = 'intro'; SIM.deadline = null; persist(); resetUi(); renderIntro(); return; }
     finish();
   }
 
   // ── Fine ──
   function finish({ show = true } = {}) {
     SIM.phase = 'results';
-    SIM.finishedAt = new Date().toISOString();
+    const now = new Date().toISOString();
+    // Ogni sezione è datata alla sua consegna (F2-02): una sim chiusa come stantia non finisce nel giorno della riapertura.
+    SIM.finishedAt = SIM.stale ? SIM.sections.map((s) => s.submittedAt || now).sort().pop() : now;
     const entries = [];
     const results = [];
     for (const s of SIM.sections) {
+      const t = s.submittedAt || now;
       let correct = 0, answered = 0, time = 0;
       for (const it of s.items) {
         const q = App.banks.question(it.bank, it.id);
@@ -376,13 +388,13 @@ App.sim = (() => {
         if (sel) answered++;
         const sec = Math.round(s.time[it.id] || 0);
         time += sec;
-        entries.push({ mode: 'sim', session: SIM.id, bank: q.bank, id: q.id, sel, ok, sec, conf: null, tag: q.tag, level: q.level, format: q.format, unanswered: sel == null });
+        entries.push({ t, mode: 'sim', session: SIM.id, bank: q.bank, id: q.id, sel, ok, sec, conf: null, tag: q.tag, level: q.level, format: q.format, unanswered: sel == null });
       }
-      results.push({ bank: s.bank, label: s.label, n: s.items.length, correct, answered, time, byTimeout: s.byTimeout, fresh: s.fresh });
+      results.push({ t, bank: s.bank, label: s.label, n: s.items.length, correct, answered, time, byTimeout: s.byTimeout, fresh: s.fresh });
     }
     SIM.results = results;
     App.store.addLogMany(entries);
-    for (const r of results) App.store.addSession({ mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined });
+    for (const r of results) App.store.addSession({ t: r.t, mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined });
     persist();
     if (show) showResults();
   }
@@ -479,7 +491,7 @@ App.sim = (() => {
     for (const t of document.querySelectorAll('.tao-tab')) t.addEventListener('click', () => { overviewFilter = t.dataset.filter; renderOverview(); });
     $('tao-logo').addEventListener('click', abandon);
     $('tao-exit').addEventListener('click', abandon);
-    $('tao-highlight').addEventListener('click', () => { highlightMode = !highlightMode; $('tao-highlight').setAttribute('aria-pressed', String(highlightMode)); $('tao-highlight').classList.toggle('on', highlightMode); $('tao-passage').classList.toggle('hl-mode', highlightMode); });
+    $('tao-highlight').addEventListener('click', () => setHighlightMode(!highlightMode));
     $('tao-passage').addEventListener('mouseup', onPassageMouseUp);
     $('tao-passage').addEventListener('touchend', () => setTimeout(onPassageMouseUp, 0));
     $('tao-passage').addEventListener('click', onPassageClick);

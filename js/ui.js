@@ -20,13 +20,18 @@ App.ui = (() => {
   }
   const view = () => currentView;
 
-  let toastTimer = null;
+  // Avvisi ravvicinati (es. più chiavi corrotte all'avvio) si accodano nello stesso toast, uno per riga: nessuno va perso.
+  let toastTimer = null, toastShownAt = 0, toastUntil = 0;
   function toast(msg, ms = 2600) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
+    const now = Date.now();
+    const merge = !t.hidden && now - toastShownAt < 1500 && t.textContent && t.textContent !== msg;
+    t.textContent = merge ? `${t.textContent}\n${msg}` : msg;
     t.hidden = false;
+    if (!merge) toastShownAt = now;
+    toastUntil = Math.max(merge ? toastUntil : 0, now + ms);
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { t.hidden = true; }, ms);
+    toastTimer = setTimeout(() => { t.hidden = true; }, toastUntil - now);
   }
 
   // Dialogo di conferma senza window.confirm (che blocca il browser).

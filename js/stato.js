@@ -71,6 +71,12 @@ App.stato = (() => {
     renderDevice();
   }
 
+  // Lo Stato si apre sempre: se le statistiche non si calcolano (dati danneggiati), restano Dati e Azzera (F2-05).
+  function open() {
+    try { render(); } catch (err) { console.warn('stato: statistiche non calcolabili', err); App.ui.toast('Statistiche non calcolabili: dati danneggiati. Esporta il JSON e poi «Azzera tutto».', 7000); }
+    App.ui.show('stato', { title: 'Stato' });
+  }
+
   function tile(big, label) { return el('div', { class: 'tile' }, el('span', { class: 'num-big' }, big), el('span', { class: 'num-label' }, label)); }
 
   // Un'unica regola per contare le trappole (Stato, riepilogo settimana): errori veri per tag, bianche come «tempo scaduto»,
@@ -128,27 +134,30 @@ App.stato = (() => {
     const plan = App.plan.today();
     if (plan.kind === 'external') { $('ext-bank').value = plan.bank; fill(); }
     const date = $('ext-date');
-    date.value = todayKey(); date.max = todayKey();
+    const minD = new Date(); minD.setDate(minD.getDate() - 400);
+    date.value = todayKey(); date.max = todayKey(); date.min = todayKey(minD);
     App.ui.show('external', { title: 'Sessione esterna' });
     $('ext-score').focus();
   }
   // Data della sessione (T-081): oggi → adesso; un giorno passato → le 12:00 locali di quel giorno.
+  // Ritorna { t } oppure { error } con il motivo (F2-13).
   function externalTime(value) {
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
-    if (!m) return null;
+    if (!m) return { error: 'Inserisci la data della sessione.' };
     const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12, 0, 0, 0);
-    if (Number.isNaN(d.getTime())) return null;
-    if (todayKey(d) === todayKey()) return new Date().toISOString();
+    if (Number.isNaN(d.getTime())) return { error: 'Data non valida.' };
+    if (todayKey(d) === todayKey()) return { t: new Date().toISOString() };
     const now = Date.now();
-    if (d.getTime() > now || now - d.getTime() > 400 * 86400000) return null;
-    return d.toISOString();
+    if (d.getTime() > now) return { error: 'La data non può essere futura.' };
+    if (now - d.getTime() > 400 * 86400000) return { error: 'Data troppo vecchia: si registrano sessioni degli ultimi 400 giorni.' };
+    return { t: d.toISOString() };
   }
   function saveExternal(e) {
     e.preventDefault();
     const score = Number($('ext-score').value), max = Number($('ext-max').value), min = Number($('ext-min').value) || 0;
     if (!(max > 0) || score < 0 || score > max) { App.ui.toast('Controlla punteggio e totale.'); return; }
-    const t = externalTime($('ext-date').value);
-    if (!t) { App.ui.toast('Controlla la data: non può essere futura.'); return; }
+    const { t, error } = externalTime($('ext-date').value);
+    if (error) { App.ui.toast(error); return; }
     const bank = $('ext-bank').value;
     const entry = { t, mode: 'external', bank, source: $('ext-source').value, score, max, min, tag: $('ext-tag').value || null, note: $('ext-note').value.trim() || null };
     App.store.addLog(entry);
@@ -159,7 +168,7 @@ App.stato = (() => {
   }
 
   function init() {
-    $('nav-stato').addEventListener('click', () => { render(); App.ui.show('stato', { title: 'Stato' }); });
+    $('nav-stato').addEventListener('click', open);
     $('st-copy-week').addEventListener('click', async () => { (await copyText(weekSummary())) ? App.ui.toast('Riepilogo della settimana copiato.') : App.ui.toast('Copia non riuscita.'); });
     $('st-export').addEventListener('click', () => {
       const blob = new Blob([App.store.exportAll()], { type: 'application/json' });
@@ -183,5 +192,5 @@ App.stato = (() => {
     window.addEventListener('resize', () => { if (App.ui.view() === 'stato') renderDevice(); });
   }
 
-  return { init, render, showExternal, weekSummary };
+  return { init, render, open, showExternal, weekSummary };
 })();
