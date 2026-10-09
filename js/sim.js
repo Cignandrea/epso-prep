@@ -39,7 +39,9 @@ App.sim = (() => {
         App.ui.toast(`Domande insufficienti per ${d.label}: ${pick.items.length}/${d.n}. Servono le batterie L2.`);
         if (pick.items.length === 0) return;
       }
-      sections.push({ ...d, items: pick.items.map((q) => ({ bank: q.bank, id: q.id })), fresh: pick.fresh, answers: {}, bookmarks: {}, time: {}, status: 'pending', deadline: null, startedAt: null, submittedAt: null, byTimeout: false });
+      const n = pick.items.length;
+      const minutes = n === d.n ? d.minutes : Math.max(1, Math.round((n * d.minutes) / d.n));
+      sections.push({ ...d, n, minutes, reduced: n < d.n, items: pick.items.map((q) => ({ bank: q.bank, id: q.id })), fresh: pick.fresh, answers: {}, bookmarks: {}, time: {}, status: 'pending', deadline: null, startedAt: null, submittedAt: null, byTimeout: false });
     }
     // In modalità "timer unico" le sezioni formano una sola unità navigabile, come nel test di esempio.
     const units = timerMode === 'single'
@@ -52,9 +54,25 @@ App.sim = (() => {
     renderIntro();
   }
 
+  // Una simulazione iniziata in un giorno precedente e mai consegnata si chiude come abbandonata:
+  // non consuma il pool e non entra nel registro.
+  function closeStale() {
+    const sim = App.store.sim();
+    if (!sim || sim.phase === 'results') return;
+    if (App.utils.todayKey(new Date(sim.startedAt)) === App.utils.todayKey()) return;
+    App.store.setSim(null);
+    App.ui.toast('La simulazione lasciata a metà in un giorno precedente è stata chiusa senza conteggio.', 5000);
+  }
+
   function resume() {
     SIM = App.store.sim();
     if (!SIM) return false;
+    if (SIM.phase !== 'results' && SIM.sections.some((sec) => sec.items.some((it) => !App.banks.question(it.bank, it.id)))) {
+      App.store.setSim(null); SIM = null;
+      App.ui.toast('La simulazione in sospeso usava domande non più disponibili: chiusa senza conteggio.', 5000);
+      App.main.home();
+      return false;
+    }
     App.ui.show('sim');
     if (SIM.phase === 'intro') renderIntro();
     else if (SIM.phase === 'running' || SIM.phase === 'overview') { startTick(); renderItem(); if (SIM.phase === 'overview') openOverview(); }
@@ -73,7 +91,7 @@ App.sim = (() => {
     $('tao-section-name').textContent = secs.map((s) => s.name).join(' + ');
     $('tao-item-id').textContent = '';
     $('tao-timer').textContent = taoClock(u.minutes * 60);
-    $('tao-intro-title').textContent = secs.map((s) => `${s.label} · ${s.n} questions`).join(' / ');
+    $('tao-intro-title').textContent = secs.map((s) => `${s.label} · ${s.n} questions${s.reduced ? ' (reduced: question pool)' : ''}`).join(' / ');
     $('tao-intro-text').textContent = `${u.minutes} minutes. You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections, as in the EPSO sample test.' : 'The timer starts when you press Start.'}`;
     $('tao-intro-start').onclick = startUnit;
   }
@@ -160,7 +178,11 @@ App.sim = (() => {
   function select(letter) {
     const it = unitItems()[SIM.pos];
     SIM.sections[it.si].answers[it.id] = letter;
-    for (const l of $('tao-options').querySelectorAll('.tao-opt')) l.classList.toggle('checked', l.querySelector('input').value === letter);
+    for (const l of $('tao-options').querySelectorAll('.tao-opt')) {
+      const input = l.querySelector('input');
+      input.checked = input.value === letter;
+      l.classList.toggle('checked', input.value === letter);
+    }
     renderBubbles();
     persist();
   }
@@ -206,11 +228,15 @@ App.sim = (() => {
   function closeOverview() { $('tao-overview').hidden = true; SIM.phase = 'running'; shownAt = Date.now(); persist(); }
 
   async function submitUnit(byTimeout) {
-    if (!SIM || SIM.phase === 'results' || SIM.phase === 'done') return;
+    if (!SIM || SIM.phase === 'results' || SIM.phase === 'done' || SIM.phase === 'intro') return;
     if (!byTimeout) {
+      const token = `${SIM.id}:${SIM.unit}`;
       const inc = unitItems().filter((it) => !SIM.sections[it.si].answers[it.id]).length;
       const ok = await App.ui.confirm({ title: 'Submit this part?', message: inc ? `You have ${inc} unanswered question${inc === 1 ? '' : 's'}. Unanswered questions count as incorrect.` : 'All questions answered.', okText: 'Submit', cancelText: 'Go back' });
-      if (!ok) return;
+      // Se nel frattempo il timer ha consegnato (o la sim è cambiata), questa conferma non vale più.
+      if (!ok || !SIM || `${SIM.id}:${SIM.unit}` !== token || (SIM.phase !== 'running' && SIM.phase !== 'overview')) return;
+    } else {
+      App.ui.closeModal();
     }
     accrue();
     clearInterval(tickId);
@@ -269,9 +295,12 @@ App.sim = (() => {
       const t = App.plan.TARGET[x.bank];
       if (!t) continue;
       if (x.bank === 'verbale') {
-        if (x.correct < t.min) sentences.push(`Verbale: ${x.correct}/${t.max}, sotto la soglia di passaggio (${t.min}/${t.max}).`);
+        if (x.n !== t.max) sentences.push(`Verbale: ${x.correct}/${x.n} su una prova ridotta (il pool era corto): non confrontabile con la soglia.`);
+        else if (x.correct < t.min) sentences.push(`Verbale: ${x.correct}/${t.max}, sotto la soglia di passaggio (${t.min}/${t.max}).`);
         else if (x.correct >= t.score) sentences.push(`Verbale: ${x.correct}/${t.max}, obiettivo raggiunto (≥ ${t.score}).`);
         else sentences.push(`Verbale: ${x.correct}/${t.max}, sopra la soglia (${t.min}) ma sotto l'obiettivo di ${t.score}/${t.max}.`);
+      } else if (x.n !== t.max) {
+        sentences.push(`${App.BANK_LABEL[x.bank]}: ${x.correct}/${x.n} su una prova ridotta.`);
       } else {
         sentences.push(`${App.BANK_LABEL[x.bank]}: ${x.correct}/${t.max} verso la soglia combinata numerico + astratto di 10/20 (obiettivo ${t.score}/${t.max} ciascuno).`);
       }
@@ -331,7 +360,7 @@ App.sim = (() => {
     for (const t of document.querySelectorAll('.tao-tab')) t.addEventListener('click', () => { overviewFilter = t.dataset.filter; renderOverview(); });
     document.querySelector('.tao-logo').addEventListener('click', abandon);
     window.addEventListener('keydown', (e) => {
-      if (App.ui.view() !== 'sim' || !SIM || SIM.phase !== 'running') return;
+      if (App.ui.view() !== 'sim' || !SIM || SIM.phase !== 'running' || App.ui.modalOpen()) return;
       if (e.target.closest('input[type=text], textarea')) return;
       if (e.key === 'ArrowRight') goTo(SIM.pos + 1);
       else if (e.key === 'ArrowLeft') goTo(SIM.pos - 1);
@@ -343,5 +372,5 @@ App.sim = (() => {
     window.addEventListener('visibilitychange', () => { if (SIM && SIM.phase === 'running') { if (document.hidden) accrue(); else shownAt = Date.now(); } });
   }
 
-  return { init, showSetup, resume, isActive: () => Boolean(App.store.sim()) };
+  return { init, showSetup, resume, closeStale, isActive: () => Boolean(App.store.sim()) };
 })();

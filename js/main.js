@@ -4,10 +4,11 @@ App.main = (() => {
   'use strict';
   const { el, dateIt, todayKey } = App.utils;
   const $ = (id) => document.getElementById(id);
-  const VERSION = '1.1.0';
+  const VERSION = '1.1.0-b2';
 
   function home() {
     App.session.closeStale();
+    App.sim.closeStale();
     const plan = App.plan.today();
     const week = App.plan.weekActivity();
     $('home-date').textContent = dateIt();
@@ -15,10 +16,16 @@ App.main = (() => {
     note.hidden = true;
     btn.onclick = null;
 
-    if (App.store.sim()) {
+    if (App.store.sim() && App.store.sim().phase === 'results') {
+      label.textContent = 'Simulazione completata';
+      title.textContent = 'Rivedi i risultati';
+      sub.textContent = 'La revisione resta disponibile finché non premi «Chiudi».';
+      btn.textContent = 'Rivedi i risultati';
+      btn.onclick = () => App.sim.resume();
+    } else if (App.store.sim()) {
       label.textContent = 'In corso';
       title.textContent = 'Simulazione';
-      sub.textContent = 'Il timer è fermo solo mentre questa schermata è chiusa; riprendi dove eri.';
+      sub.textContent = 'Il tempo continua a scorrere, come nella prova vera: riprendi subito.';
       btn.textContent = 'Riprendi la simulazione';
       btn.onclick = () => App.sim.resume();
     } else if (App.store.current()) {
@@ -68,7 +75,17 @@ App.main = (() => {
     App.ui.show('home', { title: '' });
   }
 
-  function startMicro() {
+  // Una sessione in pausa non si perde in silenzio: si chiude come parziale, con conferma.
+  async function closePausedIfAny() {
+    const c = App.store.current();
+    if (!c) return true;
+    const ok = await App.ui.confirm({ title: 'Hai una sessione in pausa', message: `${App.session.MODE_LABEL[c.mode]}, ${c.answers.length}/${c.items.length} fatte. Vuoi chiuderla (le risposte date restano nel registro) e iniziare qualcos'altro?`, okText: 'Chiudi e vai avanti', cancelText: 'Torna indietro' });
+    if (ok) App.session.closeAsPartial(c);
+    return ok;
+  }
+
+  async function startMicro() {
+    if (!(await closePausedIfAny())) return;
     const items = App.select.pickMicro(3);
     if (!items.length) { App.ui.toast('Nessuna domanda disponibile.'); return; }
     App.session.start('micro', items);
@@ -86,18 +103,20 @@ App.main = (() => {
       home();
     });
     $('btn-micro').addEventListener('click', startMicro);
-    $('btn-sim').addEventListener('click', () => App.sim.showSetup());
+    $('btn-sim').addEventListener('click', async () => { if (await closePausedIfAny()) App.sim.showSetup(); });
     $('btn-external').addEventListener('click', () => App.stato.showExternal());
     // Avvio: ripresa automatica di ciò che era in corso.
-    if (App.store.sim() && App.store.sim().phase !== 'results') home();
-    else home();
+    home();
     registerSW();
   }
 
   function registerSW() {
     if (!('serviceWorker' in navigator)) return;
+    // Cache offline solo sull'hosting proprio (GitHub Pages) o in locale: sulle anteprime di prova
+    // (artifact) ogni versione deve arrivare fresca, senza cache.
     const local = ['localhost', '127.0.0.1'].includes(location.hostname);
-    if (location.protocol !== 'https:' && !local) return;
+    const own = location.hostname.endsWith('github.io');
+    if (!(own || local)) return;
     navigator.serviceWorker.register('sw.js').then((reg) => {
       reg.addEventListener('updatefound', () => {
         const w = reg.installing;

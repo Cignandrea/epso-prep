@@ -43,9 +43,23 @@ App.ui = (() => {
         )
       );
       root.replaceChildren(el('div', { class: 'modal-backdrop', onclick: (e) => { if (e.target.classList.contains('modal-backdrop')) close(false); } }, box));
+      // Escape annulla; Tab resta dentro la modale.
+      const onKey = (e) => {
+        if (!root.contains(box)) { window.removeEventListener('keydown', onKey, true); return; }
+        if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(false); window.removeEventListener('keydown', onKey, true); return; }
+        if (e.key === 'Tab') {
+          const f = [...box.querySelectorAll('button')];
+          const i = f.indexOf(document.activeElement);
+          e.preventDefault();
+          f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+        }
+      };
+      window.addEventListener('keydown', onKey, true);
       box.querySelector('.btn-ghost').focus();
     });
   }
+  const modalOpen = () => document.getElementById('modal-root').childElementCount > 0;
+  const closeModal = () => document.getElementById('modal-root').replaceChildren();
 
-  return { show, view, toast, confirm };
+  return { show, view, toast, confirm, modalOpen, closeModal };
 })();

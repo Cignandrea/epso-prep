@@ -56,7 +56,7 @@ App.plan = (() => {
       else plan = { ...WEEK[1], title: 'Flex: verbale', sub: w.rate < 0 ? 'Pochi dati: si parte dal verbale, che pesa di più' : 'È la prova con più errori questa settimana · 10 domande + correzione' };
     }
     const key = todayKey(d);
-    const done = App.store.sessions().some((s) => s.t.startsWith(key) && (s.mode === 'train' || s.mode === 'sim' || (s.mode === 'external' && (plan.kind === 'external' || plan.kind === 'sim'))));
+    const done = App.store.sessions().some((s) => !s.partial && todayKey(new Date(s.t)) === key && (s.mode === 'train' || s.mode === 'sim' || (s.mode === 'external' && (plan.kind === 'external' || plan.kind === 'sim'))));
     return { ...plan, done, dayKey: key };
   }
 

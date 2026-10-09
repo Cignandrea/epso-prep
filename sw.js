@@ -3,7 +3,7 @@ const CACHE = 'euprep-v1.1.0';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest', './css/style.css',
   './js/banks.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/select.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/main.js',
-  './data/bank-verbale.js', './data/bank-numerico.js', './data/bank-euknowledge.js', './data/bank-digital.js',
+  './data/bank-verbale.js', './data/bank-numerico.js',
   './icons/favicon-64.png', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
 ];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())); });

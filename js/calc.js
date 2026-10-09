@@ -5,12 +5,12 @@ App.calc = (() => {
   'use strict';
   const { el } = App.utils;
   const $ = (id) => document.getElementById(id);
-  const KEYS = ['C', '(', ')', '⌫', '7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '−', '0', '.', '%', '+', '='];
+  const KEYS = ['C', '(', ')', '⌫', '7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '−', '0', '.', '+', '='];
 
   // Valutatore senza eval: tokenizza, shunting-yard, calcola.
   function evaluate(expr) {
     const src = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/,/g, '.').replace(/\s+/g, '');
-    const tokens = src.match(/(\d+\.?\d*|\.\d+)|[-+*/%()]/g);
+    const tokens = src.match(/(\d+\.?\d*|\.\d+)|[-+*/()]/g);
     if (!tokens || tokens.join('') !== src) throw new Error('Espressione non valida');
     const out = [], ops = [];
     const prec = { '+': 1, '-': 1, '*': 2, '/': 2, '%': 2, 'u-': 3 };
@@ -53,7 +53,12 @@ App.calc = (() => {
     $('tao-pad').addEventListener('click', () => toggle('tao-pad-widget'));
     for (const b of document.querySelectorAll('[data-close]')) b.addEventListener('click', () => { $(b.dataset.close).hidden = true; });
   }
-  function toggle(id) { const w = $(id); w.hidden = !w.hidden; if (!w.hidden) (w.querySelector('input, textarea') || w).focus(); }
+  function toggle(id) {
+    const w = $(id);
+    const other = $(id === 'tao-calc-widget' ? 'tao-pad-widget' : 'tao-calc-widget');
+    w.hidden = !w.hidden;
+    if (!w.hidden) { other.hidden = true; (w.querySelector('input, textarea') || w).focus(); }
+  }
   function reset() { $('calc-display').value = ''; $('pad-text').value = ''; $('tao-calc-widget').hidden = true; $('tao-pad-widget').hidden = true; }
 
   return { init, evaluate, reset };

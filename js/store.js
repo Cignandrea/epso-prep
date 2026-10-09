@@ -23,10 +23,14 @@ App.store = (() => {
       return v;
     } catch { return fallback; }
   }
+  let warned = false;
   function write(name, value) {
     const k = PREFIX + name;
     memory[k] = value;
-    try { localStorage.setItem(k, JSON.stringify(value)); } catch { storageOk = false; }
+    try { localStorage.setItem(k, JSON.stringify(value)); } catch {
+      storageOk = false;
+      if (!warned && window.App && App.ui) { warned = true; App.ui.toast('Impossibile salvare sul dispositivo: i dati di questa sessione andranno persi alla chiusura. Esporta da Stato.', 6000); }
+    }
   }
 
   const DEFAULT_SETTINGS = { confidence: true, microVfn: true, version: 2 };
@@ -97,18 +101,21 @@ App.store = (() => {
   function importAll(json, { merge = true } = {}) {
     const data = JSON.parse(json);
     if (!data || !Array.isArray(data.log)) throw new Error('File non valido: manca il registro.');
+    let addedItems = data.log.length, addedSessions = (data.sessions || []).length;
     if (merge) {
       const seen = new Set(log().map((e) => `${e.t}|${e.mode}|${e.bank}|${e.id}`));
-      const merged = [...log(), ...data.log.filter((e) => !seen.has(`${e.t}|${e.mode}|${e.bank}|${e.id}`))].sort((a, b) => a.t.localeCompare(b.t));
-      write('log', merged);
+      const newItems = data.log.filter((e) => !seen.has(`${e.t}|${e.mode}|${e.bank}|${e.id}`));
+      write('log', [...log(), ...newItems].sort((a, b) => a.t.localeCompare(b.t)));
       const seenS = new Set(sessions().map((s) => s.t + '|' + s.mode));
-      write('sessions', [...sessions(), ...(data.sessions || []).filter((s) => !seenS.has(s.t + '|' + s.mode))].sort((a, b) => a.t.localeCompare(b.t)));
+      const newSessions = (data.sessions || []).filter((s) => !seenS.has(s.t + '|' + s.mode));
+      write('sessions', [...sessions(), ...newSessions].sort((a, b) => a.t.localeCompare(b.t)));
+      addedItems = newItems.length; addedSessions = newSessions.length;
     } else {
       write('log', data.log);
       write('sessions', data.sessions || []);
     }
     if (data.settings) write('settings', { ...settings(), ...data.settings });
-    return { items: data.log.length, sessions: (data.sessions || []).length };
+    return { items: addedItems, sessions: addedSessions };
   }
   function resetAll() {
     for (const k of ['log', 'sessions', 'current', 'sim', 'settings']) write(k, k === 'settings' ? {} : (k === 'current' || k === 'sim' ? null : []));

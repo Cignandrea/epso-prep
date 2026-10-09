@@ -31,10 +31,10 @@ App.stato = (() => {
     for (const e of log) if (e.mode === 'external' && e.tag && new Date(e.t) >= since) tags[e.tag] = (tags[e.tag] || 0) + 1;
     const entries = Object.entries(tags).sort((a, b) => b[1] - a[1]);
     const max = entries.length ? entries[0][1] : 1;
-    $('stato-tags').replaceChildren(entries.length ? entries.map(([tag, n]) => el('div', { class: 'tagbar' },
+    $('stato-tags').replaceChildren(...(entries.length ? entries.map(([tag, n]) => el('div', { class: 'tagbar' },
       el('span', { class: 'tagbar-label' }, App.tagLabel(tag)),
       el('span', { class: 'tagbar-track' }, el('span', { class: 'tagbar-fill', style: `width:${Math.round((n / max) * 100)}%` })),
-      el('span', { class: 'tagbar-n' }, String(n)))) : el('p', { class: 'muted' }, 'Nessun errore registrato negli ultimi 14 giorni.'));
+      el('span', { class: 'tagbar-n' }, String(n)))) : [el('p', { class: 'muted' }, 'Nessun errore registrato negli ultimi 14 giorni.')]));
 
     // Calibrazione.
     const recent = log.filter((e) => e.mode !== 'external' && e.conf && new Date(e.t) >= since);
@@ -135,7 +135,7 @@ App.stato = (() => {
     });
     $('st-import').addEventListener('change', async (e) => {
       const f = e.target.files[0]; if (!f) return;
-      try { const r = App.store.importAll(await f.text()); App.ui.toast(`Importati ${r.items} item e ${r.sessions} sessioni.`); render(); }
+      try { const r = App.store.importAll(await f.text()); App.ui.toast(r.items || r.sessions ? `Importati ${r.items} item nuovi e ${r.sessions} sessioni nuove.` : 'Niente di nuovo da importare: tutto era già presente.'); render(); }
       catch (err) { App.ui.toast(`Import fallito: ${err.message}`); }
       e.target.value = '';
     });

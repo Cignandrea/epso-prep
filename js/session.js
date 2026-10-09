@@ -31,6 +31,16 @@ App.session = (() => {
   function resume() {
     const c = App.store.current();
     if (!c) return false;
+    // Item non più presenti (contenuti aggiornati): si saltano; se non resta nulla, si chiude.
+    const valid = c.items.filter((it) => App.banks.question(it.bank, it.id));
+    if (valid.length !== c.items.length) {
+      const doneIds = new Set(c.answers.map((a) => `${a.bank}#${a.id}`));
+      c.items = valid;
+      c.index = Math.min(c.items.filter((it) => doneIds.has(`${it.bank}#${it.id}`)).length, Math.max(0, c.items.length - 1));
+      c.phase = 'answer'; c.selected = null; c.elapsed = 0;
+      if (!c.items.length || c.index >= c.items.length) { closeAsPartial(c); App.ui.toast('La sessione in pausa conteneva domande non più disponibili: chiusa.'); return false; }
+      App.store.setCurrent(c);
+    }
     S = c;
     App.ui.show('session', { title: MODE_LABEL[S.mode] });
     if (S.phase === 'feedback') { renderItem(); showFeedback(S.answers[S.answers.length - 1], true); }
@@ -65,7 +75,7 @@ App.session = (() => {
     clearInterval(tickId);
     tickId = setInterval(tick, 500);
     tick();
-    document.querySelector('#view-session .item-layout').scrollTop = 0;
+    window.scrollTo(0, 0);
   }
 
   // Dati tabellari del numerico: righe "a — b — c" diventano una tabella leggibile.
@@ -94,7 +104,7 @@ App.session = (() => {
     const fill = $('s-pace-fill');
     fill.style.width = `${Math.min(100, (sec / pace) * 100)}%`;
     $('s-pace').classList.toggle('over', sec > pace);
-    if (Math.round(sec) % 10 === 0) persist();
+    if (Math.round(sec * 2) % 4 === 0) persist();
   }
 
   function choose(letter) {
@@ -147,11 +157,11 @@ App.session = (() => {
     $('s-fb-tag').textContent = q.tag ? `Trappola: ${App.tagLabel(q.tag)}` : '';
     const last = S.index === S.items.length - 1;
     $('s-next').textContent = last ? 'Fine sessione' : 'Prossima';
-    if (!resumed) $('s-next').focus();
+    if (!resumed) setTimeout(() => $('s-next').focus(), 60);
   }
 
   function next() {
-    if (S.phase !== 'feedback') return;
+    if (!S || S.finished || S.phase !== 'feedback') return;
     if (S.index >= S.items.length - 1) { finish(); return; }
     S.index++; S.phase = 'answer'; S.selected = null; S.elapsed = 0;
     persist();
@@ -168,6 +178,8 @@ App.session = (() => {
 
   // Chiusura: riepilogo di sessione, log, schermata di fine.
   function finish() {
+    if (!S || S.finished) return;
+    S.finished = true;
     clearInterval(tickId);
     const answers = S.answers;
     const n = answers.length, correct = answers.filter((a) => a.ok).length;
@@ -242,28 +254,43 @@ App.session = (() => {
     $('s-next').addEventListener('click', next);
     $('s-quit').addEventListener('click', quit);
     window.addEventListener('keydown', (e) => {
-      if (App.ui.view() !== 'session' || !S) return;
+      if (App.ui.view() !== 'session' || !S || S.finished) return;
+      if (App.ui.modalOpen()) return;
       if (e.target.closest('input, textarea, select')) return;
       const k = e.key.toUpperCase();
       if (S.phase === 'answer' && 'ABCDE'.includes(k) && k.length === 1) {
         if (current().options.some((o) => o.letter === k)) choose(k);
       } else if (S.phase === 'answer' && e.key === 'Enter' && S.selected) {
+        e.preventDefault();
         answer(App.store.settings().confidence ? 'sure' : null);
-      } else if (S.phase === 'feedback' && (e.key === 'Enter' || e.key === 'ArrowRight')) next();
+      } else if (S.phase === 'feedback' && (e.key === 'Enter' || e.key === 'ArrowRight')) {
+        e.preventDefault();
+        next();
+      }
     });
+    // T-017: il tempo speso sull'item corrente si salva anche quando l'app va in secondo piano.
+    document.addEventListener('visibilitychange', () => { if (S && !S.finished && S.phase === 'answer' && document.hidden) { tick(); persist(); } });
+    window.addEventListener('pagehide', () => { if (S && !S.finished && S.phase === 'answer') { tick(); persist(); } });
   }
 
   // Sessione lasciata a metà in un giorno precedente: si chiude e si conta ciò che è stato fatto.
   function closeStale() {
     const c = App.store.current();
     if (!c) return;
-    if (c.startedAt.slice(0, 10) === App.utils.todayKey()) return;
-    if (c.answers.length) {
-      const correct = c.answers.filter((a) => a.ok).length;
-      App.store.addSession({ mode: c.mode, id: c.id, banks: [...new Set(c.answers.map((a) => a.bank))], n: c.answers.length, correct, sec: c.answers.reduce((s, a) => s + a.sec, 0), trap: dominantTrap(c.answers), partial: true, sure_wrong: 0, doubt_ok: 0 });
-    }
-    App.store.setCurrent(null);
+    if (App.utils.todayKey(new Date(c.startedAt)) === App.utils.todayKey()) return;
+    closeAsPartial(c);
   }
 
-  return { start, resume, init, closeStale, MODE_LABEL, isActive: () => Boolean(App.store.current()) };
+  // Chiude una sessione in corso come parziale, datata al giorno in cui è stata fatta.
+  function closeAsPartial(c = App.store.current()) {
+    if (!c) return;
+    if (c.answers.length) {
+      const correct = c.answers.filter((a) => a.ok).length;
+      App.store.addSession({ t: c.startedAt, mode: c.mode, id: c.id, banks: [...new Set(c.answers.map((a) => a.bank))], n: c.answers.length, correct, sec: c.answers.reduce((s, a) => s + a.sec, 0), trap: dominantTrap(c.answers), partial: true, sure_wrong: c.answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: c.answers.filter((a) => a.conf === 'doubt' && a.ok).length });
+    }
+    App.store.setCurrent(null);
+    if (S && S.id === c.id) S = null;
+  }
+
+  return { start, resume, init, closeStale, closeAsPartial, MODE_LABEL, isActive: () => Boolean(App.store.current()) };
 })();
