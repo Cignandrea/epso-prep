@@ -86,13 +86,14 @@
     "question": "Quale delle seguenti affermazioni è corretta?",
     "options": [
       { "letter": "A", "text": "Posticipare l'inizio delle lezioni ha migliorato i risultati degli studenti in matematica.", "trap": "inferenza" },
-      { "letter": "B", "text": "Con l'inizio posticipato gli studenti si addormentavano quasi alla stessa ora di prima.", "trap": null },
+      { "letter": "B", "text": "Con l'inizio posticipato gli studenti hanno dormito di più soprattutto perché si svegliavano più tardi di prima.", "trap": null },
       { "letter": "C", "text": "Il sonno degli studenti è stato registrato ogni notte per l'intero anno scolastico.", "trap": "quantificatore" },
       { "letter": "D", "text": "Dormire di più nelle notti prima delle lezioni aiuta gli adolescenti a ricordare ciò che hanno studiato.", "trap": "fuori-testo" }
     ],
     "correct": ["B"],
-    "evidence": "quella in cui si addormentavano è rimasta quasi invariata",
-    "explanation": "B è corretta: con l'inizio posticipato si è spostata l'ora del risveglio, mentre quella in cui gli studenti si addormentavano «è rimasta quasi invariata». A attribuisce al nuovo orario un miglioramento in matematica che lo studio non ha rilevato: sui voti «non sono emerse differenze statisticamente significative» (inferenza). C estende a tutto l'anno una registrazione durata due settimane all'inizio e due alla fine (quantificatore). D aggiunge un effetto del sonno sulla memoria che il brano non menziona, per quanto plausibile (fuori testo)."
+    "evidence": "gli studenti hanno dormito in media 34 minuti in più nelle notti precedenti le lezioni: l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata",
+    "explanation": "B è corretta: con l'inizio posticipato gli studenti hanno dormito «in media 34 minuti in più» e il brano spiega da dove viene il sonno in più: «l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata». A attribuisce al nuovo orario un miglioramento in matematica che lo studio non ha rilevato: sui voti «non sono emerse differenze statisticamente significative» (inferenza). C estende a tutto l'anno una registrazione durata due settimane all'inizio e due alla fine (quantificatore). D aggiunge un effetto del sonno sulla memoria che il brano non menziona, per quanto plausibile (fuori testo).",
+    "review": "Chiave B riformulata come nesso causale che il brano esplicita con i due punti (sonno in più ← risveglio spostato in avanti, addormentamento «quasi invariato»): contro l'indizio «frase causale = sbagliata»; ora A e D (cause non sostenute dal brano) e B (causa del brano) sono tutte causali. Evidenza estesa, spiegazione allineata."
   },
   {
     "id": 1206,
@@ -164,12 +165,12 @@
       { "letter": "A", "text": "Aprire le finestre per cinque minuti ogni ora è bastato a riportare i valori sotto la soglia in tutte le aule.", "trap": "quantificatore" },
       { "letter": "B", "text": "Un valore di anidride carbonica inferiore alla soglia indica che nell'aula non sono presenti inquinanti.", "trap": "inferenza" },
       { "letter": "C", "text": "Le aule che si affacciano su strade molto trafficate sono già dotate di ventilazione meccanica.", "trap": "tempo" },
-      { "letter": "D", "text": "Durante il primo inverno il display ha avvisato gli insegnanti in più della metà delle aule.", "trap": null }
+      { "letter": "D", "text": "Nel primo inverno i superamenti della soglia hanno fatto scattare l'avviso in oltre la metà delle aule.", "trap": null }
     ],
     "correct": ["D"],
     "evidence": "Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante. Nel primo inverno la soglia è stata superata per almeno metà del tempo di lezione nel 70% delle aule",
-    "explanation": "D è corretta: il display avvisa l'insegnante quando la concentrazione supera la soglia, e nel primo inverno la soglia è stata superata «nel 70% delle aule», cioè in più della metà. A estende a tutte le aule un risultato ottenuto «nella maggior parte dei casi» (quantificatore). B attribuisce all'indicatore un significato che non ha: l'anidride carbonica segnala il ricambio d'aria ma «non misura direttamente gli inquinanti», e sulle strade trafficate aprire le finestre fa entrare smog (inferenza). C presenta come già realizzati gli impianti che la provincia installerà il prossimo anno, dando la precedenza proprio a quelle aule (tempo).",
-    "review": "Trappola di B da «parafrasi» a «inferenza»: B non ricalca il brano con una parola cambiata, ma ricava dai valori bassi l'assenza di inquinanti, una conclusione che il brano esclude; spiegazione allineata. Evidenza estesa alla frase contigua precedente («un display avvisa l'insegnante»), così mostra entrambi i passaggi della chiave. Chiave e testo invariati."
+    "explanation": "D è corretta: «Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante», e nel primo inverno la soglia è stata superata «nel 70% delle aule», cioè in più della metà: lì i superamenti hanno fatto scattare l'avviso. A estende a tutte le aule un risultato ottenuto nella «maggior parte dei casi» (quantificatore). B attribuisce all'indicatore un significato che non ha: l'anidride carbonica segnala il ricambio d'aria ma «non misura direttamente gli inquinanti», e sulle strade trafficate aprire le finestre fa entrare smog (inferenza). C presenta come già realizzati gli impianti che la provincia installerà il prossimo anno, dando la precedenza proprio a quelle aule (tempo).",
+    "review": "Trappola di B da «parafrasi» a «inferenza»: B non ricalca il brano con una parola cambiata, ma ricava dai valori bassi l'assenza di inquinanti, una conclusione che il brano esclude; spiegazione allineata. Evidenza estesa alla frase contigua precedente («un display avvisa l'insegnante»), così mostra entrambi i passaggi della chiave. Chiave e testo invariati. Poi: chiave D riformulata come nesso causale dato dal brano (superamento della soglia → avviso del display), contro l'indizio «frase causale = sbagliata»; citazione in A allineata al brano (maiuscola)."
   },
   {
     "id": 1210,
@@ -188,7 +189,8 @@
     ],
     "correct": ["A"],
     "evidence": "A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati",
-    "explanation": "A è corretta: «a chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati». B attribuisce al medico di famiglia la ricezione quotidiana dei dati, che spetta all'infermiere di comunità; il medico viene contattato solo in caso di valori anomali (ambito). C estende la videochiamata a tutte le visite, mentre la prima visita con lo specialista «avviene sempre in ambulatorio» (quantificatore). D attribuisce con certezza al servizio un calo che, in mancanza di un gruppo di confronto, potrebbe dipendere in parte da altri fattori (inferenza)."
+    "explanation": "A è corretta: «A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati». B attribuisce al medico di famiglia la ricezione quotidiana dei dati, che spetta all'infermiere di comunità; il medico viene contattato solo in caso di valori anomali (ambito). C estende la videochiamata a tutte le visite, mentre la prima visita con lo specialista «avviene sempre in ambulatorio» (quantificatore). D attribuisce con certezza al servizio un calo che, in mancanza di un gruppo di confronto, potrebbe dipendere in parte da altri fattori (inferenza).",
+    "review": "Spiegazione: citazione resa identica al brano (maiuscola iniziale)."
   },
   {
     "id": 1211,
@@ -321,7 +323,8 @@
     ],
     "correct": ["D"],
     "evidence": "All'inizio l'impianto sarà alimentato con gas naturale",
-    "explanation": "D è corretta: il gruppo ha annunciato che «all'inizio l'impianto sarà alimentato con gas naturale». A anticipa all'avvio l'uso dell'idrogeno, che sostituirà il gas naturale solo gradualmente, man mano che saranno costruiti gli elettrolizzatori (tempo). B trasforma una riduzione delle emissioni in un loro azzeramento: secondo l'azienda il gas naturale riduce le emissioni rispetto all'altoforno, ma meno dell'idrogeno (quantificatore). C introduce un confronto di costo che il brano non contiene (fuori testo)."
+    "explanation": "D è corretta: il gruppo ha annunciato che all'inizio l'impianto «sarà alimentato con gas naturale». A anticipa all'avvio l'uso dell'idrogeno, che sostituirà il gas naturale solo gradualmente, man mano che saranno costruiti gli elettrolizzatori (tempo). B trasforma una riduzione delle emissioni in un loro azzeramento: secondo l'azienda il gas naturale riduce le emissioni rispetto all'altoforno, ma meno dell'idrogeno (quantificatore). C introduce un confronto di costo che il brano non contiene (fuori testo).",
+    "review": "Spiegazione: citazione accorciata per essere identica al brano (che ha «All'inizio» maiuscolo)."
   },
   {
     "id": 1218,

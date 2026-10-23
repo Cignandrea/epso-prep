@@ -494,7 +494,7 @@
     "options": [
       {
         "letter": "A",
-        "text": "Nel primo anno l'accordo è stato attivato per lo più in occasione di incendi boschivi.",
+        "text": "Nel primo anno l'accordo è stato attivato per lo più a causa di incendi boschivi.",
         "trap": null
       },
       {
@@ -517,7 +517,8 @@
       "A"
     ],
     "evidence": "Nel primo anno l'accordo è stato attivato nove volte, in sette casi per incendi boschivi",
-    "explanation": "A è corretta: delle nove attivazioni del primo anno, sette hanno riguardato incendi boschivi, cioè la maggior parte. B inverte la sequenza: la riserva comune può essere impiegata «solo dopo che il paese colpito ha messo in campo i propri mezzi aerei» (tempo). C fa un confronto che il brano non fa: il dato riguarda le attivazioni dell'accordo, cioè i casi in cui un paese ha chiesto aiuto perché le proprie risorse non bastavano, non la frequenza delle emergenze nei sei paesi (inferenza). D trasforma in obbligo una scelta che ciascun paese compie «liberamente» (negazione)."
+    "explanation": "A è corretta: delle nove attivazioni del primo anno, sette sono avvenute «per incendi boschivi», cioè la maggior parte. B inverte la sequenza: la riserva comune può essere impiegata «solo dopo che il paese colpito ha messo in campo i propri mezzi aerei» (tempo). C fa un confronto che il brano non fa: il dato riguarda le attivazioni dell'accordo, cioè i casi in cui un paese ha chiesto aiuto perché le proprie risorse non bastavano, non la frequenza delle emergenze nei sei paesi (inferenza). D trasforma in obbligo una scelta che ciascun paese compie «liberamente» (negazione).",
+    "review": "Chiave A: «in occasione di» → «a causa di», come il «per incendi boschivi» del brano; contenuto invariato. Contro l'indizio «frase causale = sbagliata». Spiegazione con la citazione."
   },
   {
     "id": 1195,

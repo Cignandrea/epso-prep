@@ -37,7 +37,7 @@ App.sim = (() => {
   function showSetup() {
     $('sim-device-note').hidden = !(matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 1);
     const rep = App.select.poolReport().verbale;
-    $('sim-pool-note').textContent = `Verbale: ${rep.reserve + Math.max(0, rep.l2Unseen - rep.reserve)} brani di livello prova mai visti (${rep.reserve} riservati alle simulazioni) e ${rep.l1Unseen} di livello base. Numerico e astratto: domande nuove generate a ogni simulazione.`;
+    $('sim-pool-note').textContent = `Verbale: ${rep.l2Unseen} brani di livello prova mai visti (${rep.reserve} tenuti per le due simulazioni del percorso: questa usa prima gli altri) e ${rep.l1Unseen} di livello base. Numerico e astratto: domande nuove generate a ogni simulazione.`;
     App.ui.show('sim-setup', { title: 'Simulazione' });
   }
 
@@ -72,7 +72,7 @@ App.sim = (() => {
     const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef).map((d) => ({ ...d, ...((opts.counts || {})[d.bank] || {}) }));
     const sections = [];
     for (const d of defs) {
-      const pick = opts.training ? pickTraining(d.bank, d.n) : App.select.pickSim(d.bank, d.n);
+      const pick = opts.training ? pickTraining(d.bank, d.n) : App.select.pickSim(d.bank, d.n, { reserveFirst: Boolean(step) });
       for (const q of pick.items) App.banks.remember(q);
       if (pick.items.length < d.n) {
         App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}.`);

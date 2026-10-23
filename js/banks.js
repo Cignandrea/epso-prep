@@ -29,7 +29,10 @@ window.App = window.App || {};
 
   // Item generati già ricostruiti in questa pagina (si rigenerano a richiesta: la cache è solo un risparmio).
   const genCache = new Map();
-  const GEN = { A: () => App.gen && App.gen.astratto, N: () => App.gen && App.gen.numerico, G: () => App.gen && App.gen.numerico && App.gen.numerico.chart };
+  const GEN = {
+    A: () => App.gen && App.gen.astratto, B: () => App.gen && App.gen.astratto2,
+    N: () => App.gen && App.gen.numerico, G: () => App.gen && App.gen.numerico && App.gen.numerico.chart, M: () => App.gen && App.gen.numerico && App.gen.numerico.multi,
+  };
   function generated(bankId, id) {
     if (typeof id !== 'string') return null;
     const key = `${bankId}#${id}`;
@@ -73,12 +76,14 @@ window.App = window.App || {};
     'unita-misura': 'Unità di misura e conversioni',
     'lettura-dati': 'Lettura di tabelle e dati',
     media: 'Medie e valori aggregati',
+    calcolo: 'Calcolo e arrotondamenti',
     conteggio: 'Astratto: conteggio',
     rotazione: 'Astratto: rotazione',
     alternanza: 'Astratto: alternanza',
     riempimento: 'Astratto: riempimento',
     posizione: 'Astratto: posizione',
     combinata: 'Astratto: regole combinate',
+    costante: 'Astratto: elemento fisso cambiato',
     tempo_scaduto: 'Tempo scaduto',
   };
   App.tagLabel = (t) => App.TAGS[t] || t;
@@ -96,19 +101,21 @@ window.App = window.App || {};
     'unita-misura': 'Fissa l\'unità del risultato prima del calcolo; converti una volta sola.',
     'lettura-dati': 'Prima la domanda, poi riga, colonna e anno; solo dopo la calcolatrice.',
     media: 'Tasso di più gruppi = totale ÷ totale, non la media dei tassi.',
+    calcolo: 'Con opzioni vicine non stimare: calcola con tutti i decimali e arrotonda solo alla fine.',
     conteggio: 'Scrivi la sequenza dei numeri e trova il passo.',
     rotazione: 'Segui un solo dettaglio, la punta, e misura il passo in 45°.',
     alternanza: 'Due valori a turno: la 6ª copia la 4ª.',
     riempimento: 'Tre colori in ciclo: la 6ª copia la 3ª.',
     posizione: 'Conta di quante caselle si sposta a ogni passo e in che verso.',
     combinata: 'Una regola per elemento: elimina le opzioni una regola alla volta.',
+    costante: 'Controlla anche ciò che nella serie non cambia mai: un\'opzione che lo cambia cade.',
     tempo_scaduto: 'Segna sempre una risposta provvisoria prima di andare avanti: in bianco vale zero.',
   };
   App.TAG_LESSON = {
     quantificatore: 'v-quant', negazione: 'v-quant', inferenza: 'v-infer', 'fuori-testo': 'v-infer',
     tempo: 'v-tempo', scope: 'v-tempo', parafrasi: 'v-tempo',
-    percentuali: 'n-perc', rapporti: 'n-tab', 'unita-misura': 'n-tab', 'lettura-dati': 'n-tab', media: 'n-medie',
-    conteggio: 'a-cont', rotazione: 'a-cont', alternanza: 'a-alt', riempimento: 'a-alt', posizione: 'a-alt', combinata: 'a-comb',
+    percentuali: 'n-perc', rapporti: 'n-tab', 'unita-misura': 'n-tab', 'lettura-dati': 'n-tab', media: 'n-medie', calcolo: 'n-metodo',
+    conteggio: 'a-cont', rotazione: 'a-cont', alternanza: 'a-alt', riempimento: 'a-alt', posizione: 'a-alt', combinata: 'a-comb', costante: 'a-comb',
     tempo_scaduto: 'strategia',
   };
   App.tagRule = (t) => App.TAG_RULE[t] || '';

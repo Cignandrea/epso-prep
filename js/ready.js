@@ -1,6 +1,6 @@
 // Prontezza rispetto alle soglie — namespace App.ready
-// Stima [S] del punteggio in prova dalla PRIMA risposta agli item di livello prova (verbale di livello 2, numerico e
-// astratto generati di livello 2–3) degli ultimi 10 giorni: tappe, allenamento, blocchi, misura, simulazioni. Il
+// Stima [S] del punteggio in prova dalla PRIMA risposta agli item di livello prova (verbale e numerico di livello 2–3,
+// astratto di ogni livello) degli ultimi 10 giorni: tappe, allenamento, blocchi, misura, simulazioni. Il
 // ripasso e le risposte ripetute non contano (si ricorda la chiave). Soglie [V avviso C/2026/3362, punto 4];
 // obiettivi [S, Piano di studio].
 window.App = window.App || {};
@@ -16,11 +16,13 @@ App.ready = (() => {
     const seen = new Set();
     const by = { verbale: [], numerico: [], astratto: [] };
     for (const e of App.store.log()) {
-      if (!by[e.bank] || e.mode === 'external') continue;
+      if (!by[e.bank] || e.mode === 'external' || e.twinOf != null) continue;
       const key = `${e.bank}#${e.id}`;
       if (seen.has(key)) continue;
       seen.add(key);
-      if (e.mode === 'review' || new Date(e.t) < since || (e.level || 0) < 2) continue;
+      // Livello prova: verbale e numerico dal livello 2; per l'astratto contano anche le serie a una regola, che nella
+      // prova ci sono [S].
+      if (e.mode === 'review' || new Date(e.t) < since || (e.level || 0) < (e.bank === 'astratto' ? 1 : 2)) continue;
       by[e.bank].push(e);
     }
     const out = {};

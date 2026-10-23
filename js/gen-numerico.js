@@ -850,5 +850,772 @@ App.gen.numerico = (() => {
     return m ? { level: Number(m[1]), seed: Number(m[2]) } : null;
   }
 
-  return { make, idFor, parseId, TEMPLATES: BY_LEVEL, CHART_TEMPLATES: CHART_LEVEL, num, chart: { make: makeChart, idFor: chartIdFor, parseId: parseChartId } };
+  // ══ Multi-passaggio (id M<livello>-<seme>), sul modello del campione ufficiale EPSO AD di numerico (2024) ══
+  // Tabella con colonne eterogenee (% del PIL in due anni, quota pubblica in due anni, brevetti per milione di
+  // abitanti, spesa in milioni di €, PIL pro capite); grandezza da ricavare (PIL = spesa ÷ quota del PIL) e poi
+  // rapporto fra due righe, con opzioni «1:3», «2:3», «3:2», «3:1»; ipotesi nel testo con opzioni molto vicine
+  // (1,11% / 1,21% / 1,31% / 1,41%); righe che non sono Paesi; media pesata inversa; stime. Solo livelli 2 e 3.
+  // Flusso casuale proprio (altre costanti): gli item N… e G… restano identici. Etichette generiche (Paese A–E,
+  // macroregioni): i dati sono inventati e non devono passare per statistiche di Paesi reali.
+  // La chiave si decide prima del modello: «Nessuna di queste risposte» giusta circa una volta su otto, altrimenti
+  // una posizione A–D estratta in modo uniforme, attorno alla quale il modello costruisce le opzioni.
+  // Spazio non divisibile: «Paese A» non va a capo nella prima colonna della tabella (stesso testo nella domanda).
+  const PAESI_M = ['A', 'B', 'C', 'D', 'E'].map((l) => `Paese ${l}`);
+  const MT = {};
+  const pairOf = (r) => { const x = r.i(0, 4); return [x, (x + r.i(1, 4)) % 5]; };
+  const thirdOf = (r, a, b) => r.pick([0, 1, 2, 3, 4].filter((k) => k !== a && k !== b));
+  const sumOf = (a) => a.reduce((s, v) => s + v, 0);
+  const logU = (r, a, b) => Math.exp(r.f(Math.log(a), Math.log(b)));
+  const frac4 = (p) => num(p / 100, 4); // 1,97 (%) → 0,0197
+  // Una quota che cambia fra due anni: variazione relativa fra min e max in valore assoluto, segno a caso, mai nulla.
+  function moved(r, v, min, max, dec) {
+    for (let k = 0; k < 8; k++) { const w = roundTo(v * (1 + (r.chance(0.5) ? 1 : -1) * r.f(min, max)), dec); if (w !== v) return w; }
+    return roundTo(v * (1 + max), dec);
+  }
+  // Stima a due cifre significative (quella che basta quando le opzioni sono lontane).
+  const sig2 = (v) => { const e = 10 ** (Math.floor(Math.log10(Math.abs(v))) - 1); return Math.round(v / e) * e; };
+  // «del 2%» ma «dell'1,5%», «dell'8%», «dell'11%», «dell'80%» (numeri che si leggono con una vocale iniziale).
+  const delN = (txt) => (/^(1|8|11|8\d)([,.]|$)/.test(txt) ? `dell'${txt}` : `del ${txt}`);
+  const SLIPS = ['deriva da un errore di calcolo o di arrotondamento', 'derivano da errori di calcolo o di arrotondamento'];
+  const SLIPS_CLOSE = ['è un valore vicino al risultato, tipico di un errore di calcolo o di un arrotondamento intermedio: con opzioni così vicine serve il calcolo esatto', 'sono valori vicini al risultato, tipici di errori di calcolo o di arrotondamenti intermedi: con opzioni così vicine serve il calcolo esatto'];
+  const SLIPS_GRID = ['è lontana dalla stima corretta', 'sono lontane dalla stima corretta'];
+
+  // ── Opzioni a rapporto: la chiave è set[pos]; le altre tre sono l'inverso della chiave, il rapporto «ingenuo»
+  // (un passaggio saltato, tau) e il suo inverso. Il rapporto vero dista al massimo il 3% dalla chiave e almeno
+  // 1,6 volte da ogni altra opzione; il calcolo ingenuo cade su tau e lontano dalla chiave.
+  const RATIO_SETS = [[[1, 3], [2, 3], [3, 2], [3, 1]], [[1, 4], [1, 2], [2, 1], [4, 1]], [[2, 5], [2, 3], [3, 2], [5, 2]]];
+  const rval = (o) => o[0] / o[1];
+  const rtxt = (o) => `${o[0]}:${o[1]}`;
+  const sameR = (a, b) => a[0] * b[1] === a[1] * b[0];
+  const invR = (o) => [o[1], o[0]];
+  const ratioSet = (r) => RATIO_SETS[r.chance(0.6) ? 0 : r.i(1, 2)];
+  // tau: un'opzione diversa dalla chiave e dal suo inverso, raggiungibile con q = tau ÷ chiave (ok(q) = fattibile).
+  function pickTau(r, set, key, ok) {
+    const c = set.filter((o) => !sameR(o, key) && !sameR(o, invR(key))).map((o) => ({ o, q: rval(o) / rval(key) })).filter((t) => ok(t.q));
+    if (!c.length) return null;
+    c.sort((a, b) => Math.abs(Math.log(a.q)) - Math.abs(Math.log(b.q)));
+    return c.length > 1 && r.chance(0.25) ? c[1] : c[0];
+  }
+  function ratioItem(ctx, sc) {
+    const k = rval(sc.key);
+    if (!Number.isFinite(sc.R) || Math.abs(Math.log(sc.R / k)) > Math.log(1.03)) return null;
+    if (sc.set.some((o) => !sameR(o, sc.key) && Math.abs(Math.log(sc.R / rval(o))) < Math.log(1.6))) return null;
+    if (Math.abs(Math.log(sc.N / rval(sc.tau))) > Math.log(1.1) || Math.abs(Math.log(sc.N / k)) < Math.log(1.35)) return null;
+    const opts = sc.set.map((o) => {
+      if (sameR(o, sc.key)) return { v: rval(o), text: rtxt(o), key: true };
+      if (sameR(o, sc.tau)) return { v: rval(o), text: rtxt(o), trap: sc.tauTrap, why: sc.whyTau, rank: 0 };
+      if (sameR(o, invR(sc.key))) return { v: rval(o), text: rtxt(o), trap: 'rapporti', why: sc.whyInv, rank: 1 };
+      if (sameR(o, invR(sc.tau))) return { v: rval(o), text: rtxt(o), trap: sc.tauTrap, why: sc.whyBoth, rank: 2 };
+      return null;
+    });
+    if (!opts.every(Boolean)) return null;
+    return { ...sc, opts, dec: 2, value: roundTo(sc.R, 2), display: rtxt(sc.key), params: { ...(sc.params || {}), set: sc.set.map(rtxt) },
+      result: `Il rapporto è ${num(sc.R, 2)}, cioè circa ${rtxt(sc.key)}: la risposta è ${'ABCD'[ctx.pos]}.` };
+  }
+
+  // ── Opzioni numeriche «sparse»: distrattori con nome in ordine di insidia, poi errori di calcolo (trappola
+  // «calcolo»). Opzioni distanti almeno il 3% (o 2 unità dell'arrotondamento); risultato lontano da un x,5.
+  // Con E giusta le quattro cifre stanno tutte dalla stessa parte del risultato, ad almeno due passi da lui
+  // (passo = distanza minima fra due opzioni vicine): nessuna sembra «quasi giusta» e nessun buco tradisce la E.
+  function spreadOpts(r, sc, ctx) {
+    const u = 10 ** -sc.dec;
+    if (!Number.isFinite(sc.truth) || Math.abs((Math.abs(sc.truth / u) % 1) - 0.5) < 0.15) return null;
+    const t = roundTo(sc.truth, sc.dec);
+    const lo = sc.lo === undefined ? 0 : sc.lo, hi = sc.hi === undefined ? Infinity : sc.hi;
+    if (!(t > lo && t < hi)) return null;
+    const gap = Math.max(2 * u, Math.abs(t) * (sc.gapRel || 0.03));
+    const ok = (v) => Number.isFinite(v) && v > lo && v < hi;
+    const apart = (v, list) => list.every((o) => Math.abs(o.v - v) >= gap - 1e-9);
+    const named = [];
+    for (const c of sc.cands) {
+      const v = roundTo(c.v, sc.dec);
+      if (!ok(v) || (!c.far && (Math.abs(v) < Math.abs(t) * 0.3 || Math.abs(v) > Math.abs(t) * 3.2))) continue;
+      if (Math.abs(v - t) < gap - 1e-9 || !apart(v, named)) continue;
+      named.push({ ...c, v, rank: named.length });
+    }
+    // Le cifre di riempimento hanno la stessa grana dei risultati possibili (per esempio migliaia di km² nelle somme):
+    // una cifra «impossibile» si scarterebbe senza calcolare.
+    const qn = sc.quantum || u;
+    const rq = (v) => roundTo(Math.round(v / qn) * qn, sc.dec);
+    const slip = (v) => ({ v, trap: 'calcolo', filler: true });
+    const sideOf = (o) => (o.v < t ? -1 : 1);
+    let chosen = null;
+    if (!ctx.none) {
+      const need = { '-1': ctx.pos, 1: 3 - ctx.pos };
+      chosen = [];
+      for (const c of named) if (chosen.filter((o) => sideOf(o) === sideOf(c)).length < need[sideOf(c)]) chosen.push(c);
+      for (const side of [-1, 1]) {
+        for (let guard = 0; chosen.filter((o) => sideOf(o) === side).length < need[side]; guard++) {
+          if (guard > 40) return null;
+          const v = rq(t + side * Math.max(gap * r.f(1, 1.8), Math.abs(t) * r.f(0.04, 0.13)));
+          if (ok(v) && Math.abs(v - t) >= gap - 1e-9 && apart(v, chosen)) chosen.push(slip(v));
+        }
+      }
+      chosen.push({ v: t, key: true });
+    } else {
+      // distanza misurata dal risultato vero (non arrotondato)
+      const validE = (list) => {
+        const s = list.map((o) => o.v).sort((a, b) => a - b);
+        if (!s.every(ok) || new Set(s).size !== 4) return false;
+        let m = Infinity;
+        for (let k = 1; k < 4; k++) m = Math.min(m, s[k] - s[k - 1]);
+        return m >= gap - 1e-9 && s.every((v) => Math.abs(v - sc.truth) >= 2 * m + 1e-9);
+      };
+      for (let attempt = 0; attempt < 60 && !chosen; attempt++) {
+        const side = named.length && r.chance(0.75) ? sideOf(named[0]) : (r.chance(0.5) ? 1 : -1);
+        const m = gap * r.f(1, 1.25);
+        // Il distrattore con nome più insidioso da quella parte (se abbastanza lontano) fa da perno della scala:
+        // j gradini fra lui e il risultato, gli altri oltre; altrimenti una scala che parte da due passi.
+        const c = r.chance(0.9) ? named.find((n) => sideOf(n) === side && Math.abs(n.v - t) >= 2 * m - 1e-9) : null;
+        let list;
+        if (c) {
+          const a = Math.abs(c.v - t);
+          const j = r.i(0, Math.max(0, Math.min(3, Math.floor((a - 2 * m) / m + 1e-9))));
+          list = [c];
+          for (let k = 1; k <= j; k++) list.push(slip(rq(c.v - side * k * m)));
+          let d = a;
+          for (let k = 0; k < 3 - j; k++) { d += m * r.f(1, 1.3); list.push(slip(rq(t + side * d))); }
+          // un secondo distrattore con nome, se cade nella scala, prende il posto della cifra più vicina
+          const c2 = named.find((n) => n !== c && sideOf(n) === side);
+          if (c2) {
+            const idx = list.reduce((b, o, k) => (k && Math.abs(o.v - c2.v) < Math.abs(list[b].v - c2.v) ? k : b), 1);
+            const trial = list.slice(); trial[idx] = c2;
+            if (validE(trial)) list = trial;
+          }
+        } else {
+          const steps = [0, 1, 2].map(() => m * r.f(1, 1.3));
+          const d0 = 2 * Math.min(...steps) * r.f(1.05, 1.5);
+          list = [0, 1, 2, 3].map((k) => slip(rq(t + side * (d0 + sumOf(steps.slice(0, k))))));
+        }
+        if (validE(list)) chosen = list;
+      }
+      if (!chosen) return null;
+    }
+    chosen.sort((a, b) => a.v - b.v);
+    for (let k = 1; k < 4; k++) if (chosen[k].v - chosen[k - 1].v < gap - 1e-9) return null;
+    return chosen.map((o) => ({ ...o, text: sc.fmt(o.v) }));
+  }
+
+  // ── Opzioni molto vicine (campione ufficiale: 1,11% / 1,21% / 1,31% / 1,41%): valori in % con due decimali,
+  // almeno 0,08 punti fra due opzioni, tutte entro mezzo punto dal risultato e con lo stesso segno.
+  // Senza distrattori con nome nella fascia: scala regolare di passo 0,10 come nel campione.
+  function closeOpts(r, sc, ctx) {
+    if (!Number.isFinite(sc.truth) || Math.abs((Math.abs(sc.truth * 100) % 1) - 0.5) < 0.15) return null;
+    const t = roundTo(sc.truth, 2);
+    const sg = Math.sign(t);
+    const okV = (v) => Math.sign(v) === sg && Math.abs(v) >= 0.05;
+    const named = [];
+    for (const c of sc.cands) {
+      const v = roundTo(c.v, 2);
+      if (okV(v) && Math.abs(v - t) >= 0.08 - 1e-9 && Math.abs(v - t) <= 0.45 + 1e-9 && named.every((n) => Math.abs(n.v - v) >= 0.08 - 1e-9)) named.push({ ...c, v, rank: named.length });
+    }
+    const slip = (v) => ({ v: roundTo(v, 2), trap: 'calcolo', filler: true });
+    const minGap = (list) => { const s = list.map((o) => o.v).sort((a, b) => a - b); let m = Infinity; for (let k = 1; k < s.length; k++) m = Math.min(m, s[k] - s[k - 1]); return m; };
+    const valid = (list, near) => list.every((o) => okV(o.v)) && new Set(list.map((o) => o.v)).size === list.length && minGap(list) >= 0.08 - 1e-9
+      && (near ? list.every((o) => Math.abs(o.v - t) <= 0.5 + 1e-9) : list.every((o) => Math.abs(o.v - sc.truth) >= 2 * minGap(list) + 1e-9));
+    // Riempie n posti da una parte con gradini 0,1·k ± 0,03 che restino distanti dagli altri.
+    const fill = (list, side, n) => {
+      const pool = r.shuffle([1, 2, 3, 4].flatMap((k) => [-3, -2, -1, 0, 1, 2, 3].map((dd) => k * 0.1 + dd / 100)));
+      for (const off of pool) {
+        if (n <= 0) break;
+        const v = roundTo(t + side * off, 2);
+        if (Math.abs(v - t) >= 0.08 - 1e-9 && list.every((o) => Math.abs(o.v - v) >= 0.08 - 1e-9)) { list.push(slip(v)); n--; }
+      }
+      return n === 0;
+    };
+    let chosen = null;
+    const p = ctx.pos;
+    for (let attempt = 0; attempt < 40 && !chosen; attempt++) {
+      let list;
+      if (!ctx.none) {
+        const c = attempt < 30 && r.chance(0.85) ? named.find((n) => (n.v < t ? p > 0 : p < 3)) : null;
+        if (!c) list = [0, 1, 2, 3].filter((j) => j !== p).map((j) => slip(t + (j - p) * 0.1));
+        else {
+          list = [c];
+          if (!fill(list, -1, p - (c.v < t ? 1 : 0)) || !fill(list, 1, 3 - p - (c.v > t ? 1 : 0))) continue;
+        }
+        list.push({ v: t, key: true });
+        list.sort((a, b) => a.v - b.v);
+        if (valid(list, true) && list[p].key) chosen = list;
+      } else {
+        // E giusta: scala da una sola parte, a partire da due passi dal risultato; il distrattore con nome più
+        // insidioso, se cade abbastanza lontano, fa da gradino della scala.
+        const side = r.chance(0.5) ? 1 : -1;
+        // primo gradino ad almeno 0,20 punti dal risultato vero (non da quello arrotondato)
+        const d0 = Math.ceil((0.2 + Math.max(0, side * (sc.truth - t))) * 100 - 1e-6) / 100 + (attempt % 3) / 100;
+        const c = r.chance(0.85) ? named.find((n) => (n.v - t) * side >= d0 - 1e-9) : null;
+        if (c) {
+          const off = Math.abs(c.v - t);
+          const j = r.i(0, Math.min(3, Math.floor((off - d0 + 1e-9) / 0.1)));
+          list = [0, 1, 2, 3].map((k) => (k === j ? c : slip(t + side * (off + (k - j) * 0.1))));
+        } else list = [0, 1, 2, 3].map((k) => slip(t + side * (d0 + k * 0.1)));
+        list.sort((a, b) => a.v - b.v);
+        if (valid(list, false)) chosen = list;
+      }
+    }
+    return chosen ? chosen.map((o) => ({ ...o, text: sc.fmt(o.v) })) : null;
+  }
+
+  // ── Opzioni a griglia per le stime (passo di 5 o 10 punti): la chiave è il valore della griglia vicino al
+  // risultato (entro 0,15 passi); con E giusta ogni opzione dista almeno due passi. Un distrattore prende la
+  // trappola di un errore con nome quando quell'errore porta vicino a lui (entro 0,3 passi).
+  function gridItem(ctx, sc) {
+    const t = sc.truth;
+    if (!ctx.none ? Math.abs(t - sc.grid[ctx.pos]) > 0.15 * sc.step : sc.grid.some((v) => Math.abs(v - t) < 2 * sc.step - 1e-9)) return null;
+    const opts = sc.grid.map((v, k) => ({ v, text: sc.fmt(v), key: !ctx.none && k === ctx.pos }));
+    const used = new Set();
+    sc.named.forEach((c, rank) => {
+      let best = -1;
+      opts.forEach((o, k) => { if (!o.key && !used.has(k) && Math.abs(o.v - c.v) <= 0.3 * sc.step && (best < 0 || Math.abs(o.v - c.v) < Math.abs(opts[best].v - c.v))) best = k; });
+      if (best >= 0) { used.add(best); Object.assign(opts[best], { trap: c.trap, why: c.why, rank }); }
+    });
+    opts.forEach((o, k) => { if (!o.key && !used.has(k)) Object.assign(o, { trap: 'calcolo', filler: true }); });
+    const display = ctx.none ? `${num(t, 1)}%` : sc.fmt(sc.grid[ctx.pos]);
+    return { ...sc, opts, dec: 1, value: roundTo(t, 1), display, slips: SLIPS_GRID, params: { ...(sc.params || {}), step: sc.step },
+      result: ctx.none ? null : `Il risultato è ${num(t, 1)}%, cioè circa ${display}: la risposta è ${'ABCD'[ctx.pos]}.` };
+  }
+
+  function valueItem(r, ctx, sc) {
+    const opts = (sc.close ? closeOpts : spreadOpts)(r, sc, ctx);
+    if (!opts) return null;
+    const t = roundTo(sc.truth, sc.dec);
+    return { ...sc, opts, value: t, display: sc.fmt(t) };
+  }
+
+  // ── Tabella «Ricerca e sviluppo» (modelli M1 e M2), con le colonne del campione ufficiale ──
+  function rdData(r) {
+    const [y0, y1] = r.pick([[2019, 2022], [2020, 2023], [2021, 2024], [2020, 2024]]);
+    const d = { y0, y1, gdp: [], rd0: [], pub0: [], pat: [], pc: [] };
+    for (let k = 0; k < 5; k++) {
+      d.gdp.push(logU(r, 45000, 2200000)); // milioni di €, non mostrato: si ricava da spesa e quota del PIL
+      d.rd0.push(roundTo(r.f(0.85, 3.6), 2));
+      d.pub0.push(roundTo(r.f(18, 46), 1));
+      d.pat.push(roundTo(r.f(35, 420), 1));
+      d.pc.push(Math.round(r.f(14000, 62000)));
+    }
+    d.rd1 = d.rd0.map((v) => moved(r, v, 0.01, 0.09, 2));
+    d.pub1 = d.pub0.map((v) => moved(r, v, 0.01, 0.07, 1));
+    return d;
+  }
+  function rdTable(d) {
+    d.spesa = d.gdp.map((g, k) => Math.round((g * d.rd0[k]) / 100));
+    const Y0 = String(d.y0), Y1 = String(d.y1);
+    return {
+      title: 'Ricerca e sviluppo (R&S) in cinque Paesi',
+      note: `Spesa in R&S in % del PIL e in milioni di €; quota pubblica = parte della spesa in R&S finanziata dallo Stato, in %; PIL pro capite in €. ${NOTE}`,
+      groups: [{ label: 'Spesa in R&S (% del PIL)', span: 2 }, { label: 'Quota pubblica della spesa in R&S (%)', span: 2 }, { label: 'Brevetti per milione di abitanti', span: 1 }, { label: 'Spesa in R&S (milioni di €)', span: 1 }, { label: 'PIL pro capite (€)', span: 1 }],
+      head: ['Paese', Y0, Y1, Y0, Y1, Y0, Y0, Y0],
+      rows: PAESI_M.map((n, k) => [n, num(d.rd0[k], 2), num(d.rd1[k], 2), num(d.pub0[k], 1), num(d.pub1[k], 1), num(d.pat[k], 1), num(d.spesa[k], 0), num(d.pc[k], 0)]),
+    };
+  }
+
+  // M1 · grandezza non in tabella, poi rapporto fra due righe (L3: PIL o abitanti, con opzioni a rapporto; abitanti
+  // o brevetti come valore). L2: varianti più corte (PIL o spesa pubblica di un Paese, rapporto fra spese pubbliche).
+  MT.M1 = (r, ctx) => {
+    const kinds = ctx.level === 3
+      ? (ctx.none ? ['abitanti-valore', 'brevetti-valore'] : ['pil-rapporto', 'pil-rapporto', 'abitanti-rapporto', 'abitanti-valore', 'brevetti-valore'])
+      : (ctx.none ? ['pil-valore', 'spesa-pubblica'] : ['pil-valore', 'spesa-pubblica', 'pubblica-rapporto']);
+    const kind = r.pick(kinds);
+    const d = rdData(r);
+    const [x, y] = pairOf(r);
+    const X = PAESI_M[x], Y = PAESI_M[y], y0 = d.y0, y1 = d.y1;
+    const G = (k, rd = d.rd0[k]) => (d.spesa[k] / rd) * 100; // PIL in milioni di € dai dati mostrati
+    const base = { kind, rows: [x, y] };
+
+    if (kind === 'pil-rapporto' || kind === 'abitanti-rapporto' || kind === 'pubblica-rapporto') {
+      const set = ratioSet(r);
+      const key = set[ctx.pos];
+      const rho = rval(key);
+      if (kind === 'pil-rapporto') {
+        // Confrontare le spese dà rho × (quota X ÷ quota Y): le quote del PIL portano quel calcolo su tau.
+        const t = pickTau(r, set, key, (q) => q >= 0.2 && q <= 5);
+        if (!t) return null;
+        const lo = Math.max(0.75, 0.75 / t.q), hi = Math.min(3.9, 3.9 / t.q);
+        if (lo >= hi) return null;
+        d.rd0[y] = roundTo(r.f(lo, hi), 2);
+        d.rd0[x] = roundTo(d.rd0[y] * t.q * (1 + r.f(-0.05, 0.05)), 2);
+        d.rd1[x] = moved(r, d.rd0[x], 0.01, 0.09, 2); d.rd1[y] = moved(r, d.rd0[y], 0.01, 0.09, 2);
+        d.gdp[y] = logU(r, 60000, 900000);
+        d.gdp[x] = d.gdp[y] * rho * (1 + r.f(-0.012, 0.012));
+        const table = rdTable(d);
+        return ratioItem(ctx, {
+          ...base, tag: 'rapporti', table, set, key, tau: t.o, R: G(x) / G(y), N: d.spesa[x] / d.spesa[y], tauTrap: 'rapporti',
+          question: `Qual era approssimativamente, nel ${y0}, il rapporto tra il PIL del ${X} e quello del ${Y}?`,
+          formula: 'PIL = spesa in R&S ÷ (spesa in R&S in % del PIL ÷ 100); poi rapporto fra i due PIL.',
+          steps: [`PIL del ${X} = ${num(d.spesa[x])} ÷ ${frac4(d.rd0[x])} = ${num(G(x))} milioni di €`, `PIL del ${Y} = ${num(d.spesa[y])} ÷ ${frac4(d.rd0[y])} = ${num(G(y))} milioni di €`, `${num(G(x))} ÷ ${num(G(y))} = ${num(G(x) / G(y), 2)}`],
+          whyTau: 'è il rapporto fra le spese in R&S: ogni spesa va prima divisa per la sua quota del PIL, perché i due Paesi investono in R&S quote diverse del PIL',
+          whyInv: `inverte il rapporto: è il PIL del ${Y} rispetto a quello del ${X}`,
+          whyBoth: 'confronta le spese in R&S invece dei PIL e in più inverte il rapporto',
+        });
+      }
+      if (kind === 'abitanti-rapporto') {
+        // Fermarsi ai PIL dà rho × (PIL pro capite X ÷ Y): i PIL pro capite portano quel calcolo su tau.
+        const t = pickTau(r, set, key, (q) => q >= 0.22 && q <= 4.5);
+        if (!t) return null;
+        const lo = Math.max(13000, 13000 / t.q), hi = Math.min(64000, 64000 / t.q);
+        if (lo >= hi) return null;
+        d.pc[y] = Math.round(r.f(lo, hi));
+        d.pc[x] = Math.round(d.pc[y] * t.q * (1 + r.f(-0.04, 0.04)));
+        const pyLo = Math.max(1.5, 0.8 / rho), pyHi = Math.min(60, 110 / rho);
+        if (pyLo >= pyHi) return null;
+        const py = logU(r, pyLo, pyHi); // abitanti in milioni
+        d.gdp[y] = py * d.pc[y];
+        d.gdp[x] = py * rho * (1 + r.f(-0.012, 0.012)) * d.pc[x];
+        const table = rdTable(d);
+        if (Math.abs(Math.log(d.spesa[x] / d.spesa[y] / rho)) < Math.log(1.35)) return null; // nemmeno le spese portano sulla chiave
+        const P = (k) => G(k) / d.pc[k];
+        return ratioItem(ctx, {
+          ...base, tag: 'rapporti', table, set, key, tau: t.o, R: P(x) / P(y), N: G(x) / G(y), tauTrap: 'rapporti',
+          question: `Qual era approssimativamente, nel ${y0}, il rapporto tra il numero di abitanti del ${X} e quello del ${Y}?`,
+          formula: 'PIL = spesa in R&S ÷ (spesa in R&S in % del PIL ÷ 100); abitanti = PIL ÷ PIL pro capite; poi rapporto fra gli abitanti.',
+          steps: [`abitanti del ${X} = ${num(d.spesa[x])} ÷ ${frac4(d.rd0[x])} ÷ ${num(d.pc[x])} = ${num(G(x))} milioni di € ÷ ${num(d.pc[x])} € = ${num(P(x), 2)} milioni`, `abitanti del ${Y} = ${num(d.spesa[y])} ÷ ${frac4(d.rd0[y])} ÷ ${num(d.pc[y])} = ${num(G(y))} milioni di € ÷ ${num(d.pc[y])} € = ${num(P(y), 2)} milioni`, `${num(P(x), 2)} ÷ ${num(P(y), 2)} = ${num(P(x) / P(y), 2)}`],
+          whyTau: 'è il rapporto fra i PIL: per passare agli abitanti bisogna ancora dividere ciascun PIL per il suo PIL pro capite',
+          whyInv: `inverte il rapporto: sono gli abitanti del ${Y} rispetto a quelli del ${X}`,
+          whyBoth: 'si ferma ai PIL e in più inverte il rapporto',
+        });
+      }
+      // pubblica-rapporto (L2). Ignorare la quota pubblica dà il rapporto fra le spese totali, portato su tau.
+      const t = pickTau(r, set, key, (q) => q >= 0.3 && q <= 3.3);
+      if (!t) return null;
+      const qp = 1 / t.q; // quota pubblica X ÷ quota pubblica Y
+      const lo = Math.max(15, 15 / qp), hi = Math.min(52, 52 / qp);
+      if (lo >= hi) return null;
+      d.pub0[y] = roundTo(r.f(lo, hi), 1);
+      d.pub0[x] = roundTo(d.pub0[y] * qp * (1 + r.f(-0.04, 0.04)), 1);
+      d.pub1[x] = moved(r, d.pub0[x], 0.01, 0.07, 1); d.pub1[y] = moved(r, d.pub0[y], 0.01, 0.07, 1);
+      const sy = logU(r, 400, 40000);
+      d.gdp[y] = (sy * 100) / d.rd0[y];
+      d.gdp[x] = (sy * rval(t.o) * (1 + r.f(-0.012, 0.012)) * 100) / d.rd0[x];
+      const table = rdTable(d);
+      const Pb = (k) => (d.spesa[k] * d.pub0[k]) / 100;
+      return ratioItem(ctx, {
+        ...base, tag: 'rapporti', table, set, key, tau: t.o, R: Pb(x) / Pb(y), N: d.spesa[x] / d.spesa[y], tauTrap: 'percentuali',
+        question: `Qual era approssimativamente, nel ${y0}, il rapporto tra la spesa pubblica in R&S del ${X} e quella del ${Y}?`,
+        formula: 'spesa pubblica in R&S = spesa in R&S × quota pubblica ÷ 100; poi rapporto fra le due spese pubbliche.',
+        steps: [`${X}: ${num(d.spesa[x])} × ${num(d.pub0[x] / 100, 3)} = ${num(Pb(x), 1)} milioni di €`, `${Y}: ${num(d.spesa[y])} × ${num(d.pub0[y] / 100, 3)} = ${num(Pb(y), 1)} milioni di €`, `${num(Pb(x), 1)} ÷ ${num(Pb(y), 1)} = ${num(Pb(x) / Pb(y), 2)}`],
+        whyTau: 'è il rapporto fra le spese totali in R&S: manca la quota pubblica, diversa nei due Paesi',
+        whyInv: `inverte il rapporto: è la spesa pubblica del ${Y} rispetto a quella del ${X}`,
+        whyBoth: 'confronta le spese totali e in più inverte il rapporto',
+      });
+    }
+
+    const table = rdTable(d);
+    if (kind === 'pil-valore') {
+      const T = G(x) / 1000;
+      return valueItem(r, ctx, {
+        ...base, tag: 'unita-misura', table, dec: 0, truth: T, fmt: (v) => `${num(v, 0)} miliardi di €`, slips: SLIPS,
+        question: `Qual era nel ${y0} il PIL del ${X}? (in miliardi di €, arrotondamento all'unità)`,
+        formula: 'PIL = spesa in R&S ÷ (spesa in R&S in % del PIL ÷ 100).',
+        steps: [`${num(d.spesa[x])} ÷ ${frac4(d.rd0[x])} = ${num(G(x))} milioni di €`, `${num(G(x))} milioni = ${num(T, 0)} miliardi di €`],
+        cands: [
+          { v: G(x, d.rd1[x]) / 1000, trap: 'lettura-dati', why: `usa la quota del PIL del ${y1} invece di quella del ${y0}` },
+          { v: G(y) / 1000, trap: 'lettura-dati', why: `è il PIL del ${Y} (riga sbagliata)` },
+          { v: T * 10, far: true, trap: 'unita-misura', why: 'divide la spesa per la quota senza convertire: la percentuale va divisa per 100 e i milioni portati a miliardi (risultato 10 volte troppo grande)' },
+        ],
+      });
+    }
+    if (kind === 'spesa-pubblica') {
+      const T = (d.spesa[x] * d.pub0[x]) / 100;
+      return valueItem(r, ctx, {
+        ...base, tag: 'percentuali', table, dec: 0, truth: T, fmt: (v) => `${num(v, 0)} milioni di €`, slips: SLIPS,
+        question: `A quanto ammontava nel ${y0} la spesa pubblica in R&S del ${X}? (in milioni di €, arrotondamento all'unità)`,
+        formula: 'spesa pubblica in R&S = spesa in R&S × quota pubblica ÷ 100.',
+        steps: [`${num(d.spesa[x])} × ${num(d.pub0[x] / 100, 3)} = ${num(T, 1)} milioni di €`],
+        cands: [
+          { v: (d.spesa[x] * d.pub1[x]) / 100, trap: 'lettura-dati', why: `usa la quota pubblica del ${y1} invece di quella del ${y0}` },
+          { v: (d.spesa[x] * (100 - d.pub0[x])) / 100, trap: 'percentuali', why: 'è la parte non finanziata dallo Stato (100% − quota pubblica)' },
+          { v: (d.spesa[y] * d.pub0[y]) / 100, trap: 'lettura-dati', why: `è la spesa pubblica del ${Y} (riga sbagliata)` },
+          { v: T * 10, far: true, trap: 'unita-misura', why: 'divide la quota per 10 invece che per 100 (risultato 10 volte troppo grande)' },
+          { v: T / 10, far: true, trap: 'unita-misura', why: 'divide la quota per 1.000 invece che per 100 (risultato 10 volte troppo piccolo)' },
+        ],
+      });
+    }
+    const P = (k, rd) => G(k, rd) / d.pc[k]; // abitanti in milioni: milioni di € ÷ € per abitante
+    if (kind === 'abitanti-valore') {
+      const T = P(x);
+      if (T < 1.5) return null;
+      return valueItem(r, ctx, {
+        ...base, tag: 'unita-misura', table, dec: 1, truth: T, fmt: (v) => `${num(v, 1)} milioni`, slips: SLIPS,
+        question: `Quanti abitanti aveva il ${X} nel ${y0}? (in milioni, arrotondamento a una cifra decimale)`,
+        formula: 'PIL = spesa in R&S ÷ (spesa in R&S in % del PIL ÷ 100); abitanti = PIL ÷ PIL pro capite (milioni di € ÷ € = milioni di abitanti).',
+        steps: [`PIL = ${num(d.spesa[x])} ÷ ${frac4(d.rd0[x])} = ${num(G(x))} milioni di €`, `abitanti = ${num(G(x))} ÷ ${num(d.pc[x])} = ${num(T, 2)} milioni`],
+        cands: [
+          { v: P(x, d.rd1[x]), trap: 'lettura-dati', why: `usa la quota del PIL del ${y1} invece di quella del ${y0}` },
+          { v: P(y), trap: 'lettura-dati', why: `sono gli abitanti del ${Y} (riga sbagliata)` },
+          { v: (d.spesa[x] / d.pub0[x]) * 100 / d.pc[x], trap: 'lettura-dati', why: 'divide la spesa per la quota pubblica invece che per la quota del PIL' },
+        ],
+      });
+    }
+    // brevetti-valore (L3)
+    const T = d.pat[x] * P(x);
+    if (T < 40) return null;
+    return valueItem(r, ctx, {
+      ...base, tag: 'unita-misura', table, dec: 0, truth: T, fmt: (v) => `${num(v, 0)} brevetti`, slips: SLIPS,
+      question: `Quanti brevetti ha registrato il ${X} nel ${y0}? (arrotondamento all'unità)`,
+      formula: 'abitanti (in milioni) = PIL ÷ PIL pro capite, con PIL = spesa in R&S ÷ (spesa in R&S in % del PIL ÷ 100); brevetti = brevetti per milione di abitanti × abitanti in milioni.',
+      steps: [`PIL = ${num(d.spesa[x])} ÷ ${frac4(d.rd0[x])} = ${num(G(x))} milioni di €`, `abitanti = ${num(G(x))} ÷ ${num(d.pc[x])} = ${num(P(x), 3)} milioni`, `brevetti = ${num(d.pat[x], 1)} × ${num(P(x), 3)} = ${num(T, 0)}`],
+      cands: [
+        { v: d.pat[x] * P(x, d.rd1[x]), trap: 'lettura-dati', why: `usa la quota del PIL del ${y1} invece di quella del ${y0}` },
+        { v: d.pat[x] * P(y), trap: 'lettura-dati', why: `moltiplica per gli abitanti del ${Y} (riga sbagliata)` },
+        { v: d.pat[y] * P(x), trap: 'lettura-dati', why: `usa i brevetti per milione del ${Y} (riga sbagliata)` },
+      ],
+    });
+  };
+
+  // M2 · ipotesi nel testo: variazione di un prodotto di tre fattori (PIL × quota del PIL in R&S × quota pubblica)
+  // fra i due anni della tabella, con opzioni molto vicine: serve il calcolo esatto.
+  MT.M2 = (r, ctx) => {
+    const d = rdData(r);
+    const x = r.i(0, 4), X = PAESI_M[x];
+    // Variazioni più ampie per il Paese della domanda: i termini misti del prodotto pesano qualche decimo di punto.
+    d.rd1[x] = moved(r, d.rd0[x], 0.02, 0.07, 2);
+    d.pub1[x] = moved(r, d.pub0[x], 0.015, 0.06, 1);
+    const table = rdTable(d);
+    const down = r.chance(0.25);
+    const g = r.pick([1, 1.5, 2, 2.5, 3, 3.5, 4]);
+    const sg = down ? -g : g;
+    const fG = 1 + sg / 100, fR = d.rd1[x] / d.rd0[x], fP = d.pub1[x] / d.pub0[x];
+    const F = fG * fR * fP;
+    const T = (F - 1) * 100;
+    if (Math.abs(T) < 0.6) return null;
+    return valueItem(r, ctx, {
+      kind: 'ipotesi-pil', rows: [x], params: { g: sg }, close: true, tag: 'percentuali', table, dec: 2, truth: T, fmt: (v) => `${num(v, 2)}%`, slips: SLIPS_CLOSE,
+      question: `Se il PIL del ${X} ${down ? 'diminuisse' : 'crescesse'} ${delN(num(g, g % 1 ? 1 : 0))}% tra il ${d.y0} e il ${d.y1}, di quanto varierebbe, in percentuale, la spesa pubblica in R&S del ${X}? (arrotondamento a due cifre decimali)`,
+      formula: 'spesa pubblica in R&S = PIL × (spesa in R&S in % del PIL) × (quota pubblica); la variazione è (fattore del PIL × fattore della quota del PIL × fattore della quota pubblica − 1) × 100.',
+      steps: [`fattore del PIL = ${num(fG, 3)}`, `quota del PIL: ${num(d.rd1[x], 2)} ÷ ${num(d.rd0[x], 2)} = ${num(fR, 5)}`, `quota pubblica: ${num(d.pub1[x], 1)} ÷ ${num(d.pub0[x], 1)} = ${num(fP, 5)}`, `${num(fG, 3)} × ${num(fR, 5)} × ${num(fP, 5)} = ${num(F, 5)}`, `(${num(F, 5)} − 1) × 100 = ${num(T, 2)}%`],
+      cands: [
+        { v: sg + (fR - 1) * 100 + (fP - 1) * 100, trap: 'percentuali', why: 'somma le tre variazioni percentuali invece di moltiplicare i tre fattori: è un\'approssimazione, e con opzioni così vicine non basta' },
+        { v: (1 - 1 / F) * 100, trap: 'percentuali', why: 'calcola la variazione sul valore finale invece che su quello di partenza (base sbagliata)' },
+        { v: (fG * fR - 1) * 100, trap: 'lettura-dati', why: 'trascura la variazione della quota pubblica' },
+        { v: (fG * fP - 1) * 100, trap: 'lettura-dati', why: 'trascura la variazione della quota del PIL spesa in R&S' },
+        { v: (fR * fP - 1) * 100, trap: 'lettura-dati', why: 'dimentica la variazione del PIL indicata nella domanda' },
+      ],
+    });
+  };
+
+  // M3 · righe che non sono Paesi (macroregioni): somma di superfici, densità, differenza di popolazione urbana,
+  // abitanti medi per Paese. Superficie in km² (come nel campione) o in milioni di km².
+  const MACRO = ['Centro', 'Est', 'Nord', 'Ovest', 'Sud'];
+  MT.M3 = (r, ctx) => {
+    const inMil = r.chance(0.4);
+    const sup = MACRO.map(() => roundTo(r.f(2.2, 44), 3)); // milioni di km²
+    const pop = sup.map((s) => roundTo(s * r.f(9, 140), 1)); // milioni di abitanti
+    const urb = MACRO.map(() => r.i(32, 86));
+    const np = MACRO.map(() => r.i(6, 54));
+    const supTxt = (k) => (inMil ? num(sup[k], 3) : num(sup[k] * 1e6, 0));
+    const table = {
+      title: 'Cinque macroregioni: territorio e popolazione',
+      note: `Superficie in ${inMil ? 'milioni di km²' : 'km²'}; popolazione in milioni di abitanti; popolazione urbana in % della popolazione. ${NOTE}`,
+      head: ['Macroregione', inMil ? 'Superficie (milioni di km²)' : 'Superficie (km²)', 'Popolazione (milioni)', 'Popolazione urbana (%)', 'Numero di Paesi'],
+      rows: MACRO.map((n, k) => [n, supTxt(k), num(pop[k], 1), num(urb[k], 0), num(np[k], 0)]),
+    };
+    const kind = r.pick(['somma', 'densita', 'urbana', 'media-paese']);
+    const base = { kind, table, params: { inMil }, slips: SLIPS };
+    if (kind === 'somma') {
+      const [x, y] = pairOf(r), z = thirdOf(r, x, y);
+      const dec = inMil ? 3 : 0, k = inMil ? 1 : 1e6;
+      const S = (a, b) => roundTo((sup[a] + sup[b]) * k, dec);
+      const T = S(x, y);
+      const unitTxt = inMil ? 'milioni di km²' : 'km²';
+      const carry = 10 ** (Math.floor(Math.log10(T)) - 1);
+      return valueItem(r, ctx, {
+        ...base, rows: [x, y], tag: 'lettura-dati', dec, truth: T, gapRel: 0.02, quantum: inMil ? 0.001 : 1000, fmt: (v) => `${num(v, dec)} ${unitTxt}`,
+        question: `Qual è la superficie complessiva delle macroregioni ${MACRO[x]} e ${MACRO[y]}? (in ${unitTxt})`,
+        formula: 'superficie complessiva = somma delle due superfici.',
+        steps: [`${supTxt(x)} + ${supTxt(y)} = ${num(T, dec)} ${unitTxt}`],
+        cands: [
+          { v: S(x, z), trap: 'lettura-dati', why: `somma la macroregione ${MACRO[z]} invece della ${MACRO[y]} (riga sbagliata)` },
+          { v: S(z, y), trap: 'lettura-dati', why: `somma la macroregione ${MACRO[z]} invece della ${MACRO[x]} (riga sbagliata)` },
+          { v: T + carry, trap: 'calcolo', why: 'sbaglia un riporto nella somma' },
+          { v: T - carry, trap: 'calcolo', why: 'sbaglia un riporto nella somma' },
+        ],
+      });
+    }
+    if (kind === 'densita') {
+      const x = r.i(0, 4), z = (x + r.i(1, 4)) % 5;
+      const D = (k) => pop[k] / sup[k]; // milioni di abitanti ÷ milioni di km² = abitanti per km²
+      const T = D(x);
+      return valueItem(r, ctx, {
+        ...base, rows: [x], tag: 'rapporti', dec: 1, truth: T, fmt: (v) => `${num(v, 1)} abitanti per km²`,
+        question: `Qual è la densità di popolazione della macroregione ${MACRO[x]}? (in abitanti per km², arrotondamento a una cifra decimale)`,
+        formula: 'densità = popolazione ÷ superficie (in abitanti e km², oppure in milioni di abitanti e milioni di km²).',
+        steps: [inMil ? `${num(pop[x], 1)} milioni ÷ ${num(sup[x], 3)} milioni di km² = ${num(T, 2)} abitanti per km²` : `${num(pop[x] * 1e6, 0)} abitanti ÷ ${supTxt(x)} km² = ${num(T, 2)} abitanti per km²`],
+        cands: [
+          { v: (pop[x] * urb[x]) / 100 / sup[x], trap: 'percentuali', why: 'considera solo la popolazione urbana' },
+          { v: D(z), trap: 'lettura-dati', why: `è la densità della macroregione ${MACRO[z]} (riga sbagliata)` },
+          { v: pop[x] / np[x], trap: 'rapporti', why: 'divide la popolazione per il numero di Paesi invece che per la superficie' },
+        ],
+      });
+    }
+    if (kind === 'urbana') {
+      let [x, y] = pairOf(r);
+      const U = (k) => (pop[k] * urb[k]) / 100;
+      if (U(x) < U(y)) [x, y] = [y, x];
+      const z = thirdOf(r, x, y);
+      const T = U(x) - U(y);
+      if (T < 3) return null;
+      return valueItem(r, ctx, {
+        ...base, rows: [x, y], tag: 'percentuali', dec: 1, truth: T, fmt: (v) => `${num(v, 1)} milioni`,
+        question: `Di quanti milioni di abitanti la popolazione urbana della macroregione ${MACRO[x]} supera quella della macroregione ${MACRO[y]}? (arrotondamento a una cifra decimale)`,
+        formula: 'popolazione urbana = popolazione × quota urbana ÷ 100; poi differenza fra le due macroregioni.',
+        steps: [`${MACRO[x]}: ${num(pop[x], 1)} × ${num(urb[x] / 100, 2)} = ${num(U(x), 3)} milioni`, `${MACRO[y]}: ${num(pop[y], 1)} × ${num(urb[y] / 100, 2)} = ${num(U(y), 3)} milioni`, `${num(U(x), 3)} − ${num(U(y), 3)} = ${num(T, 1)} milioni`],
+        cands: [
+          { v: pop[x] - pop[y], trap: 'lettura-dati', why: 'confronta la popolazione totale invece di quella urbana' },
+          { v: ((urb[x] - urb[y]) / 100) * pop[x], trap: 'percentuali', why: `applica la differenza fra le due quote urbane alla sola popolazione della macroregione ${MACRO[x]}` },
+          { v: (pop[x] * (100 - urb[x])) / 100 - (pop[y] * (100 - urb[y])) / 100, trap: 'percentuali', why: 'usa la quota non urbana (100% − quota urbana)' },
+          { v: U(x) - U(z), trap: 'lettura-dati', why: `confronta con la macroregione ${MACRO[z]} (riga sbagliata)` },
+        ],
+      });
+    }
+    // media-paese
+    const x = r.i(0, 4), z = (x + r.i(1, 4)) % 5;
+    const T = pop[x] / np[x];
+    if (T < 1.5) return null;
+    return valueItem(r, ctx, {
+      ...base, rows: [x], tag: 'media', dec: 1, truth: T, fmt: (v) => `${num(v, 1)} milioni`,
+      question: `Quanti abitanti ha in media un Paese della macroregione ${MACRO[x]}? (in milioni, arrotondamento a una cifra decimale)`,
+      formula: 'abitanti medi per Paese = popolazione della macroregione ÷ numero dei suoi Paesi.',
+      steps: [`${num(pop[x], 1)} ÷ ${np[x]} = ${num(T, 2)} milioni`],
+      cands: [
+        { v: sumOf(pop) / sumOf(np), trap: 'media', why: 'è la media di tutte e cinque le macroregioni insieme' },
+        { v: pop[z] / np[z], trap: 'lettura-dati', why: `è la media della macroregione ${MACRO[z]} (riga sbagliata)` },
+        { v: (pop[x] * urb[x]) / 100 / np[x], trap: 'percentuali', why: 'considera solo la popolazione urbana' },
+      ],
+    });
+  };
+
+  // M4 · media pesata inversa: dal tasso complessivo (tabella) e dal tasso di un gruppo (testo) si ricava il tasso
+  // dell'altro gruppo, oppure dai tassi dei due gruppi si ricava il peso di un gruppo (in % o in migliaia).
+  MT.M4 = (r, ctx) => {
+    const kind = r.pick(['altro-tasso', 'altro-tasso', 'quota-gruppo', 'numero-gruppo']);
+    const y = r.i(0, 1), Yr = 2023 + y, Yo = 2024 - y;
+    const x = r.i(0, 4), X = PAESI_M[x], z = (x + r.i(1, 4)) % 5;
+    if (kind === 'altro-tasso') {
+      const pop = PAESI_M.map(() => { const a = logU(r, 1.2, 85); return [roundTo(a, 1), roundTo(a * r.f(0.995, 1.012), 1)]; });
+      const s = [], U = [];
+      let r65 = 0;
+      for (let k = 0; k < 5; k++) {
+        const s0 = r.f(15, 27), ds = r.f(0.1, 0.6);
+        const ru = r.f(72, 95), r6 = r.f(25, 70), up = r.f(0.3, 2.2);
+        s.push([roundTo(s0, 1), roundTo(s0 + ds, 1)]);
+        const u0 = (s[k][0] * r6 + (100 - s[k][0]) * ru) / 100, u1 = (s[k][1] * (r6 + up * 2) + (100 - s[k][1]) * Math.min(98, ru + up)) / 100;
+        U.push([roundTo(u0, 1), roundTo(u1, 1)]);
+        if (k === x) r65 = Math.round(y ? r6 + up * 2 : r6);
+      }
+      const Ux = U[x][y], sx = s[x][y];
+      const under = (u, sh) => (u - (sh * r65) / 100) / (1 - sh / 100);
+      const T = under(Ux, sx);
+      if (!(T > Ux && T < 99)) return null;
+      return valueItem(r, ctx, {
+        kind, rows: [x], params: { r65 }, tag: 'media', dec: 1, truth: T, hi: 100, fmt: (v) => `${num(v, 1)}%`, slips: SLIPS,
+        table: {
+          title: 'Popolazione e uso di Internet', note: `Popolazione in milioni di abitanti; persone con 65 anni e più e utenti abituali di Internet in % della popolazione. ${NOTE}`,
+          groups: [{ label: 'Popolazione (milioni)', span: 2 }, { label: 'Persone con 65 anni e più (%)', span: 2 }, { label: 'Utenti abituali di Internet (%)', span: 2 }],
+          head: ['Paese', '2023', '2024', '2023', '2024', '2023', '2024'],
+          rows: PAESI_M.map((n, k) => [n, num(pop[k][0], 1), num(pop[k][1], 1), num(s[k][0], 1), num(s[k][1], 1), num(U[k][0], 1), num(U[k][1], 1)]),
+        },
+        question: `Nel ${Yr}, nel ${X} gli utenti abituali di Internet erano il ${r65}% delle persone con 65 anni e più. Quale percentuale delle persone sotto i 65 anni usava abitualmente Internet? (arrotondamento a una cifra decimale)`,
+        formula: 'tasso totale = quota degli over 65 × tasso degli over 65 + quota degli under 65 × tasso degli under 65, quindi tasso degli under 65 = (tasso totale − quota degli over 65 × tasso degli over 65) ÷ quota degli under 65.',
+        steps: [`(${num(Ux, 1)} − ${num(sx / 100, 3)} × ${r65}) ÷ ${num(1 - sx / 100, 3)} = ${num(Ux - (sx * r65) / 100, 3)} ÷ ${num(1 - sx / 100, 3)} = ${num(T, 2)}%`],
+        cands: [
+          { v: 2 * Ux - r65, trap: 'media', why: 'tratta i due gruppi come se pesassero uguale (media semplice): le persone sotto i 65 anni sono molte di più' },
+          { v: Ux, trap: 'lettura-dati', why: 'è la quota su tutta la popolazione, non sulle persone sotto i 65 anni' },
+          { v: Ux - (sx * r65) / 100, trap: 'rapporti', why: 'non divide per la quota delle persone sotto i 65 anni: è la loro parte sul totale della popolazione' },
+          { v: under(U[x][1 - y], s[x][1 - y]), trap: 'lettura-dati', why: `usa i dati del ${Yo} (anno sbagliato)` },
+          { v: under(U[z][y], s[z][y]), trap: 'lettura-dati', why: `usa i dati del ${PAESI_M[z]} (riga sbagliata)` },
+        ],
+      });
+    }
+    // quota-gruppo / numero-gruppo: disoccupazione dei giovani (15–24) e degli altri (25 anni e più)
+    const fl = PAESI_M.map(() => { const a = logU(r, 450, 42000); return [Math.round(a), Math.round(a * r.f(0.99, 1.02))]; });
+    const occ = PAESI_M.map(() => { const a = r.f(58, 80); return [roundTo(a, 1), roundTo(a + r.f(-1.5, 2), 1)]; });
+    const rate = () => { const s = r.f(6.5, 16); return roundTo((s * r.f(13, 38) + (100 - s) * r.f(3, 10.5)) / 100, 1); };
+    const U = PAESI_M.map(() => [rate(), rate()]);
+    const sh = r.f(6.5, 16), ryT = r.i(14, 38), raT = r.i(3, 10);
+    U[x][y] = roundTo((sh * ryT + (100 - sh) * raT) / 100, 1);
+    const Ux = U[x][y];
+    const share = (u) => ((u - raT) / (ryT - raT)) * 100;
+    const S = share(Ux);
+    if (!(S > 3 && S < 30)) return null;
+    const num_ = kind === 'numero-gruppo';
+    const k = num_ ? fl[x][y] / 100 : 1;
+    const T = S * k;
+    const lead = `Nel ${Yr}, nel ${X} il tasso di disoccupazione era ${delN(String(ryT))}% tra i giovani di 15–24 anni e ${delN(String(raT))}% tra le persone di 25 anni e più.`;
+    return valueItem(r, ctx, {
+      kind, rows: [x], params: { ryT, raT }, tag: 'media', dec: num_ ? 0 : 1, truth: T, hi: num_ ? fl[x][y] : 100,
+      fmt: num_ ? (v) => `${num(v, 0)} migliaia` : (v) => `${num(v, 1)}%`, slips: SLIPS,
+      table: {
+        title: 'Mercato del lavoro', note: `Forza lavoro (occupati e disoccupati) in migliaia di persone; tassi in %. ${NOTE}`,
+        groups: [{ label: 'Forza lavoro (migliaia)', span: 2 }, { label: 'Tasso di disoccupazione (%)', span: 2 }, { label: 'Tasso di occupazione (%)', span: 2 }],
+        head: ['Paese', '2023', '2024', '2023', '2024', '2023', '2024'],
+        rows: PAESI_M.map((n, j) => [n, num(fl[j][0], 0), num(fl[j][1], 0), num(U[j][0], 1), num(U[j][1], 1), num(occ[j][0], 1), num(occ[j][1], 1)]),
+      },
+      question: num_
+        ? `${lead} Quanti giovani di 15–24 anni facevano parte della forza lavoro? (in migliaia, arrotondamento all'unità)`
+        : `${lead} Quale percentuale della forza lavoro aveva tra 15 e 24 anni? (arrotondamento a una cifra decimale)`,
+      formula: `tasso complessivo = quota dei giovani × tasso dei giovani + (1 − quota dei giovani) × tasso degli altri, quindi quota dei giovani = (tasso complessivo − tasso degli altri) ÷ (tasso dei giovani − tasso degli altri)${num_ ? '; giovani = quota × forza lavoro' : ''}.`,
+      steps: [`(${num(Ux, 1)} − ${raT}) ÷ (${ryT} − ${raT}) = ${num(Ux - raT, 1)} ÷ ${ryT - raT} = ${num(S / 100, 4)}, cioè ${num(S, 2)}%`, ...(num_ ? [`${num(S / 100, 4)} × ${num(fl[x][y], 0)} = ${num(T, 1)} migliaia`] : [])],
+      cands: [
+        { v: ((Ux - raT) / ryT) * 100 * k, trap: 'media', why: 'divide per il tasso dei giovani invece che per la differenza fra i due tassi' },
+        { v: (Ux / ryT) * 100 * k, trap: 'rapporti', why: 'divide il tasso complessivo per quello dei giovani, come se tutti i disoccupati fossero giovani' },
+        { v: share(U[x][1 - y]) * k, trap: 'lettura-dati', why: `usa il tasso di disoccupazione del ${Yo} (anno sbagliato)` },
+        { v: share(U[z][y]) * k, trap: 'lettura-dati', why: `usa il tasso di disoccupazione del ${PAESI_M[z]} (riga sbagliata)` },
+        ...(num_ ? [{ v: S * (fl[x][1 - y] / 100), trap: 'lettura-dati', why: `usa la forza lavoro del ${Yo} (anno sbagliato)` }] : []),
+      ],
+    });
+  };
+
+  // M5 · «approssimativamente»: rapporto (opzioni a rapporto) o quota sul totale (griglia di 5 o 10 punti), con
+  // numeri lunghi e opzioni lontane: basta una stima con due cifre significative.
+  MT.M5 = (r, ctx) => {
+    const kind = ctx.none ? 'quota' : r.pick(['rapporto', 'rapporto-somma', 'quota']);
+    const p24 = [], pc = [];
+    for (let k = 0; k < 5; k++) { p24.push(logU(r, 900, 62000)); pc.push(r.f(9000, 70000)); } // migliaia di abitanti; € per abitante
+    const [x, y] = pairOf(r), z = thirdOf(r, x, y);
+    const X = PAESI_M[x], Y = PAESI_M[y], Z = PAESI_M[z];
+    let set = null, key = null, tau = null;
+    if (kind !== 'quota') {
+      set = ratioSet(r); key = set[ctx.pos];
+      // Confrontare le popolazioni (colonna sbagliata) dà tau: i PIL pro capite fanno la differenza.
+      tau = pickTau(r, set, key, (q) => q >= 0.25 && q <= 4);
+      if (!tau) return null;
+      const rho = rval(key), tv = rval(tau.o);
+      if (kind === 'rapporto') {
+        // PIL pro capite X ÷ Y = rho ÷ tau = 1 ÷ q: entrambi fra 9.000 e 72.000 €
+        const lo = Math.max(9000, 9000 * tau.q), hi = Math.min(72000, 72000 * tau.q);
+        const plo = Math.max(900, 900 / tv), phi = Math.min(62000, 62000 / tv);
+        if (lo >= hi || plo >= phi) return null;
+        p24[y] = logU(r, plo, phi);
+        p24[x] = p24[y] * tv * (1 + r.f(-0.03, 0.03));
+        pc[y] = r.f(lo, hi);
+        pc[x] = ((pc[y] * rho * p24[y]) / p24[x]) * (1 + r.f(-0.012, 0.012));
+      } else {
+        // (PIL X + PIL Z) ÷ PIL Y = rho; (abitanti X + Z) ÷ abitanti Y ≈ tau
+        p24[y] = ((p24[x] + p24[z]) / tv) * (1 + r.f(-0.03, 0.03));
+        pc[y] = ((p24[x] * pc[x] + p24[z] * pc[z]) / rho / p24[y]) * (1 + r.f(-0.012, 0.012));
+      }
+      if (pc.some((v) => v < 8000 || v > 80000) || p24.some((v) => v < 250 || v > 90000)) return null;
+    }
+    const pop = p24.map((v) => [Math.round(v * r.f(0.93, 1.05)), Math.round(v)]);
+    const gdp = p24.map((v, k) => { const g24 = Math.round((pop[k][1] * pc[k]) / 1000); return [Math.round(g24 * r.f(0.72, 0.95)), g24]; }); // milioni di €
+    const area = p24.map((v) => Math.round((v * 1000) / r.f(28, 260)));
+    const table = {
+      title: 'Popolazione, PIL e superficie', note: `Popolazione in migliaia di abitanti; PIL in milioni di €; superficie in km². ${NOTE}`,
+      groups: [{ label: 'Popolazione (migliaia)', span: 2 }, { label: 'PIL (milioni di €)', span: 2 }, { label: 'Superficie (km²)', span: 1 }],
+      head: ['Paese', '2014', '2024', '2014', '2024', '2024'],
+      rows: PAESI_M.map((n, k) => [n, num(pop[k][0], 0), num(pop[k][1], 0), num(gdp[k][0], 0), num(gdp[k][1], 0), num(area[k], 0)]),
+    };
+    const est = (v) => num(sig2(v), 0);
+    if (kind === 'rapporto' || kind === 'rapporto-somma') {
+      const somma = kind === 'rapporto-somma';
+      const gx = somma ? gdp[x][1] + gdp[z][1] : gdp[x][1], gy = gdp[y][1];
+      const px = somma ? pop[x][1] + pop[z][1] : pop[x][1], py = pop[y][1];
+      const R = gx / gy;
+      if (Math.abs(Math.log(sig2(gx) / sig2(gy) / rval(key))) > Math.log(1.25)) return null; // la stima porta sulla chiave
+      return ratioItem(ctx, {
+        kind, rows: somma ? [x, z, y] : [x, y], tag: 'rapporti', table, set, key, tau: tau.o, R, N: px / py, tauTrap: 'lettura-dati',
+        question: somma
+          ? `Approssimativamente, qual era nel 2024 il rapporto tra il PIL complessivo del ${X} e del ${Z} e il PIL del ${Y}?`
+          : `Approssimativamente, qual era nel 2024 il rapporto tra il PIL del ${X} e quello del ${Y}?`,
+        formula: `rapporto = ${somma ? `(PIL del ${X} + PIL del ${Z})` : `PIL del ${X}`} ÷ PIL del ${Y}; con opzioni così distanti basta una stima con due cifre significative.`,
+        steps: [`stima: ${est(gx)} ÷ ${est(gy)} ≈ ${num(sig2(gx) / sig2(gy), 2)}`, `calcolo esatto: ${somma ? `(${num(gdp[x][1])} + ${num(gdp[z][1])})` : num(gx)} ÷ ${num(gy)} = ${num(R, 2)}`],
+        whyTau: 'confronta le popolazioni invece dei PIL (colonna sbagliata)',
+        whyInv: 'inverte il rapporto',
+        whyBoth: 'confronta le popolazioni e in più inverte il rapporto',
+      });
+    }
+    // quota della popolazione dei cinque Paesi, griglia di 5 o 10 punti
+    const step = r.pick([5, 10]);
+    let grid;
+    if (!ctx.none) {
+      const target = step * (ctx.pos + 1 + r.i(0, 2)) + r.f(-0.12, 0.12) * step;
+      if (target > 62) return null;
+      const others = sumOf(pop.map((v, k) => (k === x ? 0 : v[1])));
+      pop[x][1] = Math.round((target / (100 - target)) * others);
+      if (pop[x][1] < 250) return null;
+      pop[x][0] = Math.round(pop[x][1] * r.f(0.93, 1.05));
+      gdp[x][1] = Math.round((pop[x][1] * pc[x]) / 1000); gdp[x][0] = Math.round(gdp[x][1] * r.f(0.72, 0.95));
+      area[x] = Math.round((pop[x][1] * 1000) / r.f(28, 260));
+      table.rows[x] = [X, num(pop[x][0], 0), num(pop[x][1], 0), num(gdp[x][0], 0), num(gdp[x][1], 0), num(area[x], 0)];
+    }
+    const tot = sumOf(pop.map((v) => v[1]));
+    const T = (pop[x][1] / tot) * 100;
+    if (!ctx.none) grid = [0, 1, 2, 3].map((j) => Math.round(T / step) * step + (j - ctx.pos) * step);
+    else {
+      const up = T + 2 * step + 3 * step <= 95 && (r.chance(0.5) || (T - 2 * step) - 3 * step < step);
+      const first = up ? Math.ceil((T + 2 * step) / step) * step : Math.floor((T - 2 * step) / step) * step - 3 * step;
+      grid = [0, 1, 2, 3].map((j) => first + j * step);
+    }
+    if (grid[0] < step || grid[3] > 95) return null;
+    const shareOf = (a, k) => (a[k] / sumOf(a)) * 100;
+    return gridItem(ctx, {
+      kind, rows: [x], tag: 'rapporti', table, truth: T, step, grid, fmt: (v) => `${num(v, 0)}%`,
+      question: `Approssimativamente, quale percentuale della popolazione complessiva dei cinque Paesi viveva nel ${X} nel 2024?`,
+      formula: 'quota = popolazione del Paese ÷ popolazione dei cinque Paesi × 100; con opzioni distanti fra loro basta una stima.',
+      steps: [`totale 2024 = ${num(tot)} migliaia`, `stima: ${est(pop[x][1])} ÷ ${est(tot)} ≈ ${num((sig2(pop[x][1]) / sig2(tot)) * 100, 0)}%`, `calcolo esatto: ${num(pop[x][1])} ÷ ${num(tot)} × 100 = ${num(T, 1)}%`],
+      named: [
+        { v: (pop[x][1] / (tot - pop[x][1])) * 100, trap: 'rapporti', why: 'divide per la popolazione degli altri quattro Paesi invece che per il totale' },
+        { v: shareOf(gdp.map((v) => v[1]), x), trap: 'lettura-dati', why: 'è la quota del PIL, non della popolazione (colonna sbagliata)' },
+        { v: shareOf(pop.map((v) => v[0]), x), trap: 'lettura-dati', why: 'è la quota del 2014 (anno sbagliato)' },
+      ],
+    });
+  };
+
+  // Assemblaggio comune: lettere, chiave, E, spiegazione (formula, numeri, risultato, trappola principale, altre).
+  function finishM(sc, ctx) {
+    const L = ['A', 'B', 'C', 'D'];
+    const opts = sc.opts;
+    if (!opts || opts.length !== 4) return null;
+    for (let k = 1; k < 4; k++) if (!(opts[k].v > opts[k - 1].v)) return null;
+    const keyIdx = opts.findIndex((o) => o.key);
+    if (ctx.none ? keyIdx !== -1 : keyIdx !== ctx.pos) return null;
+    const key = ctx.none ? 'E' : L[keyIdx];
+    const options = opts.map((o, k) => ({ letter: L[k], text: o.text, trap: o.key ? null : o.trap }));
+    options.push({ letter: 'E', text: 'Nessuna di queste risposte', trap: ctx.none ? null : sc.tag });
+    if (new Set(options.map((o) => o.text)).size !== 5) return null;
+    const wrong = opts.map((o, k) => ({ ...o, letter: L[k] })).filter((o) => !o.key);
+    const named = wrong.filter((o) => !o.filler).sort((a, b) => a.rank - b.rank);
+    const slips = wrong.filter((o) => o.filler);
+    const and = (xs) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} e ${xs[xs.length - 1]}` : xs[0]);
+    const parts = [`Formula: ${sc.formula}`, `${sc.steps.join('; ')}.`,
+      ctx.none ? `Il risultato è ${sc.display}, che non compare tra A e D: la risposta è E.` : (sc.result || `Il risultato è ${sc.display}: la risposta è ${key}.`)];
+    if (named.length) parts.push(`Trappola principale: ${named[0].letter} (${named[0].text}) ${named[0].why}.`);
+    for (const o of named.slice(1)) parts.push(`${o.letter} (${o.text}) ${o.why}.`);
+    if (slips.length) parts.push(`${and(slips.map((o) => o.letter))} (${and(slips.map((o) => o.text))}) ${(sc.slips || SLIPS)[slips.length > 1 ? 1 : 0]}.`);
+    return { options, key, explanation: parts.join(' ') };
+  }
+
+  const MULTI_LEVEL = { 2: ['M1', 'M3', 'M4', 'M5'], 3: ['M1', 'M2'] };
+  // Livello 1 non esiste per questi modelli: si genera il livello 2 (e l'id lo dice).
+  function makeMulti(seed, level = 2) {
+    const lv = level === 3 ? 3 : 2;
+    const rng = mulberry32((Math.imul(seed >>> 0, 3266489917) ^ (lv * 69069)) >>> 0);
+    const r = R(rng);
+    const ctx = { level: lv, none: rng() < 0.12, pos: Math.floor(rng() * 4) };
+    const tpls = MULTI_LEVEL[lv];
+    // Il modello si sceglie una volta (stessa frequenza per tutti); si cambia solo dopo molti tentativi a vuoto.
+    const first = tpls[Math.floor(rng() * tpls.length)];
+    for (let attempt = 0; attempt < 120; attempt++) {
+      const name = attempt < 60 ? first : tpls[Math.floor(rng() * tpls.length)];
+      const sc = MT[name](r, ctx);
+      if (!sc) continue;
+      const out = finishM(sc, ctx);
+      if (!out) continue;
+      return {
+        bank: 'numerico', id: multiIdFor(seed, lv), level: lv, format: 'num5', difficulty: lv,
+        tag: sc.tag, table: sc.table, question: sc.question,
+        options: out.options, correct: [out.key], explanation: out.explanation,
+        answer: { value: sc.value, display: sc.display },
+        meta: { template: name, kind: sc.kind, dec: sc.dec, rows: sc.rows || [], params: sc.params || {} },
+      };
+    }
+    throw new Error(`numerico (multi): nessun item valido per il seme ${seed}`);
+  }
+  const multiIdFor = (seed, level) => `M${level}-${seed}`;
+  function parseMultiId(id) {
+    const m = /^M([23])-(\d{1,10})$/.exec(String(id));
+    return m ? { level: Number(m[1]), seed: Number(m[2]) } : null;
+  }
+
+  return { make, idFor, parseId, TEMPLATES: BY_LEVEL, CHART_TEMPLATES: CHART_LEVEL, MULTI_TEMPLATES: MULTI_LEVEL, num, chart: { make: makeChart, idFor: chartIdFor, parseId: parseChartId }, multi: { make: makeMulti, idFor: multiIdFor, parseId: parseMultiId } };
 })();

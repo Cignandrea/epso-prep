@@ -15,6 +15,13 @@ WORDS = {
     'nessun/mai/sempre': r'\b(nessun\w*|mai|sempre)\b',
     'in ogni caso/comunque': r'\b(in ogni caso|comunque|in nessun caso)\b',
     'non': r'\bnon\b', 'cifre': r'\d',
+    # nessi causali: una chiave causale va bene se il nesso lo dà il brano; non devono stare quasi solo nei distrattori
+    'causali (perché, grazie a…)': (r"(?<!\w)(?:perch[éè]|poich[éè]|giacch[éè]|siccome|quindi|pertanto|perciò|di conseguenza|per questo|"
+        r"in quanto|dato che|visto che|grazie a|a causa d|per effetto d|per via d|in seguito a|dovut[oaie](?: \w+){0,2} a|"
+        r"si dev(?:e|ono)(?: \w+){0,3} a|dipend\w*(?: \w+){0,2} d(?:a|al|allo|alla|ai|agli|alle|all')(?!\w)|"
+        r"determin(?:a|ano|ato|ata|ati|ate|ò|arono)(?!\w)|provoc\w*|causat\w*|(?:è|sono|era|erano) la causa|causa principale|"
+        r"causa (?:l'|il |la |lo |i |gli |le )|spieg(?:a|ano|ava|avano)(?!\w)|ha(?:nno)? portato a|"
+        r"(?:fa|fanno|ha fatto|hanno fatto|fece|fecero) (?:aumentare|diminuire|crescere|calare|salire|scendere|peggiorare|migliorare|scattare))"),
 }
 n = len(items)
 stats = {w: [0, 0] for w in WORDS}

@@ -128,16 +128,17 @@ App.gen.astratto = (() => {
     3: [['pos', 'rot', 'cycle'], ['pos', 'rot', 'alt'], ['pos', 'sides', 'cycle'], ['pos', 'sides', 'alt'], ['pos', 'dots', 'dotalt'], ['pos', 'movalt', 'rot'], ['pos', 'movalt', 'dots'], ['pos', 'movalt', 'sides'], ['pos', 'kind', 'cycle'], ['pos', 'movalt', 'cycle'], ['movalt', 'rot', 'cycle'], ['movalt', 'sides', 'cycle'], ['movalt', 'dots', 'dotalt']],
   };
 
-  // Elementi fissi che un'opzione sbagliata può cambiare: categoria della trappola e spiegazione.
+  // Elementi fissi che un'opzione sbagliata può cambiare: trappola «costante» (un elemento che nella serie non cambia
+  // mai) e spiegazione.
   const FIXED = {
-    fill: ['riempimento', 'il colore della figura centrale cambia, ma nella serie resta sempre uguale'],
-    rot: ['rotazione', 'la freccia è girata, ma nella serie punta sempre nella stessa direzione'],
-    sides: ['conteggio', 'il numero di lati cambia, ma nella serie resta sempre uguale'],
-    kind: ['alternanza', 'la forma centrale cambia, ma nella serie resta sempre la stessa'],
-    dots: ['conteggio', 'il numero di pallini cambia, ma nella serie resta sempre uguale'],
-    dotFill: ['riempimento', 'il colore dei pallini cambia, ma nella serie resta sempre uguale'],
-    pos: ['posizione', 'il quadratino si è spostato, ma nella serie resta fermo'],
-    movFill: ['riempimento', 'il colore del quadratino cambia, ma nella serie resta sempre uguale'],
+    fill: ['costante', 'il colore della figura centrale cambia, ma nella serie resta sempre uguale'],
+    rot: ['costante', 'la freccia è girata, ma nella serie punta sempre nella stessa direzione'],
+    sides: ['costante', 'il numero di lati cambia, ma nella serie resta sempre uguale'],
+    kind: ['costante', 'la forma centrale cambia, ma nella serie resta sempre la stessa'],
+    dots: ['costante', 'il numero di pallini cambia, ma nella serie resta sempre uguale'],
+    dotFill: ['costante', 'il colore dei pallini cambia, ma nella serie resta sempre uguale'],
+    pos: ['costante', 'il quadratino si è spostato, ma nella serie resta fermo'],
+    movFill: ['costante', 'il colore del quadratino cambia, ma nella serie resta sempre uguale'],
   };
 
   // Disposizione: cosa c'è nella figura, dati i requisiti delle regole. Le caratteristiche senza regola restano fisse.

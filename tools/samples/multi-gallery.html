@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galleria multi-passaggio</title>
+<link rel="stylesheet" href="../../css/style.css">
+<style> .item{border:1px solid var(--line);border-radius:8px;padding:10px;margin:10px} .meta{font-size:12px;color:var(--ink-2)} </style>
+</head><body>
+<!-- Un item per tipo dei modelli M (id M<livello>-<seme>). Parametri: ?t=pil-rapporto,quota (tipi) · ?seed=1 · ?e=1 (solo E giusta) · ?blind=1 (senza chiave). -->
+<script src="../../js/utils.js"></script>
+<script src="../../js/gen-numerico.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+const m = App.gen.numerico.multi;
+const blind = qs.get('blind') === '1';
+const onlyE = qs.get('e') === '1';
+const KINDS = { 2: ['pil-valore', 'spesa-pubblica', 'pubblica-rapporto', 'somma', 'densita', 'urbana', 'media-paese', 'altro-tasso', 'quota-gruppo', 'numero-gruppo', 'rapporto', 'rapporto-somma', 'quota'], 3: ['pil-rapporto', 'abitanti-rapporto', 'abitanti-valore', 'brevetti-valore', 'ipotesi-pil'] };
+const want = qs.get('t') ? qs.get('t').split(',') : [...KINDS[3], ...KINDS[2]];
+const seed0 = Number(qs.get('seed') || 1);
+for (const kind of want) {
+  const lv = KINDS[3].includes(kind) ? 3 : 2;
+  let q = null;
+  for (let s = seed0; s < seed0 + 3000 && !q; s++) { const x = m.make(s, lv); if (x.meta.kind === kind && (x.correct[0] === 'E') === onlyE) q = x; }
+  if (!q) continue;
+  const box = document.createElement('div'); box.className = 'item';
+  const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = blind ? q.id : `${q.id} · ${q.meta.template}/${kind} · chiave ${q.correct[0]}`;
+  const stim = document.createElement('div'); App.utils.renderStimulus(stim, q);
+  const qq = document.createElement('p'); qq.style.fontWeight = '600'; qq.textContent = q.question;
+  const ol = document.createElement('ol'); ol.type = 'A'; q.options.forEach((o) => { const li = document.createElement('li'); li.textContent = blind ? o.text : `${o.text}${o.trap ? ` · ${o.trap}` : ' ✓'}`; ol.append(li); });
+  box.append(meta, stim, qq, ol);
+  if (!blind) { const ex = document.createElement('p'); ex.className = 'meta'; ex.textContent = q.explanation; box.append(ex); }
+  document.body.append(box);
+}
+</script></body></html>

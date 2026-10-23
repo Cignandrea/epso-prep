@@ -507,15 +507,16 @@
       },
       {
         "letter": "D",
-        "text": "Secondo le simulazioni, con la terza cassa la riduzione di portata della piena simulata salirebbe dal 20% al 35%.",
+        "text": "Secondo le simulazioni, grazie alla terza cassa la riduzione di portata della piena simulata salirebbe dal 20% al 35%.",
         "trap": null
       }
     ],
     "correct": [
       "D"
     ],
-    "evidence": "la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% nel tratto urbano; con le sole due casse esistenti, la riduzione sarebbe del 20%",
-    "explanation": "D è corretta: secondo le simulazioni, una piena analoga a quella di sei anni fa sarebbe ridotta del 20% con le due casse esistenti e del 35% con tutte e tre, quindi la terza porterebbe la riduzione dal 20% al 35%. A generalizza a tutti i proprietari un ricorso presentato da alcuni (quantificatore). B presenta come effetto già misurato una riduzione che il brano ricava da simulazioni (parafrasi). C dà per avviata la costruzione di una cassa ancora in fase di progettazione (tempo)."
+    "evidence": "con tutte e tre le casse in funzione la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% nel tratto urbano; con le sole due casse esistenti, la riduzione sarebbe del 20%",
+    "explanation": "D è corretta: secondo le simulazioni la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% «con tutte e tre le casse in funzione» e del 20% «con le sole due casse esistenti»: i due scenari differiscono solo per la terza cassa, alla quale si deve quindi il passaggio dal 20% al 35%. A generalizza a tutti i proprietari un ricorso presentato da alcuni (quantificatore). B presenta come effetto già misurato una riduzione che il brano ricava da simulazioni (parafrasi). C dà per avviata la costruzione di una cassa ancora in fase di progettazione (tempo).",
+    "review": "Chiave D: «con la terza cassa» → «grazie alla terza cassa»: i due scenari simulati differiscono solo per la terza cassa, quindi il nesso causale è nel brano; contro l'indizio «frase causale = sbagliata». Evidenza estesa al primo scenario, spiegazione allineata."
   },
   {
     "id": 1135,
@@ -589,7 +590,8 @@
       "D"
     ],
     "evidence": "Un ente ospedaliero con 2.300 dipendenti ha introdotto un rimborso del 50% dell'abbonamento annuale e una navetta dalla stazione ferroviaria. Al questionario dell'anno successivo hanno risposto 1.150 dipendenti",
-    "explanation": "D è corretta: l'ente ha 2.300 dipendenti e al questionario dell'anno successivo ne hanno risposto 1.150, cioè la metà. A omette la seconda condizione della legge, cioè che la sede si trovi in un comune con oltre 50.000 abitanti (negazione). B attribuisce il calo al rimborso ed estende a tutti i dipendenti un dato riferito ai soli rispondenti (inferenza). C trasforma in obbligo una delle misure che la legge cita soltanto come esempio (parafrasi)."
+    "explanation": "D è corretta: l'ente ha 2.300 dipendenti e al questionario dell'anno successivo ne hanno risposto 1.150, cioè la metà. A omette la seconda condizione della legge, cioè che la sede si trovi in un comune con oltre 50.000 abitanti (negazione). B attribuisce il calo al rimborso, ma il brano dice solo che la quota è scesa dopo l'introduzione di rimborso e navetta, e l'ente avverte che il confronto va interpretato «con cautela», perché al questionario precedente avevano risposto 1.600 dipendenti; B estende inoltre a tutti i dipendenti un dato riferito ai soli rispondenti (inferenza). C trasforma in obbligo una delle misure che la legge cita soltanto come esempio (parafrasi).",
+    "review": "Spiegazione di B: diceva solo che B attribuisce il calo al rimborso; ora dice perché il nesso non regge (il brano riporta un calo successivo a due misure introdotte insieme, con un confronto da prendere «con cautela»), non che le frasi causali siano sbagliate in sé."
   },
   {
     "id": 1137,

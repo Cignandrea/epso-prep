@@ -34,8 +34,8 @@
       "C"
     ],
     "evidence": "continuò a trasmettere copia degli atti anche alle parrocchie, benché nessuna norma lo imponesse",
-    "explanation": "C è corretta: nei primi anni del nuovo sistema la maggior parte dei municipi esaminati continuò a trasmettere copia degli atti alle parrocchie «benché nessuna norma lo imponesse». «La maggior parte» limita il comportamento, non la regola: se nessuna norma imponeva l'invio, nessuno dei municipi esaminati vi era obbligato. A estende a tutti i municipi esaminati un comportamento che il brano attribuisce alla «maggior parte» di essi (quantificatore). B presenta come già ottenuto un risultato che l'incrocio con i registri parrocchiali, secondo gli autori, «potrebbe» dare solo dopo alcuni anni di lavoro (tempo). D attribuisce alla riforma uno scopo plausibile ma mai dichiarato: il brano descrive le differenze tra diocesi senza presentarle come la ragione del passaggio ai comuni (fuori testo).",
-    "review": "Spiegazione di C: giustificava la chiave solo con la «maggior parte» dei municipi (lo stesso salto parte→tutti condannato in A); ora chiarisce che la concessiva descrive la regola, valida per tutti i municipi esaminati."
+    "explanation": "C è corretta: nei primi anni del nuovo sistema la maggior parte dei municipi esaminati continuò a trasmettere copia degli atti alle parrocchie «benché nessuna norma lo imponesse». L'espressione «la maggior parte» limita il comportamento, non la regola: se nessuna norma imponeva l'invio, nessuno dei municipi esaminati vi era obbligato. A estende a tutti i municipi esaminati un comportamento che il brano attribuisce alla «maggior parte» di essi (quantificatore). B presenta come già ottenuto un risultato che l'incrocio con i registri parrocchiali, secondo gli autori, «potrebbe» dare solo dopo alcuni anni di lavoro (tempo). D attribuisce alla riforma uno scopo plausibile ma mai dichiarato: il brano descrive le differenze tra diocesi senza presentarle come la ragione del passaggio ai comuni (fuori testo).",
+    "review": "Spiegazione di C: giustificava la chiave solo con la «maggior parte» dei municipi (lo stesso salto parte→tutti condannato in A); ora chiarisce che la concessiva descrive la regola, valida per tutti i municipi esaminati. Poi: «La maggior parte» → l'espressione «la maggior parte», identica al brano."
   },
   {
     "id": 1162,
@@ -160,7 +160,7 @@
     "options": [
       {
         "letter": "A",
-        "text": "Nel caso della pasta citato dall'associazione, il prezzo al chilogrammo del prodotto è aumentato del 25%.",
+        "text": "Nel caso della pasta, la riduzione del contenuto a prezzo invariato ha fatto aumentare del 25% il prezzo al chilogrammo.",
         "trap": null
       },
       {
@@ -183,7 +183,8 @@
       "A"
     ],
     "evidence": "un pacco di pasta è passato da 500 a 400 grammi senza variazioni di prezzo",
-    "explanation": "A è corretta: il pacco di pasta è passato «da 500 a 400 grammi senza variazioni di prezzo»; lo stesso prezzo diviso per 0,4 kg invece che per 0,5 kg dà un prezzo al chilogrammo più alto di un quarto, cioè del 25% (il 20% è la riduzione del contenuto, non l'aumento del prezzo unitario). B capovolge il giudizio dell'associazione, secondo cui la pratica «non è di per sé illecita» se la quantità è indicata correttamente (negazione). C trasforma in obbligo per i produttori ciò che è soltanto una richiesta dell'associazione (parafrasi). D trasforma «soprattutto» in «gli unici» ed è smentita anche dall'esempio della pasta (quantificatore)."
+    "explanation": "A è corretta: il pacco di pasta è passato «da 500 a 400 grammi senza variazioni di prezzo»; lo stesso prezzo diviso per 0,4 kg invece che per 0,5 kg dà un prezzo al chilogrammo più alto di un quarto, cioè del 25%: a prezzo invariato, l'aumento si deve solo alla riduzione del contenuto (il 20% è la riduzione del contenuto, non l'aumento del prezzo unitario). B capovolge il giudizio dell'associazione, secondo cui la pratica «non è di per sé illecita» se la quantità è indicata correttamente (negazione). C trasforma in obbligo per i produttori ciò che è soltanto una richiesta dell'associazione (parafrasi). D trasforma il «soprattutto» del brano in un'esclusiva, come se biscotti, detersivi e caffè fossero gli unici prodotti interessati, ed è smentita anche dall'esempio della pasta (quantificatore).",
+    "review": "Chiave A riformulata come nesso causale certo dal brano (contenuto ridotto «senza variazioni di prezzo» → prezzo al chilogrammo +25%), contro l'indizio «frase causale = sbagliata»; spiegazione allineata. Spiegazione di D: «gli unici» era una parola dell'opzione tra «» come se fosse del brano; ora è detta senza virgolette."
   },
   {
     "id": 1166,
@@ -220,7 +221,8 @@
       "C"
     ],
     "evidence": "Per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni",
-    "explanation": "C è corretta: «per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni», quindi un progetto con tutti i partner nella stessa regione non può mai essere ammesso. A presenta come causa accertata ciò che l'autorità di gestione si limita a ritenere, e solo «almeno in parte» (inferenza). B trasforma un tetto massimo («fino all'80%») in una percentuale fissa valida per ogni progetto (parafrasi). D riporta come già noti i risultati di una valutazione che sarà pubblicata solo entro la fine dell'anno (tempo)."
+    "explanation": "C è corretta: «Per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni», quindi un progetto con tutti i partner nella stessa regione non può mai essere ammesso. A presenta come causa accertata ciò che l'autorità di gestione si limita a ritenere, e solo «almeno in parte» (inferenza). B trasforma un tetto massimo («fino all'80%») in una percentuale fissa valida per ogni progetto (parafrasi). D riporta come già noti i risultati di una valutazione che sarà pubblicata solo entro la fine dell'anno (tempo).",
+    "review": "Spiegazione: citazione resa identica al brano (maiuscola iniziale)."
   },
   {
     "id": 1167,
@@ -369,7 +371,8 @@
       "C"
     ],
     "evidence": "almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24 dovrà essere sottotitolato",
-    "explanation": "C è corretta: l'obbligo da rispettare entro il terzo anno riguarda «almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24», quindi non comprende i programmi trasmessi tra mezzanotte e le sette. A anticipa al primo anno un obbligo che il contratto fissa «entro il secondo anno di vigenza» (tempo). B trasforma il potere di «proporre» una riduzione del contributo nel potere di deciderla direttamente (parafrasi). D scambia l'assenza di obblighi specifici per i canali tematici con un divieto, che il brano non prevede (negazione)."
+    "explanation": "C è corretta: l'obbligo da rispettare entro il terzo anno riguarda «almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24», quindi non comprende i programmi trasmessi tra mezzanotte e le sette. A anticipa al primo anno un obbligo che il contratto fissa entro il «secondo anno di vigenza» (tempo). B trasforma il potere di «proporre» una riduzione del contributo nel potere di deciderla direttamente (parafrasi). D scambia l'assenza di obblighi specifici per i canali tematici con un divieto, che il brano non prevede (negazione).",
+    "review": "Spiegazione di A: citazione accorciata per essere identica al brano (che ha «Entro» maiuscolo)."
   },
   {
     "id": 1171,
@@ -573,7 +576,7 @@
       },
       {
         "letter": "B",
-        "text": "La piattaforma elettronica per le gare non è ancora in uso presso gli enti locali.",
+        "text": "A causa di problemi di connettività, gli enti locali non usano ancora la piattaforma per le gare.",
         "trap": null
       },
       {
@@ -591,7 +594,8 @@
       "B"
     ],
     "evidence": "la sua estensione agli enti locali è stata rinviata per problemi di connettività",
-    "explanation": "B è corretta: la piattaforma è operativa nel ministero e in due agenzie, mentre «la sua estensione agli enti locali è stata rinviata per problemi di connettività». A attribuisce al gemellaggio l'intera riduzione dei tempi, mentre la relazione avverte che, per l'effetto concomitante della nuova legge, il miglioramento «non può essere attribuito al solo gemellaggio» (inferenza). C riferisce alle sole amministrazioni locali il totale dei funzionari formati, di cui quelli locali sono appena un quarto, cioè circa 200 (ambito). D enuncia una regola generale che il brano non contiene: il testo descrive un solo programma, rivolto a un paese candidato, e non dice chi altro possa beneficiarne (fuori testo)."
+    "explanation": "B è corretta: la piattaforma è operativa nel ministero e in due agenzie, mentre «la sua estensione agli enti locali è stata rinviata per problemi di connettività»: la causa del ritardo è indicata dal brano stesso. A attribuisce al gemellaggio l'intera riduzione dei tempi, mentre la relazione avverte che, per l'effetto concomitante della nuova legge, il miglioramento «non può essere attribuito al solo gemellaggio» (inferenza). C riferisce alle sole amministrazioni locali il totale dei funzionari formati, di cui quelli locali sono appena un quarto, cioè circa 200 (ambito). D enuncia una regola generale che il brano non contiene: il testo descrive un solo programma, rivolto a un paese candidato, e non dice chi altro possa beneficiarne (fuori testo).",
+    "review": "Chiave B riformulata con la causa che il brano indica («rinviata per problemi di connettività»), a contenuto invariato: contro l'indizio «frase causale = sbagliata»."
   },
   {
     "id": 1177,
@@ -740,6 +744,7 @@
       "A"
     ],
     "evidence": "All'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza",
-    "explanation": "A è corretta: «all'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza», e la patente «netta» era proprio quella dei porti senza epidemie, quindi l'obbligo valeva anche per loro. B aggiunge un'informazione storica plausibile sull'amministrazione del lazzaretto, che il brano non fornisce (fuori testo). C estende a tutte le merci un trattamento che il brano riserva a quelle «ritenute più pericolose» (quantificatore). D trasforma una durata massima («fino a quaranta giorni») in una durata fissa (parafrasi)."
+    "explanation": "A è corretta: «All'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza», e la patente «netta» era proprio quella dei porti senza epidemie, quindi l'obbligo valeva anche per loro. B aggiunge un'informazione storica plausibile sull'amministrazione del lazzaretto, che il brano non fornisce (fuori testo). C estende a tutte le merci un trattamento che il brano riserva a quelle «ritenute più pericolose» (quantificatore). D trasforma una durata massima («fino a quaranta giorni») in una durata fissa (parafrasi).",
+    "review": "Spiegazione: citazione resa identica al brano (maiuscola iniziale)."
   }
 ]

@@ -83,7 +83,7 @@ for (const lv of [1, 2, 3]) {
       const st = o.fig.state;
       if (st.center === 'dots' && (st.dots < 1 || st.dots > 9)) bad(`pallini fuori scala ${tag}`);
       if (st.center === 'fig' && st.kind === 'poly' && (st.sides < 3 || st.sides > 8)) bad(`lati fuori scala ${tag}`);
-      if (o.trap && !['conteggio', 'rotazione', 'alternanza', 'riempimento', 'posizione', 'combinata'].includes(o.trap)) bad(`trappola sconosciuta ${o.trap} ${tag}`);
+      if (o.trap && !['conteggio', 'rotazione', 'alternanza', 'riempimento', 'posizione', 'combinata', 'costante'].includes(o.trap)) bad(`trappola sconosciuta ${o.trap} ${tag}`);
       if (o.trap) trapCount[o.trap] = (trapCount[o.trap] || 0) + 1;
       if (!o.fig.label || /undefined|NaN/.test(o.fig.label)) bad(`etichetta ${tag}`);
     }

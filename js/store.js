@@ -159,8 +159,10 @@ App.store = (() => {
     const stats = new Map();
     for (const e of log()) {
       if (e.mode === 'external' || e.id == null || !isoT(e.t)) continue;
-      const key = `${e.bank}#${e.id}`;
-      const s = stats.get(key) || { bank: e.bank, id: e.id, seen: 0, wrong: 0, blank: 0, last: null, lastOk: null, box: 0, due: null, simSeen: false, healedAt: null, modes: new Set() };
+      // Un gemello (ripasso con numeri nuovi) conta per l'item originale.
+      const id = e.twinOf != null ? e.twinOf : e.id;
+      const key = `${e.bank}#${id}`;
+      const s = stats.get(key) || { bank: e.bank, id, seen: 0, wrong: 0, blank: 0, last: null, lastOk: null, box: 0, due: null, simSeen: false, healedAt: null, modes: new Set() };
       s.seen++;
       s.last = e.t;
       s.lastOk = Boolean(e.ok);
@@ -170,10 +172,15 @@ App.store = (() => {
         s.blank++; // lasciata in bianco: conta nel punteggio, non è una trappola e non entra nel ripasso
       } else if (e.ok) {
         // Una risposta giusta a un item in ripasso lo fa avanzare, in qualunque modalità (Micro, Allenamento, Ripasso).
-        if (s.box > 0 && e.mode !== 'sim') {
+        // Avanza solo a scadenza raggiunta: una risposta giusta il giorno dopo l'errore non vale come ripasso a distanza.
+        if (s.box > 0 && e.mode !== 'sim' && (!s.due || Date.parse(e.t) >= Date.parse(s.due))) {
           s.box = s.box >= 3 ? 0 : s.box + 1; // 1→2→3→guarita («disinnescata»)
           s.due = s.box === 0 ? null : addDays(e.t, s.box === 2 ? 3 : 7);
           if (s.box === 0) s.healedAt = e.t;
+        } else if (s.box === 0 && e.conf === 'doubt' && e.mode !== 'sim') {
+          // Giusta ma in dubbio: torna dopo 3 giorni, per consolidarla.
+          s.box = 2;
+          s.due = addDays(e.t, 3);
         }
       } else {
         s.wrong++;

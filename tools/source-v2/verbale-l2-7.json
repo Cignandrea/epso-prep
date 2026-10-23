@@ -34,7 +34,8 @@
    "C"
   ],
   "evidence": "alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, sono rincarati più della media",
-  "explanation": "C è corretta: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, «sono rincarati più della media»; «per questo» l'inflazione del quinto più povero è stimata al 7,4%, sopra il 5,8% medio. A è smentita dal brano: per circa un terzo dei dipendenti, con il contratto scaduto, le retribuzioni «sono rimaste invariate», e il 3,1% è una media (quantificatore). B presenta come già avvenuto un recupero che il rapporto prevede per il prossimo anno, e solo se l'inflazione scenderà sotto il 3% (tempo). D trasforma «rincari inferiori» alla media in un'assenza di aumenti (parafrasi)."
+  "explanation": "C è corretta: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, «sono rincarati più della media», e il brano conclude: «Per questo l'inflazione effettivamente sostenuta dal quinto più povero delle famiglie è stimata al 7,4%», sopra il 5,8% medio. A è smentita dal brano: per circa un terzo dei dipendenti, con il contratto scaduto, le retribuzioni «sono rimaste invariate», e il 3,1% è una media (quantificatore). B presenta come già avvenuto un recupero che il rapporto prevede per il prossimo anno, e solo se l'inflazione scenderà sotto il 3% (tempo). D trasforma «rincari inferiori» alla media in un'assenza di aumenti (parafrasi).",
+  "review": "Spiegazione: «per questo» era citato con la minuscola; ora è citata la frase intera, identica al brano."
  },
  {
   "id": 1222,
@@ -294,7 +295,8 @@
    "C"
   ],
   "evidence": "Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti",
-  "explanation": "C è corretta: «solo una piccola parte» delle fibre ricavate dal riciclo torna a essere usata per nuovi tessuti, quindi la maggior parte ha altri impieghi, come imbottiture, isolanti e stracci. A riporta un fatto plausibile ma assente dal brano, che dice soltanto che gli abiti usati sono venduti in gran parte all'estero (fuori testo). B confonde la quota raccolta, circa un quinto dei prodotti immessi sul mercato, con quella riutilizzata, che è il 55% del materiale raccolto (parafrasi). D presenta come completa una ripartizione parziale: oltre al 55% riutilizzato e al 30% riciclato, il resto del materiale, troppo deteriorato o contaminato, è stato incenerito (ambito)."
+  "explanation": "C è corretta: «Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti», quindi la maggior parte ha altri impieghi, come imbottiture, isolanti e stracci. A riporta un fatto plausibile ma assente dal brano, che dice soltanto che gli abiti usati sono venduti in gran parte all'estero (fuori testo). B confonde la quota raccolta, circa un quinto dei prodotti immessi sul mercato, con quella riutilizzata, che è il 55% del materiale raccolto (parafrasi). D presenta come completa una ripartizione parziale: oltre al 55% riutilizzato e al 30% riciclato, il resto del materiale, troppo deteriorato o contaminato, è stato incenerito (ambito).",
+  "review": "Spiegazione: citazione estesa alla frase intera, identica al brano (maiuscola iniziale)."
  },
  {
   "id": 1229,
@@ -495,7 +497,7 @@
   "options": [
    {
     "letter": "A",
-    "text": "Al netto dei costi di lavoro, la vendita diretta conserva in media un vantaggio.",
+    "text": "A causa dei maggiori costi di lavoro, il vantaggio della vendita diretta cala, ma in media resta.",
     "trap": null
    },
    {
@@ -517,8 +519,9 @@
   "correct": [
    "A"
   ],
-  "evidence": "al netto di questi costi, il vantaggio si riduce in media al 12%",
-  "explanation": "A è corretta: al netto dei maggiori costi di lavoro il vantaggio «si riduce in media al 12%», quindi diminuisce ma non si annulla. B confonde il prezzo di vendita, più alto del 35%, con il guadagno, il cui vantaggio netto è in media del 12% (parafrasi). C generalizza un risparmio che riguarda frutta e verdura di stagione, non formaggi e salumi (quantificatore). D inverte il rapporto di causa: secondo il brano il vantaggio netto è quasi nullo perché la vendita diretta assorbe solo una piccola parte della produzione, non il contrario (inferenza)."
+  "evidence": "ma sostengono maggiori costi di lavoro per il trasporto, la vendita e la gestione degli ordini: al netto di questi costi, il vantaggio si riduce in media al 12%",
+  "explanation": "A è corretta: le aziende che vendono direttamente «sostengono maggiori costi di lavoro» e «al netto di questi costi, il vantaggio si riduce in media al 12%»: i costi lo riducono, ma non lo annullano. B confonde il prezzo di vendita, più alto del 35%, con il guadagno, il cui vantaggio netto è in media del 12% (parafrasi). C generalizza un risparmio che riguarda frutta e verdura di stagione, non formaggi e salumi (quantificatore). D inverte il rapporto di causa: secondo il brano il vantaggio netto è quasi nullo perché la vendita diretta assorbe solo una piccola parte della produzione, non il contrario (inferenza).",
+  "review": "Chiave A riformulata con la causa data dal brano (maggiori costi di lavoro → vantaggio ridotto al 12%), a contenuto invariato (in media un vantaggio resta): contro l'indizio «frase causale = sbagliata»; ora A e D sono entrambe causali e si distinguono per la direzione del nesso. Evidenza estesa, spiegazione allineata."
  },
  {
   "id": 1235,

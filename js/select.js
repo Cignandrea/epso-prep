@@ -16,14 +16,15 @@ App.select = (() => {
   // ogni lotto). I lotti successivi vanno tutti all'allenamento.
   const isSimReserve = (q) => q.bank === 'verbale' && q.level >= 2 && typeof q.id === 'number' && q.id <= 1180 && ((q.id - 1101) % 20 + 20) % 20 >= 10;
 
-  // Pesi delle trappole: 1 + errori veri negli ultimi 14 giorni (max 4). Le bianche non contano.
+  // Pesi delle trappole: 1 + errori veri negli ultimi 14 giorni (max 5); un errore dato da «Sicuro» conta doppio,
+  // perché è la trappola che non si vede. Le bianche non contano.
   function tagWeights() {
     const since = new Date(); since.setDate(since.getDate() - 14);
     const w = {};
     for (const e of App.store.log()) {
       if (!isTrapError(e)) continue;
       if (new Date(e.t) < since) continue;
-      w[e.tag] = Math.min(4, (w[e.tag] || 1) + 1);
+      w[e.tag] = Math.min(5, (w[e.tag] || 1) + (e.conf === 'sure' ? 2 : 1));
     }
     return w;
   }
@@ -102,27 +103,89 @@ App.select = (() => {
   // ── Generati: numerico livello prova e astratto ──
   // levels: un livello per posizione, ciclico ([1, 2, 2, 3] su 10 item → 1,2,2,3,1,2,2,3,1,2), poi mescolati.
   // Varietà: lo stesso modello (numerico) o la stessa regola principale (astratto) al massimo due volte per sessione.
-  const CHART_SHARE = 0.4;
+  // Da quale generatore viene un item, dal prefisso dell'id: A astratto, B astratto v2, N tabelle, G grafici, M più passaggi.
+  function makerOf(id) {
+    const gen = App.gen || {};
+    const n = gen.numerico || {};
+    return { A: gen.astratto, B: gen.astratto2, N: gen.numerico, G: n.chart, M: n.multi }[String(id)[0]] || null;
+  }
+  // Quote per livello prova: numerico su tabelle eterogenee a più passaggi (come il campione ufficiale), grafici e tabelle
+  // semplici; astratto con più elementi per figura (v2) accanto alle serie a una figura. Senza un generatore, la sua quota
+  // passa agli altri.
+  function chooseMaker(bankId, level) {
+    const gen = App.gen || {};
+    if (bankId === 'astratto') {
+      const v2 = gen.astratto2 && level >= 2 && Math.random() < (level >= 3 ? 0.5 : 0.35);
+      return v2 ? gen.astratto2 : gen.astratto;
+    }
+    const n = gen.numerico;
+    if (!n) return null;
+    const r = Math.random();
+    if (level >= 2 && n.multi && r < 0.35) return n.multi;
+    if (n.chart && r < (level >= 2 && n.multi ? 0.6 : 0.3)) return n.chart;
+    return n;
+  }
+  // «Tipo» per la varietà e per i gemelli: il modello per il numerico, la combinazione di regole per l'astratto.
+  const kindOf = (q) => (q.bank === 'astratto' ? ((q.rules || []).map((r) => r.type).sort().join('+') || q.tag) : ((q.meta && q.meta.template) || q.tag));
+
+  // Ripasso con un gemello: per numerico e astratto generati, stesso modello (o stesse regole) e stesso livello, con
+  // numeri e figure nuovi. Si ripassa il ragionamento, non la chiave ricordata; l'esito conta per l'item originale.
+  function twinFor(q) {
+    if (!q || typeof q.id !== 'string' || !App.gen) return q;
+    const maker = makerOf(q.id);
+    if (!maker || typeof maker.make !== 'function') return q;
+    const want = kindOf(q);
+    for (let i = 0; i < 400; i++) {
+      const seed = 1 + Math.floor(Math.random() * 2147483000);
+      let t;
+      try { t = maker.make(seed, q.level); } catch { continue; }
+      if (t && t.id !== q.id && kindOf(t) === want) return App.banks.remember({ ...t, twinOf: q.id });
+    }
+    return q;
+  }
+
+  // Modelli (numerico) e combinazioni di regole (astratto) sbagliati spesso negli ultimi 14 giorni: almeno 2 errori e
+  // almeno 4 su 10. Circa un terzo di ogni sessione generata li ripropone, con numeri e figure nuovi.
+  function weakKinds(bankId) {
+    const since = Date.now() - 14 * 86400000;
+    const c = {};
+    const log = App.store.log();
+    for (let i = log.length - 1, k = 0; i >= 0 && k < 150; i--) {
+      const e = log[i];
+      if (e.bank !== bankId || typeof e.id !== 'string' || e.unanswered || e.mode === 'external' || Date.parse(e.t) < since) continue;
+      k++;
+      const q = App.banks.question(bankId, e.id);
+      if (!q) continue;
+      const kd = kindOf(q);
+      c[kd] = c[kd] || { n: 0, wrong: 0 };
+      c[kd].n++; if (!e.ok) c[kd].wrong++;
+    }
+    return new Set(Object.entries(c).filter(([, x]) => x.wrong >= 2 && x.wrong / x.n >= 0.4).map(([kd]) => kd));
+  }
+
   function genPick(bankId, n, levels = [2], { tags = null, exclude = [] } = {}) {
     const g = bankId === 'astratto' ? App.gen && App.gen.astratto : App.gen && App.gen.numerico;
     if (!g || n <= 0) return [];
     const out = [];
     const seen = new Set(exclude.map((q) => q.id));
     const kinds = {};
-    // «Tipo» per la varietà: il modello per il numerico, la combinazione di regole per l'astratto.
-    const kindOf = (q) => (q.bank === 'astratto' ? ((q.rules || []).map((r) => r.type).sort().join('+') || q.tag) : ((q.meta && q.meta.template) || q.tag));
+    let weak = new Set();
+    try { weak = weakKinds(bankId); } catch (err) { console.warn('modelli deboli non calcolabili', err); }
+    const wantWeak = weak.size && !tags ? Math.max(1, Math.round(n * 0.3)) : 0;
+    let weakTaken = 0;
     const maxKind = Math.max(2, Math.ceil(n / 4));
     for (let guard = 0; out.length < n && guard < n * 40; guard++) {
       const level = levels[out.length % levels.length];
       const seed = 1 + Math.floor(Math.random() * 2147483000);
-      // Numerico: circa 4 domande su 10 partono da un grafico (barre, linee, torte), le altre da una tabella.
-      const maker = bankId === 'numerico' && g.chart && Math.random() < CHART_SHARE ? g.chart : g;
+      const maker = chooseMaker(bankId, level) || g;
       let q;
       try { q = maker.make(seed, level); } catch (err) { console.warn('generatore', bankId, err); continue; }
       if (!q || seen.has(q.id)) continue;
       const strict = guard < n * 30; // dopo molti tentativi si rinuncia ai filtri piuttosto che lasciare la sessione corta
       if (strict && tags && !hasTag(q, tags) && !(q.rules || []).some((r) => tags.includes(r.type))) continue;
       if (strict && (kinds[kindOf(q)] || 0) >= maxKind) continue;
+      if (strict && weakTaken < wantWeak && !weak.has(kindOf(q)) && guard < n * 20) continue;
+      if (weak.has(kindOf(q))) weakTaken++;
       kinds[kindOf(q)] = (kinds[kindOf(q)] || 0) + 1;
       seen.add(q.id);
       out.push(App.banks.remember(q));
@@ -131,7 +194,7 @@ App.select = (() => {
   }
   function dueOf(bankId, max, filter = () => true) {
     const pending = pendingSimKeys();
-    return shuffle(dueItems().filter((q) => q.bank === bankId && filter(q) && !pending.has(key(q)))).slice(0, max);
+    return shuffle(dueItems().filter((q) => q.bank === bankId && filter(q) && !pending.has(key(q)))).slice(0, max).map(twinFor);
   }
 
   // ── Tappe del percorso ──
@@ -170,7 +233,8 @@ App.select = (() => {
       for (const s of seen) add(App.banks.question(s.bank, s.id));
     }
     if (chosen.length < 3) for (const q of [...pickVerbal(2, { levels: [1, 2], due: false }), ...genPick('astratto', 2, [1, 2])]) add(q);
-    return chosen;
+    // Nel ripasso finale dello scarico niente di nuovo; negli altri, gemelli per numerico e astratto.
+    return onlySeen ? chosen : chosen.map(twinFor);
   }
 
   // Allenamento libero (menu «Altro»): n item di una prova al livello della prova.
@@ -211,7 +275,9 @@ App.select = (() => {
   }
 
   // Simulazione: verbale mai visto (prima le riserve del livello prova); numerico e astratto generati.
-  function pickSim(bankId, n) {
+  // Le riserve vanno prima solo nelle simulazioni del percorso: una simulazione a scelta usa prima gli altri brani nuovi,
+  // così non consuma i brani tenuti per la simulazione n. 2.
+  function pickSim(bankId, n, { reserveFirst = true } = {}) {
     if (bankId !== 'verbale') {
       const items = genPick(bankId, n, bankId === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
       return { items, fresh: items.length, available: Infinity };
@@ -219,11 +285,9 @@ App.select = (() => {
     const stats = App.store.itemStats();
     const all = pool('verbale', { formats: ['epso4'] });
     const unseen = all.filter((q) => !stats.has(key(q)));
-    const order = [
-      ...shuffle(unseen.filter((q) => q.level >= 2 && isSimReserve(q))),
-      ...shuffle(unseen.filter((q) => q.level >= 2 && !isSimReserve(q))),
-      ...shuffle(unseen.filter((q) => q.level < 2)),
-    ];
+    const reserve = shuffle(unseen.filter((q) => q.level >= 2 && isSimReserve(q)));
+    const other = shuffle(unseen.filter((q) => q.level >= 2 && !isSimReserve(q)));
+    const order = [...(reserveFirst ? [...reserve, ...other] : [...other, ...reserve]), ...shuffle(unseen.filter((q) => q.level < 2))];
     const chosen = order.slice(0, n);
     const fresh = chosen.length;
     const seenNotSim = all.filter((q) => stats.has(key(q)) && !stats.get(key(q)).simSeen).sort((a, b) => stats.get(key(a)).last.localeCompare(stats.get(key(b)).last));

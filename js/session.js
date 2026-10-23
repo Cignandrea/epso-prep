@@ -23,7 +23,7 @@ App.session = (() => {
     App.calc.reset();
     S = {
       id: uid(), mode, bankLabel, step, lessonId, lessonSeen: !lessonId, startedAt: new Date().toISOString(),
-      items: questions.map((q) => ({ bank: q.bank, id: q.id })),
+      items: questions.map((q) => ({ bank: q.bank, id: q.id, ...(q.twinOf ? { twinOf: q.twinOf } : {}) })),
       index: 0, phase: 'answer', selected: null, elapsed: 0,
       answers: [], // { bank, id, sel, ok, sec, conf, tag }
     };
@@ -83,7 +83,7 @@ App.session = (() => {
     const q = current();
     const pace = App.plan.PACE[q.bank] || 90;
     $('s-counter').textContent = `${S.index + 1} / ${S.items.length}`;
-    $('s-mode').textContent = `${S.mode === 'tappa' ? 'Tappa' : MODE_LABEL[S.mode]} · ${App.BANK_LABEL[q.bank] || q.bank} · ${App.levelLabel(q)}${q.format === 'vfn' ? ' · vero/falso' : ''}`;
+    $('s-mode').textContent = `${S.mode === 'tappa' ? 'Tappa' : MODE_LABEL[S.mode]} · ${App.BANK_LABEL[q.bank] || q.bank} · ${App.levelLabel(q)}${q.format === 'vfn' ? ' · vero/falso, esercizio (non è il formato della prova)' : ''}`;
     $('s-target').textContent = minSec(pace);
     $('s-tools').hidden = q.bank !== 'numerico';
     if (q.bank !== 'numerico') App.calc.hideAll();
@@ -92,6 +92,10 @@ App.session = (() => {
     p.classList.toggle('is-series', Boolean(q.series));
     p.classList.toggle('is-table', Boolean(q.table || q.chart));
     renderStimulus(p, q, { figSize: 58 });
+    // Tabelle larghe: se nella colonna non ci stanno, la tabella va sopra la domanda a tutta larghezza (come in TAO).
+    const layout = $('s-item');
+    layout.classList.remove('is-wide');
+    if (q.table) requestAnimationFrame(() => { const wide = [...p.querySelectorAll('.table-scroll, table')].some((t) => t.scrollWidth > t.clientWidth + 4); if (wide) layout.classList.add('is-wide'); });
     const qn = $('s-question');
     if (q.format === 'vfn') { qn.replaceChildren(el('span', { class: 'q-lead' }, 'In base al brano, questa affermazione è vera, falsa o indecidibile?'), el('br'), el('span', {}, q.question)); }
     else qn.textContent = q.question;
@@ -147,7 +151,8 @@ App.session = (() => {
     const q = current();
     const sec = Math.round(elapsedBefore + (Date.now() - itemShownAt) / 1000);
     const ok = q.correct[0] === S.selected;
-    const a = { bank: q.bank, id: q.id, sel: S.selected, ok, sec, conf, tag: ok ? q.tag : trapOf(q, S.selected), level: q.level, format: q.format };
+    const twinOf = S.items[S.index].twinOf;
+    const a = { bank: q.bank, id: q.id, sel: S.selected, ok, sec, conf, tag: ok ? q.tag : trapOf(q, S.selected), level: q.level, format: q.format, ...(twinOf ? { twinOf } : {}) };
     S.answers.push(a);
     S.phase = 'feedback';
     S.elapsed = 0;

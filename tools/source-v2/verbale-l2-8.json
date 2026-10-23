@@ -100,15 +100,16 @@
    },
    {
     "letter": "D",
-    "text": "Un alunno segue il corso di lingua locale soltanto se la sua famiglia lo ha scelto all'iscrizione.",
+    "text": "Il corso è facoltativo, quindi un alunno lo segue soltanto se la famiglia lo ha scelto.",
     "trap": null
    }
   ],
   "correct": [
    "D"
   ],
-  "evidence": "sono le famiglie a sceglierlo al momento dell'iscrizione",
-  "explanation": "D è corretta: il corso è facoltativo e «sono le famiglie a sceglierlo al momento dell'iscrizione», quindi senza quella scelta l'alunno non lo segue. A estende a ogni comune una maggioranza che nel capoluogo non c'è: lì ha aderito meno del 40% delle famiglie (quantificatore). B presenta come già concluso un confronto i cui primi esiti «sono attesi tra due anni» (tempo). C attribuisce all'istituto linguistico il finanziamento della formazione, che spetta alla regione; l'istituto rilascia la certificazione (ambito)."
+  "evidence": "Il corso è facoltativo: sono le famiglie a sceglierlo al momento dell'iscrizione",
+  "explanation": "D è corretta: «Il corso è facoltativo: sono le famiglie a sceglierlo al momento dell'iscrizione»; la conseguenza che l'opzione ne trae è quella del brano: senza la scelta della famiglia l'alunno non segue il corso. A estende a ogni comune una maggioranza che nel capoluogo non c'è: lì ha aderito meno del 40% delle famiglie (quantificatore). B presenta come già concluso un confronto i cui primi esiti «sono attesi tra due anni» (tempo). C attribuisce all'istituto linguistico il finanziamento della formazione, che spetta alla regione; l'istituto rilascia la certificazione (ambito).",
+  "review": "Chiave D riformulata esplicitando il nesso che il brano pone con i due punti («Il corso è facoltativo: sono le famiglie a sceglierlo…»), a contenuto invariato: contro l'indizio «frase causale = sbagliata». Evidenza estesa, spiegazione allineata."
  },
  {
   "id": 1244,
@@ -553,7 +554,8 @@
    "C"
   ],
   "evidence": "la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città",
-  "explanation": "C è corretta: gli autori avvertono che «la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città», cioè spese che ci sarebbero state anche senza il festival. A ricava dal rapporto tra 4,2 milioni e 600.000 euro una spesa «aggiuntiva» prodotta dal contributo pubblico, che lo studio non dimostra e che gli stessi autori ridimensionano (inferenza). B presenta come un fatto ciò che gli organizzatori si limitano a sostenere (parafrasi). D rovescia l'avvertenza: la stima «non tiene conto dei turisti che hanno evitato la città» (negazione)."
+  "explanation": "C è corretta: gli autori avvertono che «la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città», cioè spese che ci sarebbero state anche senza il festival. A legge il rapporto tra 4,2 milioni e 600.000 euro come spesa aggiuntiva prodotta dal contributo pubblico, ma la stima non misura questo effetto: gli autori avvertono che «comprende anche spese che i residenti avrebbero sostenuto comunque in città» e non tiene conto dei turisti che hanno evitato la città (inferenza). B presenta come un fatto ciò che gli organizzatori si limitano a sostenere (parafrasi). D rovescia l'avvertenza: la stima «non tiene conto dei turisti che hanno evitato la città» (negazione).",
+  "review": "Spiegazione di A: «aggiuntiva» era una parola dell'opzione tra «» come se fosse del brano; ora la spiegazione dice perché il nesso causale non regge (la stima include spese che ci sarebbero state comunque e ignora i turisti persi)."
  },
  {
   "id": 1256,
@@ -590,7 +592,8 @@
    "B"
   ],
   "evidence": "in tal caso decide il giudice, tenendo conto delle ragioni indicate",
-  "explanation": "B è corretta: se una parte si oppone, «in tal caso decide il giudice, tenendo conto delle ragioni indicate», quindi l'opposizione non impedisce di per sé l'udienza in videoconferenza. A ignora l'eccezione: l'obbligo di sentire i testimoni in aula non vale per chi risiede all'estero (negazione). C confonde «un terzo in meno» con «un terzo»: le udienze da remoto sono durate in media circa due terzi di quelle in presenza (parafrasi). D presenta come già emanata una circolare che il ministero ha solo annunciato (tempo)."
+  "explanation": "B è corretta: se una parte si oppone, «in tal caso decide il giudice, tenendo conto delle ragioni indicate», quindi l'opposizione non impedisce di per sé l'udienza in videoconferenza. A ignora l'eccezione: l'obbligo di sentire i testimoni in aula non vale per chi risiede all'estero (negazione). C confonde «un terzo in meno» con un terzo del tempo: le udienze da remoto sono durate in media circa due terzi di quelle in presenza (parafrasi). D presenta come già emanata una circolare che il ministero ha solo annunciato (tempo).",
+  "review": "Spiegazione di C: «un terzo» era la formula dell'opzione tra «»; ora è detta senza virgolette."
  },
  {
   "id": 1257,
@@ -664,7 +667,8 @@
    "A"
   ],
   "evidence": "scende al 45% tra i 15 e i 17 anni",
-  "explanation": "A è corretta: tra i 15 e i 17 anni la quota di chi ha letto almeno un libro non scolastico «scende al 45%», quindi è inferiore alla metà. B trasforma in rapporto di causa una differenza che, secondo gli autori, «riflette anche differenze di reddito e di istruzione tra le famiglie» (inferenza). C fa un confronto tra fasce d'età diverse che il brano non fa: ragazze e ragazzi sono confrontati solo all'interno di ciascuna fascia (inferenza). D trasforma «in larga parte» in «tutto» (quantificatore)."
+  "explanation": "A è corretta: tra i 15 e i 17 anni la quota di chi ha letto almeno un libro non scolastico «scende al 45%», quindi è inferiore alla metà. B trasforma in rapporto di causa una differenza che, secondo gli autori, «riflette anche differenze di reddito e di istruzione tra le famiglie» (inferenza). C fa un confronto tra fasce d'età diverse che il brano non fa: ragazze e ragazzi sono confrontati solo all'interno di ciascuna fascia (inferenza). D trasforma una causa che per gli editori vale «in larga parte» in una causa unica, come se l'aumento si dovesse tutto a fumetti e romanzi grafici (quantificatore).",
+  "review": "Spiegazione di D: «tutto» era una parola dell'opzione tra «» come se fosse del brano; ora è riferita all'opzione senza virgolette."
  },
  {
   "id": 1259,

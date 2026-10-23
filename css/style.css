@@ -246,7 +246,7 @@ button.tool-row:hover { background: var(--paper-2); }
 .fig-missing { display: inline-grid; place-items: center; width: 56px; height: 56px; border: 1px solid var(--line); }
 .opt-figure { line-height: 0; }
 .opt-figure svg { max-width: 100%; height: auto; }
-mark.evidence { background: var(--hl); color: inherit; border-radius: 2px; padding: 0 1px; }
+mark.evidence { background: var(--hl-soft); color: inherit; border-bottom: 2px solid var(--hl); padding: 0 1px; }
 .review-figs { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
 .review-fig { display: inline-flex; align-items: center; gap: 4px; padding: 4px; border: 1.5px solid var(--line); border-radius: 8px; }
 .review-fig.is-correct { border-color: var(--ok); background: var(--ok-bg); }
@@ -320,7 +320,11 @@ body[data-view="session"] .main { max-width: 1240px; }
 .item-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
 .passage { font-family: var(--serif); font-size: 1.06rem; line-height: 1.62; background: var(--sheet); border: 1px solid var(--rule); padding: 14px 16px; max-height: 44dvh; overflow: auto; }
 .passage p:last-child { margin-bottom: 0; }
-.passage.is-table { font-family: var(--sans); font-size: 1rem; line-height: 1.45; }
+.passage.is-table { font-family: var(--sans); font-size: 1rem; line-height: 1.45; max-height: none; }
+/* Tabelle larghe (molte colonne): una colonna sola, la tabella sopra la domanda, come in TAO. */
+.item-layout.is-wide { grid-template-columns: minmax(0, 1fr); }
+.item-layout.is-wide .item-content { position: static; }
+.item-layout.is-wide .passage { max-height: none; }
 .question { font-weight: 600; font-size: 1.06rem; margin: 0 0 12px; line-height: 1.4; }
 .options { display: grid; gap: 8px; }
 .opt { display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: center; gap: 12px; text-align: left; border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 10px 14px 10px 10px; min-height: 54px; line-height: 1.42; color: inherit; }
@@ -398,6 +402,7 @@ details.review-item.ko summary { color: var(--ko); }
 .tile .num-label { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-size: .85rem; }
 .stato-gauges { margin: 0 0 8px; max-width: 640px; }
 #view-stato .sec-h { margin-top: 1.6rem; }
+#view-stato .stato-grid { border-top: 0; }
 #stato-banks .session-row { grid-template-columns: 110px minmax(0, 1fr) auto; }
 .tagbars { display: grid; gap: 8px; }
 .tagbar { display: grid; grid-template-columns: minmax(120px, 1fr) 2fr auto; gap: 10px; align-items: center; font-size: .93rem; }
@@ -432,7 +437,7 @@ body[data-view="sim"] .modal .btn-primary { background: #1a56db; border-color: #
 @media (min-width: 640px) and (min-aspect-ratio: 1/1) {
   .item-layout { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 28px; align-items: start; }
   .item-content { position: sticky; top: calc(var(--topbar) + 8px); }
-  .passage { max-height: calc(100dvh - var(--topbar) - 96px); }
+  .passage, .passage.is-table { max-height: calc(100dvh - var(--topbar) - 96px); }
   /* Con un widget agganciato la colonna di sinistra scorre al suo interno (schermi bassi): i tasti restano raggiungibili. */
   .item-content.has-dock { max-height: calc(100dvh - var(--topbar) - 96px); overflow: auto; }
 }

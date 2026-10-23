@@ -199,11 +199,12 @@ App.lessons = (() => {
         'Sulla scrivania **solo** il documento, una bevanda in un contenitore trasparente senza etichetta e al massimo 2 fazzoletti bianchi.',
         '**Nessun\'altra persona** nella stanza, neanche udibile; telefono lontano, solo per chiamare il supporto.',
         '**Non leggere ad alta voce** le domande; non uscire dall\'inquadratura né dallo schermo intero.',
+        '**Test chiuso da solo** (per esempio uscendo dallo schermo intero): torna alla pagina principale di TAO e premi «Continue testing» se è attivo; se non lo è, chiama il supporto e chiedi l\'autorizzazione a rientrare.',
         '**Problema tecnico**: chiama subito il supporto TAO (+351 211 554 559, lunedì–venerdì 9–18, in inglese e francese) e annota ora e accaduto; il reclamo si fa dall\'account EPSO entro **sabato 14/11**.',
         'Durante la prova **non aprire quest\'app né Claude**: copiare o condividere il contenuto delle prove, anche in strumenti di AI, è vietato.',
       ],
       tip: 'Il giorno prima niente esercizi nuovi: prepara il posto e dormi.',
-      src: 'Istruzioni TAO 427-26 · policy antifrode EPSO v1.3',
+      src: 'Istruzioni TAO 427-26 V1 (§3.2.7) · policy antifrode EPSO v1.3',
     },
   ];
   const byId = new Map(L.map((x) => [x.id, x]));

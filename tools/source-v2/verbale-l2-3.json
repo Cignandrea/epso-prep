@@ -21,7 +21,7 @@
       },
       {
         "letter": "C",
-        "text": "Il sistema di monitoraggio delle acque reflue non consente di identificare le singole persone infette.",
+        "text": "Poiché ogni campione raccoglie gli scarichi di migliaia di case, il sistema non identifica le singole persone infette.",
         "trap": null
       },
       {
@@ -33,8 +33,9 @@
     "correct": [
       "C"
     ],
-    "evidence": "il sistema non permette inoltre di risalire a singoli individui",
-    "explanation": "C è corretta: poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema «non permette inoltre di risalire a singoli individui», e quindi non consente di identificare chi è infetto. A trasforma in regola valida per ogni area un dato che il brano presenta come media, «in media di sei giorni» (quantificatore). B presenta come già avvenuta l'estensione ad altri 30 impianti, che l'agenzia intende realizzare entro il prossimo anno (tempo). D trasforma in possibilità condizionata un limite che il brano dichiara senza eccezioni: il metodo «non consente di stimare con precisione» il numero di persone infette (negazione)."
+    "evidence": "Poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema non permette inoltre di risalire a singoli individui",
+    "explanation": "C è corretta: il brano dà la stessa causa, «Poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema non permette inoltre di risalire a singoli individui», e senza risalire ai singoli non si può identificare chi è infetto. A trasforma in regola valida per ogni area un dato che il brano presenta come media, «in media di sei giorni» (quantificatore). B presenta come già avvenuta l'estensione ad altri 30 impianti, che l'agenzia intende realizzare entro il prossimo anno (tempo). D trasforma in possibilità condizionata un limite che il brano dichiara senza eccezioni: il metodo «non consente di stimare con precisione» il numero di persone infette (negazione).",
+    "review": "Chiave C riformulata con la causa che il brano dà con «Poiché», a contenuto invariato: contro l'indizio «frase causale = sbagliata» (anche B contiene «perché», ma è sbagliata per il tempo). Evidenza estesa alla frase intera, spiegazione allineata."
   },
   {
     "id": 1142,
@@ -368,7 +369,8 @@
       "A"
     ],
     "evidence": "sta informando per lettera i pazienti interessati",
-    "explanation": "A è corretta: l'azienda «sta informando per lettera i pazienti interessati», cioè quelli i cui dati sono stati copiati. B trasforma un invito alla prudenza in un fatto accaduto, mentre il brano precisa che non è stato possibile stabilire se i dati siano stati diffusi (inferenza). C estende a tutti i pazienti un attacco che ha riguardato i dati di circa 60.000 persone, su un totale di 450.000 assistiti (quantificatore). D sostituisce «copiato» con «cancellato», un'azione che il brano non riferisce (parafrasi)."
+    "explanation": "A è corretta: l'azienda «sta informando per lettera i pazienti interessati», cioè quelli i cui dati sono stati copiati. B trasforma un invito alla prudenza in un fatto accaduto, mentre il brano precisa che non è stato possibile stabilire se i dati siano stati diffusi (inferenza). C estende a tutti i pazienti un attacco che ha riguardato i dati di circa 60.000 persone, su un totale di 450.000 assistiti (quantificatore). D sostituisce la copia con una cancellazione: secondo il brano gli autori dell'attacco «hanno copiato una parte dell'archivio amministrativo», non l'hanno cancellata (parafrasi).",
+    "review": "Spiegazione di D: «cancellato» era una parola dell'opzione tra «» come se fosse del brano; ora tra «» c'è solo testo del brano."
   },
   {
     "id": 1151,
@@ -443,7 +445,8 @@
       "B"
     ],
     "evidence": "Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia",
-    "explanation": "B è corretta: il brano stabilisce che «prima di uscire dal laboratorio, tutti i risultati» sono controllati dal personale dell'agenzia. A confonde pseudonimizzazione e anonimato: secondo il brano, le informazioni restanti potrebbero in teoria permettere di risalire a singole persone (parafrasi). C applica allo scaricamento l'autorizzazione prevista per il collegamento remoto, mentre i dati non si possono scaricare «in nessun caso» (negazione). D estende la gratuità agli istituti privati, che invece versano un contributo annuale (ambito)."
+    "explanation": "B è corretta: il brano stabilisce: «Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia». A confonde pseudonimizzazione e anonimato: secondo il brano, le informazioni restanti potrebbero in teoria permettere di risalire a singole persone (parafrasi). C applica allo scaricamento l'autorizzazione prevista per il collegamento remoto, mentre i dati non si possono scaricare «in nessun caso» (negazione). D estende la gratuità agli istituti privati, che invece versano un contributo annuale (ambito).",
+    "review": "Spiegazione: citazione resa identica al brano (maiuscola iniziale, frase intera)."
   },
   {
     "id": 1153,
@@ -628,7 +631,8 @@
       "C"
     ],
     "evidence": "le informazioni che i registri non contengono, come la lingua parlata in casa o il tipo di riscaldamento delle abitazioni, vengono invece stimate a partire dalle indagini",
-    "explanation": "C è corretta: la lingua parlata in casa è tra le informazioni che i registri non contengono e che «vengono invece stimate a partire dalle indagini» campionarie. A estende a tutte le stime una minore precisione che alcuni studiosi segnalano solo per i comuni più piccoli (ambito). B confonde «un terzo del precedente» con «un terzo in meno»: il nuovo sistema costa circa il 33% del vecchio, non il 67% (parafrasi). D legge «non devono più rispondere tutte nello stesso anno» come se le famiglie non dovessero più rispondere affatto (negazione)."
+    "explanation": "C è corretta: la lingua parlata in casa è tra le informazioni che i registri non contengono e che «vengono invece stimate a partire dalle indagini» campionarie. A estende a tutte le stime una minore precisione che alcuni studiosi segnalano solo per i comuni più piccoli (ambito). B confonde «un terzo del precedente» con un risparmio di un terzo: il nuovo sistema costa circa il 33% del vecchio, non il 67% (parafrasi). D legge «non devono più rispondere tutte nello stesso anno» come se le famiglie non dovessero più rispondere affatto (negazione).",
+    "review": "Spiegazione di B: «un terzo in meno» era la formula dell'opzione tra «» come se fosse del brano; ora è descritta senza virgolette."
   },
   {
     "id": 1158,

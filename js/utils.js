@@ -88,6 +88,12 @@ App.utils = (() => {
 
   // Una figura dell'astratto (SVG costruito dal generatore). Se il generatore manca, un segnaposto leggibile.
   function figure(spec, { size = 64, label = '' } = {}) {
+    // Le serie del generatore v2 (id «B…», più elementi per figura) hanno il loro disegno.
+    if (spec && spec.v === 2) {
+      const g2 = window.App && App.gen && App.gen.astratto2;
+      if (g2) { try { return g2.draw(spec, { size, label }); } catch (err) { console.warn('figura v2 non disegnabile', err); } }
+      return el('span', { class: 'fig-missing' }, '?');
+    }
     const g = window.App && App.gen && App.gen.astratto;
     if (g && spec) { try { return g.frameSvg(spec, { size, label }); } catch (err) { console.warn('figura non disegnabile', err); } }
     return el('span', { class: 'fig-missing' }, '?');

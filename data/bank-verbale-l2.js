@@ -1,4 +1,4 @@
-// EU Prep — banca "verbale", livello prova (80 quesiti). FILE GENERATO da tools/build-l2.js: non modificare a mano.
+// EU Prep — banca "verbale", livello prova (160 quesiti). FILE GENERATO da tools/build-l2.js: non modificare a mano.
 registerBank({
  "id": "verbale",
  "questions": [
@@ -38,7 +38,7 @@ registerBank({
     "C"
    ],
    "evidence": "il 38% delle imprese intervistate dichiarava di vendere attraverso un proprio sito o una piattaforma di terzi, contro il 29% della rilevazione condotta tre anni prima",
-   "explanation": "C è corretta: nel 2025 vendeva online \"il 38% delle imprese intervistate\", contro \"il 29% della rilevazione condotta tre anni prima\": la differenza è di nove punti percentuali. A estende all'insieme delle PMI del settore un dato del solo campione, che esclude le imprese con meno di cinque addetti: l'agenzia avverte che i risultati \"non descrivono l'insieme\" delle imprese (inferenza: generalizzazione da un campione). B trasferisce al fatturato la soglia della metà, che il brano riferisce alla quota di imprese con oltre cento addetti che vendono online (\"superava la metà\"); sul fatturato il brano dà solo la media del 9% per tutte le imprese che vendono online (ambito). D trasforma il 43% in \"la maggior parte\", cioè oltre il 50% (quantificatore)."
+   "explanation": "C è corretta: nel 2025 vendeva online «il 38% delle imprese intervistate», contro «il 29% della rilevazione condotta tre anni prima»: la differenza è di nove punti percentuali. A estende all'insieme delle PMI del settore un dato del solo campione, che esclude le imprese con meno di cinque addetti: l'agenzia avverte che i risultati «non descrivono l'insieme» delle imprese (inferenza: generalizzazione da un campione). B trasferisce al fatturato la soglia della metà, che il brano riferisce alla quota di imprese con oltre cento addetti che vendono online («superava la metà»); sul fatturato il brano dà solo la media del 9% per tutte le imprese che vendono online (ambito). D parla della maggior parte delle imprese, cioè di oltre il 50%, mentre la logistica è stata «citata dal 43%» (quantificatore)."
   },
   {
    "id": 1102,
@@ -76,7 +76,7 @@ registerBank({
     "A"
    ],
    "evidence": "2,8 milioni sono vincolati da leggi o da contributi ricevuti per finalità specifiche e 1,5 milioni sono accantonati a copertura dei crediti di dubbia esigibilità",
-   "explanation": "A è corretta: dall'avanzo di 6,2 milioni si tolgono i 2,8 milioni \"vincolati\" e gli 1,5 milioni \"accantonati\"; la \"parte restante\", cioè l'avanzo libero, è 6,2 − 2,8 − 1,5 = 1,9 milioni. B presenta come già decisa una destinazione che la giunta ha solo proposto e che il consiglio comunale deve ancora approvare (tempo). C trasforma un divieto (\"ma non la spesa corrente ordinaria, come stipendi e utenze\") in un permesso condizionato (negazione). D cambia \"soprattutto\" in \"interamente\" e cancella l'altra causa indicata dai revisori, i ritardi nei cantieri (quantificatore)."
+   "explanation": "A è corretta: dall'avanzo di 6,2 milioni si tolgono i 2,8 milioni «vincolati» e gli 1,5 milioni «accantonati»; la «parte restante», cioè l'avanzo libero, è 6,2 − 2,8 − 1,5 = 1,9 milioni. B presenta come già decisa una destinazione che la giunta ha solo proposto e che il consiglio comunale deve ancora approvare (tempo). C trasforma un divieto («ma non la spesa corrente ordinaria, come stipendi e utenze») in un permesso condizionato (negazione). D trasforma la causa che per i revisori vale «soprattutto» in una causa unica e cancella l'altra che indicano, i ritardi nei cantieri (quantificatore)."
   },
   {
    "id": 1103,
@@ -114,7 +114,7 @@ registerBank({
     "D"
    ],
    "evidence": "è considerato occupato chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito",
-   "explanation": "D è corretta: il brano considera occupato \"chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito\", quindi chiunque abbia lavorato anche una sola ora; qui l'assoluto «ogni» è sostenuto dalla definizione. A attribuisce il calo alla creazione di posti di lavoro, mentre l'istituto lo spiega soprattutto con il passaggio dalla disoccupazione all'inattività (inferenza). B contraddice la definizione, che include tra gli occupati chi è \"temporaneamente assente\" dal proprio impiego \"per ferie o malattia\" (negazione). C cambia il denominatore: il brano rapporta i disoccupati alle forze di lavoro, non all'intera popolazione in età lavorativa (parafrasi)."
+   "explanation": "D è corretta: il brano considera occupato «chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito», quindi chiunque abbia lavorato anche una sola ora: l'assoluto dell'opzione (\"ogni persona\") è sostenuto dalla definizione. A attribuisce il calo alla creazione di posti di lavoro, mentre secondo l'istituto «il calo si deve in larga parte al passaggio di persone dalla disoccupazione all'inattività, più che a un aumento dell'occupazione» (inferenza). B contraddice la definizione, che include tra gli occupati chi è «temporaneamente assente» dal proprio impiego «per ferie o malattia» (negazione). C cambia il denominatore: il brano rapporta i disoccupati alle forze di lavoro, non all'intera popolazione in età lavorativa (parafrasi)."
   },
   {
    "id": 1104,
@@ -152,7 +152,7 @@ registerBank({
     "B"
    ],
    "evidence": "percentuale che sale al 25% per le imprese con meno di cinquanta dipendenti",
-   "explanation": "B è corretta: per le imprese con meno di cinquanta dipendenti la percentuale \"sale al 25%\": il 25% di 2 milioni è 500.000 euro, sotto il limite annuo di 4 milioni, e il 2027 rientra nel periodo 2026–2028. A anticipa di un anno l'uso del credito, che il brano consente solo \"a partire dall'anno successivo\" a quello delle spese (tempo). C aggiunge un requisito sulla sede legale che il brano non menziona (fuori testo). D ignora il limite: il 20% di 30 milioni sarebbe 6 milioni, ma per ciascun beneficiario il credito \"non può superare i 4 milioni di euro l'anno\" (negazione: condizione ignorata)."
+   "explanation": "B è corretta: per le imprese con meno di cinquanta dipendenti la percentuale «sale al 25%»: il 25% di 2 milioni è 500.000 euro, sotto il limite annuo di 4 milioni, e il 2027 rientra nel periodo 2026–2028. A anticipa di un anno l'uso del credito, che il brano consente solo «a partire dall'anno successivo» a quello delle spese (tempo). C aggiunge un requisito sulla sede legale che il brano non menziona (fuori testo). D ignora il limite: il 20% di 30 milioni sarebbe 6 milioni, ma per ciascun beneficiario il credito «non può superare i 4 milioni di euro l'anno» (negazione: condizione ignorata)."
   },
   {
    "id": 1105,
@@ -190,7 +190,7 @@ registerBank({
     "A"
    ],
    "evidence": "L'aumento è stato trainato dai mercati extraeuropei, saliti al 45% del totale",
-   "explanation": "A è corretta: se i mercati extraeuropei sono \"saliti al 45% del totale\", ai mercati europei va il restante 55%, cioè oltre la metà delle esportazioni. B attribuisce alle vendite verso gli altri Stati membri la crescita del 6%, che riguarda il totale, mentre il brano le dice \"sostanzialmente stabili in valore\" (ambito). C contraddice l'osservatorio: la crescita riflette soprattutto l'aumento dei prezzi, mentre il numero di paia esportate \"è leggermente diminuito\" (inferenza: crescita in valore scambiata per crescita delle quantità). D introduce una causa, le fiere internazionali, di cui il brano non parla (fuori testo)."
+   "explanation": "A è corretta: se i mercati extraeuropei sono «saliti al 45% del totale», ai mercati europei va il restante 55%, cioè oltre la metà delle esportazioni. B attribuisce alle vendite verso gli altri Stati membri la crescita del 6%, che riguarda il totale, mentre il brano le dice «sostanzialmente stabili in valore» (ambito). C contraddice l'osservatorio: la crescita riflette soprattutto l'aumento dei prezzi, mentre il numero di paia esportate «è leggermente diminuito» (inferenza: crescita in valore scambiata per crescita delle quantità). D introduce una causa, le fiere internazionali, di cui il brano non parla (fuori testo)."
   },
   {
    "id": 1106,
@@ -228,7 +228,7 @@ registerBank({
     "C"
    ],
    "evidence": "Il peso di ciascuna voce riflette la sua quota nella spesa complessiva delle famiglie, stimata sulla base dei dati dei due anni precedenti",
-   "explanation": "C è corretta: il peso di ogni voce riflette la quota di spesa delle famiglie \"stimata sulla base dei dati dei due anni precedenti\", quindi i pesi del 2026 poggiano su dati di anni precedenti. A attribuisce all'indice un uso, l'adeguamento delle pensioni, che il brano non menziona (fuori testo). B sbaglia il confronto: la metà di 12,1% è 6,05%, e l'abbigliamento pesa 6,3%, cioè più della metà (quantificatore). D cambia il motivo dell'uscita dal paniere: non il prezzo, ma il fatto che i lettori siano \"acquistati da una quota trascurabile di famiglie\" (parafrasi)."
+   "explanation": "C è corretta: il peso di ogni voce riflette la quota di spesa delle famiglie «stimata sulla base dei dati dei due anni precedenti», quindi i pesi del 2026 poggiano su dati di anni precedenti. A attribuisce all'indice un uso, l'adeguamento delle pensioni, che il brano non menziona (fuori testo). B sbaglia il confronto: la metà di 12,1% è 6,05%, e l'abbigliamento pesa 6,3%, cioè più della metà (quantificatore). D cambia il motivo dell'uscita dal paniere: non il prezzo, ma il fatto che i lettori siano «acquistati da una quota trascurabile di famiglie» (parafrasi)."
   },
   {
    "id": 1107,
@@ -266,7 +266,7 @@ registerBank({
     "D"
    ],
    "evidence": "per quelli destinati al capitale circolante il 60%; le imprese costituite da meno di tre anni beneficiano di dieci punti percentuali aggiuntivi",
-   "explanation": "D è corretta: per il capitale circolante la garanzia copre il 60%, più \"dieci punti percentuali aggiuntivi\" per le imprese costituite da meno di tre anni; il 70% di 500.000 euro è 350.000 euro, sotto il limite di 2,5 milioni per singolo prestito. A attribuisce alla valutazione la prova di un nesso causale che essa non afferma: rileva una differenza, ma avverte che parte di essa \"potrebbe dipendere\" dal tipo di imprese che si rivolgono al fondo (inferenza). B applica i dieci punti aggiuntivi a un'impresa costituita da cinque anni, che non rientra tra quelle \"costituite da meno di tre anni\": la garanzia copre l'80%, cioè 400.000 euro (ambito). C dice che il tasso di insolvenza \"è sceso\", mentre il brano dice solo che \"si è attestato al 2,1%\", senza confronti con gli anni precedenti (parafrasi)."
+   "explanation": "D è corretta: per il capitale circolante la garanzia copre il 60%, più «dieci punti percentuali aggiuntivi» per le imprese costituite da meno di tre anni; il 70% di 500.000 euro è 350.000 euro, sotto il limite di 2,5 milioni per singolo prestito. A attribuisce alla valutazione la prova di un nesso causale che essa non afferma: rileva una differenza, ma avverte che parte di essa «potrebbe dipendere» dal tipo di imprese che si rivolgono al fondo (inferenza). B applica i dieci punti aggiuntivi a un'impresa costituita da cinque anni, che non rientra tra quelle «costituite da meno di tre anni»: la garanzia copre l'80%, cioè 400.000 euro (ambito). C presenta il 2,1% come un calo del tasso di insolvenza, mentre il brano dice solo che «si è attestato al 2,1%», senza confronti con gli anni precedenti (parafrasi)."
   },
   {
    "id": 1108,
@@ -304,7 +304,7 @@ registerBank({
     "B"
    ],
    "evidence": "per i prodotti agricoli trasformati l'eliminazione avverrà in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore",
-   "explanation": "B è corretta: l'eliminazione dei dazi avviene \"in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore\" (1º gennaio 2027); la quinta e ultima rata cade quindi nel 2031, e prima di allora i dazi non sono del tutto azzerati. A restringe l'intervallo stimato: gli studi indicano un aumento \"compreso tra il 15% e il 25%\", che può quindi risultare anche inferiore al 20% (quantificatore). C aggiunge una procedura di ratifica di cui il brano non parla (fuori testo). D legge l'esclusione dalla liberalizzazione come un divieto, mentre oltre il volume prestabilito si applica semplicemente \"il dazio pieno\" (negazione)."
+   "explanation": "B è corretta: l'eliminazione dei dazi avviene «in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore» (1º gennaio 2027); la quinta e ultima rata cade quindi nel 2031, e prima di allora i dazi non sono del tutto azzerati. A restringe l'intervallo stimato: gli studi indicano un aumento «compreso tra il 15% e il 25%», che può quindi risultare anche inferiore al 20% (quantificatore). C aggiunge una procedura di ratifica di cui il brano non parla (fuori testo). D legge l'esclusione dalla liberalizzazione come un divieto, mentre oltre il volume prestabilito si applica semplicemente «il dazio pieno» (negazione)."
   },
   {
    "id": 1109,
@@ -342,7 +342,7 @@ registerBank({
     "B"
    ],
    "evidence": "per questo viene rivista dopo sessanta giorni, quando sono disponibili dati più completi, e di nuovo con la pubblicazione dei conti annuali",
-   "explanation": "B è corretta: la stima preliminare, pubblicata per ogni trimestre, \"viene rivista dopo sessanta giorni\" e \"di nuovo con la pubblicazione dei conti annuali\"; qui l'assoluto «ogni» è sostenuto dal testo. A contraddice il dato \"in nove casi su dieci\": nel decimo caso il segno è cambiato, quindi non è vero che non sia \"mai\" successo (quantificatore). C generalizza da un solo caso: il brano indica una revisione media di un decimo di punto \"in valore assoluto\", senza dire in quale direzione (inferenza). D confonde i tempi: la stima esce a trenta giorni, mentre a sessanta giorni arriva la prima revisione (tempo)."
+   "explanation": "B è corretta: la stima preliminare, pubblicata per ogni trimestre, «viene rivista dopo sessanta giorni» e «di nuovo con la pubblicazione dei conti annuali»: l'assoluto dell'opzione (\"Ogni stima preliminare\") è quindi sostenuto dal testo. A contraddice il dato «in nove casi su dieci»: nel decimo caso il segno è cambiato, quindi l'assoluto dell'opzione (\"mai\") è falso (quantificatore). C generalizza da un solo caso: il brano indica una revisione media di un decimo di punto «in valore assoluto», senza dire in quale direzione (inferenza). D confonde i tempi: la stima esce a trenta giorni, mentre a sessanta giorni arriva la prima revisione (tempo)."
   },
   {
    "id": 1110,
@@ -380,7 +380,7 @@ registerBank({
     "D"
    ],
    "evidence": "Tra chi aveva frequentato i corsi di logistica la quota saliva al 58%",
-   "explanation": "D è corretta: a sei mesi dalla conclusione dei corsi aveva un contratto di lavoro il 46% dei partecipanti, mentre \"tra chi aveva frequentato i corsi di logistica la quota saliva al 58%\". A sposta a diciotto mesi un dato misurato a sei: la verifica a diciotto mesi è solo raccomandata dagli autori (tempo). B rovescia la condizione: l'indennità si perdeva solo abbandonando \"senza giustificato motivo\" (negazione). C cambia \"in larga parte\" in \"interamente\", attribuendo agli autori una certezza che non esprimono (quantificatore)."
+   "explanation": "D è corretta: a sei mesi dalla conclusione dei corsi aveva un contratto di lavoro il 46% dei partecipanti, mentre tra chi aveva frequentato i corsi di logistica «la quota saliva al 58%». A sposta a diciotto mesi un dato misurato a sei: la verifica a diciotto mesi è solo raccomandata dagli autori (tempo). B rovescia la condizione: l'indennità si perdeva solo abbandonando «senza giustificato motivo» (negazione). C trasforma una causa che per gli autori vale «in larga parte» in una causa unica, attribuendo loro una certezza che non esprimono (quantificatore)."
   },
   {
    "id": 1111,
@@ -418,7 +418,7 @@ registerBank({
     "A"
    ],
    "evidence": "il 79% era ancora attivo dopo tre anni e il 63% dopo cinque",
-   "explanation": "A è corretta: era ancora attivo il 79% dopo tre anni e il 63% dopo cinque, quindi tra i tre e i cinque anni di vita ha cessato l'attività il 16% della generazione del 2020 (79 − 63). B attribuisce al registro un nesso causale che il registro stesso \"non permette di stabilire\": il vantaggio potrebbe dipendere dal personale o dal capitale iniziale (inferenza). C sposta a cinque anni la quota dei tre anni: 41.000 è circa il 79% di 52.000, mentre dopo cinque anni era attivo il 63%, cioè circa 32.800 società (tempo). D attribuisce alla manifattura il tasso del commercio al dettaglio e della ristorazione; per la manifattura il brano indica oltre il 70% (ambito)."
+   "explanation": "A è corretta: era ancora attivo il 79% dopo tre anni e il 63% dopo cinque, quindi tra i tre e i cinque anni di vita ha cessato l'attività il 16% della generazione del 2020 (79 − 63). B attribuisce al registro un nesso causale che il registro stesso «non permette di stabilire»: il vantaggio potrebbe dipendere dal personale o dal capitale iniziale (inferenza). C sposta a cinque anni la quota dei tre anni: 41.000 è circa il 79% di 52.000, mentre dopo cinque anni era attivo il 63%, cioè circa 32.800 società (tempo). D attribuisce alla manifattura il tasso del commercio al dettaglio e della ristorazione; per la manifattura il brano indica oltre il 70% (ambito)."
   },
   {
    "id": 1112,
@@ -456,7 +456,7 @@ registerBank({
     "C"
    ],
    "evidence": "termine esteso a sessanta giorni per gli enti del servizio sanitario",
-   "explanation": "C è corretta: per gli enti del servizio sanitario il termine è \"esteso a sessanta giorni\" e, secondo il monitoraggio, nel 2025 questi enti hanno pagato in media in 52 giorni, quindi entro il loro termine. A passa dalla media dei ministeri (29 giorni) a ciascun ministero: una media sotto i trenta giorni non esclude che alcuni abbiano pagato oltre il termine (quantificatore). B contraddice il brano, secondo cui gli interessi spettano \"automaticamente\", \"senza bisogno di una richiesta formale\" (negazione). D applica alle fatture contestate il ritardo medio di 19 giorni, mentre il brano le esclude dai dati (ambito)."
+   "explanation": "C è corretta: per gli enti del servizio sanitario il termine è «esteso a sessanta giorni» e, secondo il monitoraggio, nel 2025 questi enti hanno pagato in media in 52 giorni, quindi entro il loro termine. A passa dalla media dei ministeri (29 giorni) a ciascun ministero: una media sotto i trenta giorni non esclude che alcuni abbiano pagato oltre il termine (quantificatore). B contraddice il brano, secondo cui gli interessi spettano «automaticamente», «senza bisogno di una richiesta formale» (negazione). D applica alle fatture contestate il ritardo medio di 19 giorni, mentre il brano le esclude dai dati (ambito)."
   },
   {
    "id": 1113,
@@ -494,7 +494,7 @@ registerBank({
     "D"
    ],
    "evidence": "Solo il 4% dei contratti è stato aggiudicato direttamente a un'impresa straniera; la quota sale al 12% se si considerano anche le aggiudicazioni a filiali locali di gruppi stranieri",
-   "explanation": "D è corretta: il 4% dei contratti è andato direttamente a imprese straniere e la quota \"sale al 12%\" includendo le filiali locali di gruppi stranieri; a queste spetta quindi la differenza, cioè l'8%. A attribuisce allo studio la conclusione che gli autori escludono: una bassa quota di aggiudicazioni dirette \"non indica necessariamente\" una scarsa integrazione (inferenza). B confonde la quota complessiva con quella delle sole filiali: il 12% comprende anche le aggiudicazioni dirette, quindi le filiali pesano l'8%, il doppio del 4%, non il triplo (ambito). C introduce un effetto sui prezzi di aggiudicazione di cui il brano non parla (fuori testo)."
+   "explanation": "D è corretta: il 4% dei contratti è andato direttamente a imprese straniere e la quota «sale al 12%» includendo le filiali locali di gruppi stranieri; a queste spetta quindi la differenza, cioè l'8%. A attribuisce allo studio la conclusione che gli autori escludono: una bassa quota di aggiudicazioni dirette «non indica necessariamente» una scarsa integrazione (inferenza). B confonde la quota complessiva con quella delle sole filiali: il 12% comprende anche le aggiudicazioni dirette, quindi le filiali pesano l'8%, il doppio del 4%, non il triplo (ambito). C introduce un effetto sui prezzi di aggiudicazione di cui il brano non parla (fuori testo)."
   },
   {
    "id": 1114,
@@ -514,7 +514,7 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "Secondo l'istituto, rispetto a un anno prima, ad agosto i consumatori hanno speso di più pur acquistando quantità minori.",
+     "text": "Rispetto a un anno prima, ad agosto i consumatori hanno speso di più pur comprando meno, per effetto dei prezzi.",
      "trap": null
     },
     {
@@ -531,8 +531,8 @@ registerBank({
    "correct": [
     "B"
    ],
-   "evidence": "ad agosto le vendite al dettaglio sono aumentate del 2,4% in valore rispetto allo stesso mese dell'anno precedente, ma sono diminuite dello 0,6% in volume",
-   "explanation": "B è corretta: secondo l'istituto, rispetto ad agosto dell'anno precedente le vendite sono \"aumentate del 2,4% in valore\", cioè la spesa, ma \"diminuite dello 0,6% in volume\", cioè le quantità acquistate. A attribuisce alle quantità alimentari la crescita del 4,1%, che riguarda il valore, mentre i volumi del comparto sono \"sostanzialmente stabili\" (parafrasi). C applica al non alimentare l'andamento del totale; il brano dice che lì sono diminuiti \"sia il valore sia il volume\" (ambito). D cambia il periodo di confronto: il +2,4% è rispetto ad agosto dell'anno precedente, mentre rispetto a luglio le vendite sono \"rimaste invariate\" (tempo)."
+   "evidence": "ad agosto le vendite al dettaglio sono aumentate del 2,4% in valore rispetto allo stesso mese dell'anno precedente, ma sono diminuite dello 0,6% in volume. La differenza tra le due misure dipende dall'andamento dei prezzi",
+   "explanation": "B è corretta: rispetto ad agosto dell'anno precedente le vendite sono «aumentate del 2,4% in valore», cioè la spesa, ma «diminuite dello 0,6% in volume», cioè le quantità acquistate, e il brano attribuisce lo scarto ai prezzi: «La differenza tra le due misure dipende dall'andamento dei prezzi». A attribuisce alle quantità alimentari la crescita del 4,1%, che riguarda il valore, mentre i volumi del comparto sono «sostanzialmente stabili» (parafrasi). C applica al non alimentare l'andamento del totale; il brano dice che lì sono diminuiti «sia il valore sia il volume» (ambito). D cambia il periodo di confronto: il +2,4% è rispetto ad agosto dell'anno precedente, mentre rispetto a luglio le vendite sono «rimaste invariate» (tempo)."
   },
   {
    "id": 1115,
@@ -570,7 +570,7 @@ registerBank({
     "A"
    ],
    "evidence": "Per debiti fino a 60.000 euro la rateizzazione, con un massimo di 72 rate mensili, è concessa su semplice richiesta; oltre tale importo il contribuente deve documentare la propria situazione di difficoltà",
-   "explanation": "A è corretta: fino a 60.000 euro la rateizzazione \"è concessa su semplice richiesta\", mentre \"oltre tale importo il contribuente deve documentare la propria situazione di difficoltà\"; qui l'assoluto «solo» è sostenuto dal testo. B rovescia la regola: il piano decade anche con cinque rate \"non consecutive\" (negazione). C trasforma le procedure già avviate, che \"restano sospese\", in procedure annullate (parafrasi). D estende a tutte le imprese l'obbligo di allegare il bilancio, che vale solo per i debiti oltre i 60.000 euro (quantificatore)."
+   "explanation": "A è corretta: fino a 60.000 euro la rateizzazione «è concessa su semplice richiesta», mentre «oltre tale importo il contribuente deve documentare la propria situazione di difficoltà»: la restrizione posta dall'opzione (\"Solo per i debiti superiori a 60.000 euro\") è quindi sostenuta dal testo. B rovescia la regola: il piano decade anche con cinque rate «non consecutive» (negazione). C trasforma le procedure già avviate, che «restano sospese», in procedure annullate (parafrasi). D estende a tutte le imprese l'obbligo di allegare il bilancio, che vale solo per i debiti oltre i 60.000 euro (quantificatore)."
   },
   {
    "id": 1116,
@@ -608,7 +608,7 @@ registerBank({
     "C"
    ],
    "evidence": "il procedimento potrà tuttavia essere riaperto se le imprese non rispetteranno quanto promesso o se emergeranno fatti nuovi",
-   "explanation": "C è corretta: il procedimento può essere riaperto se le imprese non rispettano gli impegni \"o se emergeranno fatti nuovi\"; la seconda ipotesi vale anche quando tutti gli impegni sono rispettati. A contraddice il brano: accettando gli impegni l'autorità \"non ha accertato l'esistenza di un'infrazione\" (inferenza: gli impegni scambiati per la prova dell'accordo). B aggiunge agli impegni una riduzione dei listini che il brano non prevede (fuori testo). D elimina il limite temporale: le imprese si obbligano \"per cinque anni\" (tempo)."
+   "explanation": "C è corretta: il procedimento può essere riaperto se le imprese non rispettano gli impegni «o se emergeranno fatti nuovi»; la seconda ipotesi vale anche quando tutti gli impegni sono rispettati. A contraddice il brano: accettando gli impegni l'autorità «non ha accertato l'esistenza di un'infrazione» (inferenza: gli impegni scambiati per la prova dell'accordo). B aggiunge agli impegni una riduzione dei listini che il brano non prevede (fuori testo). D elimina il limite temporale: le imprese si obbligano «per cinque anni» (tempo)."
   },
   {
    "id": 1117,
@@ -646,7 +646,7 @@ registerBank({
     "B"
    ],
    "evidence": "i lavoratori a tempo parziale rappresentavano il 17% degli occupati di un paese, quota stabile rispetto all'anno precedente, e il 54% di loro dichiarava di aver accettato un orario ridotto",
-   "explanation": "B è corretta: il part-time riguardava il 17% degli occupati e il 54% di questi era involontario; 0,17 × 0,54 = 0,092, cioè circa il 9,2% degli occupati, meno del 10%. A contraddice il dato sulle donne: il 51% di loro era in part-time involontario, quindi la maggioranza non aveva scelto l'orario ridotto (quantificatore). C confonde un tasso con un numero assoluto: poiché le donne sono oltre due terzi dei lavoratori a tempo parziale, le donne in part-time involontario ne sono più del 34% (0,51 × 2/3), gli uomini meno del 21% (0,61 × 1/3): la maggioranza resta femminile (inferenza). D trasforma un divario che, tenendo conto di settore e dimensione d'impresa, \"si riduce sensibilmente\" in un divario che scompare (parafrasi)."
+   "explanation": "B è corretta: il part-time riguardava il 17% degli occupati e il 54% di questi era involontario; 0,17 × 0,54 = 0,092, cioè circa il 9,2% degli occupati, meno del 10%. A contraddice il dato sulle donne: il 51% di loro era in part-time involontario, quindi la maggioranza non aveva scelto l'orario ridotto (quantificatore). C confonde un tasso con un numero assoluto: poiché le donne sono oltre due terzi dei lavoratori a tempo parziale, le donne in part-time involontario ne sono più del 34% (0,51 × 2/3), gli uomini meno del 21% (0,61 × 1/3): la maggioranza resta femminile (inferenza). D trasforma un divario che, tenendo conto di settore e dimensione d'impresa, «si riduce sensibilmente» in un divario che scompare (parafrasi)."
   },
   {
    "id": 1118,
@@ -684,7 +684,7 @@ registerBank({
     "D"
    ],
    "evidence": "Chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica",
-   "explanation": "D è corretta: il brano stabilisce che \"chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica\", senza eccezioni; qui l'assoluto «tutti» è sostenuto dal testo. A ignora l'eccezione per le professioni che incidono sulla salute o sulla sicurezza pubblica, per le quali la verifica è possibile anche in caso di prestazione temporanea (quantificatore). B sposta la dichiarazione dopo l'inizio dell'attività: va inviata \"prima della prima prestazione\", mentre i tre mesi sono il termine per concludere il riconoscimento (tempo). C attribuisce alle dichiarazioni il 22% di respingimenti, che riguarda le domande di riconoscimento (ambito)."
+   "explanation": "D è corretta: il brano stabilisce: «Chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica», senza eccezioni; l'assoluto dell'opzione (\"Tutti i professionisti\") è quindi sostenuto dal testo. A ignora l'eccezione per le professioni che incidono sulla salute o sulla sicurezza pubblica, per le quali la verifica è possibile anche in caso di prestazione temporanea (quantificatore). B sposta la dichiarazione dopo l'inizio dell'attività: va inviata «prima della prima prestazione», mentre i tre mesi sono il termine per concludere il riconoscimento (tempo). C attribuisce alle dichiarazioni il 22% di respingimenti, che riguarda le domande di riconoscimento (ambito)."
   },
   {
    "id": 1119,
@@ -722,7 +722,7 @@ registerBank({
     "C"
    ],
    "evidence": "Il divario comprende inoltre importi non riscossi per ragioni diverse dall'evasione",
-   "explanation": "C è corretta: il brano precisa che il divario \"comprende inoltre importi non riscossi per ragioni diverse dall'evasione\", come i fallimenti e gli errori nelle dichiarazioni. A attribuisce all'obbligo l'intero calo di cinque punti, mentre secondo la stima \"circa un terzo del calo\" dipende da altri fattori (inferenza). B anticipa di un anno l'obbligo, in vigore \"dal 2022\" (tempo). D rovescia la negazione del brano: il commercio al dettaglio \"non è soggetto all'obbligo\", quindi ne è escluso (negazione)."
+   "explanation": "C è corretta: il brano precisa che il divario «comprende inoltre importi non riscossi per ragioni diverse dall'evasione», come i fallimenti e gli errori nelle dichiarazioni. A attribuisce all'obbligo l'intero calo di cinque punti, mentre secondo la stima «circa un terzo del calo» dipende da altri fattori (inferenza). B anticipa di un anno l'obbligo, in vigore «dal 2022» (tempo). D rovescia la negazione del brano: il commercio al dettaglio «non è soggetto all'obbligo», quindi ne è escluso (negazione)."
   },
   {
    "id": 1120,
@@ -760,7 +760,7 @@ registerBank({
     "A"
    ],
    "evidence": "il debito pubblico di un paese era pari a 1.240 miliardi di euro, il 112% del prodotto interno lordo, e la spesa annua per interessi aveva raggiunto 44 miliardi",
-   "explanation": "A è corretta: 44 miliardi di interessi su 1.240 miliardi di debito corrispondono a circa il 3,5%, quindi meno del 4%. B presenta come certo un risultato, il calo di due punti dal 112% al 110%, che il documento prevede solo \"a condizione che la crescita nominale dell'economia non sia inferiore al 3% annuo\" (inferenza). C rovescia la previsione del governo, secondo cui la spesa salirà \"anche se i tassi di mercato rimarranno stabili\" (negazione). D contraddice il brano, per cui con una vita media di sette anni l'aumento dei tassi si trasmette \"solo gradualmente\" (tempo)."
+   "explanation": "A è corretta: 44 miliardi di interessi su 1.240 miliardi di debito corrispondono a circa il 3,5%, quindi meno del 4%. B presenta come certo un risultato, il calo di due punti dal 112% al 110%, che il documento prevede solo «a condizione che la crescita nominale dell'economia non sia inferiore al 3% annuo» (inferenza). C rovescia la previsione del governo, secondo cui la spesa salirà «anche se i tassi di mercato rimarranno stabili» (negazione). D contraddice il brano, per cui con una vita media di sette anni l'aumento dei tassi si trasmette «solo gradualmente» (tempo)."
   },
   {
    "id": 1121,
@@ -1284,15 +1284,15 @@ registerBank({
     },
     {
      "letter": "D",
-     "text": "Secondo le simulazioni, con la terza cassa la riduzione di portata della piena simulata salirebbe dal 20% al 35%.",
+     "text": "Secondo le simulazioni, grazie alla terza cassa la riduzione di portata della piena simulata salirebbe dal 20% al 35%.",
      "trap": null
     }
    ],
    "correct": [
     "D"
    ],
-   "evidence": "la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% nel tratto urbano; con le sole due casse esistenti, la riduzione sarebbe del 20%",
-   "explanation": "D è corretta: secondo le simulazioni, una piena analoga a quella di sei anni fa sarebbe ridotta del 20% con le due casse esistenti e del 35% con tutte e tre, quindi la terza porterebbe la riduzione dal 20% al 35%. A generalizza a tutti i proprietari un ricorso presentato da alcuni (quantificatore). B presenta come effetto già misurato una riduzione che il brano ricava da simulazioni (parafrasi). C dà per avviata la costruzione di una cassa ancora in fase di progettazione (tempo)."
+   "evidence": "con tutte e tre le casse in funzione la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% nel tratto urbano; con le sole due casse esistenti, la riduzione sarebbe del 20%",
+   "explanation": "D è corretta: secondo le simulazioni la portata di una piena analoga a quella di sei anni fa si ridurrebbe del 35% «con tutte e tre le casse in funzione» e del 20% «con le sole due casse esistenti»: i due scenari differiscono solo per la terza cassa, alla quale si deve quindi il passaggio dal 20% al 35%. A generalizza a tutti i proprietari un ricorso presentato da alcuni (quantificatore). B presenta come effetto già misurato una riduzione che il brano ricava da simulazioni (parafrasi). C dà per avviata la costruzione di una cassa ancora in fase di progettazione (tempo)."
   },
   {
    "id": 1135,
@@ -1368,7 +1368,7 @@ registerBank({
     "D"
    ],
    "evidence": "Un ente ospedaliero con 2.300 dipendenti ha introdotto un rimborso del 50% dell'abbonamento annuale e una navetta dalla stazione ferroviaria. Al questionario dell'anno successivo hanno risposto 1.150 dipendenti",
-   "explanation": "D è corretta: l'ente ha 2.300 dipendenti e al questionario dell'anno successivo ne hanno risposto 1.150, cioè la metà. A omette la seconda condizione della legge, cioè che la sede si trovi in un comune con oltre 50.000 abitanti (negazione). B attribuisce il calo al rimborso ed estende a tutti i dipendenti un dato riferito ai soli rispondenti (inferenza). C trasforma in obbligo una delle misure che la legge cita soltanto come esempio (parafrasi)."
+   "explanation": "D è corretta: l'ente ha 2.300 dipendenti e al questionario dell'anno successivo ne hanno risposto 1.150, cioè la metà. A omette la seconda condizione della legge, cioè che la sede si trovi in un comune con oltre 50.000 abitanti (negazione). B attribuisce il calo al rimborso, ma il brano dice solo che la quota è scesa dopo l'introduzione di rimborso e navetta, e l'ente avverte che il confronto va interpretato «con cautela», perché al questionario precedente avevano risposto 1.600 dipendenti; B estende inoltre a tutti i dipendenti un dato riferito ai soli rispondenti (inferenza). C trasforma in obbligo una delle misure che la legge cita soltanto come esempio (parafrasi)."
   },
   {
    "id": 1137,
@@ -1545,7 +1545,7 @@ registerBank({
     },
     {
      "letter": "C",
-     "text": "Il sistema di monitoraggio delle acque reflue non consente di identificare le singole persone infette.",
+     "text": "Poiché ogni campione raccoglie gli scarichi di migliaia di case, il sistema non identifica le singole persone infette.",
      "trap": null
     },
     {
@@ -1557,8 +1557,8 @@ registerBank({
    "correct": [
     "C"
    ],
-   "evidence": "il sistema non permette inoltre di risalire a singoli individui",
-   "explanation": "C è corretta: poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema «non permette inoltre di risalire a singoli individui», e quindi non consente di identificare chi è infetto. A trasforma in regola valida per ogni area un dato che il brano presenta come media, «in media di sei giorni» (quantificatore). B presenta come già avvenuta l'estensione ad altri 30 impianti, che l'agenzia intende realizzare entro il prossimo anno (tempo). D trasforma in possibilità condizionata un limite che il brano dichiara senza eccezioni: il metodo «non consente di stimare con precisione» il numero di persone infette (negazione)."
+   "evidence": "Poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema non permette inoltre di risalire a singoli individui",
+   "explanation": "C è corretta: il brano dà la stessa causa, «Poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema non permette inoltre di risalire a singoli individui», e senza risalire ai singoli non si può identificare chi è infetto. A trasforma in regola valida per ogni area un dato che il brano presenta come media, «in media di sei giorni» (quantificatore). B presenta come già avvenuta l'estensione ad altri 30 impianti, che l'agenzia intende realizzare entro il prossimo anno (tempo). D trasforma in possibilità condizionata un limite che il brano dichiara senza eccezioni: il metodo «non consente di stimare con precisione» il numero di persone infette (negazione)."
   },
   {
    "id": 1142,
@@ -1900,7 +1900,7 @@ registerBank({
     "A"
    ],
    "evidence": "sta informando per lettera i pazienti interessati",
-   "explanation": "A è corretta: l'azienda «sta informando per lettera i pazienti interessati», cioè quelli i cui dati sono stati copiati. B trasforma un invito alla prudenza in un fatto accaduto, mentre il brano precisa che non è stato possibile stabilire se i dati siano stati diffusi (inferenza). C estende a tutti i pazienti un attacco che ha riguardato i dati di circa 60.000 persone, su un totale di 450.000 assistiti (quantificatore). D sostituisce «copiato» con «cancellato», un'azione che il brano non riferisce (parafrasi)."
+   "explanation": "A è corretta: l'azienda «sta informando per lettera i pazienti interessati», cioè quelli i cui dati sono stati copiati. B trasforma un invito alla prudenza in un fatto accaduto, mentre il brano precisa che non è stato possibile stabilire se i dati siano stati diffusi (inferenza). C estende a tutti i pazienti un attacco che ha riguardato i dati di circa 60.000 persone, su un totale di 450.000 assistiti (quantificatore). D sostituisce la copia con una cancellazione: secondo il brano gli autori dell'attacco «hanno copiato una parte dell'archivio amministrativo», non l'hanno cancellata (parafrasi)."
   },
   {
    "id": 1151,
@@ -1976,7 +1976,7 @@ registerBank({
     "B"
    ],
    "evidence": "Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia",
-   "explanation": "B è corretta: il brano stabilisce che «prima di uscire dal laboratorio, tutti i risultati» sono controllati dal personale dell'agenzia. A confonde pseudonimizzazione e anonimato: secondo il brano, le informazioni restanti potrebbero in teoria permettere di risalire a singole persone (parafrasi). C applica allo scaricamento l'autorizzazione prevista per il collegamento remoto, mentre i dati non si possono scaricare «in nessun caso» (negazione). D estende la gratuità agli istituti privati, che invece versano un contributo annuale (ambito)."
+   "explanation": "B è corretta: il brano stabilisce: «Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia». A confonde pseudonimizzazione e anonimato: secondo il brano, le informazioni restanti potrebbero in teoria permettere di risalire a singole persone (parafrasi). C applica allo scaricamento l'autorizzazione prevista per il collegamento remoto, mentre i dati non si possono scaricare «in nessun caso» (negazione). D estende la gratuità agli istituti privati, che invece versano un contributo annuale (ambito)."
   },
   {
    "id": 1153,
@@ -2166,7 +2166,7 @@ registerBank({
     "C"
    ],
    "evidence": "le informazioni che i registri non contengono, come la lingua parlata in casa o il tipo di riscaldamento delle abitazioni, vengono invece stimate a partire dalle indagini",
-   "explanation": "C è corretta: la lingua parlata in casa è tra le informazioni che i registri non contengono e che «vengono invece stimate a partire dalle indagini» campionarie. A estende a tutte le stime una minore precisione che alcuni studiosi segnalano solo per i comuni più piccoli (ambito). B confonde «un terzo del precedente» con «un terzo in meno»: il nuovo sistema costa circa il 33% del vecchio, non il 67% (parafrasi). D legge «non devono più rispondere tutte nello stesso anno» come se le famiglie non dovessero più rispondere affatto (negazione)."
+   "explanation": "C è corretta: la lingua parlata in casa è tra le informazioni che i registri non contengono e che «vengono invece stimate a partire dalle indagini» campionarie. A estende a tutte le stime una minore precisione che alcuni studiosi segnalano solo per i comuni più piccoli (ambito). B confonde «un terzo del precedente» con un risparmio di un terzo: il nuovo sistema costa circa il 33% del vecchio, non il 67% (parafrasi). D legge «non devono più rispondere tutte nello stesso anno» come se le famiglie non dovessero più rispondere affatto (negazione)."
   },
   {
    "id": 1158,
@@ -2318,7 +2318,7 @@ registerBank({
     "C"
    ],
    "evidence": "continuò a trasmettere copia degli atti anche alle parrocchie, benché nessuna norma lo imponesse",
-   "explanation": "C è corretta: nei primi anni del nuovo sistema la maggior parte dei municipi esaminati continuò a trasmettere copia degli atti alle parrocchie «benché nessuna norma lo imponesse». «La maggior parte» limita il comportamento, non la regola: se nessuna norma imponeva l'invio, nessuno dei municipi esaminati vi era obbligato. A estende a tutti i municipi esaminati un comportamento che il brano attribuisce alla «maggior parte» di essi (quantificatore). B presenta come già ottenuto un risultato che l'incrocio con i registri parrocchiali, secondo gli autori, «potrebbe» dare solo dopo alcuni anni di lavoro (tempo). D attribuisce alla riforma uno scopo plausibile ma mai dichiarato: il brano descrive le differenze tra diocesi senza presentarle come la ragione del passaggio ai comuni (fuori testo)."
+   "explanation": "C è corretta: nei primi anni del nuovo sistema la maggior parte dei municipi esaminati continuò a trasmettere copia degli atti alle parrocchie «benché nessuna norma lo imponesse». L'espressione «la maggior parte» limita il comportamento, non la regola: se nessuna norma imponeva l'invio, nessuno dei municipi esaminati vi era obbligato. A estende a tutti i municipi esaminati un comportamento che il brano attribuisce alla «maggior parte» di essi (quantificatore). B presenta come già ottenuto un risultato che l'incrocio con i registri parrocchiali, secondo gli autori, «potrebbe» dare solo dopo alcuni anni di lavoro (tempo). D attribuisce alla riforma uno scopo plausibile ma mai dichiarato: il brano descrive le differenze tra diocesi senza presentarle come la ragione del passaggio ai comuni (fuori testo)."
   },
   {
    "id": 1162,
@@ -2447,7 +2447,7 @@ registerBank({
    "options": [
     {
      "letter": "A",
-     "text": "Nel caso della pasta citato dall'associazione, il prezzo al chilogrammo del prodotto è aumentato del 25%.",
+     "text": "Nel caso della pasta, la riduzione del contenuto a prezzo invariato ha fatto aumentare del 25% il prezzo al chilogrammo.",
      "trap": null
     },
     {
@@ -2470,7 +2470,7 @@ registerBank({
     "A"
    ],
    "evidence": "un pacco di pasta è passato da 500 a 400 grammi senza variazioni di prezzo",
-   "explanation": "A è corretta: il pacco di pasta è passato «da 500 a 400 grammi senza variazioni di prezzo»; lo stesso prezzo diviso per 0,4 kg invece che per 0,5 kg dà un prezzo al chilogrammo più alto di un quarto, cioè del 25% (il 20% è la riduzione del contenuto, non l'aumento del prezzo unitario). B capovolge il giudizio dell'associazione, secondo cui la pratica «non è di per sé illecita» se la quantità è indicata correttamente (negazione). C trasforma in obbligo per i produttori ciò che è soltanto una richiesta dell'associazione (parafrasi). D trasforma «soprattutto» in «gli unici» ed è smentita anche dall'esempio della pasta (quantificatore)."
+   "explanation": "A è corretta: il pacco di pasta è passato «da 500 a 400 grammi senza variazioni di prezzo»; lo stesso prezzo diviso per 0,4 kg invece che per 0,5 kg dà un prezzo al chilogrammo più alto di un quarto, cioè del 25%: a prezzo invariato, l'aumento si deve solo alla riduzione del contenuto (il 20% è la riduzione del contenuto, non l'aumento del prezzo unitario). B capovolge il giudizio dell'associazione, secondo cui la pratica «non è di per sé illecita» se la quantità è indicata correttamente (negazione). C trasforma in obbligo per i produttori ciò che è soltanto una richiesta dell'associazione (parafrasi). D trasforma il «soprattutto» del brano in un'esclusiva, come se biscotti, detersivi e caffè fossero gli unici prodotti interessati, ed è smentita anche dall'esempio della pasta (quantificatore)."
   },
   {
    "id": 1166,
@@ -2508,7 +2508,7 @@ registerBank({
     "C"
    ],
    "evidence": "Per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni",
-   "explanation": "C è corretta: «per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni», quindi un progetto con tutti i partner nella stessa regione non può mai essere ammesso. A presenta come causa accertata ciò che l'autorità di gestione si limita a ritenere, e solo «almeno in parte» (inferenza). B trasforma un tetto massimo («fino all'80%») in una percentuale fissa valida per ogni progetto (parafrasi). D riporta come già noti i risultati di una valutazione che sarà pubblicata solo entro la fine dell'anno (tempo)."
+   "explanation": "C è corretta: «Per essere ammesso, ogni progetto deve coinvolgere almeno un partner con sede in ciascuna delle due regioni», quindi un progetto con tutti i partner nella stessa regione non può mai essere ammesso. A presenta come causa accertata ciò che l'autorità di gestione si limita a ritenere, e solo «almeno in parte» (inferenza). B trasforma un tetto massimo («fino all'80%») in una percentuale fissa valida per ogni progetto (parafrasi). D riporta come già noti i risultati di una valutazione che sarà pubblicata solo entro la fine dell'anno (tempo)."
   },
   {
    "id": 1167,
@@ -2660,7 +2660,7 @@ registerBank({
     "C"
    ],
    "evidence": "almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24 dovrà essere sottotitolato",
-   "explanation": "C è corretta: l'obbligo da rispettare entro il terzo anno riguarda «almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24», quindi non comprende i programmi trasmessi tra mezzanotte e le sette. A anticipa al primo anno un obbligo che il contratto fissa «entro il secondo anno di vigenza» (tempo). B trasforma il potere di «proporre» una riduzione del contributo nel potere di deciderla direttamente (parafrasi). D scambia l'assenza di obblighi specifici per i canali tematici con un divieto, che il brano non prevede (negazione)."
+   "explanation": "C è corretta: l'obbligo da rispettare entro il terzo anno riguarda «almeno il 70% della programmazione dei canali generalisti tra le 7 e le 24», quindi non comprende i programmi trasmessi tra mezzanotte e le sette. A anticipa al primo anno un obbligo che il contratto fissa entro il «secondo anno di vigenza» (tempo). B trasforma il potere di «proporre» una riduzione del contributo nel potere di deciderla direttamente (parafrasi). D scambia l'assenza di obblighi specifici per i canali tematici con un divieto, che il brano non prevede (negazione)."
   },
   {
    "id": 1171,
@@ -2870,7 +2870,7 @@ registerBank({
     },
     {
      "letter": "B",
-     "text": "La piattaforma elettronica per le gare non è ancora in uso presso gli enti locali.",
+     "text": "A causa di problemi di connettività, gli enti locali non usano ancora la piattaforma per le gare.",
      "trap": null
     },
     {
@@ -2888,7 +2888,7 @@ registerBank({
     "B"
    ],
    "evidence": "la sua estensione agli enti locali è stata rinviata per problemi di connettività",
-   "explanation": "B è corretta: la piattaforma è operativa nel ministero e in due agenzie, mentre «la sua estensione agli enti locali è stata rinviata per problemi di connettività». A attribuisce al gemellaggio l'intera riduzione dei tempi, mentre la relazione avverte che, per l'effetto concomitante della nuova legge, il miglioramento «non può essere attribuito al solo gemellaggio» (inferenza). C riferisce alle sole amministrazioni locali il totale dei funzionari formati, di cui quelli locali sono appena un quarto, cioè circa 200 (ambito). D enuncia una regola generale che il brano non contiene: il testo descrive un solo programma, rivolto a un paese candidato, e non dice chi altro possa beneficiarne (fuori testo)."
+   "explanation": "B è corretta: la piattaforma è operativa nel ministero e in due agenzie, mentre «la sua estensione agli enti locali è stata rinviata per problemi di connettività»: la causa del ritardo è indicata dal brano stesso. A attribuisce al gemellaggio l'intera riduzione dei tempi, mentre la relazione avverte che, per l'effetto concomitante della nuova legge, il miglioramento «non può essere attribuito al solo gemellaggio» (inferenza). C riferisce alle sole amministrazioni locali il totale dei funzionari formati, di cui quelli locali sono appena un quarto, cioè circa 200 (ambito). D enuncia una regola generale che il brano non contiene: il testo descrive un solo programma, rivolto a un paese candidato, e non dice chi altro possa beneficiarne (fuori testo)."
   },
   {
    "id": 1177,
@@ -3040,7 +3040,3047 @@ registerBank({
     "A"
    ],
    "evidence": "All'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza",
-   "explanation": "A è corretta: «all'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza», e la patente «netta» era proprio quella dei porti senza epidemie, quindi l'obbligo valeva anche per loro. B aggiunge un'informazione storica plausibile sull'amministrazione del lazzaretto, che il brano non fornisce (fuori testo). C estende a tutte le merci un trattamento che il brano riserva a quelle «ritenute più pericolose» (quantificatore). D trasforma una durata massima («fino a quaranta giorni») in una durata fissa (parafrasi)."
+   "explanation": "A è corretta: «All'arrivo ogni nave doveva esibire la patente di sanità rilasciata dal porto di partenza», e la patente «netta» era proprio quella dei porti senza epidemie, quindi l'obbligo valeva anche per loro. B aggiunge un'informazione storica plausibile sull'amministrazione del lazzaretto, che il brano non fornisce (fuori testo). C estende a tutte le merci un trattamento che il brano riserva a quelle «ritenute più pericolose» (quantificatore). D trasforma una durata massima («fino a quaranta giorni») in una durata fissa (parafrasi)."
+  },
+  {
+   "id": 1181,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "mobilità universitaria europea",
+   "passage": "Un'università di medie dimensioni ha pubblicato il bilancio dell'ultimo anno del programma di mobilità europea. Gli studenti partiti per un semestre o un anno presso un ateneo partner sono stati 420, contro i 350 dell'anno precedente; quelli accolti dall'estero sono stati 510. Prima della partenza ogni studente firma con le due università un accordo di apprendimento, che elenca gli esami da sostenere all'estero e quelli che saranno riconosciuti al rientro. Secondo l'ufficio relazioni internazionali, il 91% degli esami superati all'estero è stato riconosciuto senza modifiche; negli altri casi il riconoscimento è avvenuto dopo una revisione dell'accordo o, più raramente, è stato negato. La borsa mensile varia in base al costo della vita nel paese di destinazione ed è maggiorata di 150 euro per gli studenti con un reddito familiare inferiore alla soglia fissata dall'ateneo. L'università osserva che la quota di partecipanti provenienti dalle facoltà scientifiche resta inferiore a quella delle facoltà umanistiche e intende stipulare nuovi accordi con atenei tecnici.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La maggiorazione di 150 euro spetta soltanto agli studenti diretti verso i paesi con un costo della vita più elevato.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Rispetto all'anno precedente, la quota di partecipanti provenienti dalle facoltà scientifiche si è ridotta.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Il numero degli studenti partiti è cresciuto di un quinto rispetto all'anno precedente.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Ogni esame superato all'estero è stato riconosciuto al rientro, in alcuni casi dopo una revisione dell'accordo.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Gli studenti partiti per un semestre o un anno presso un ateneo partner sono stati 420, contro i 350 dell'anno precedente",
+   "explanation": "C è corretta: gli studenti partiti sono passati da 350 a 420, cioè 70 in più, pari a un quinto di 350. A lega la maggiorazione al paese di destinazione, mentre spetta agli studenti «con un reddito familiare inferiore alla soglia fissata dall'ateneo»; il costo della vita fa variare la borsa di base (ambito). B ricava una diminuzione da un dato che descrive solo il confronto con le facoltà umanistiche: «resta inferiore» non dice come sia cambiata la quota (inferenza). D estende il riconoscimento a tutti gli esami, mentre in alcuni casi il riconoscimento «è stato negato» (quantificatore)."
+  },
+  {
+   "id": 1182,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "etichetta energetica degli elettrodomestici",
+   "passage": "Un'associazione di consumatori ha intervistato 1.200 persone che nell'ultimo anno hanno acquistato un frigorifero o una lavatrice, per capire come viene letta l'etichetta energetica dopo la revisione della scala. La nuova etichetta usa solo le classi dalla A alla G, senza i segni «più», e i modelli che figuravano nelle classi più alte sono stati riclassificati, per lo più in classi intermedie. L'etichetta indica inoltre il consumo di energia in chilowattora e contiene un codice QR che rimanda a una banca dati pubblica con le schede tecniche dei modelli. Dall'indagine emerge che il 68% degli acquirenti ha tenuto conto della classe energetica nella scelta, mentre solo il 21% ha confrontato i consumi in chilowattora; il codice QR è stato usato dal 6% degli intervistati. Un acquirente su tre riteneva che un apparecchio classificato A+++ con la vecchia scala e C con la nuova consumasse più di prima, anche se il modello non era cambiato. L'associazione propone campagne informative nei punti vendita.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Un intervistato su tre ha attribuito un consumo maggiore a modelli rimasti identici ma riclassificati.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Circa due acquirenti su tre hanno scelto l'apparecchio con la classe energetica più alta tra quelli disponibili.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "L'indagine ha riguardato gli acquirenti di tutti i tipi di elettrodomestici dotati di etichetta energetica.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Il 21% degli intervistati ha confrontato i consumi in chilowattora usando il codice QR.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Un acquirente su tre riteneva che un apparecchio classificato A+++ con la vecchia scala e C con la nuova consumasse più di prima, anche se il modello non era cambiato",
+   "explanation": "A è corretta: un acquirente su tre riteneva che un apparecchio passato dalla classe A+++ alla C consumasse più di prima, «anche se il modello non era cambiato»: era cambiata solo la classe. B trasforma «ha tenuto conto della classe energetica» nella scelta della classe più alta disponibile, che il brano non riporta (parafrasi). C estende l'indagine a tutti gli elettrodomestici, mentre riguarda chi ha acquistato un frigorifero o una lavatrice (ambito). D fonde due dati distinti: il 21% ha confrontato i consumi, ma il codice QR è stato usato solo dal 6% degli intervistati (parafrasi)."
+  },
+  {
+   "id": 1183,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 2,
+   "topic": "centro comune di cooperazione di polizia e dogana",
+   "passage": "Due paesi confinanti hanno aperto otto anni fa un centro comune di cooperazione di polizia e dogana, situato vicino al principale valico stradale. Nel centro lavorano fianco a fianco agenti delle polizie e delle dogane di entrambi i paesi; ogni agente risponde alla propria amministrazione. Il centro non svolge indagini né operazioni sul territorio: raccoglie le richieste di informazioni provenienti dagli uffici dei due paesi, ad esempio sull'intestatario di un veicolo o sulla validità di un documento, e le inoltra al servizio competente, di norma entro poche ore. Le pattuglie miste, composte da agenti dei due paesi, sono invece organizzate dalle rispettive direzioni regionali e possono operare fino a 30 chilometri dal confine. Lo scorso anno il centro ha trattato 14.600 richieste, il 70% delle quali proveniva dagli uffici del paese più grande. Secondo la relazione annuale, i tempi di risposta sono diminuiti dopo l'introduzione di un modulo elettronico comune, ma restano più lunghi nei fine settimana, quando il personale è ridotto.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le pattuglie miste sono organizzate dal centro comune e possono operare fino a 30 chilometri dal confine.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Gli agenti che lavorano nel centro non rispondono alla propria amministrazione, ma a una direzione comune ai due paesi.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Lo scorso anno le richieste trattate dal centro sono arrivate in misura quasi uguale dai due paesi.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Il centro fa da tramite tra gli uffici che chiedono informazioni e i servizi competenti a fornirle.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "raccoglie le richieste di informazioni provenienti dagli uffici dei due paesi",
+   "explanation": "D è corretta: il centro non svolge indagini, ma «raccoglie le richieste di informazioni provenienti dagli uffici dei due paesi» e le inoltra al servizio competente. A attribuisce al centro l'organizzazione delle pattuglie miste, che spetta alle «rispettive direzioni regionali» (ambito). B rovescia il brano: «ogni agente risponde alla propria amministrazione» (negazione). C contraddice il dato secondo cui il 70% delle richieste proveniva dal paese più grande (quantificatore)."
+  },
+  {
+   "id": 1184,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "sistema comune di segnalamento ferroviario",
+   "passage": "Sulla linea ferroviaria che collega due regioni di confine, i treni passeggeri devono ancora fermarsi alla stazione di frontiera per cambiare locomotiva, perché i due paesi usano sistemi di segnalamento diversi e incompatibili. Per eliminare la sosta, che allunga il viaggio di circa venti minuti, i due gestori dell'infrastruttura stanno installando lungo la linea un sistema di segnalamento comune, che trasmette le informazioni direttamente al computer di bordo. I lavori sono terminati sul tratto di uno dei due paesi e si concluderanno sull'altro entro la fine del prossimo anno. Anche i treni devono essere adeguati: delle 24 composizioni che circolano sulla linea, 10 sono già dotate delle apparecchiature necessarie, mentre per le altre l'installazione è prevista nei prossimi tre anni. Finché l'intera flotta non sarà adeguata, i vecchi sistemi nazionali resteranno in funzione in parallelo, così che anche i treni privi delle nuove apparecchiature possano continuare a circolare. Secondo i gestori, a lavori ultimati la capacità della linea aumenterà del 15%.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "L'installazione del sistema comune lungo la linea è già terminata in entrambi i paesi.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Sulla linea, le composizioni prive delle apparecchiature necessarie sono più numerose di quelle che ne sono già dotate.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Dalla fine del prossimo anno nessun treno dovrà più fermarsi alla stazione di frontiera per cambiare locomotiva.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Con il sistema comune, la durata del viaggio tra le due regioni si ridurrà del 15%.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "delle 24 composizioni che circolano sulla linea, 10 sono già dotate delle apparecchiature necessarie",
+   "explanation": "B è corretta: delle 24 composizioni «10 sono già dotate delle apparecchiature necessarie», quindi 14 ne sono prive, più di quelle dotate. A presenta come concluso in entrambi i paesi un lavoro terminato solo sul tratto di uno dei due: sull'altro si concluderà entro la fine del prossimo anno (tempo). C ignora che anche i treni devono essere adeguati e che per 14 composizioni l'installazione è prevista nei prossimi tre anni: il brano non garantisce che alla fine del prossimo anno la sosta sparisca per tutti i treni (tempo). D confonde l'aumento del 15% della capacità della linea con una riduzione della durata del viaggio (parafrasi)."
+  },
+  {
+   "id": 1185,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "diritto di recesso negli acquisti online",
+   "passage": "Una guida pubblicata da un centro di assistenza ai consumatori riassume le regole sul diritto di recesso negli acquisti online. Chi compra un prodotto a distanza da un venditore professionale può recedere dal contratto entro quattordici giorni dalla consegna, senza dover indicare alcun motivo. Se il venditore non ha informato il cliente di questo diritto, il termine si allunga di dodici mesi. Il venditore deve rimborsare l'intero prezzo e le spese di consegna standard entro quattordici giorni dalla comunicazione del recesso, ma può attendere di ricevere la merce o la prova della sua spedizione. Le spese di restituzione sono di norma a carico del consumatore, a meno che il venditore non abbia accettato di sostenerle. Il diritto di recesso è escluso, tra l'altro, per i beni confezionati su misura, per quelli deperibili e per i prodotti sigillati che, per motivi igienici, non possono essere restituiti una volta aperti. Le regole non valgono per gli acquisti tra privati.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il diritto di recesso vale per ogni acquisto online, compresi quelli tra privati.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Se il venditore ha omesso di informarlo del diritto di recesso, il consumatore può recedere anche mesi dopo la consegna.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Le spese di restituzione sono a carico del venditore, a meno che il consumatore non abbia accettato di sostenerle.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Il termine di quattordici giorni per il recesso decorre dalla data in cui è stato effettuato l'ordine.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "Se il venditore non ha informato il cliente di questo diritto, il termine si allunga di dodici mesi",
+   "explanation": "B è corretta: se il venditore non ha informato il cliente del diritto di recesso, «il termine si allunga di dodici mesi», quindi il recesso resta possibile per molti mesi dopo la consegna. A estende la regola agli acquisti tra privati, che il brano esclude (ambito). C rovescia la regola: le spese di restituzione sono di norma a carico del consumatore, salvo che il venditore abbia accettato di sostenerle (negazione). D fa decorrere il termine dall'ordine, mentre decorre dalla consegna (tempo)."
+  },
+  {
+   "id": 1186,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "allerta rapida sui prodotti pericolosi",
+   "passage": "L'autorità di vigilanza del mercato di un paese europeo ha pubblicato la relazione annuale sui prodotti non alimentari pericolosi. Lo scorso anno l'autorità ha adottato 420 misure, come il ritiro dagli scaffali o il richiamo presso i consumatori, e le ha notificate a una rete di allerta rapida che collega le autorità dei paesi europei, indicando il rischio riscontrato e i paesi in cui il prodotto risultava distribuito. Sulla base delle notifiche ricevute dalla rete, ha inoltre verificato la presenza sul mercato nazionale di 1.150 prodotti segnalati da altri paesi, trovandone in vendita 260. I giocattoli rappresentano un quarto delle misure adottate, seguiti dagli apparecchi elettrici. Nella maggior parte dei casi il produttore aveva sede fuori dall'Europa, e la responsabilità di adottare le misure correttive è ricaduta sull'importatore. La relazione segnala che i prodotti venduti online sono difficili da rintracciare, perché lo stesso articolo può comparire con nomi diversi presso più venditori, e propone di rafforzare gli accordi con le piattaforme di commercio elettronico.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Gli accordi con le piattaforme di commercio elettronico hanno reso più facile rintracciare i prodotti venduti online.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Nella maggior parte dei casi le misure correttive sono state adottate da produttori con sede fuori dall'Europa.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "La rete di allerta rapida è stata creata per contrastare la vendita online di prodotti pericolosi.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Le misure adottate sui giocattoli sono state più numerose di quelle riguardanti gli apparecchi elettrici.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "I giocattoli rappresentano un quarto delle misure adottate, seguiti dagli apparecchi elettrici",
+   "explanation": "D è corretta: i giocattoli rappresentano un quarto delle misure adottate, «seguiti dagli apparecchi elettrici»: le misure sugli apparecchi elettrici vengono dopo, quindi sono meno numerose. A presenta come già ottenuto un risultato che la relazione persegue proponendo di rafforzare gli accordi, mentre i prodotti venduti online restano «difficili da rintracciare» (tempo). B attribuisce le misure correttive ai produttori extraeuropei, mentre in quei casi la responsabilità «è ricaduta sull'importatore» (ambito). C indica uno scopo della rete che il brano non menziona (fuori testo)."
+  },
+  {
+   "id": 1187,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "fondi europei per le reti idriche",
+   "passage": "Una regione ha ottenuto da un fondo europeo 180 milioni di euro per ammodernare le reti idriche e i depuratori dei comuni con meno di 20.000 abitanti. Il fondo copre il 70% del costo di ciascun progetto; il resto è a carico dei comuni, che possono chiedere alla regione un prestito agevolato. I progetti devono essere completati e rendicontati entro la fine del sesto anno del programma: le somme non spese entro quella data tornano al bilancio europeo. A metà del periodo la regione ha assegnato l'intera dotazione a 64 progetti, ma i pagamenti effettuati ammontano a 45 milioni. Secondo l'autorità di gestione, il ritardo dipende soprattutto dalla carenza di tecnici nei piccoli comuni, che allunga la fase di progettazione, e in misura minore dai ricorsi contro le aggiudicazioni. Per accelerare la spesa, la regione ha istituito una squadra di ingegneri a disposizione dei comuni e potrà revocare il finanziamento ai progetti i cui lavori non saranno avviati entro diciotto mesi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Tutte le somme inutilizzate alla scadenza, anche se già assegnate, tornano al bilancio europeo.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "La regione ha revocato il finanziamento ai progetti i cui lavori non erano stati avviati entro diciotto mesi.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Per i comuni che chiedono il prestito agevolato, il fondo europeo copre l'intero costo del progetto.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Il ritardo nella spesa è dovuto principalmente ai ricorsi contro le aggiudicazioni.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "le somme non spese entro quella data tornano al bilancio europeo",
+   "explanation": "A è corretta: «le somme non spese entro quella data tornano al bilancio europeo», senza distinzione tra somme assegnate e non assegnate; assegnare l'intera dotazione non basta, se i pagamenti non arrivano in tempo. B presenta come già avvenuta una revoca che la regione «potrà» disporre (tempo). C attribuisce al fondo europeo l'intero costo, mentre il fondo copre il 70% e il prestito agevolato lo concede la regione per la quota a carico dei comuni (ambito). D rovescia il peso delle cause: il ritardo dipende «soprattutto» dalla carenza di tecnici e «in misura minore» dai ricorsi (parafrasi)."
+  },
+  {
+   "id": 1188,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 2,
+   "topic": "ricetta elettronica transfrontaliera",
+   "passage": "Due paesi confinanti hanno collegato i rispettivi sistemi sanitari digitali per scambiare due tipi di documenti: la ricetta elettronica e il profilo sintetico del paziente, che riporta allergie, malattie croniche e terapie in corso. Un cittadino di uno dei due paesi può ritirare nell'altro, in qualsiasi farmacia aderente, un medicinale prescritto elettronicamente dal proprio medico. Il farmacista vede la ricetta solo dopo che il paziente ha esibito un documento d'identità e ha dato il proprio consenso; può sostituire il medicinale con un equivalente se il prodotto prescritto non è in commercio nel suo paese, purché la ricetta non lo vieti espressamente. Il profilo sintetico è consultabile dai medici del pronto soccorso e degli ambulatori, mentre i farmacisti non vi hanno accesso. Nel primo anno sono state dispensate 38.000 ricette transfrontaliere e i profili consultati sono stati 2.100. Per ora il servizio non comprende i referti di laboratorio e le immagini diagnostiche, la cui inclusione è prevista in una fase successiva.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il farmacista può consultare il profilo sintetico del paziente per verificarne le eventuali allergie.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Il farmacista può sostituire il medicinale prescritto con un equivalente soltanto se la ricetta lo autorizza espressamente.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Per vedere la ricetta, il farmacista dell'altro paese ha bisogno del consenso del paziente.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "I medici del pronto soccorso possono già consultare i referti di laboratorio dei pazienti dell'altro paese.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Il farmacista vede la ricetta solo dopo che il paziente ha esibito un documento d'identità e ha dato il proprio consenso",
+   "explanation": "C è corretta: il farmacista «vede la ricetta solo dopo che il paziente ha esibito un documento d'identità e ha dato il proprio consenso». A attribuisce ai farmacisti l'accesso al profilo sintetico, riservato ai medici del pronto soccorso e degli ambulatori (ambito). B rovescia la condizione: la sostituzione è ammessa «purché la ricetta non lo vieti espressamente», non solo quando la ricetta la autorizza (negazione). D presenta come già disponibili i referti di laboratorio, la cui inclusione è prevista in una fase successiva (tempo)."
+  },
+  {
+   "id": 1189,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "rivalutazione di un colorante alimentare",
+   "passage": "Un'agenzia europea per la sicurezza alimentare ha concluso la rivalutazione di un colorante usato in bevande, dolciumi e salse. Sulla base di nuovi studi sugli animali, gli esperti hanno abbassato la dose giornaliera ammissibile, cioè la quantità che si può assumere ogni giorno per tutta la vita senza rischi apprezzabili, da 4 a 2 milligrammi per chilogrammo di peso corporeo. Secondo le stime dell'agenzia, l'esposizione media resta al di sotto della nuova soglia in tutte le fasce d'età, mentre i bambini che consumano grandi quantità di bevande colorate possono superarla. Il parere scientifico non stabilisce quali misure adottare: spetta ai responsabili politici, a livello europeo e nazionale, decidere se ridurre i livelli massimi consentiti negli alimenti o limitare l'uso dell'additivo ad alcune categorie di prodotti. L'agenzia segnala inoltre che i dati sull'uso effettivo del colorante, forniti dalle imprese, coprono solo una parte del mercato, e raccomanda di raccoglierne di nuovi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il parere dell'agenzia lascia ad altri la decisione di ridurre i livelli massimi del colorante negli alimenti.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "La dose giornaliera ammissibile è stata abbassata perché i bambini che consumano molte bevande colorate la superavano.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "In media, i bambini assumono più colorante di quanto consenta la nuova dose giornaliera ammissibile.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Spetta soltanto all'agenzia decidere se limitare l'uso dell'additivo ad alcune categorie di prodotti.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Il parere scientifico non stabilisce quali misure adottare",
+   "explanation": "A è corretta: il parere «non stabilisce quali misure adottare» e la decisione di ridurre i livelli massimi spetta ai responsabili politici, a livello europeo e nazionale. B inverte causa ed effetto: la dose è stata abbassata sulla base di «nuovi studi sugli animali», ed è rispetto alla nuova soglia, più bassa, che i bambini che bevono molte bevande colorate possono superarla (inferenza). C estende a tutti i bambini, in media, un superamento che riguarda solo chi consuma grandi quantità di bevande colorate: l'esposizione media resta sotto la soglia in tutte le fasce d'età (quantificatore). D attribuisce all'agenzia una decisione che spetta ai responsabili politici (ambito)."
+  },
+  {
+   "id": 1190,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 2,
+   "topic": "multilinguismo e traduzione nelle istituzioni",
+   "passage": "Un'istituzione europea che lavora nelle 24 lingue ufficiali dell'Unione traduce ogni anno un volume molto elevato di testi. Poiché le combinazioni linguistiche possibili sono più di 500, non sempre è disponibile un traduttore in grado di passare direttamente da una lingua all'altra: in questi casi il testo viene prima tradotto in una delle lingue più diffuse, detta lingua ponte, e da questa nelle altre. Il servizio di traduzione usa un sistema di traduzione automatica addestrato sui documenti dell'istituzione: i traduttori ricevono una prima versione automatica e la rivedono, intervenendo su terminologia e stile. Secondo una valutazione interna, la revisione di un testo pretradotto richiede in media il 30% di tempo in meno di una traduzione integrale, ma il risparmio è minimo per i testi giuridici, che vanno controllati frase per frase. Gli atti destinati a essere pubblicati come legislazione sono tradotti in tutte le lingue ufficiali, mentre i documenti interni di lavoro possono essere redatti in un numero ridotto di lingue.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La lingua ponte usata più spesso dal servizio di traduzione è l'inglese.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "Ogni documento prodotto dall'istituzione viene tradotto in tutte le lingue ufficiali.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Per i testi giuridici, rivedere una versione automatica richiede più tempo che tradurre da zero.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Alcuni testi arrivano nella lingua di destinazione dopo due traduzioni successive.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "il testo viene prima tradotto in una delle lingue più diffuse, detta lingua ponte, e da questa nelle altre",
+   "explanation": "D è corretta: quando manca un traduttore diretto, il testo «viene prima tradotto in una delle lingue più diffuse, detta lingua ponte, e da questa nelle altre», cioè passa per due traduzioni successive. A è plausibile, ma il brano non dice quale lingua ponte sia la più usata (fuori testo). B estende a tutti i documenti la regola prevista per gli atti legislativi, mentre i documenti interni di lavoro possono essere redatti in un numero ridotto di lingue (quantificatore). C trasforma un risparmio «minimo» in una perdita di tempo (parafrasi)."
+  },
+  {
+   "id": 1191,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "controlli doganali sui piccoli pacchi",
+   "passage": "L'amministrazione doganale di un paese europeo ha pubblicato i dati sui pacchi di piccolo valore acquistati online da consumatori residenti presso venditori extraeuropei. Lo scorso anno ne sono arrivati 96 milioni, quasi il doppio di due anni prima. Per ogni pacco deve essere trasmessa in anticipo una dichiarazione elettronica con il contenuto e il valore della merce; l'IVA è riscossa al momento dell'acquisto, se il venditore è registrato presso lo sportello unico per l'imposta, altrimenti alla consegna. I controlli fisici hanno riguardato lo 0,5% dei pacchi: in quasi metà dei casi il valore dichiarato era inferiore a quello reale, e in un pacco controllato su cinque la merce non rispettava le norme di sicurezza o violava un marchio. L'amministrazione osserva che il numero dei controlli non è cresciuto quanto i flussi e chiede di poter addebitare ai venditori una tassa di gestione per ogni pacco, con cui finanziare l'assunzione di nuovi ispettori.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "In quasi metà dei pacchi arrivati lo scorso anno il valore dichiarato era inferiore a quello reale.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Tra i pacchi controllati, il valore sottodichiarato era più frequente delle violazioni di norme di sicurezza o di marchi.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Lo scorso anno il numero dei pacchi in arrivo è quasi raddoppiato rispetto all'anno precedente.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Per i pacchi di piccolo valore, l'IVA si paga al momento dell'acquisto e non alla consegna.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "in quasi metà dei casi il valore dichiarato era inferiore a quello reale, e in un pacco controllato su cinque la merce non rispettava le norme di sicurezza o violava un marchio",
+   "explanation": "B è corretta: tra i pacchi controllati, il valore era sottodichiarato «in quasi metà dei casi», mentre la merce non rispettava le norme di sicurezza o violava un marchio in «un pacco controllato su cinque». A estende a tutti i pacchi arrivati un dato che riguarda solo quelli controllati, cioè lo 0,5% del totale (ambito). C sbaglia il termine di confronto: i pacchi sono quasi il doppio di «due anni prima», non dell'anno precedente (tempo). D ignora la condizione: l'IVA è riscossa all'acquisto solo se il venditore è registrato presso lo sportello unico; altrimenti è riscossa alla consegna (negazione)."
+  },
+  {
+   "id": 1192,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "trasporto merci per vie navigabili interne",
+   "passage": "Una commissione internazionale per la navigazione su un grande fiume che attraversa quattro paesi ha pubblicato il rapporto sul trasporto merci dello scorso anno. Le chiatte hanno trasportato 52 milioni di tonnellate, soprattutto materiali da costruzione, prodotti agricoli e combustibili, con un calo dell'8% rispetto all'anno precedente. Il rapporto attribuisce il calo principalmente ai lunghi periodi di acque basse dell'estate, durante i quali le chiatte hanno potuto navigare solo con un carico ridotto, e in parte alla chiusura per lavori di una conca di navigazione. Nei mesi di magra le imprese hanno trasferito una parte delle merci su ferrovia e su strada, sostenendo costi di trasporto più elevati. Per limitare questi effetti, i paesi rivieraschi hanno concordato di approfondire alcuni tratti del canale navigabile, nel rispetto delle aree naturali protette, e di modernizzare il sistema di previsione dei livelli dell'acqua. Il rapporto ricorda che una chiatta di grandi dimensioni può trasportare il carico di circa cento camion.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "A parità di carico, il trasporto su chiatta produce meno emissioni del trasporto su strada.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "L'approfondimento di alcuni tratti del canale ha attenuato gli effetti delle acque basse.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Sul calo dei volumi trasportati hanno inciso più le acque basse che la chiusura della conca.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Senza i periodi di acque basse, i volumi trasportati non sarebbero diminuiti rispetto all'anno precedente.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Il rapporto attribuisce il calo principalmente ai lunghi periodi di acque basse dell'estate",
+   "explanation": "C è corretta: il rapporto attribuisce il calo «principalmente» alle acque basse e solo «in parte» alla chiusura della conca. A può essere vera, ma il brano non parla di emissioni (fuori testo). B presenta come già realizzato un intervento che i paesi rivieraschi hanno soltanto concordato (tempo). D va oltre il brano: anche la chiusura della conca ha contribuito al calo, quindi non si può stabilire che senza le acque basse i volumi non sarebbero diminuiti (inferenza)."
+  },
+  {
+   "id": 1193,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "interconnessione elettrica tra due paesi",
+   "passage": "Da un anno è in funzione una nuova linea elettrica sottomarina che collega due paesi europei, con una capacità di 1.400 megawatt. La linea, costata 1,8 miliardi di euro, è stata finanziata per un terzo da un fondo europeo per le infrastrutture e per il resto, in parti uguali, dai due gestori delle reti di trasmissione. Secondo il primo rapporto di esercizio, la linea è stata utilizzata in media al 76% della sua capacità, quasi sempre per trasferire elettricità dal paese con una maggiore produzione eolica verso l'altro. Nelle ore in cui la linea non era satura, i prezzi all'ingrosso nei due paesi sono risultati praticamente uguali; nelle altre ore la differenza è stata in media di 22 euro per megawattora. I ricavi generati da questa differenza, detti rendite di congestione, spettano ai due gestori e devono essere destinati a mantenere o ad aumentare la capacità di interconnessione. Il rapporto segnala infine che la linea è rimasta ferma per undici giorni a causa del guasto di un trasformatore.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Da quando la linea è in funzione, i prezzi all'ingrosso nei due paesi sono stati sempre praticamente uguali.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Nel primo anno la linea ha funzionato a piena capacità per circa tre quarti del tempo.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Una parte delle rendite di congestione spetta al fondo europeo che ha cofinanziato la linea.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Ciascuno dei due gestori ha contribuito al costo della linea quanto il fondo europeo.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "è stata finanziata per un terzo da un fondo europeo per le infrastrutture e per il resto, in parti uguali, dai due gestori delle reti di trasmissione",
+   "explanation": "D è corretta: il fondo europeo ha coperto un terzo del costo e i due gestori i restanti due terzi «in parti uguali», cioè un terzo ciascuno (600 milioni di euro a testa). A ignora le ore di saturazione, nelle quali la differenza di prezzo è stata in media di 22 euro per megawattora (quantificatore). B confonde un utilizzo medio del 76% della capacità con un funzionamento a piena capacità per tre quarti del tempo (parafrasi). C attribuisce al fondo europeo una parte delle rendite di congestione, che «spettano ai due gestori» (ambito)."
+  },
+  {
+   "id": 1194,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "assistenza reciproca nelle emergenze di protezione civile",
+   "passage": "Sei paesi confinanti hanno firmato un accordo di assistenza reciproca per le emergenze di protezione civile, come incendi boschivi, alluvioni e terremoti. Quando un paese colpito ritiene che le proprie risorse non bastino, può chiedere aiuto attraverso un centro di coordinamento comune, che trasmette la richiesta agli altri cinque; ciascuno decide liberamente se e con quali mezzi contribuire. Le squadre inviate operano sotto la direzione delle autorità del paese colpito. Le spese di trasporto sono rimborsate per il 75% da un fondo comune, mentre i costi delle operazioni sul posto restano a carico del paese che invia l'aiuto. L'accordo prevede anche una riserva comune di quattro aerei antincendio, finanziata da tutti i paesi, che può essere impiegata solo dopo che il paese colpito ha messo in campo i propri mezzi aerei. Nel primo anno l'accordo è stato attivato nove volte, in sette casi per incendi boschivi. Un'esercitazione congiunta su un'alluvione simulata si terrà la prossima primavera.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nel primo anno l'accordo è stato attivato per lo più a causa di incendi boschivi.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Gli aerei della riserva comune possono essere impiegati anche quando il paese colpito non ha ancora messo in campo i propri mezzi aerei.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Nei sei paesi gli incendi boschivi sono emergenze più frequenti delle alluvioni e dei terremoti.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Quando riceve una richiesta, nessuno degli altri cinque paesi può rifiutarsi di inviare squadre o mezzi.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Nel primo anno l'accordo è stato attivato nove volte, in sette casi per incendi boschivi",
+   "explanation": "A è corretta: delle nove attivazioni del primo anno, sette sono avvenute «per incendi boschivi», cioè la maggior parte. B inverte la sequenza: la riserva comune può essere impiegata «solo dopo che il paese colpito ha messo in campo i propri mezzi aerei» (tempo). C fa un confronto che il brano non fa: il dato riguarda le attivazioni dell'accordo, cioè i casi in cui un paese ha chiesto aiuto perché le proprie risorse non bastavano, non la frequenza delle emergenze nei sei paesi (inferenza). D trasforma in obbligo una scelta che ciascun paese compie «liberamente» (negazione)."
+  },
+  {
+   "id": 1195,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "statistiche armonizzate sulle vittime della strada",
+   "passage": "Fino a due anni fa l'istituto statistico di un paese europeo contava come vittime di incidenti stradali soltanto le persone decedute entro sette giorni dall'incidente. Per allinearsi alla definizione usata dagli altri paesi europei, oggi conta anche i decessi avvenuti entro trenta giorni. Con la nuova definizione, le vittime dello scorso anno sono state 1.840; secondo l'istituto, con quella precedente sarebbero state circa il 7% in meno. Il cambiamento interrompe la serie storica: i dati degli anni precedenti non sono direttamente confrontabili con quelli recenti, e l'istituto ha pubblicato dei coefficienti che permettono di ricalcolarli in modo approssimativo. I criteri per classificare i feriti gravi, invece, non sono ancora stati armonizzati. L'istituto ricorda inoltre che il confronto tra paesi va fatto in rapporto alla popolazione e che, anche con una definizione comune, possono restare differenze dovute, ad esempio, alla completezza delle segnalazioni trasmesse dagli ospedali.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "L'istituto ha ricalcolato con precisione i dati degli anni precedenti secondo la nuova definizione.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Con una definizione comune, i dati sulle vittime dei diversi paesi diventano pienamente confrontabili.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "A parità di incidenti, la definizione attuale dà almeno tante vittime quante quella precedente.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Lo scorso anno le vittime della strada sono aumentate rispetto agli anni in cui si applicava la definizione precedente.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "oggi conta anche i decessi avvenuti entro trenta giorni",
+   "explanation": "C è corretta: la definizione attuale conta «anche» i decessi avvenuti entro trenta giorni, quindi comprende tutti quelli avvenuti entro sette; a parità di incidenti non può dare meno vittime della precedente. A trasforma la pubblicazione di coefficienti per un ricalcolo «approssimativo» in un ricalcolo preciso già fatto dall'istituto (parafrasi). B contraddice il brano, secondo cui anche con una definizione comune «possono restare differenze» (quantificatore). D ricava un aumento delle vittime da dati che il cambiamento di definizione ha reso non direttamente confrontabili (inferenza)."
+  },
+  {
+   "id": 1196,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "sostegno pubblico alle start-up innovative",
+   "passage": "Un ministero ha pubblicato la valutazione del programma che, da cinque anni, sostiene le start-up innovative con due strumenti. Il primo è un contributo a fondo perduto fino a 50.000 euro per la fase iniziale, assegnato con un bando annuale alle imprese con meno di tre anni di vita. Il secondo è un fondo di coinvestimento: per ogni euro che un investitore privato qualificato versa nel capitale di una start-up, il fondo pubblico ne aggiunge uno, fino a un massimo di un milione per impresa. In cinque anni il contributo è stato concesso a 1.300 imprese e il coinvestimento a 210. Secondo la valutazione, le imprese sostenute hanno aumentato gli addetti più di un gruppo di imprese simili non sostenute, ma la differenza è significativa solo per quelle che hanno ottenuto il coinvestimento. Gli autori avvertono che queste ultime erano già state selezionate da investitori privati e potevano quindi avere prospettive migliori fin dall'inizio. Il ministero intende rendere il bando semestrale.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La maggiore crescita degli addetti nelle imprese coinvestite è stata causata dal sostegno ricevuto dal fondo pubblico di coinvestimento.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Per le imprese che hanno ricevuto il contributo senza coinvestimento, la differenza negli addetti non è risultata significativa.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il fondo di coinvestimento è nato perché le start-up non riescono ad attrarre abbastanza capitali privati.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Le imprese che hanno ottenuto il coinvestimento avevano prospettive migliori delle altre fin dall'inizio.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "la differenza è significativa solo per quelle che hanno ottenuto il coinvestimento",
+   "explanation": "B è corretta: la differenza negli addetti «è significativa solo per quelle che hanno ottenuto il coinvestimento», quindi non lo è per le imprese che hanno avuto il contributo senza coinvestimento. A presenta come causa accertata un effetto che gli autori mettono in dubbio, perché le imprese coinvestite erano già state selezionate da investitori privati (inferenza). C indica un motivo plausibile per la creazione del fondo, ma il brano non ne parla (fuori testo). D presenta come fatto accertato un'ipotesi degli autori, secondo cui le imprese coinvestite «potevano» avere prospettive migliori fin dall'inizio (parafrasi)."
+  },
+  {
+   "id": 1197,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "consultazione pubblica online",
+   "passage": "Prima di presentare una proposta sulla riparabilità dei prodotti elettronici, un'istituzione europea ha svolto una consultazione pubblica online, aperta per dodici settimane a cittadini, imprese, associazioni e autorità pubbliche. Sono pervenute 6.200 risposte: l'82% da cittadini, il 10% da imprese e associazioni di categoria, il resto da organizzazioni non governative e autorità pubbliche. Circa 3.500 risposte di cittadini riproducevano lo stesso testo, preparato nell'ambito di una campagna di un'associazione di consumatori; il rapporto di sintesi le conta singolarmente, ma le segnala come campagna. Il rapporto precisa che la consultazione non è un sondaggio rappresentativo, perché vi partecipa soprattutto chi è più interessato al tema, e che le risposte servono a raccogliere argomenti e dati, non a misurare il sostegno alle diverse opzioni. Le imprese si sono dette in maggioranza favorevoli a obblighi di informazione sulla riparabilità, ma contrarie a un obbligo di fornire pezzi di ricambio per dieci anni.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Dalla consultazione risulta che la maggioranza dei cittadini europei è favorevole a nuove regole sulla riparabilità.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Nel rapporto di sintesi le risposte della campagna sono state contate come un'unica risposta.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Tutte le imprese che hanno risposto si sono dette favorevoli agli obblighi di informazione sulla riparabilità.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Più della metà delle 6.200 risposte pervenute riproduceva il testo preparato per la campagna.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "Circa 3.500 risposte di cittadini riproducevano lo stesso testo",
+   "explanation": "D è corretta: le risposte che riproducevano il testo della campagna sono circa 3.500 su 6.200, più della metà (che sarebbe 3.100). A ricava dalla consultazione l'orientamento della maggioranza dei cittadini, mentre il rapporto precisa che la consultazione non è un sondaggio rappresentativo e non serve «a misurare il sostegno alle diverse opzioni» (inferenza). B contraddice il brano: il rapporto conta le risposte della campagna «singolarmente», limitandosi a segnalarle (parafrasi). C trasforma una posizione espressa dalle imprese «in maggioranza» in una posizione di tutte le imprese (quantificatore)."
+  },
+  {
+   "id": 1198,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "totale ammissibile di catture e quote di pesca",
+   "passage": "Ogni anno i paesi che condividono lo sfruttamento di uno stock di merluzzo in un mare chiuso fissano il totale ammissibile di catture, cioè la quantità massima che può essere pescata nell'anno. Il totale viene stabilito sulla base del parere di un organismo scientifico indipendente, ma i paesi possono discostarsene, motivando la decisione. Una volta fissato, il totale è ripartito tra i paesi secondo percentuali stabili, calcolate sulle catture storiche; ciascun paese assegna poi la propria quota ai pescherecci secondo regole nazionali. I paesi possono scambiarsi parti di quota durante l'anno, ma il totale ammissibile non può essere superato. Se le catture di un paese superano la sua quota, l'eccedenza viene detratta dalla quota dell'anno successivo. Per il prossimo anno gli scienziati hanno raccomandato una riduzione del 30% rispetto all'anno in corso, mentre i paesi hanno approvato una riduzione del 20%. Secondo il parere scientifico, lo stock si trova al di sotto del livello che ne garantisce la riproduzione nel lungo periodo.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Per il prossimo anno i paesi hanno già fissato un totale ammissibile più alto di quello raccomandato dagli scienziati.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Nel fissare il totale ammissibile di catture, i paesi non possono discostarsi dal parere scientifico.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Le quote dei singoli pescherecci sono stabilite di comune accordo tra tutti i paesi che condividono lo stock.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Le catture che superano la quota di un paese vengono detratte dalla quota dello stesso anno.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "gli scienziati hanno raccomandato una riduzione del 30% rispetto all'anno in corso, mentre i paesi hanno approvato una riduzione del 20%",
+   "explanation": "A è corretta: rispetto all'anno in corso gli scienziati hanno raccomandato una riduzione del 30%, mentre i paesi ne hanno già approvata una del 20%: il totale fissato è quindi più alto di quello raccomandato. B rovescia il brano, secondo cui i paesi «possono discostarsene, motivando la decisione» (negazione). C attribuisce ai paesi insieme l'assegnazione ai pescherecci, che ciascun paese fa «secondo regole nazionali» (ambito). D anticipa la detrazione, che si applica alla quota «dell'anno successivo» (tempo)."
+  },
+  {
+   "id": 1199,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "sicurezza informatica degli operatori essenziali",
+   "passage": "L'agenzia nazionale per la sicurezza informatica di un paese europeo ha pubblicato la relazione annuale sugli operatori di servizi essenziali nei settori dell'energia, dei trasporti, dell'acqua e della sanità. Questi operatori devono notificare all'agenzia ogni incidente significativo entro 24 ore dalla scoperta e inviare una relazione completa entro un mese. Lo scorso anno le notifiche sono state 410, di cui 150 nel settore sanitario; nel 60% dei casi l'incidente era partito da un messaggio di posta elettronica fraudolento. Solo in 12 casi il servizio è stato interrotto per più di un giorno. L'agenzia ha svolto 85 ispezioni, scegliendo gli operatori in base al livello di rischio, e nella maggior parte dei casi ha riscontrato carenze, soprattutto nella gestione degli accessi e nell'aggiornamento dei programmi. Le sanzioni possono arrivare al 2% del fatturato annuo, ma finora l'agenzia ha preferito impartire prescrizioni con un termine per mettersi in regola. Dal prossimo anno l'obbligo di notifica sarà esteso ai fornitori di servizi informatici degli operatori.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I fornitori di servizi informatici degli operatori sono già tenuti a notificare gli incidenti all'agenzia.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Le carenze emerse dalle ispezioni non riguardavano soltanto la gestione degli accessi.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "In ciascun settore, la maggior parte degli incidenti notificati era partita da un messaggio di posta elettronica fraudolento.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "L'agenzia ha inflitto sanzioni pari al 2% del fatturato annuo agli operatori che presentavano carenze.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "soprattutto nella gestione degli accessi e nell'aggiornamento dei programmi",
+   "explanation": "B è corretta: le carenze riguardavano «soprattutto» la gestione degli accessi e l'aggiornamento dei programmi, quindi non soltanto gli accessi. A presenta come già in vigore un obbligo che sarà esteso ai fornitori solo dal prossimo anno (tempo). C estende a ogni settore una quota, il 60%, che si riferisce al totale delle notifiche (quantificatore). D trasforma il massimo previsto per le sanzioni in sanzioni effettivamente inflitte, mentre finora l'agenzia ha preferito impartire prescrizioni (parafrasi)."
+  },
+  {
+   "id": 1200,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "diritti dei passeggeri aerei",
+   "passage": "Una guida per i viaggiatori riassume i diritti dei passeggeri in caso di cancellazione o di forte ritardo dei voli in partenza da un aeroporto dell'Unione. Se il volo è cancellato, il passeggero può scegliere tra il rimborso del biglietto e un volo alternativo verso la stessa destinazione. Ha inoltre diritto a una compensazione pecuniaria, da 250 a 600 euro secondo la distanza, salvo in alcuni casi: ad esempio, quando la compagnia lo ha avvisato con almeno due settimane di anticipo o dimostra che la cancellazione è dovuta a circostanze eccezionali. La stessa compensazione spetta, di norma, quando il volo arriva a destinazione con un ritardo di tre ore o più. Durante l'attesa, sia in caso di cancellazione sia di ritardo prolungato, la compagnia deve offrire pasti e bevande e, se necessario, una sistemazione in albergo, anche quando il disservizio è dovuto a circostanze eccezionali. La richiesta di compensazione va presentata prima alla compagnia; solo in caso di risposta negativa o di mancata risposta ci si può rivolgere all'organismo nazionale competente.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "In caso di cancellazione, il passeggero ha diritto sia al rimborso del biglietto sia a un volo alternativo.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "La compensazione spetta, di norma, quando il volo parte con un ritardo di tre ore o più.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Se la cancellazione è dovuta a circostanze eccezionali, il passeggero ha comunque diritto all'assistenza durante l'attesa.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Il passeggero può rivolgersi all'organismo nazionale competente anche se la compagnia non ha ancora ricevuto la sua richiesta.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "anche quando il disservizio è dovuto a circostanze eccezionali",
+   "explanation": "C è corretta: durante l'attesa la compagnia deve offrire pasti, bevande ed eventualmente l'albergo «anche quando il disservizio è dovuto a circostanze eccezionali», che invece possono escludere la compensazione. A trasforma una scelta («può scegliere tra») in un doppio diritto (parafrasi). B scambia l'arrivo con la partenza: la compensazione spetta quando il volo «arriva a destinazione» con tre ore o più di ritardo (parafrasi). D salta un passaggio obbligato: la richiesta va presentata «prima alla compagnia» (tempo)."
+  },
+  {
+   "id": 1201,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "fasi della sperimentazione clinica di un farmaco",
+   "passage": "La sperimentazione di un nuovo farmaco sull'uomo si svolge in tre fasi, che precedono la richiesta di autorizzazione all'immissione in commercio. Nella fase I il prodotto viene somministrato a un piccolo numero di volontari, spesso sani, per valutarne la sicurezza e stabilire le dosi tollerate. Nella fase II è testato su alcune centinaia di pazienti affetti dalla malattia, per ottenere le prime indicazioni sull'efficacia e scegliere la dose più adatta. Nella fase III, che coinvolge migliaia di pazienti, il farmaco viene confrontato con il trattamento standard o con un placebo, assegnando i partecipanti ai gruppi in modo casuale. Anche dopo l'autorizzazione la sorveglianza continua, perché gli effetti indesiderati molto rari possono sfuggire a studi con un numero limitato di partecipanti. Un'azienda farmaceutica ha appena concluso la fase II di un nuovo farmaco contro l'emicrania e ha annunciato che la fase III comincerà il prossimo anno in 40 ospedali di sei paesi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il nuovo farmaco contro l'emicrania è stato confrontato con il trattamento standard su migliaia di pazienti.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "La dose più adatta di un nuovo farmaco viene scelta nella fase III, su migliaia di pazienti.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Il nuovo farmaco contro l'emicrania è già stato somministrato a persone che soffrono di questa malattia.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Nella fase I il farmaco viene somministrato esclusivamente a volontari in buona salute.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Nella fase II è testato su alcune centinaia di pazienti affetti dalla malattia",
+   "explanation": "C è corretta: l'azienda «ha appena concluso la fase II», nella quale il farmaco «è testato su alcune centinaia di pazienti affetti dalla malattia»; quindi è già stato somministrato a persone che soffrono di emicrania. A presenta come avvenuto il confronto con il trattamento standard su migliaia di pazienti, proprio della fase III, che comincerà solo il prossimo anno (tempo). B attribuisce alla fase III la scelta della dose più adatta, che il brano colloca nella fase II (ambito). D trasforma in regola senza eccezioni un dato che il brano presenta come frequente: i volontari della fase I sono «spesso sani», non sempre (quantificatore)."
+  },
+  {
+   "id": 1202,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "antibiotici negli allevamenti e resistenza batterica",
+   "passage": "Secondo il rapporto annuale dell'istituto veterinario di un paese europeo, in dieci anni le vendite di antibiotici destinati agli animali da allevamento si sono ridotte del 40%. Il calo riguarda soprattutto i trattamenti somministrati a interi gruppi di animali con l'acqua o con i mangimi, che le norme ammettono ormai solo per curare un'infezione diagnosticata in una parte del gruppo e non più per prevenirla. Gli antibiotici considerati di importanza critica per la medicina umana possono essere usati negli animali solo se un esame di laboratorio dimostra che nessun'altra sostanza sarebbe efficace. L'istituto ha analizzato anche i batteri isolati dalle carni in vendita: la quota di ceppi resistenti è diminuita nei campioni di pollame, mentre è rimasta stabile in quelli di carne suina. Secondo i ricercatori, la differenza potrebbe dipendere dal fatto che negli allevamenti suini la riduzione degli antibiotici è cominciata più tardi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Un antibiotico di importanza critica per la medicina umana non può essere usato negli animali senza un esame di laboratorio.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "La riduzione delle vendite di antibiotici ha riguardato soltanto i trattamenti somministrati a interi gruppi di animali.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Nella carne suina la quota di batteri resistenti è rimasta stabile perché la riduzione degli antibiotici è cominciata più tardi.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "I trattamenti somministrati con l'acqua o con i mangimi sono ormai vietati negli allevamenti.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "possono essere usati negli animali solo se un esame di laboratorio dimostra che nessun'altra sostanza sarebbe efficace",
+   "explanation": "A è corretta: questi antibiotici «possono essere usati negli animali solo se un esame di laboratorio dimostra che nessun'altra sostanza sarebbe efficace», quindi senza l'esame non possono essere usati. B trasforma in esclusiva una riduzione che ha riguardato «soprattutto» i trattamenti di gruppo (quantificatore). C presenta come accertata una spiegazione che i ricercatori indicano solo come possibile: la differenza «potrebbe dipendere» dall'avvio più tardivo della riduzione (inferenza). D trasforma una limitazione in un divieto: i trattamenti con l'acqua o con i mangimi restano ammessi per curare un'infezione diagnosticata in una parte del gruppo (negazione)."
+  },
+  {
+   "id": 1203,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "ricerca di esopianeti con il metodo dei transiti",
+   "passage": "Un telescopio spaziale dedicato alla ricerca di esopianeti, cioè di pianeti in orbita attorno a stelle diverse dal Sole, misura senza interruzione la luminosità di decine di migliaia di stelle. Quando un pianeta passa davanti alla propria stella, ne oscura una piccola parte e la luce ricevuta dal telescopio diminuisce, in genere per alcune ore. Dalla profondità di questa diminuzione si ricavano le dimensioni del pianeta rispetto a quelle della stella, mentre l'intervallo tra due passaggi successivi indica la durata della sua orbita. Il metodo permette però di individuare solo i pianeti la cui orbita è allineata con la linea di vista dalla Terra. Un segnale diventa un «candidato» quando si ripete almeno tre volte con la stessa profondità, ma viene considerato una scoperta solo dopo la conferma di un secondo strumento. Nei primi due anni di attività sono stati segnalati candidati attorno a meno del 2% delle stelle osservate.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La grande maggioranza delle stelle osservate dal telescopio non ha pianeti in orbita attorno a sé.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "La profondità della diminuzione di luce indica quanto dura l'orbita del pianeta attorno alla sua stella.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Il telescopio può individuare ogni pianeta in orbita attorno alle stelle che osserva.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Un candidato diventa una scoperta soltanto con la conferma di un secondo strumento.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "viene considerato una scoperta solo dopo la conferma di un secondo strumento",
+   "explanation": "D è corretta: un segnale «viene considerato una scoperta solo dopo la conferma di un secondo strumento». A ricava l'assenza di pianeti dalla mancanza di candidati, ma il metodo individua solo i pianeti la cui orbita è allineata con la linea di vista dalla Terra: gli altri sfuggono anche se esistono (inferenza). B attribuisce alla profondità della diminuzione di luce un'informazione che deriva dall'intervallo tra due passaggi; la profondità indica le dimensioni del pianeta rispetto alla stella (ambito). C è smentita dal limite del metodo, che individua solo i pianeti con l'orbita allineata con la linea di vista dalla Terra (quantificatore)."
+  },
+  {
+   "id": 1204,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "intelligenza artificiale nello screening mammografico",
+   "passage": "Un programma regionale di screening mammografico sta sperimentando un sistema di intelligenza artificiale per la lettura degli esami. Di norma ogni mammografia viene esaminata in modo indipendente da due radiologi. Nella sperimentazione, che coinvolge 60.000 donne, per metà delle partecipanti, scelte per sorteggio, la seconda lettura è affidata al sistema, mentre la prima resta a un radiologo; l'altra metà segue la procedura abituale. In entrambi i gruppi, quando le due letture non concordano, decide un terzo radiologo. Il sistema non ha accesso alla storia clinica delle pazienti e non comunica con loro: l'esito è sempre firmato da un medico. Dopo il primo anno i tumori individuati sono stati circa sei ogni mille donne in entrambi i gruppi, mentre nel gruppo seguito dal sistema il tempo dedicato dai radiologi alla lettura si è ridotto di circa un terzo. I responsabili avvertono che non è ancora possibile sapere se il sistema riduca i tumori che compaiono tra un controllo e l'altro: per stabilirlo serviranno almeno due anni di osservazione.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nel gruppo seguito dal sistema i tumori individuati sono diminuiti di circa un terzo.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Nella sperimentazione ogni mammografia è stata esaminata da almeno un radiologo.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Quando la lettura del sistema e quella del radiologo non concordano, decide il radiologo che ha eseguito la prima lettura.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "La sperimentazione ha già dimostrato che il sistema riduce i tumori che compaiono tra un controllo e l'altro.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "la seconda lettura è affidata al sistema, mentre la prima resta a un radiologo",
+   "explanation": "B è corretta: nel gruppo seguito dal sistema la prima lettura «resta a un radiologo», mentre l'altra metà segue la procedura abituale con due radiologi; nessun esame è stato quindi letto dal solo sistema. A fonde due dati distinti: la riduzione di circa un terzo riguarda il tempo dedicato dai radiologi alla lettura, mentre i tumori individuati sono stati circa sei ogni mille donne in entrambi i gruppi (ambito). C attribuisce la decisione al radiologo della prima lettura, mentre in caso di disaccordo «decide un terzo radiologo» (ambito). D presenta come già dimostrato un effetto che, secondo i responsabili, non è ancora possibile valutare: serviranno almeno due anni di osservazione (tempo)."
+  },
+  {
+   "id": 1205,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 2,
+   "topic": "orario delle lezioni e sonno degli adolescenti",
+   "passage": "Durante l'adolescenza l'orologio biologico tende a spostare in avanti l'ora in cui ci si addormenta. Per studiarne le conseguenze sulla scuola, un'università ha seguito per un anno scolastico 1.800 studenti di dodici istituti superiori. Sei istituti, che si erano offerti volontari, hanno posticipato l'inizio delle lezioni dalle 8.00 alle 8.50; gli altri sei hanno mantenuto l'orario abituale e sono serviti da confronto. Gli studenti hanno indossato un braccialetto che registra il sonno per due settimane all'inizio dell'anno e per due settimane alla fine. Negli istituti con l'inizio posticipato gli studenti hanno dormito in media 34 minuti in più nelle notti precedenti le lezioni: l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata. Le assenze alla prima ora sono diminuite, mentre sui voti in matematica non sono emerse differenze statisticamente significative.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Posticipare l'inizio delle lezioni ha migliorato i risultati degli studenti in matematica.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Con l'inizio posticipato gli studenti hanno dormito di più soprattutto perché si svegliavano più tardi di prima.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il sonno degli studenti è stato registrato ogni notte per l'intero anno scolastico.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Dormire di più nelle notti prima delle lezioni aiuta gli adolescenti a ricordare ciò che hanno studiato.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "gli studenti hanno dormito in media 34 minuti in più nelle notti precedenti le lezioni: l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata",
+   "explanation": "B è corretta: con l'inizio posticipato gli studenti hanno dormito «in media 34 minuti in più» e il brano spiega da dove viene il sonno in più: «l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata». A attribuisce al nuovo orario un miglioramento in matematica che lo studio non ha rilevato: sui voti «non sono emerse differenze statisticamente significative» (inferenza). C estende a tutto l'anno una registrazione durata due settimane all'inizio e due alla fine (quantificatore). D aggiunge un effetto del sonno sulla memoria che il brano non menziona, per quanto plausibile (fuori testo)."
+  },
+  {
+   "id": 1206,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "batterie al sodio per l'accumulo di energia",
+   "passage": "Una società elettrica municipale ha installato accanto a un impianto fotovoltaico un sistema di accumulo con batterie agli ioni di sodio, che immagazzina l'energia prodotta nelle ore centrali della giornata e la restituisce alla rete la sera. Rispetto alle più diffuse batterie al litio, quelle al sodio utilizzano un elemento abbondante e facilmente reperibile, ma a parità di energia immagazzinata sono più pesanti e voluminose. Per questo, secondo la società, sono poco adatte ai veicoli elettrici destinati a percorrere lunghe distanze, mentre in un impianto fisso peso e ingombro contano meno. Il fornitore dichiara inoltre che le batterie mantengono buone prestazioni anche a basse temperature, un aspetto che la società verificherà nei prossimi inverni. La sperimentazione durerà tre anni: al termine, i risultati saranno confrontati con quelli di un sistema al litio della stessa capacità, installato nello stesso periodo in un altro comune della provincia.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Secondo la società, le batterie al sodio non possono essere utilizzate sui veicoli elettrici.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Le batterie al sodio installate dalla società hanno dimostrato di mantenere buone prestazioni anche a basse temperature.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Il sistema al sodio restituisce alla rete più energia del sistema al litio installato nell'altro comune.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Un sistema di accumulo al sodio occupa più spazio di un sistema al litio della stessa capacità.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "a parità di energia immagazzinata sono più pesanti e voluminose",
+   "explanation": "D è corretta: «a parità di energia immagazzinata» le batterie al sodio sono «più pesanti e voluminose», quindi a parità di capacità occupano più spazio. A trasforma un giudizio di scarsa idoneità, riferito ai veicoli destinati a lunghe distanze, in un'impossibilità valida per tutti i veicoli elettrici (parafrasi). B presenta come fatto dimostrato una dichiarazione del fornitore, che la società verificherà solo nei prossimi inverni (parafrasi). C introduce un confronto tra i due sistemi che il brano non fa: i loro risultati saranno confrontati soltanto al termine dei tre anni (inferenza)."
+  },
+  {
+   "id": 1207,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "microplastiche nell'acqua potabile",
+   "passage": "Il gestore del servizio idrico di una regione ha pubblicato i risultati del primo anno di monitoraggio delle microplastiche, frammenti di plastica di dimensioni inferiori a cinque millimetri. Sono stati analizzati campioni d'acqua prelevati da fiumi, laghi e pozzi prima della potabilizzazione e dai rubinetti di alcune scuole. Il metodo di laboratorio adottato conta solo le particelle più grandi di 20 micrometri: quelle più piccole, che secondo il gestore potrebbero essere numerose, non vengono rilevate. Le microplastiche sono state trovate in tutti i campioni di acque superficiali, mentre nei pozzi profondi sono state rilevate soltanto in un campione su cinque. Gli impianti di potabilizzazione ne hanno trattenuto in media oltre il 90%. Il gestore precisa che per le microplastiche nell'acqua potabile non esistono ancora limiti di legge e che le conoscenze sui loro effetti sulla salute sono limitate. Nel secondo anno il monitoraggio sarà esteso alle acque in bottiglia vendute nella regione.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nella maggior parte dei campioni prelevati dai pozzi profondi il metodo adottato non ha rilevato microplastiche.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Secondo il gestore, le particelle più piccole di 20 micrometri sono poco numerose e possono essere trascurate.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Nel primo anno di monitoraggio sono state analizzate anche le acque in bottiglia vendute nella regione.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Le microplastiche presenti nell'acqua derivano soprattutto dalla degradazione degli imballaggi.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "nei pozzi profondi sono state rilevate soltanto in un campione su cinque",
+   "explanation": "A è corretta: nei pozzi profondi le microplastiche «sono state rilevate soltanto in un campione su cinque», quindi negli altri quattro su cinque il metodo non le ha rilevate. B rovescia la cautela del gestore, secondo cui le particelle più piccole «potrebbero essere numerose» e semplicemente non vengono rilevate (negazione). C anticipa al primo anno l'analisi delle acque in bottiglia, prevista per il secondo (tempo). D attribuisce alle microplastiche un'origine che il brano non indica (fuori testo)."
+  },
+  {
+   "id": 1208,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "nuove tecniche genomiche: prova in campo di un frumento",
+   "passage": "Un istituto pubblico di ricerca agraria ha avviato la prima prova in campo di una varietà di frumento ottenuta con una nuova tecnica genomica. I ricercatori hanno modificato in modo mirato un gene della pianta che la rende sensibile all'oidio, una malattia causata da un fungo, senza introdurre DNA di altre specie. In serra le piante modificate si sono ammalate molto meno di quelle della varietà di partenza. La prova, autorizzata dal ministero per tre anni, si svolge in un appezzamento recintato di mille metri quadrati, sorvegliato da telecamere. Attorno all'appezzamento è stata lasciata una fascia di terreno incolto, per ridurre la possibilità che il polline raggiunga altre coltivazioni, e al termine di ogni stagione il raccolto viene distrutto. La prova dovrà stabilire se la resistenza osservata in serra si mantiene in condizioni reali e se la produzione di granella resta pari a quella della varietà di partenza.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La varietà modificata permetterà di ridurre l'uso di fungicidi nella coltivazione del frumento.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "La prova in campo ha già confermato che la resistenza all'oidio si mantiene anche in condizioni reali.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Il frumento raccolto nell'appezzamento sperimentale non viene immesso sul mercato.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Con la nuova tecnica i ricercatori hanno modificato un gene del fungo che causa l'oidio.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "al termine di ogni stagione il raccolto viene distrutto",
+   "explanation": "C è corretta: «al termine di ogni stagione il raccolto viene distrutto», quindi il frumento della prova non arriva sul mercato. A attribuisce alla varietà un vantaggio, la riduzione dei fungicidi, che il brano non menziona, per quanto plausibile (fuori testo). B presenta come già confermato ciò che la prova «dovrà stabilire» (tempo). D attribuisce la modifica al fungo, mentre il gene modificato è della pianta (ambito)."
+  },
+  {
+   "id": 1209,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "anidride carbonica e ricambio d'aria nelle aule",
+   "passage": "Una provincia ha installato sensori di anidride carbonica in 400 aule di 50 scuole superiori. La concentrazione di questo gas, prodotto dalla respirazione, è usata come indicatore del ricambio d'aria: non misura direttamente gli inquinanti o i virus presenti, ma valori elevati segnalano che la ventilazione è insufficiente. Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante. Nel primo inverno la soglia è stata superata per almeno metà del tempo di lezione nel 70% delle aule. Nella maggior parte dei casi è bastato aprire le finestre per cinque minuti ogni ora per riportare i valori sotto la soglia. Nelle 60 aule dotate di ventilazione meccanica, invece, i superamenti sono stati rari. Il prossimo anno la provincia installerà questi impianti in altre 100 aule, dando la precedenza a quelle che si affacciano su strade molto trafficate, dove aprire le finestre fa entrare rumore e smog.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Aprire le finestre per cinque minuti ogni ora è bastato a riportare i valori sotto la soglia in tutte le aule.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Un valore di anidride carbonica inferiore alla soglia indica che nell'aula non sono presenti inquinanti.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Le aule che si affacciano su strade molto trafficate sono già dotate di ventilazione meccanica.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Nel primo inverno i superamenti della soglia hanno fatto scattare l'avviso in oltre la metà delle aule.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante. Nel primo inverno la soglia è stata superata per almeno metà del tempo di lezione nel 70% delle aule",
+   "explanation": "D è corretta: «Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante», e nel primo inverno la soglia è stata superata «nel 70% delle aule», cioè in più della metà: lì i superamenti hanno fatto scattare l'avviso. A estende a tutte le aule un risultato ottenuto nella «maggior parte dei casi» (quantificatore). B attribuisce all'indicatore un significato che non ha: l'anidride carbonica segnala il ricambio d'aria ma «non misura direttamente gli inquinanti», e sulle strade trafficate aprire le finestre fa entrare smog (inferenza). C presenta come già realizzati gli impianti che la provincia installerà il prossimo anno, dando la precedenza proprio a quelle aule (tempo)."
+  },
+  {
+   "id": 1210,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 2,
+   "topic": "telemedicina per pazienti cronici nelle aree montane",
+   "passage": "Nei comuni montani di una regione è attivo da un anno un servizio di telemedicina per le persone con diabete o scompenso cardiaco. I partecipanti ricevono apparecchi per misurare a casa pressione, peso e glicemia; i dati vengono trasmessi ogni giorno all'infermiere di comunità del distretto, che in caso di valori anomali contatta il medico di famiglia. Le visite specialistiche di controllo possono svolgersi in videochiamata, ma la prima visita con lo specialista avviene sempre in ambulatorio. A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati. Al servizio hanno aderito 1.200 pazienti; il 15% lo ha abbandonato nel corso dell'anno, soprattutto per difficoltà nell'uso degli apparecchi. Tra i pazienti rimasti i ricoveri sono diminuiti rispetto all'anno precedente, ma la regione osserva che manca un gruppo di confronto e che una parte del calo potrebbe dipendere da altri fattori.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I partecipanti senza connessione a internet ricevono un tablet con una scheda dati.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "I valori misurati a casa dai pazienti vengono trasmessi ogni giorno al medico di famiglia.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Tutte le visite con lo specialista possono svolgersi in videochiamata.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Il calo dei ricoveri tra i pazienti rimasti nel servizio è dovuto alla telemedicina.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati",
+   "explanation": "A è corretta: «A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati». B attribuisce al medico di famiglia la ricezione quotidiana dei dati, che spetta all'infermiere di comunità; il medico viene contattato solo in caso di valori anomali (ambito). C estende la videochiamata a tutte le visite, mentre la prima visita con lo specialista «avviene sempre in ambulatorio» (quantificatore). D attribuisce con certezza al servizio un calo che, in mancanza di un gruppo di confronto, potrebbe dipendere in parte da altri fattori (inferenza)."
+  },
+  {
+   "id": 1211,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "recupero delle terre rare dai magneti dismessi",
+   "passage": "Un consorzio di università e imprese ha avviato un impianto pilota per recuperare le terre rare contenute nei magneti permanenti di dischi rigidi e motori elettrici dismessi. Questi elementi sono indispensabili per i magneti delle turbine eoliche e dei veicoli elettrici, e l'Europa li importa quasi interamente. Nell'impianto i magneti, dopo essere stati estratti dagli apparecchi, vengono esposti all'idrogeno, che li riduce in polvere; la polvere viene poi usata direttamente per produrre nuovi magneti, senza separare i singoli elementi. Nel primo anno l'impianto ha trattato 40 tonnellate di magneti, recuperandone oltre il 90% del materiale. La fase più costosa resta l'estrazione dei magneti, che oggi avviene in gran parte a mano, perché la maggior parte degli apparecchi non è progettata per essere smontata. Il consorzio ha chiesto un finanziamento pubblico per costruire un impianto industriale con una linea di smontaggio automatica; se la domanda sarà accolta, i lavori potranno cominciare tra due anni.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nell'impianto pilota i magneti vengono già estratti dagli apparecchi con una linea di smontaggio automatica.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Tra due anni cominceranno i lavori per un impianto industriale dotato di una linea di smontaggio automatica.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "La fase più costosa del processo precede il trattamento dei magneti con l'idrogeno.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "La maggior parte degli apparecchi non è progettata per essere smontata perché l'estrazione dei magneti è costosa.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "La fase più costosa resta l'estrazione dei magneti",
+   "explanation": "C è corretta: la fase più costosa «resta l'estrazione dei magneti», che precede il trattamento, perché i magneti vengono esposti all'idrogeno «dopo essere stati estratti dagli apparecchi». A presenta come già in funzione la linea di smontaggio automatica, prevista per il futuro impianto industriale: oggi l'estrazione avviene in gran parte a mano (tempo). B omette la condizione posta dal brano: i lavori potranno cominciare tra due anni solo «se la domanda sarà accolta» (negazione). D inverte il rapporto di causa: secondo il brano è l'estrazione a essere costosa e svolta a mano perché gli apparecchi non sono progettati per essere smontati, non il contrario (inferenza)."
+  },
+  {
+   "id": 1212,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "previsioni meteorologiche d'insieme con il supercalcolo",
+   "passage": "Il servizio meteorologico nazionale ha messo in funzione un nuovo supercalcolatore, che gli consente di elaborare previsioni «d'insieme». Invece di una sola simulazione, il modello ne esegue cinquanta, ciascuna partendo da condizioni iniziali leggermente diverse: le misure dello stato dell'atmosfera non sono mai perfette e piccoli errori iniziali possono crescere con il passare dei giorni. Se le simulazioni concordano, la previsione è considerata affidabile; se divergono, l'incertezza è elevata. La probabilità di pioggia indicata per una località corrisponde alla quota di simulazioni che vi prevedono precipitazioni. Il nuovo sistema calcola inoltre le previsioni su una griglia di 2,5 chilometri, contro i 7 del precedente, e rappresenta meglio i temporali e i rilievi montuosi. Per le scadenze oltre i dieci giorni il servizio continuerà a diffondere soltanto tendenze generali, come temperature superiori o inferiori alla media. Dal prossimo mese le mappe di probabilità saranno pubblicate anche sul sito del servizio.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Una probabilità di pioggia del 30% indica che in quella località pioverà per circa il 30% della giornata.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Una probabilità di pioggia del 40% significa che 20 delle 50 simulazioni prevedono precipitazioni in quella località.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Con il nuovo supercalcolatore il servizio fornirà previsioni dettagliate anche oltre i dieci giorni.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Le mappe di probabilità sono consultabili sul sito del servizio fin dall'avvio del nuovo supercalcolatore.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "La probabilità di pioggia indicata per una località corrisponde alla quota di simulazioni che vi prevedono precipitazioni",
+   "explanation": "B è corretta: la probabilità di pioggia «corrisponde alla quota di simulazioni che vi prevedono precipitazioni», e il 40% di 50 simulazioni è 20. A interpreta la probabilità come la parte della giornata in cui pioverà, mentre indica la quota di simulazioni che prevedono precipitazioni (parafrasi). C contraddice il brano: oltre i dieci giorni il servizio continuerà a diffondere «soltanto tendenze generali» (negazione). D anticipa la pubblicazione delle mappe sul sito, prevista solo dal prossimo mese (tempo)."
+  },
+  {
+   "id": 1213,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "legumi e malattie cardiovascolari in uno studio osservazionale",
+   "passage": "Uno studio universitario ha seguito per dodici anni 40.000 adulti, che all'inizio avevano compilato un questionario sulle proprie abitudini alimentari. Chi dichiarava di mangiare legumi almeno tre volte alla settimana ha avuto infarti e ictus con una frequenza inferiore del 20% rispetto a chi li consumava raramente. I grandi consumatori di legumi, però, fumavano meno, praticavano più attività fisica e avevano in media un livello di istruzione più alto. Tenendo conto di questi fattori con metodi statistici, la differenza tra i due gruppi è scesa all'8%, ma è rimasta significativa. Gli autori sottolineano che uno studio osservazionale può mettere in luce un'associazione, ma non dimostrare un rapporto di causa ed effetto: potrebbero esistere altre differenze tra i gruppi che lo studio non ha misurato. Inoltre, l'alimentazione è stata rilevata una sola volta, all'inizio, e potrebbe essere cambiata negli anni successivi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Considerando fumo, attività fisica e istruzione, la differenza si è più che dimezzata.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Mangiare legumi almeno tre volte alla settimana riduce dell'8% il rischio di infarto e ictus.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Le abitudini alimentari dei partecipanti sono state rilevate più volte nel corso dei dodici anni.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "I legumi contengono fibre che contribuiscono a ridurre il colesterolo nel sangue.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Tenendo conto di questi fattori con metodi statistici, la differenza tra i due gruppi è scesa all'8%",
+   "explanation": "A è corretta: tenendo conto di quei fattori la differenza è passata dal 20% all'8%, meno della metà del valore iniziale (che sarebbe il 10%). B presenta come effetto causale un'associazione: gli autori avvertono che uno studio osservazionale non può dimostrare un rapporto di causa ed effetto (inferenza). C contraddice il brano, secondo cui l'alimentazione «è stata rilevata una sola volta, all'inizio» (tempo). D aggiunge un'informazione su fibre e colesterolo che il brano non contiene (fuori testo)."
+  },
+  {
+   "id": 1214,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 2,
+   "topic": "monitoraggio acustico della fauna in un parco",
+   "passage": "Un parco nazionale ha collocato nei propri boschi 80 registratori automatici per studiare uccelli, pipistrelli e anfibi attraverso i suoni che emettono. Gli apparecchi registrano per dieci minuti ogni ora, di giorno e di notte, e captano anche gli ultrasuoni dei pipistrelli, che l'orecchio umano non percepisce. Un programma addestrato su registrazioni di riferimento riconosce le specie; quando il grado di certezza è basso, il riconoscimento viene controllato da un esperto. Il metodo consente di sorvegliare aree difficili da raggiungere senza disturbare gli animali, ma ha alcuni limiti: non rileva le specie che non emettono suoni e il numero di richiami registrati non indica quanti individui siano presenti. Nel primo anno sono state raccolte oltre un milione di registrazioni e sono state riconosciute 112 specie, tre delle quali mai segnalate prima nel parco. Il parco intende ora confrontare questi dati con quelli dei censimenti tradizionali svolti dagli osservatori sul campo.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I registratori sono stati collocati soprattutto nelle zone del parco più difficili da raggiungere.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "Le specie di cui sono stati registrati più richiami sono anche quelle più numerose nel parco.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "I riconoscimenti effettuati dal programma vengono sempre controllati da un esperto.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Tutte le specie riconosciute nel primo anno sono specie che emettono suoni.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "non rileva le specie che non emettono suoni",
+   "explanation": "D è corretta: le specie sono state riconosciute a partire dalle registrazioni, e il metodo «non rileva le specie che non emettono suoni»; quindi tutte le specie riconosciute ne emettono. A attribuisce ai registratori una collocazione che il brano non indica: dice solo che il metodo consente di sorvegliare aree difficili da raggiungere (fuori testo). B ricava il numero di individui da quello dei richiami, mentre il brano precisa che i richiami registrati non indicano quanti individui siano presenti (inferenza). C estende a ogni riconoscimento il controllo dell'esperto, previsto solo quando il grado di certezza è basso (quantificatore)."
+  },
+  {
+   "id": 1215,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "sicurezza dei dispositivi domestici connessi",
+   "passage": "L'agenzia nazionale per la sicurezza informatica ha analizzato 60 dispositivi domestici connessi a internet, tra cui telecamere, termostati, altoparlanti intelligenti e prese comandate a distanza. In 21 dispositivi la password di fabbrica era identica per tutti gli esemplari dello stesso modello e l'utente non era obbligato a cambiarla alla prima accensione. Solo per 18 dispositivi il produttore indicava per quanto tempo avrebbe fornito aggiornamenti di sicurezza. L'agenzia raccomanda di cambiare subito la password, di installare gli aggiornamenti appena disponibili e di collegare questi apparecchi a una rete separata da quella usata per computer e telefoni, in modo che un dispositivo violato non permetta di accedere agli altri. Il governo sta preparando una norma che vieterà la vendita di dispositivi con password di fabbrica uguali per tutti gli esemplari e obbligherà i produttori a dichiarare sulla confezione la durata degli aggiornamenti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "In 21 dei dispositivi analizzati l'utente non aveva la possibilità di cambiare la password di fabbrica.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Secondo l'agenzia, collegare i dispositivi a una rete separata impedisce che vengano violati.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Per oltre metà dei 60 dispositivi analizzati mancava l'indicazione della durata degli aggiornamenti di sicurezza.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "I produttori sono tenuti a dichiarare sulla confezione per quanto tempo forniranno gli aggiornamenti.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Solo per 18 dispositivi il produttore indicava per quanto tempo avrebbe fornito aggiornamenti di sicurezza",
+   "explanation": "C è corretta: il produttore indicava la durata degli aggiornamenti solo per 18 dispositivi su 60, quindi l'indicazione mancava per 42, più della metà. A trasforma l'assenza di un obbligo in un'impossibilità: l'utente «non era obbligato» a cambiare la password, non gli era impedito di farlo (negazione). B cambia lo scopo della rete separata, che secondo l'agenzia serve a evitare che un dispositivo violato permetta di accedere agli altri, non a impedire la violazione (parafrasi). D presenta come già in vigore un obbligo previsto da una norma che il governo sta ancora preparando (tempo)."
+  },
+  {
+   "id": 1216,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "registro tumori regionale",
+   "passage": "Il registro tumori di una regione raccoglie i dati su tutti i nuovi casi di tumore diagnosticati tra i residenti, incrociando le schede di dimissione ospedaliera, i referti di anatomia patologica e i certificati di morte. Ogni caso viene verificato da personale specializzato prima di essere inserito: per questo i dati sono pubblicati con circa tre anni di ritardo. Dal registro si ricavano l'incidenza, cioè il numero di nuovi casi in un anno ogni 100.000 abitanti, e la sopravvivenza dei pazienti a cinque anni dalla diagnosi. L'ultimo rapporto segnala che, dopo l'avvio dello screening, l'incidenza del tumore del colon-retto è aumentata nella fascia d'età tra i 50 e i 69 anni, perché lo screening permette di scoprire anche tumori in fase iniziale. Nella stessa fascia d'età la mortalità per questo tumore è invece diminuita. I dati sui residenti curati in ospedali di altre regioni arrivano con un ulteriore ritardo e, secondo il rapporto, potrebbero far aumentare leggermente le stime.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Dopo l'avvio dello screening la mortalità per tumore del colon-retto è diminuita in tutte le fasce d'età.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "I casi descritti nell'ultimo rapporto erano stati diagnosticati alcuni anni prima della sua pubblicazione.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "L'aumento dell'incidenza tra i 50 e i 69 anni dimostra che il tumore del colon-retto si sta diffondendo nella popolazione.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "L'incidenza indica la quota di pazienti ancora in vita cinque anni dopo la diagnosi.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "per questo i dati sono pubblicati con circa tre anni di ritardo",
+   "explanation": "B è corretta: i dati «sono pubblicati con circa tre anni di ritardo», quindi al momento della pubblicazione i casi descritti erano stati diagnosticati da alcuni anni. A estende a tutte le età un calo della mortalità che il rapporto segnala solo nella fascia tra i 50 e i 69 anni (ambito). C trascura la spiegazione del rapporto, secondo cui l'aumento dell'incidenza è dovuto allo screening, che permette di scoprire anche tumori in fase iniziale (inferenza). D confonde l'incidenza, cioè il numero di nuovi casi in un anno ogni 100.000 abitanti, con la sopravvivenza a cinque anni dalla diagnosi (parafrasi)."
+  },
+  {
+   "id": 1217,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "idrogeno nella produzione dell'acciaio",
+   "passage": "Nell'altoforno tradizionale il minerale di ferro viene trasformato in ferro grazie al carbon coke, che sottrae ossigeno al minerale liberando grandi quantità di anidride carbonica. Una tecnica alternativa, la riduzione diretta, utilizza invece un gas: se si impiega idrogeno, il principale prodotto della reazione è vapore acqueo. Il ferro così ottenuto viene poi fuso in un forno elettrico. Un gruppo siderurgico ha annunciato che sostituirà il proprio altoforno con un impianto di riduzione diretta, la cui entrata in funzione è prevista tra quattro anni. All'inizio l'impianto sarà alimentato con gas naturale, che secondo l'azienda riduce le emissioni rispetto all'altoforno, ma meno dell'idrogeno. Il passaggio all'idrogeno avverrà gradualmente, man mano che saranno costruiti gli elettrolizzatori necessari a produrlo con elettricità da fonti rinnovabili. L'altoforno resterà in attività fino all'avvio del nuovo impianto, per non interrompere le forniture ai clienti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il nuovo impianto di riduzione diretta sarà alimentato con idrogeno fin dalla sua entrata in funzione.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Una volta avviato, il nuovo impianto non produrrà emissioni di anidride carbonica.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "L'acciaio prodotto con l'idrogeno ha oggi un costo superiore a quello prodotto nell'altoforno.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Il gruppo ha già indicato con quale gas alimenterà il nuovo impianto nella fase iniziale.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "All'inizio l'impianto sarà alimentato con gas naturale",
+   "explanation": "D è corretta: il gruppo ha annunciato che all'inizio l'impianto «sarà alimentato con gas naturale». A anticipa all'avvio l'uso dell'idrogeno, che sostituirà il gas naturale solo gradualmente, man mano che saranno costruiti gli elettrolizzatori (tempo). B trasforma una riduzione delle emissioni in un loro azzeramento: secondo l'azienda il gas naturale riduce le emissioni rispetto all'altoforno, ma meno dell'idrogeno (quantificatore). C introduce un confronto di costo che il brano non contiene (fuori testo)."
+  },
+  {
+   "id": 1218,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "scienza aperta e condivisione dei dati della ricerca",
+   "passage": "Un'agenzia nazionale che finanzia la ricerca ha adottato nuove regole sulla scienza aperta, che si applicheranno ai progetti selezionati a partire dal prossimo bando. Gli articoli prodotti dovranno essere liberamente accessibili online dal giorno della pubblicazione. Anche i dati su cui si basano dovranno essere depositati in un archivio pubblico, salvo quando la loro diffusione violerebbe la riservatezza delle persone, segreti commerciali o esigenze di sicurezza: in questi casi il progetto dovrà motivare l'eccezione e rendere pubblica almeno una descrizione dei dati. Ogni progetto dovrà presentare un piano di gestione dei dati entro sei mesi dall'avvio. I costi di pubblicazione saranno rimborsabili fino al 5% del budget del progetto. In una fase sperimentale condotta su 200 progetti, il 60% aveva depositato i propri dati, ma solo metà di questi era accompagnata da una documentazione sufficiente a consentirne il riutilizzo da parte di altri ricercatori.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Per i dati coperti da segreto commerciale il progetto deve pubblicare almeno una descrizione.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Tutti i progetti finanziati dall'agenzia dovranno depositare i propri dati in un archivio pubblico.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Le nuove regole si applicano anche ai progetti selezionati con i bandi precedenti.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo l'agenzia, la condivisione dei dati rende più rapido il progresso della ricerca scientifica.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "in questi casi il progetto dovrà motivare l'eccezione e rendere pubblica almeno una descrizione dei dati",
+   "explanation": "A è corretta: i segreti commerciali sono uno dei casi di eccezione, nei quali il progetto non deposita i dati ma deve motivare l'eccezione e «rendere pubblica almeno una descrizione dei dati». B ignora le eccezioni previste per riservatezza, segreti commerciali e sicurezza (quantificatore). C estende le regole ai bandi passati, mentre si applicheranno ai progetti selezionati «a partire dal prossimo bando» (tempo). D attribuisce all'agenzia una motivazione che il brano non riporta (fuori testo)."
+  },
+  {
+   "id": 1219,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "esercizio fisico e cadute negli anziani",
+   "passage": "Uno studio controllato ha coinvolto 600 persone tra i 70 e gli 85 anni che vivevano a casa propria ed erano in grado di camminare senza assistenza. Metà dei partecipanti, scelti per sorteggio, ha seguito per un anno due sessioni settimanali di esercizi di equilibrio e di rinforzo muscolare, guidate da un fisioterapista; l'altra metà ha partecipato soltanto a incontri mensili di educazione alla salute. Nel gruppo che si è allenato le cadute sono state il 30% in meno e la velocità del cammino è migliorata, mentre i ricoveri ospedalieri sono rimasti simili nei due gruppi. Le persone con una diagnosi di demenza erano state escluse dallo studio. Secondo i ricercatori, i benefici si sono concentrati tra chi si è allenato con regolarità: nel gruppo degli esercizi, tre partecipanti su quattro hanno seguito almeno due terzi delle sessioni. Sulla base di questi risultati, l'azienda sanitaria locale offrirà il programma gratuitamente nei centri anziani del territorio dalla prossima primavera.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I partecipanti del gruppo di confronto non hanno ricevuto nessun intervento nel corso dello studio.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Nel gruppo degli esercizi, un partecipante su quattro ha seguito meno di due terzi delle sessioni.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il programma di esercizi ha ridotto le cadute anche tra le persone con una diagnosi di demenza.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Nel gruppo che si è allenato le cadute si sono ridotte al 30% di quelle registrate nell'altro gruppo.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "nel gruppo degli esercizi, tre partecipanti su quattro hanno seguito almeno due terzi delle sessioni",
+   "explanation": "B è corretta: nel gruppo degli esercizi «tre partecipanti su quattro hanno seguito almeno due terzi delle sessioni», quindi il quarto restante ne ha seguite meno di due terzi. A nega l'intervento ricevuto dal gruppo di confronto, che ha partecipato a incontri mensili di educazione alla salute (negazione). C estende i risultati alle persone con demenza, che erano state escluse dallo studio (ambito). D trasforma «il 30% in meno» in una riduzione al 30%: le cadute del gruppo che si è allenato sono state circa il 70% di quelle dell'altro gruppo (parafrasi)."
+  },
+  {
+   "id": 1220,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 2,
+   "topic": "allerta sismica lungo una linea ferroviaria",
+   "passage": "I sistemi di allerta sismica non prevedono i terremoti: si attivano soltanto dopo l'inizio di una scossa. Le prime onde generate da un terremoto viaggiano più velocemente di quelle che causano i danni maggiori. I sensori più vicini all'epicentro le registrano e un centro di calcolo stima in pochi secondi la posizione e la forza della scossa, inviando un avviso alle zone che verranno raggiunte più tardi. Il tempo a disposizione va da pochi secondi ad alcune decine di secondi e cresce con la distanza dall'epicentro; nelle zone più vicine l'avviso arriva troppo tardi. Un istituto di ricerca sta sperimentando un sistema di questo tipo lungo una linea ferroviaria: quando ricevono l'avviso, i treni rallentano automaticamente. Nel primo anno il sistema ha inviato 14 avvisi; in due casi la forza della scossa era stata sovrastimata e i treni hanno rallentato anche se lungo la linea non si sono avuti effetti. L'istituto valuta ora se estendere il servizio alle scuole della zona.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I sistemi di allerta sismica consentono di prevedere un terremoto con alcuni secondi di anticipo.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Le zone più vicine all'epicentro ricevono sempre l'avviso con il maggiore anticipo.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Quando un avviso viene inviato, il terremoto è già cominciato.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Il servizio di allerta è già attivo anche nelle scuole della zona.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "si attivano soltanto dopo l'inizio di una scossa",
+   "explanation": "C è corretta: i sistemi di allerta «si attivano soltanto dopo l'inizio di una scossa», quindi quando l'avviso parte il terremoto è già cominciato. A trasforma l'avviso dell'arrivo delle onde più dannose in una previsione del terremoto, che il brano esclude: questi sistemi «non prevedono i terremoti» (parafrasi). B rovescia il rapporto con la distanza: il tempo a disposizione «cresce con la distanza dall'epicentro» e nelle zone più vicine l'avviso arriva troppo tardi (negazione). D presenta come già attivo nelle scuole un servizio la cui estensione l'istituto sta ancora valutando (tempo)."
+  },
+  {
+   "id": 1221,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 2,
+   "topic": "inflazione e potere d'acquisto",
+   "passage": "Secondo il rapporto annuale dell'istituto di statistica di un paese europeo, nell'ultimo anno i prezzi al consumo sono aumentati in media del 5,8%, mentre le retribuzioni contrattuali orarie sono cresciute in media del 3,1%. Il potere d'acquisto delle retribuzioni, cioè la quantità di beni e servizi che con esse si può acquistare, si è quindi ridotto. L'aumento dei prezzi non è stato uniforme: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, sono rincarati più della media, mentre i servizi di trasporto e di comunicazione hanno registrato rincari inferiori. Per questo l'inflazione effettivamente sostenuta dal quinto più povero delle famiglie è stimata al 7,4%, contro il 4,9% del quinto più ricco. Circa un terzo dei lavoratori dipendenti ha un contratto scaduto e non ancora rinnovato: per loro le retribuzioni contrattuali sono rimaste invariate. Il rapporto prevede un parziale recupero del potere d'acquisto nel prossimo anno, a condizione che l'inflazione scenda sotto il 3%.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nell'ultimo anno tutti i lavoratori dipendenti hanno ottenuto un aumento delle retribuzioni contrattuali orarie, in media del 3,1%.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Il potere d'acquisto delle retribuzioni ha ripreso a crescere nel corso dell'anno, perché l'inflazione è scesa sotto il 3%.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Il quinto più povero delle famiglie ha avuto un'inflazione più alta della media per la composizione della sua spesa.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Nell'ultimo anno i prezzi dei servizi di trasporto e di comunicazione non sono aumentati.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, sono rincarati più della media",
+   "explanation": "C è corretta: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, «sono rincarati più della media», e il brano conclude: «Per questo l'inflazione effettivamente sostenuta dal quinto più povero delle famiglie è stimata al 7,4%», sopra il 5,8% medio. A è smentita dal brano: per circa un terzo dei dipendenti, con il contratto scaduto, le retribuzioni «sono rimaste invariate», e il 3,1% è una media (quantificatore). B presenta come già avvenuto un recupero che il rapporto prevede per il prossimo anno, e solo se l'inflazione scenderà sotto il 3% (tempo). D trasforma «rincari inferiori» alla media in un'assenza di aumenti (parafrasi)."
+  },
+  {
+   "id": 1222,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "lavoro da remoto e produttività",
+   "passage": "Uno studio universitario ha seguito per diciotto mesi 1.600 impiegati del servizio clienti di una compagnia assicurativa, divisi per sorteggio in due gruppi con le stesse mansioni e gli stessi obiettivi. Il primo gruppo ha continuato a lavorare in ufficio tutti i giorni, il secondo ha potuto lavorare da casa due giorni alla settimana. La produttività, misurata con il numero di pratiche chiuse per ora lavorata, non è risultata diversa in modo significativo tra i due gruppi, mentre nel secondo le dimissioni sono state inferiori di un terzo. Lo scarto nelle dimissioni tra i due gruppi è stato più ampio per i dipendenti con figli piccoli e per quelli con lunghi tragitti casa-lavoro. Gli autori avvertono che le attività esaminate sono facilmente misurabili e svolte in gran parte individualmente: i risultati non possono quindi essere estesi senza verifiche ai lavori che richiedono una collaborazione continua. Lo studio non ha valutato gli effetti sui costi di gestione degli uffici né sulle carriere dei dipendenti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il secondo gruppo ha registrato meno dimissioni del primo anche tra i dipendenti con lunghi tragitti casa-lavoro.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Nei lavori che richiedono una collaborazione continua, il lavoro da casa fa diminuire la produttività dei dipendenti rispetto all'ufficio.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Grazie al lavoro da casa due giorni alla settimana, la compagnia ha ridotto i costi di gestione dei propri uffici.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "In entrambi i gruppi le dimissioni sono diminuite, soprattutto tra i dipendenti con figli piccoli e con lunghi tragitti.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Lo scarto nelle dimissioni tra i due gruppi è stato più ampio per i dipendenti con figli piccoli e per quelli con lunghi tragitti casa-lavoro",
+   "explanation": "A è corretta: nel gruppo che poteva lavorare da casa le dimissioni sono state inferiori di un terzo e lo scarto tra i due gruppi «è stato più ampio» per chi ha lunghi tragitti casa-lavoro; anche tra questi dipendenti, quindi, il secondo gruppo ha avuto meno dimissioni del primo. B ricava un calo di produttività da un'avvertenza che dice soltanto che i risultati non possono essere estesi senza verifiche ai lavori di collaborazione (inferenza). C attribuisce allo studio un risparmio sui costi degli uffici, che lo studio dichiara di non aver valutato (fuori testo). D trasforma in un calo delle dimissioni in entrambi i gruppi quello che il brano presenta come uno scarto del secondo gruppo rispetto al primo (ambito)."
+  },
+  {
+   "id": 1223,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "salario minimo legale",
+   "passage": "Tre anni fa un paese europeo ha introdotto un salario minimo legale orario, aggiornato ogni anno da una commissione indipendente composta da rappresentanti dei lavoratori e delle imprese e da esperti nominati dal governo. Il minimo si applica ai lavoratori dipendenti di almeno 18 anni; agli apprendisti, compresi quelli che non hanno ancora compiuto 18 anni, spetta un importo pari all'80% del minimo. Secondo la valutazione pubblicata dalla commissione, il provvedimento ha aumentato la retribuzione di circa un dipendente su otto, soprattutto nel commercio, nella ristorazione e nei servizi di pulizia. In questi settori l'occupazione complessiva non è diminuita, mentre nelle piccole imprese si sono leggermente ridotte le ore lavorate per dipendente. La commissione segnala che il rispetto del minimo è difficile da verificare per chi è pagato a cottimo o lavora con orari non registrati, e raccomanda di rafforzare i controlli degli ispettorati. L'aggiornamento per il prossimo anno sarà deciso entro l'autunno.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Gli apprendisti che non hanno ancora compiuto 18 anni non hanno diritto ad alcun salario minimo.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Nelle piccole imprese il numero dei dipendenti si è ridotto.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Il provvedimento ha aumentato la retribuzione della maggior parte dei lavoratori dipendenti.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Un apprendista di 25 anni ha diritto a un importo inferiore al salario minimo pieno.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "agli apprendisti, compresi quelli che non hanno ancora compiuto 18 anni, spetta un importo pari all'80% del minimo",
+   "explanation": "D è corretta: agli apprendisti, di qualunque età, «spetta un importo pari all'80% del minimo», quindi un apprendista di 25 anni riceve meno del minimo pieno. A rovescia la regola: gli apprendisti che non hanno ancora compiuto 18 anni sono espressamente compresi tra quelli a cui spetta l'80% del minimo (negazione). B confonde la riduzione delle ore lavorate per dipendente nelle piccole imprese con un calo del numero dei dipendenti, che il brano non riporta (parafrasi). C è smentita dal brano: la retribuzione è aumentata per circa un dipendente su otto, non per la maggioranza (quantificatore)."
+  },
+  {
+   "id": 1224,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "microcredito per le imprese femminili",
+   "passage": "Due anni fa una regione ha avviato un programma di microcredito per le imprese femminili, cioè le imprese individuali di cui è titolare una donna e le società in cui le donne detengono almeno la metà delle quote. Il programma concede prestiti da 5.000 a 25.000 euro, senza garanzie personali, a tasso zero e rimborsabili in sette anni. Le domande sono valutate da un comitato della finanziaria regionale sulla base di un piano d'impresa; le richiedenti che non hanno mai gestito un'impresa devono prima seguire un percorso di affiancamento di tre mesi, offerto gratuitamente da associazioni di categoria convenzionate. Nei primi due anni sono stati concessi 640 prestiti, per un importo medio di 14.000 euro; il 70% è andato a imprese dei servizi. I prestiti con rate non pagate da oltre sei mesi sono il 4% del totale. La regione intende raddoppiare la dotazione del fondo dal prossimo anno e sta valutando se estendere il programma alle libere professioniste.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Tutte le richiedenti devono seguire un percorso di affiancamento di tre mesi.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Una società in cui le donne hanno la metà delle quote è considerata un'impresa femminile.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il 96% dei prestiti concessi è stato interamente rimborsato.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Le domande di prestito sono valutate dalle associazioni di categoria che offrono il percorso di affiancamento.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "le società in cui le donne detengono almeno la metà delle quote",
+   "explanation": "B è corretta: il programma considera imprese femminili anche le società in cui le donne detengono «almeno la metà delle quote», quindi anche quelle in cui ne detengono esattamente la metà. A estende a tutte le richiedenti un obbligo che riguarda soltanto chi non ha mai gestito un'impresa (quantificatore). C trasforma il 4% di prestiti con rate non pagate da oltre sei mesi in un 96% di prestiti rimborsati per intero, mentre i prestiti durano sette anni e il programma ne ha due (parafrasi). D attribuisce la valutazione delle domande alle associazioni di categoria, che offrono il percorso di affiancamento, mentre spetta a un comitato della finanziaria regionale (ambito)."
+  },
+  {
+   "id": 1225,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 2,
+   "topic": "imposta di soggiorno in una città d'arte",
+   "passage": "In una città d'arte che registra ogni anno circa tre milioni di pernottamenti, l'imposta di soggiorno è dovuta da chi alloggia in alberghi, bed and breakfast e appartamenti affittati per brevi periodi. L'importo varia da 2 a 5 euro per persona e per notte secondo la categoria della struttura e si applica fino a un massimo di sette notti consecutive. Sono esenti i minori di 14 anni, i malati ricoverati negli ospedali cittadini e le persone che li assistono. L'imposta è riscossa dai gestori delle strutture, che la versano al comune ogni tre mesi. Dal prossimo anno gli importi aumenteranno di un euro nei mesi di alta stagione. Il regolamento destina il gettito, pari lo scorso anno a 11 milioni di euro, alla manutenzione del patrimonio artistico, ai trasporti pubblici e ai servizi di pulizia. Secondo un'indagine dell'osservatorio sul turismo, negli appartamenti affittati per brevi periodi il numero di ospiti dichiarato è in media inferiore a quello effettivo.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nei mesi di alta stagione gli importi dell'imposta di soggiorno sono già più alti di un euro.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Oltre la settima notte consecutiva l'imposta non è più dovuta.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Sono gli ospiti delle strutture a versare direttamente l'imposta al comune.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Chi soggiorna in città per sottoporsi a cure mediche è esente dall'imposta.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "si applica fino a un massimo di sette notti consecutive",
+   "explanation": "B è corretta: l'imposta «si applica fino a un massimo di sette notti consecutive», quindi dall'ottava notte consecutiva non è più dovuta. A presenta come già in vigore l'aumento di un euro in alta stagione, previsto dal prossimo anno (tempo). C attribuisce agli ospiti il versamento al comune, che spetta ai gestori delle strutture dopo aver riscosso l'imposta (ambito). D omette una condizione dell'esenzione, che riguarda i malati ricoverati negli ospedali cittadini e chi li assiste, non chiunque venga in città per curarsi (negazione)."
+  },
+  {
+   "id": 1226,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "invecchiamento e sistema pensionistico",
+   "passage": "Secondo le proiezioni dell'ufficio statistico di un paese europeo, nei prossimi trent'anni il numero di persone con almeno 65 anni ogni 100 persone in età da lavoro, cioè tra 20 e 64 anni, passerà da 36 a 58. Poiché le pensioni sono pagate in gran parte con i contributi di chi lavora, questa evoluzione mette sotto pressione i conti del sistema. Il paese ha già collegato l'età di pensionamento alla speranza di vita: l'età viene aggiornata ogni due anni, ma ciascun aumento non può superare tre mesi. Secondo il consiglio di bilancio, questa misura compenserebbe da sola circa un terzo della crescita prevista della spesa pensionistica. Il resto potrebbe venire da un aumento del tasso di occupazione, oggi pari al 71%, in particolare tra le donne e tra le persone con più di 55 anni. Il consiglio osserva infine che l'arrivo di lavoratori dall'estero può rallentare l'invecchiamento della popolazione, ma non arrestarlo, perché anche chi arriva invecchia.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il tasso di occupazione delle donne è oggi pari al 71%.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Il collegamento tra età di pensionamento e speranza di vita basterebbe da solo a compensare la crescita prevista della spesa pensionistica.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Secondo il consiglio di bilancio, l'arrivo di lavoratori dall'estero non ha nessun effetto sull'invecchiamento della popolazione.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo le proiezioni, fra trent'anni vi saranno meno di due persone tra 20 e 64 anni per ogni persona con almeno 65 anni.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "il numero di persone con almeno 65 anni ogni 100 persone in età da lavoro, cioè tra 20 e 64 anni, passerà da 36 a 58",
+   "explanation": "D è corretta: fra trent'anni vi saranno 58 persone con almeno 65 anni ogni 100 in età da lavoro, cioè circa 1,7 persone tra 20 e 64 anni per ciascuna di esse; perché fossero almeno due, le persone con almeno 65 anni non dovrebbero superare 50 ogni 100. A attribuisce alle donne il tasso di occupazione complessivo del 71%: le donne sono indicate solo come uno dei gruppi in cui l'occupazione potrebbe crescere (ambito). B trasforma «circa un terzo» della crescita della spesa in una compensazione completa (quantificatore). C rovescia la posizione del consiglio, secondo cui l'arrivo di lavoratori dall'estero «può rallentare» l'invecchiamento, anche se non arrestarlo (negazione)."
+  },
+  {
+   "id": 1227,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "apprendistato e conferma dei giovani",
+   "passage": "Un'indagine dell'agenzia nazionale per le politiche attive del lavoro ha seguito 12.000 giovani tra 18 e 24 anni che avevano concluso un contratto di apprendistato. Al termine del periodo formativo il 62% era stato confermato a tempo indeterminato dalla stessa impresa, il 15% lavorava presso un'altra impresa e il restante 23% era senza lavoro o seguiva un corso di studi. I tassi di conferma più alti si registrano nella manifattura e nell'artigianato, i più bassi nel commercio e nella ristorazione. Le imprese che hanno confermato più spesso gli apprendisti sono quelle in cui il tutor aziendale aveva seguito il corso di formazione, facoltativo, proposto dalla regione. Secondo l'agenzia, però, questo legame non basta a dimostrare che il corso migliori i risultati, perché a iscrivere i propri tutor potrebbero essere state soprattutto le imprese già più attente alla formazione. Dal prossimo anno il corso diventerà obbligatorio per i tutor delle imprese con più di quindici dipendenti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Prima che il corso per i tutor diventi obbligatorio, una parte dei tutor aziendali lo ha già seguito.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Il corso seguito dai tutor aziendali ha fatto aumentare le conferme degli apprendisti.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Nella manifattura tutti gli apprendisti sono stati confermati dall'impresa in cui si erano formati.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Il corso di formazione per i tutor aziendali è proposto dall'agenzia nazionale per le politiche attive.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "quelle in cui il tutor aziendale aveva seguito il corso di formazione, facoltativo, proposto dalla regione",
+   "explanation": "A è corretta: il corso diventerà obbligatorio solo dal prossimo anno, ma il brano parla già di imprese «in cui il tutor aziendale aveva seguito il corso», quando era facoltativo. B presenta come dimostrato un effetto del corso che l'agenzia considera non dimostrato, perché a iscrivere i tutor potrebbero essere state le imprese già più attente alla formazione (inferenza). C trasforma il tasso di conferma più alto, registrato nella manifattura, in una conferma di tutti gli apprendisti (quantificatore). D attribuisce il corso all'agenzia nazionale, mentre è proposto dalla regione (ambito)."
+  },
+  {
+   "id": 1228,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "raccolta e riciclo dei prodotti tessili",
+   "passage": "Una regione ha pubblicato i primi dati sulla raccolta separata dei prodotti tessili usati, effettuata con contenitori stradali e nei centri di raccolta comunali. Lo scorso anno sono state raccolte 18.000 tonnellate, pari a circa un quinto dei prodotti tessili immessi sul mercato regionale. Dopo la selezione, il 55% del materiale è stato destinato al riutilizzo come abbigliamento usato, venduto in gran parte all'estero; il 30% è stato avviato al riciclo, soprattutto per produrre imbottiture, materiali isolanti e stracci industriali; il resto, troppo deteriorato o contaminato, è stato incenerito. Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti, perché la maggior parte dei capi è composta da miscele di fibre difficili da separare. La regione intende finanziare un impianto di selezione automatica in grado di riconoscere la composizione dei tessuti; secondo i progettisti, l'impianto potrà trattare un terzo del materiale raccolto, ma non risolverà il problema delle miscele.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La maggior parte degli abiti usati venduti all'estero finisce in discarica dopo un breve utilizzo.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "Circa un quinto dei prodotti tessili immessi sul mercato regionale è stato riutilizzato come abbigliamento.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "La maggior parte delle fibre ricavate dal riciclo è destinata a usi diversi dalla produzione di nuovi tessuti.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Dopo la selezione, il materiale raccolto è stato in parte riutilizzato come abbigliamento e per il resto avviato al riciclo.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti",
+   "explanation": "C è corretta: «Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti», quindi la maggior parte ha altri impieghi, come imbottiture, isolanti e stracci. A riporta un fatto plausibile ma assente dal brano, che dice soltanto che gli abiti usati sono venduti in gran parte all'estero (fuori testo). B confonde la quota raccolta, circa un quinto dei prodotti immessi sul mercato, con quella riutilizzata, che è il 55% del materiale raccolto (parafrasi). D presenta come completa una ripartizione parziale: oltre al 55% riutilizzato e al 30% riciclato, il resto del materiale, troppo deteriorato o contaminato, è stato incenerito (ambito)."
+  },
+  {
+   "id": 1229,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "pagamenti digitali e uso del contante",
+   "passage": "Secondo un'indagine della banca centrale di un paese dell'area dell'euro, lo scorso anno il contante è stato usato nel 52% dei pagamenti effettuati nei negozi, contro il 68% di cinque anni prima. In valore, invece, la quota del contante si è fermata al 35%, perché carte e smartphone sono preferiti soprattutto per gli acquisti di importo elevato. Il contante resta il mezzo più usato dalle persone con più di 65 anni e da chi vive nei comuni con meno di 5.000 abitanti, dove negli ultimi anni è aumentata la distanza media dallo sportello automatico più vicino. Il 60% degli intervistati dichiara di voler conservare la possibilità di pagare in contanti. Gli esercenti indicano come principale ostacolo ai pagamenti elettronici le commissioni sulle transazioni di piccolo importo. La banca centrale raccomanda di garantire l'accettazione del contante nei servizi pubblici essenziali e di rendere più trasparenti le commissioni applicate ai negozianti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Lo scorso anno più della metà del valore degli acquisti effettuati nei negozi è stata pagata in contante.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "La banca centrale raccomanda di garantire l'accettazione del contante in tutti i negozi del paese.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Nei comuni con meno di 5.000 abitanti il contante è più usato perché vi risiedono molte persone anziane.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "In media, i pagamenti in contante nei negozi sono stati di importo inferiore agli altri.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "In valore, invece, la quota del contante si è fermata al 35%",
+   "explanation": "D è corretta: il contante è stato usato nel 52% dei pagamenti ma copre il 35% del loro valore, perché carte e smartphone sono preferiti per gli acquisti di importo elevato; in media, quindi, un pagamento in contante è stato di importo inferiore agli altri. A attribuisce al valore la quota del 52%, che riguarda il numero dei pagamenti: in valore la quota del contante «si è fermata al 35%» (parafrasi). B estende a tutti i negozi una raccomandazione che riguarda i servizi pubblici essenziali (quantificatore). C aggiunge una spiegazione plausibile ma assente dal brano, che cita le persone anziane e i piccoli comuni come due gruppi distinti (fuori testo)."
+  },
+  {
+   "id": 1230,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "alloggi in affitto a prezzi accessibili",
+   "passage": "Un comune capoluogo ha approvato un programma per aumentare l'offerta di alloggi in affitto a prezzi accessibili. I proprietari che affittano un appartamento a canone calmierato, cioè con un canone inferiore di almeno il 20% a quello medio di mercato della zona, ottengono una riduzione dell'imposta comunale sugli immobili e una garanzia pubblica che copre fino a dodici mensilità non pagate dall'inquilino. Il comune metterà inoltre a disposizione 300 alloggi pubblici oggi vuoti perché da ristrutturare: i lavori saranno finanziati con fondi europei e dovranno concludersi entro tre anni. Questi alloggi saranno assegnati alle famiglie con un reddito compreso tra due soglie fissate dal comune, che non hanno diritto a una casa popolare ma faticano a pagare un affitto di mercato. Nel primo anno hanno aderito al canone calmierato 450 proprietari, contro un obiettivo di 1.000. Le associazioni degli inquilini giudicano il programma utile ma insufficiente, perché nello stesso periodo sono aumentati gli appartamenti affittati per brevi periodi ai turisti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il proprietario che affitta a canone calmierato è coperto dalla garanzia pubblica anche se l'inquilino smette di pagare per sei mesi.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "I 300 alloggi pubblici da ristrutturare sono destinati alle famiglie che hanno diritto a una casa popolare.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "I proprietari che affittano a canone calmierato non pagano l'imposta comunale sugli immobili.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "I lavori di ristrutturazione dei 300 alloggi pubblici sono già conclusi.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "una garanzia pubblica che copre fino a dodici mensilità non pagate dall'inquilino",
+   "explanation": "A è corretta: la garanzia pubblica «copre fino a dodici mensilità non pagate dall'inquilino», quindi copre anche sei mesi di mancati pagamenti. B rovescia il requisito: gli alloggi saranno assegnati a famiglie che «non hanno diritto a una casa popolare» (negazione). C trasforma una riduzione dell'imposta comunale in un'esenzione totale (parafrasi). D presenta come già conclusi lavori che dovranno concludersi entro tre anni, mentre gli alloggi sono oggi vuoti perché da ristrutturare (tempo)."
+  },
+  {
+   "id": 1231,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "divario retributivo di genere",
+   "passage": "Secondo un'indagine dell'istituto di statistica di un paese europeo, la retribuzione oraria lorda media delle donne è inferiore del 12% a quella degli uomini. Se si confrontano lavoratori e lavoratrici con lo stesso livello di istruzione, la stessa età, la stessa professione e lo stesso settore, il divario scende al 5%: la differenza tra i due valori si spiega in buona parte con la maggiore presenza delle donne in professioni e settori meno retribuiti. Il divario è quasi nullo all'inizio della carriera e cresce dopo i 35 anni, in coincidenza con la nascita dei figli. Se si considera la retribuzione annua invece di quella oraria, la differenza sale al 30%, perché le donne lavorano più spesso a tempo parziale. Dal prossimo anno le imprese con più di 100 dipendenti dovranno pubblicare i dati sulle retribuzioni per genere e, se il divario supera il 5% senza giustificazioni oggettive, dovranno esaminarne le cause insieme ai rappresentanti dei lavoratori.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il divario cresce dopo i 35 anni perché molte donne interrompono il lavoro per occuparsi dei figli.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "A parità di istruzione, età, professione e settore, la retribuzione oraria delle donne è inferiore del 12% a quella degli uomini.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Sulla retribuzione annua il divario è più ampio che su quella oraria perché le donne ricorrono più spesso al tempo parziale.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Le imprese con più di 100 dipendenti sono già tenute a pubblicare i dati sulle retribuzioni per genere.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "la differenza sale al 30%, perché le donne lavorano più spesso a tempo parziale",
+   "explanation": "C è corretta: calcolata sulla retribuzione annua, la differenza «sale al 30%, perché le donne lavorano più spesso a tempo parziale», contro il 12% della retribuzione oraria. A aggiunge una causa plausibile ma non indicata: il brano dice soltanto che il divario cresce «in coincidenza con la nascita dei figli» (fuori testo). B attribuisce al confronto a parità di caratteristiche il 12%, che è il divario medio complessivo; a parità di istruzione, età, professione e settore il divario scende al 5% (ambito). D presenta come già in vigore un obbligo che decorre dal prossimo anno (tempo)."
+  },
+  {
+   "id": 1232,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "passaggio generazionale nelle imprese familiari",
+   "passage": "Un'indagine di una camera di commercio su 2.000 imprese familiari manifatturiere mostra che il 40% dei titolari ha più di 60 anni, ma che solo un quarto di questi ha già individuato chi guiderà l'impresa dopo di lui. Tra le imprese che hanno affrontato il passaggio generazionale negli ultimi dieci anni, una su tre ha affidato la direzione a un manager esterno, mentre la proprietà è rimasta alla famiglia. Le imprese passate ai figli senza un periodo di affiancamento hanno registrato, nei tre anni successivi, una crescita del fatturato inferiore a quella delle imprese in cui il successore aveva lavorato per almeno due anni accanto al titolare uscente. La camera di commercio offre un servizio gratuito di consulenza sulla pianificazione della successione, finora utilizzato da 150 imprese. Dal prossimo anno il servizio comprenderà anche l'assistenza nella stesura degli accordi tra familiari sulla ripartizione delle quote tra gli eredi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Solo un titolare su dieci ha individuato chi guiderà l'impresa dopo di lui.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Tra i titolari con più di 60 anni, quelli che hanno già individuato un successore sono una minoranza.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Le imprese passate ai figli senza affiancamento hanno visto diminuire il fatturato nei tre anni successivi.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Finora 150 imprese hanno ricevuto assistenza nella stesura degli accordi tra familiari sulla ripartizione delle quote.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "solo un quarto di questi ha già individuato chi guiderà l'impresa dopo di lui",
+   "explanation": "B è corretta: dei titolari con più di 60 anni «solo un quarto» ha già individuato chi guiderà l'impresa, quindi si tratta di una minoranza. A applica a tutti i titolari un dato che riguarda quelli con più di 60 anni: sono il 40% e un quarto di loro, cioè il 10% del totale, ha un successore, ma il brano non dice nulla dei titolari più giovani (ambito). C trasforma una crescita del fatturato «inferiore» a quella delle altre imprese in un calo (parafrasi). D anticipa un servizio che sarà offerto solo dal prossimo anno: le 150 imprese hanno usato la consulenza sulla pianificazione della successione (tempo)."
+  },
+  {
+   "id": 1233,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "cooperative di comunità",
+   "passage": "Una legge regionale riconosce come cooperative di comunità le cooperative i cui soci risiedono in maggioranza in un piccolo comune o in una sua frazione e che gestiscono servizi utili all'intera popolazione locale, come negozi di alimentari, trasporti a chiamata, manutenzione del verde o accoglienza turistica. Possono diventare soci anche enti pubblici e associazioni, ma ogni socio dispone di un solo voto in assemblea, indipendentemente dal capitale versato. La regione concede per l'avvio un contributo pari al 50% delle spese ammissibili, fino a 40.000 euro, purché la cooperativa gestisca almeno due servizi diversi. Un monitoraggio dell'università regionale su 35 cooperative attive da almeno cinque anni ha rilevato che 28 hanno chiuso l'ultimo bilancio in pareggio o in attivo, mentre le altre dipendono ancora in larga parte da contributi pubblici. Secondo i ricercatori, i bilanci migliori si registrano in genere nelle cooperative che hanno coinvolto la popolazione fin dalla fase di progettazione.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Tutti i soci di una cooperativa di comunità devono risiedere nel comune o nella frazione in cui essa opera.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "In assemblea, gli enti pubblici soci dispongono di un numero di voti proporzionale al capitale versato.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Alcune delle cooperative che dipendono ancora dai contributi pubblici non hanno coinvolto la popolazione nella progettazione.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Una cooperativa di comunità che gestisce soltanto un negozio di alimentari non può ottenere il contributo regionale per l'avvio.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "purché la cooperativa gestisca almeno due servizi diversi",
+   "explanation": "D è corretta: il contributo per l'avvio spetta «purché la cooperativa gestisca almeno due servizi diversi», quindi non a una cooperativa che gestisce un solo negozio. A trasforma una maggioranza in totalità: basta che i soci risiedano «in maggioranza» nel comune o nella frazione, e possono essere soci anche enti pubblici e associazioni (quantificatore). B rovescia la regola: ogni socio dispone di un solo voto «indipendentemente dal capitale versato» (negazione). C ricava da una tendenza, i bilanci migliori «in genere» nelle cooperative che hanno coinvolto la popolazione, una conclusione su singole cooperative in difficoltà che il brano non consente (inferenza)."
+  },
+  {
+   "id": 1234,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "vendita diretta e filiera corta agricola",
+   "passage": "Un istituto di ricerca agraria ha confrontato i ricavi di 120 aziende agricole che vendono direttamente ai consumatori, attraverso mercati contadini, spacci aziendali e gruppi di acquisto, con quelli di aziende simili che conferiscono i prodotti alla grande distribuzione o ai grossisti. Le prime ottengono in media prezzi di vendita più alti del 35%, ma sostengono maggiori costi di lavoro per il trasporto, la vendita e la gestione degli ordini: al netto di questi costi, il vantaggio si riduce in media al 12%. Per le aziende con meno di 5 ettari il vantaggio netto è più elevato, mentre per quelle con oltre 50 ettari è quasi nullo, perché la vendita diretta assorbe solo una piccola parte della loro produzione. Lo studio rileva inoltre che nei mercati contadini i prezzi pagati dai consumatori sono più bassi di quelli dei supermercati per la frutta e la verdura di stagione, ma non per formaggi e salumi. Gli autori raccomandano ai comuni di concedere gratuitamente gli spazi pubblici destinati ai mercati.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "A causa dei maggiori costi di lavoro, il vantaggio della vendita diretta cala, ma in media resta.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Le aziende che vendono direttamente ai consumatori guadagnano in media il 35% in più delle altre.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Nei mercati contadini i consumatori pagano sempre meno che nei supermercati.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Le aziende con oltre 50 ettari vendono direttamente solo una piccola parte della produzione perché per loro il vantaggio netto è quasi nullo.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "ma sostengono maggiori costi di lavoro per il trasporto, la vendita e la gestione degli ordini: al netto di questi costi, il vantaggio si riduce in media al 12%",
+   "explanation": "A è corretta: le aziende che vendono direttamente «sostengono maggiori costi di lavoro» e «al netto di questi costi, il vantaggio si riduce in media al 12%»: i costi lo riducono, ma non lo annullano. B confonde il prezzo di vendita, più alto del 35%, con il guadagno, il cui vantaggio netto è in media del 12% (parafrasi). C generalizza un risparmio che riguarda frutta e verdura di stagione, non formaggi e salumi (quantificatore). D inverte il rapporto di causa: secondo il brano il vantaggio netto è quasi nullo perché la vendita diretta assorbe solo una piccola parte della produzione, non il contrario (inferenza)."
+  },
+  {
+   "id": 1235,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "competenze digitali degli adulti",
+   "passage": "Secondo un'indagine condotta su persone tra 16 e 74 anni, in una regione il 46% degli adulti possiede competenze digitali almeno di base, cioè sa svolgere senza aiuto un insieme di attività in cinque aree, tra cui la comunicazione online, la creazione di contenuti e la sicurezza. La quota scende al 22% tra le persone tra 65 e 74 anni e al 30% tra chi ha al massimo la licenza media. Per ridurre il divario, la regione ha aperto 80 punti di facilitazione digitale nelle biblioteche e nei centri civici, dove operatori formati aiutano i cittadini a usare i servizi pubblici online, come la prenotazione di visite mediche. Nel primo anno i punti hanno registrato 25.000 accessi. Secondo la valutazione della regione, si è trattato in gran parte di richieste di assistenza per una singola operazione; solo il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri. Per questo, dal prossimo anno, ogni punto dovrà offrire almeno un corso al mese.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nel primo anno i punti di facilitazione sono stati utilizzati da 25.000 persone.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Tra chi ha al massimo la licenza media, solo il 22% possiede competenze digitali almeno di base.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Già nel primo anno, una parte degli accessi ai punti di facilitazione ha riguardato percorsi di formazione.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "In ogni punto di facilitazione è già obbligatorio offrire almeno un corso al mese.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "solo il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri",
+   "explanation": "C è corretta: nel primo anno «il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri», prima dell'obbligo che scatterà dal prossimo anno. A trasforma 25.000 accessi in 25.000 persone, mentre la stessa persona può essersi rivolta più volte ai punti (parafrasi). B attribuisce a chi ha al massimo la licenza media il 22%, che riguarda le persone tra 65 e 74 anni; per chi ha al massimo la licenza media la quota è del 30% (ambito). D presenta come già in vigore l'obbligo di un corso al mese, che si applicherà dal prossimo anno (tempo)."
+  },
+  {
+   "id": 1236,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "lavoro non dichiarato",
+   "passage": "Secondo le stime dell'istituto di statistica di un paese europeo, il lavoro non dichiarato, cioè svolto senza contratto o senza il versamento dei contributi, rappresenta circa il 12% delle unità di lavoro complessive. La quota supera il 40% nei servizi domestici e il 20% in agricoltura e nelle costruzioni, mentre resta sotto il 5% nell'industria manifatturiera. Per contrastare il fenomeno, il governo ha introdotto un credito d'imposta pari al 30% dei contributi versati per le famiglie che assumono regolarmente un collaboratore domestico. L'ispettorato del lavoro, inoltre, sceglie ora le imprese da controllare incrociando le banche dati fiscali e previdenziali: nell'ultimo anno ha accertato irregolarità nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso. L'istituto avverte che le stime si basano su modelli statistici e su indagini presso le famiglie, e che il lavoro non dichiarato è per sua natura difficile da misurare con precisione.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nell'ultimo anno è aumentata la quota di imprese che ricorrono al lavoro non dichiarato.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Da quando i controlli sono mirati, le ispezioni trovano irregolarità più spesso.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il credito d'imposta restituisce alle famiglie il 30% della retribuzione del collaboratore domestico assunto regolarmente.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Nei servizi domestici la maggior parte delle unità di lavoro è costituita da lavoro non dichiarato.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "nell'ultimo anno ha accertato irregolarità nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso",
+   "explanation": "B è corretta: ora che sceglie le imprese incrociando le banche dati, l'ispettorato ha accertato irregolarità «nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso». A ricava una maggiore diffusione del lavoro irregolare da un tasso di irregolarità più alto, che si riferisce a controlli ora mirati e quindi non rappresentativi di tutte le imprese (inferenza). C confonde i contributi versati, su cui si calcola il credito del 30%, con la retribuzione del collaboratore (parafrasi). D trasforma «supera il 40%» in una maggioranza, che il brano non indica (quantificatore)."
+  },
+  {
+   "id": 1237,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "lavoro tramite piattaforme digitali",
+   "passage": "Un'indagine universitaria su 3.000 persone che lavorano tramite piattaforme digitali, per consegne a domicilio, trasporto di persone o piccoli lavori domestici, mostra che per il 60% di loro questa attività integra altri redditi, mentre per il restante 40% è la fonte di reddito principale. Questi ultimi lavorano in media 38 ore alla settimana, ma circa un quarto di questo tempo è costituito da attese tra un incarico e l'altro, di norma non retribuite. La maggior parte degli intervistati è inquadrata come lavoratore autonomo e non ha quindi diritto a ferie retribuite né a indennità di malattia. Il 70% dichiara di non conoscere i criteri con cui l'applicazione assegna gli incarichi. Il ministero del lavoro sta preparando una norma che presume l'esistenza di un rapporto di lavoro dipendente quando la piattaforma controlla l'orario e la retribuzione, e che obbliga le piattaforme a spiegare ai lavoratori come funzionano i sistemi di assegnazione degli incarichi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Per la maggior parte degli intervistati il lavoro tramite piattaforma occupa in media 38 ore alla settimana.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Quando la piattaforma controlla orario e retribuzione, la legge presume l'esistenza di un rapporto di lavoro dipendente.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Per chi ne ricava il reddito principale, le ore dedicate in media agli incarichi sono meno di 38 alla settimana.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Nessuno degli intervistati ha diritto a ferie retribuite o a indennità di malattia.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "ma circa un quarto di questo tempo è costituito da attese tra un incarico e l'altro",
+   "explanation": "C è corretta: chi ricava dalle piattaforme il reddito principale lavora in media 38 ore alla settimana, ma «circa un quarto di questo tempo» è fatto di attese tra un incarico e l'altro; le ore dedicate agli incarichi sono quindi meno di 38. A attribuisce alla maggioranza le 38 ore medie, che riguardano il 40% per cui la piattaforma è la fonte di reddito principale (ambito). B presenta come già in vigore una norma che il ministero sta ancora preparando (tempo). D estende a tutti gli intervistati una condizione che il brano riferisce alla maggior parte di loro, inquadrata come lavoratori autonomi (quantificatore)."
+  },
+  {
+   "id": 1238,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "negozi di vicinato nei centri storici",
+   "passage": "Un osservatorio sul commercio ha censito i negozi di vicinato, cioè gli esercizi con una superficie di vendita fino a 250 metri quadrati, nei centri storici di 40 città di medie dimensioni. In dieci anni il loro numero è diminuito del 18%, ma il calo non ha riguardato tutti i settori allo stesso modo: si sono ridotti soprattutto i negozi di abbigliamento, di libri e di articoli per la casa, mentre sono aumentati bar, ristoranti e attività di vendita di cibo da asporto. Nello stesso periodo i locali commerciali vuoti sono passati dal 6% all'11% del totale. L'osservatorio attribuisce il calo alla concorrenza delle vendite online e dei centri commerciali periferici, oltre che all'aumento degli affitti nelle zone più frequentate dai turisti. Alcuni comuni hanno introdotto un contributo per chi apre un'attività artigianale o commerciale in un locale vuoto da almeno un anno; secondo l'osservatorio, è ancora presto per valutarne gli effetti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nei comuni che lo hanno introdotto, il contributo ha già ridotto la quota dei locali commerciali vuoti.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "In dieci anni ha chiuso l'11% dei negozi di vicinato dei centri storici censiti.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Secondo l'osservatorio, l'aumento degli affitti nelle zone turistiche è la causa principale del calo.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Nonostante il calo complessivo, nei centri storici censiti alcuni tipi di esercizi sono aumentati di numero.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "mentre sono aumentati bar, ristoranti e attività di vendita di cibo da asporto",
+   "explanation": "D è corretta: in dieci anni i negozi di vicinato sono diminuiti del 18%, ma «sono aumentati bar, ristoranti e attività di vendita di cibo da asporto». A presenta come già ottenuto un effetto che, secondo l'osservatorio, è «ancora presto» per valutare (tempo). B confonde l'11%, quota dei locali commerciali vuoti sul totale, con la quota di negozi chiusi; il calo dei negozi è stato del 18% (parafrasi). C attribuisce all'osservatorio una graduatoria delle cause che il brano non contiene: l'aumento degli affitti è indicato insieme alla concorrenza delle vendite online e dei centri commerciali (inferenza)."
+  },
+  {
+   "id": 1239,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 2,
+   "topic": "spesa delle famiglie per l'istruzione",
+   "passage": "Secondo l'indagine sui consumi dell'istituto di statistica di un paese europeo, le famiglie con almeno un figlio tra 6 e 18 anni spendono in media 1.100 euro all'anno per l'istruzione: il 45% per libri e materiale scolastico, il 30% per lezioni private e corsi di recupero, il resto per trasporto, mensa e gite. Le famiglie del quinto più ricco spendono circa quattro volte quelle del quinto più povero, soprattutto per la maggiore spesa in lezioni private. In rapporto alla spesa complessiva della famiglia, tuttavia, il peso dell'istruzione è simile nei due gruppi. Lo Stato rimborsa il costo dei libri di testo alle famiglie con un reddito inferiore a una soglia fissata ogni anno; il rimborso non copre il resto del materiale scolastico. L'indagine segnala infine che, nell'ultimo anno, il 18% delle famiglie del quinto più povero ha rinunciato per motivi economici ad almeno un'attività scolastica a pagamento, come una gita o un corso.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le famiglie con figli tra 6 e 18 anni spendono in media oltre 300 euro l'anno in lezioni private e corsi di recupero.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Nell'ultimo anno il 18% delle famiglie con figli tra 6 e 18 anni ha rinunciato ad almeno un'attività scolastica a pagamento.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Tutte le famiglie del quinto più povero hanno diritto al rimborso dei libri di testo.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Per le famiglie del quinto più povero la spesa per l'istruzione pesa sul bilancio meno che per quelle del quinto più ricco.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "spendono in media 1.100 euro all'anno per l'istruzione: il 45% per libri e materiale scolastico, il 30% per lezioni private e corsi di recupero",
+   "explanation": "A è corretta: il 30% di 1.100 euro, la quota destinata a lezioni private e corsi di recupero, corrisponde a 330 euro, più di 300. B estende a tutte le famiglie con figli in età scolare il 18%, che riguarda quelle del quinto più povero (ambito). C dà per certo un diritto che dipende da una soglia di reddito fissata ogni anno: il brano non dice che tutte le famiglie del quinto più povero vi rientrino (quantificatore). D deduce un peso minore da una spesa minore in valore assoluto, mentre il brano precisa che il peso dell'istruzione sulla spesa complessiva è «simile nei due gruppi» (inferenza)."
+  },
+  {
+   "id": 1240,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "welfare aziendale",
+   "passage": "Un'indagine di un'associazione di imprese su 1.200 aziende associate mostra che il 58% offre ai dipendenti servizi di welfare aziendale, cioè beni e servizi forniti in aggiunta alla retribuzione, come rimborsi delle spese scolastiche, assistenza sanitaria integrativa, buoni per la spesa o abbonamenti al trasporto pubblico. La quota sale all'85% tra le aziende con più di 250 dipendenti e scende al 40% tra quelle con meno di 50. Nel paese in cui opera l'associazione, questi benefici non sono soggetti né a imposte né a contributi entro una soglia annua, purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone. Le aziende indicano come principale vantaggio la maggiore capacità di trattenere il personale qualificato. Tra i dipendenti che hanno accesso a un piano di welfare, tuttavia, solo il 45% lo utilizza per intero, soprattutto perché conosce poco i servizi disponibili.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La maggior parte dei dipendenti che hanno accesso a un piano di welfare non lo utilizza mai.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Un beneficio concesso a un solo dipendente non è esente da imposte e contributi.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "I piani di welfare hanno ridotto le dimissioni del personale qualificato nelle aziende associate.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Il 40% delle aziende associate con più di 250 dipendenti non offre servizi di welfare.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone",
+   "explanation": "B è corretta: i benefici sono esenti da imposte e contributi «purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone»; un beneficio riservato a un solo dipendente non rispetta questa condizione. A trasforma il 55% di dipendenti che non utilizzano il piano per intero in una maggioranza che non lo utilizza mai (parafrasi). C presenta come effetto accertato, una riduzione delle dimissioni, quello che le aziende indicano soltanto come principale vantaggio: il brano riporta la loro valutazione, non dati sulle dimissioni (inferenza). D attribuisce alle aziende con più di 250 dipendenti il 40%, che è la quota di aziende con meno di 50 dipendenti che offrono servizi di welfare; tra le più grandi non li offre il 15% (ambito)."
+  },
+  {
+   "id": 1241,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "archiviazione del web in una biblioteca nazionale",
+   "passage": "Una biblioteca nazionale ha il compito, fissato per legge, di conservare i siti web del dominio del proprio paese, considerati parte del patrimonio documentario al pari dei libri e dei periodici. Una volta all'anno un programma automatico raccoglie una copia di tutti i siti del dominio; un gruppo di bibliotecari ne seleziona inoltre circa tremila, soprattutto di informazione e di enti pubblici, che vengono copiati ogni settimana. I contenuti protetti da password o da abbonamento sono raccolti solo se l'editore fornisce le credenziali di accesso. Per ragioni di diritto d'autore, le copie archiviate si possono consultare soltanto dai terminali delle sale di lettura; in rete sono visibili unicamente gli indirizzi archiviati e le date delle copie. La biblioteca ha già firmato un accordo con le amministrazioni pubbliche per rendere consultabili via internet le copie dei loro siti, ma il servizio partirà solo dopo l'adeguamento della piattaforma, previsto per il prossimo anno.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Tutti i siti di informazione del dominio nazionale vengono copiati con cadenza settimanale.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "I contenuti protetti da password non possono mai entrare nell'archivio della biblioteca.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "L'accordo per consultare via internet le copie dei siti delle amministrazioni pubbliche è già stato firmato.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Le copie archiviate dei siti delle amministrazioni pubbliche si possono già consultare da casa.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "La biblioteca ha già firmato un accordo con le amministrazioni pubbliche per rendere consultabili via internet le copie dei loro siti",
+   "explanation": "C è corretta: «La biblioteca ha già firmato un accordo con le amministrazioni pubbliche per rendere consultabili via internet le copie dei loro siti»; manca soltanto l'avvio del servizio. A estende a tutti i siti di informazione la copia settimanale, che riguarda solo i circa tremila siti selezionati dai bibliotecari (quantificatore). B trasforma una condizione in un divieto: i contenuti protetti sono raccolti se l'editore fornisce le credenziali di accesso (negazione). D presenta come già attivo un servizio che «partirà solo dopo l'adeguamento della piattaforma, previsto per il prossimo anno» (tempo)."
+  },
+  {
+   "id": 1242,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "restauro di un affresco",
+   "passage": "Prima di intervenire su un affresco quattrocentesco nella cappella laterale di una chiesa, i restauratori hanno condotto una campagna diagnostica durata sei mesi. Le indagini con luce ultravioletta hanno rivelato che circa un terzo della superficie era stato ridipinto in un restauro dell'Ottocento, in parte per coprire zone in cui la pittura originale era andata perduta. Si è deciso di rimuovere le ridipinture solo dove nascondono pittura originale in buono stato; le altre saranno conservate come testimonianza della storia dell'opera. Le lacune più piccole verranno integrate con un tratteggio sottile, riconoscibile da vicino ma non a distanza, mentre quelle più ampie resteranno a tinta neutra. La causa principale del degrado è l'umidità che risale dal muro e porta in superficie sali che sollevano la pellicola pittorica. Per questo la parrocchia ha installato un impianto di ventilazione; i restauratori avvertono però che i primi dati del monitoraggio arriveranno tra un anno e che, se l'umidità non sarà tenuta sotto controllo, i sali potrebbero riaffiorare.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Al termine dei lavori, sull'affresco resterà una parte delle ridipinture ottocentesche.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "L'impianto di ventilazione installato dalla parrocchia impedirà ai sali di riaffiorare in superficie.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Le integrazioni a tratteggio sono pensate per non essere riconoscibili neppure da vicino.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Ogni lacuna dell'affresco verrà integrata con un tratteggio sottile.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Si è deciso di rimuovere le ridipinture solo dove nascondono pittura originale in buono stato; le altre saranno conservate come testimonianza della storia dell'opera",
+   "explanation": "A è corretta: una parte delle ridipinture copre zone in cui la pittura originale «era andata perduta»; poiché si rimuovono «solo dove nascondono pittura originale in buono stato» e «le altre saranno conservate», alcune resteranno sull'affresco. B dà per certo l'effetto dell'impianto di ventilazione, mentre i restauratori attendono i dati del monitoraggio e avvertono che i sali potrebbero riaffiorare (inferenza). C rovescia la caratteristica del tratteggio, che è «riconoscibile da vicino ma non a distanza» (negazione). D estende a tutte le lacune un trattamento riservato alle più piccole: quelle più ampie resteranno a tinta neutra (quantificatore)."
+  },
+  {
+   "id": 1243,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 2,
+   "topic": "lingua minoritaria nella scuola primaria",
+   "passage": "Una regione in cui vive una minoranza linguistica storica ha introdotto nelle scuole primarie l'insegnamento della lingua locale, per due ore alla settimana in orario scolastico. Il corso è facoltativo: sono le famiglie a sceglierlo al momento dell'iscrizione, e la scelta vale per l'intero anno. Può insegnare la lingua locale solo chi possiede una certificazione rilasciata dall'istituto linguistico regionale; la regione finanzia corsi di formazione gratuiti per i docenti che vogliono conseguirla. Nel primo anno ha aderito il 64% delle famiglie, con forti differenze: oltre l'85% nei comuni dove la lingua è parlata in casa dalla maggior parte degli abitanti, meno del 40% nel capoluogo. Alcuni genitori temono che le ore dedicate alla lingua locale riducano l'apprendimento dell'italiano. Per verificarlo, un'università confronterà i risultati in italiano degli alunni che seguono il corso con quelli degli altri; i primi esiti sono attesi tra due anni.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "In ogni comune della regione più della metà delle famiglie ha scelto il corso di lingua locale.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Il confronto condotto dall'università ha escluso che il corso riduca l'apprendimento dell'italiano.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "I corsi di formazione per i docenti della lingua locale sono finanziati dall'istituto linguistico regionale.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Il corso è facoltativo, quindi un alunno lo segue soltanto se la famiglia lo ha scelto.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "Il corso è facoltativo: sono le famiglie a sceglierlo al momento dell'iscrizione",
+   "explanation": "D è corretta: «Il corso è facoltativo: sono le famiglie a sceglierlo al momento dell'iscrizione»; la conseguenza che l'opzione ne trae è quella del brano: senza la scelta della famiglia l'alunno non segue il corso. A estende a ogni comune una maggioranza che nel capoluogo non c'è: lì ha aderito meno del 40% delle famiglie (quantificatore). B presenta come già concluso un confronto i cui primi esiti «sono attesi tra due anni» (tempo). C attribuisce all'istituto linguistico il finanziamento della formazione, che spetta alla regione; l'istituto rilascia la certificazione (ambito)."
+  },
+  {
+   "id": 1244,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "opere orfane e diritto d'autore",
+   "passage": "Una normativa consente a biblioteche, archivi e musei di digitalizzare e pubblicare in rete le cosiddette opere orfane: libri, fotografie o film ancora protetti dal diritto d'autore, i cui titolari non sono stati individuati oppure, pur individuati, non sono stati rintracciati. Prima di utilizzare un'opera, l'istituzione deve svolgere una ricerca diligente nelle fonti indicate dalla normativa, come cataloghi e banche dati delle società di gestione dei diritti, e conservarne la documentazione. Se la ricerca non dà esito, l'opera viene iscritta in un registro pubblico e può essere utilizzata. Agli utenti si può chiedere un contributo, purché copra esclusivamente i costi di digitalizzazione. Se un titolare si fa avanti, può porre fine in qualsiasi momento allo status di opera orfana e ha diritto a un equo compenso per l'utilizzo già avvenuto. Le opere fuori commercio il cui titolare è noto e reperibile seguono invece regole diverse.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Un'opera fuori commercio il cui titolare è noto e reperibile può essere pubblicata come opera orfana.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Il titolare che si fa avanti ha diritto a un compenso per l'uso già fatto della sua opera.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Un'opera il cui titolare è stato individuato non può mai essere considerata orfana.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "L'istituzione può pubblicare un'opera in rete mentre la ricerca diligente è ancora in corso.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "ha diritto a un equo compenso per l'utilizzo già avvenuto",
+   "explanation": "B è corretta: il titolare che si fa avanti «ha diritto a un equo compenso per l'utilizzo già avvenuto». A applica il regime delle opere orfane alle opere fuori commercio con titolare noto e reperibile, che «seguono invece regole diverse» (ambito). C trascura che sono orfane anche le opere i cui titolari, «pur individuati, non sono stati rintracciati» (negazione). D inverte la sequenza: la ricerca diligente va svolta «Prima di utilizzare un'opera» (tempo)."
+  },
+  {
+   "id": 1245,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "domeniche gratuite nei musei statali",
+   "passage": "Da alcuni anni i musei statali di un paese europeo sono gratuiti la prima domenica di ogni mese. Uno studio ha esaminato i biglietti emessi in quaranta musei nell'arco di tre anni. Nelle domeniche gratuite gli ingressi sono stati in media il triplo di quelli delle altre domeniche, ma l'aumento si è concentrato nei musei più noti, mentre in quelli piccoli la crescita è stata minima. Tra i visitatori intervistati nelle domeniche gratuite, il 18% non aveva visitato alcun museo nei dodici mesi precedenti, contro il 15% delle domeniche a pagamento. Secondo gli autori, la gratuità attira dunque soprattutto chi frequenta già i musei, più che nuovo pubblico. Nei cinque musei più visitati l'affollamento ha reso necessaria la prenotazione obbligatoria, anche se l'ingresso resta gratuito. Il mancato incasso è compensato solo in parte da un fondo ministeriale; per questo alcuni direttori propongono di sostituire le domeniche gratuite con riduzioni mirate per giovani e famiglie.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Per gli autori dello studio, la gratuità non richiama nei musei alcun visitatore nuovo.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Più di tre quarti degli intervistati nelle domeniche gratuite avevano visitato un museo nei dodici mesi precedenti.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "In ciascuno dei quaranta musei esaminati, le domeniche gratuite hanno triplicato gli ingressi rispetto alle altre.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Alcuni direttori hanno rimpiazzato le domeniche gratuite con riduzioni mirate per giovani e famiglie.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "il 18% non aveva visitato alcun museo nei dodici mesi precedenti",
+   "explanation": "B è corretta: se il 18% degli intervistati nelle domeniche gratuite «non aveva visitato alcun museo nei dodici mesi precedenti», l'82% ne aveva visitato almeno uno, cioè più di tre quarti. A trasforma «soprattutto chi frequenta già i musei, più che nuovo pubblico» in un'assenza totale di nuovo pubblico (parafrasi). C applica a ciascun museo un valore medio: l'aumento si è concentrato nei musei più noti, mentre in quelli piccoli la crescita è stata minima (quantificatore). D presenta come già fatta una sostituzione che alcuni direttori si limitano a proporre (tempo)."
+  },
+  {
+   "id": 1246,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "mediazione obbligatoria prima della causa civile",
+   "passage": "In un paese europeo, per alcune controversie civili, tra cui quelle in materia di condominio, successioni e locazioni, chi intende avviare una causa deve prima tentare la mediazione. Se l'attore si rivolge direttamente al tribunale, il giudice non respinge la domanda, ma sospende il processo e assegna alle parti un termine per avviare il tentativo. Il mediatore, iscritto presso un organismo accreditato, non decide la controversia: aiuta le parti a cercare un accordo. Al primo incontro le parti devono essere assistite da un avvocato e possono decidere se proseguire; chi si ferma a quel punto paga solo una tariffa ridotta. L'accordo firmato dalle parti e dai loro avvocati può essere eseguito direttamente, senza bisogno di una sentenza. La parte che non si presenta senza un giustificato motivo può essere condannata, nel processo successivo, al pagamento di una somma. Nell'ultimo anno l'accordo è stato raggiunto nel 45% dei procedimenti in cui entrambe le parti erano presenti al primo incontro.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Prima di avviare qualsiasi causa civile, le parti devono tentare la mediazione presso un organismo accreditato.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "B",
+     "text": "Nell'ultimo anno quasi la metà delle mediazioni avviate si è conclusa con un accordo tra le parti.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Chi decide di non proseguire dopo il primo incontro di mediazione non deve pagare alcuna tariffa.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Una causa in materia di successioni avviata senza mediazione non viene per questo respinta.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "il giudice non respinge la domanda, ma sospende il processo e assegna alle parti un termine per avviare il tentativo",
+   "explanation": "D è corretta: le successioni sono tra le materie in cui la mediazione va tentata prima, ma se l'attore si rivolge direttamente al tribunale «il giudice non respinge la domanda», sospende il processo e assegna un termine per il tentativo. A estende a tutte le cause civili un obbligo previsto solo «per alcune controversie civili» (quantificatore). B riferisce a tutte le mediazioni avviate il 45%, che riguarda solo i procedimenti in cui entrambe le parti erano presenti al primo incontro (ambito). C rovescia la regola: chi si ferma dopo il primo incontro «paga solo una tariffa ridotta» (negazione)."
+  },
+  {
+   "id": 1247,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "diritto all'oblio e deindicizzazione",
+   "passage": "Il cosiddetto diritto all'oblio permette a una persona di chiedere che dati sul suo conto non più attuali o pertinenti non siano più facilmente reperibili. Nella pratica la richiesta più frequente è la deindicizzazione: il motore di ricerca elimina il collegamento tra il nome della persona e una determinata pagina, che però resta online e può essere trovata con ricerche basate su altre parole. La richiesta non viene accolta automaticamente: il gestore del motore di ricerca deve bilanciare l'interesse della persona con quello del pubblico a essere informato, che pesa di più quando l'interessato ricopre un ruolo pubblico. Se la richiesta è respinta, ci si può rivolgere all'autorità nazionale per la protezione dei dati oppure a un giudice. Secondo il rapporto annuale di un grande motore di ricerca, nell'ultimo anno è stato deindicizzato poco meno della metà degli indirizzi segnalati; le richieste respinte riguardavano soprattutto notizie su reati gravi e sull'attività professionale degli interessati.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Una pagina deindicizzata può comparire tra i risultati di una ricerca che non contiene il nome della persona.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Una volta deindicizzata, una pagina non può più essere trovata attraverso il motore di ricerca.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Il bilanciamento tra l'interesse della persona e quello del pubblico spetta all'autorità per la protezione dei dati, non al motore di ricerca.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo il rapporto annuale, il motore di ricerca ha deindicizzato la maggior parte degli indirizzi segnalati.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "il motore di ricerca elimina il collegamento tra il nome della persona e una determinata pagina, che però resta online e può essere trovata con ricerche basate su altre parole",
+   "explanation": "A è corretta: la deindicizzazione elimina solo «il collegamento tra il nome della persona e una determinata pagina», che resta online e «può essere trovata con ricerche basate su altre parole». B trasforma la rimozione del collegamento con il nome in un'irreperibilità totale tramite il motore di ricerca (parafrasi). C attribuisce all'autorità il bilanciamento, che spetta al gestore del motore di ricerca; all'autorità ci si può rivolgere dopo un rifiuto (ambito). D contraddice il dato: è stato deindicizzato «poco meno della metà degli indirizzi segnalati» (quantificatore)."
+  },
+  {
+   "id": 1248,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "inventario del patrimonio culturale immateriale",
+   "passage": "Una regione ha avviato un inventario del proprio patrimonio culturale immateriale, che comprende feste, canti, saperi artigianali e pratiche agricole tradizionali. Le proposte di iscrizione possono venire soltanto dalle comunità che praticano l'elemento, anche tramite associazioni o comuni; un comitato scientifico verifica che la pratica sia trasmessa da una generazione all'altra e che la comunità la riconosca come parte della propria identità. L'inventario non certifica l'autenticità delle tradizioni: le descrive come vengono praticate oggi, compresi i cambiamenti intervenuti nel tempo. L'iscrizione non comporta finanziamenti automatici, ma permette di partecipare a un bando regionale che sostiene iniziative di trasmissione, come laboratori per i giovani. Nei primi due anni sono arrivate 120 proposte e ne sono state accolte 74. Secondo il comitato, la maggior parte delle esclusioni si deve a proposte presentate da singole persone o da imprese, senza alcun coinvolgimento della comunità interessata.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "L'iscrizione nell'inventario dà diritto a un finanziamento regionale per i laboratori destinati ai giovani.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Secondo il comitato, la maggior parte delle esclusioni ha riguardato proposte presentate tramite i comuni.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Una tradizione può entrare nell'inventario anche se nel tempo è cambiata.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Gli elementi iscritti nell'inventario regionale possono essere candidati alle liste del patrimonio dell'UNESCO.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "le descrive come vengono praticate oggi, compresi i cambiamenti intervenuti nel tempo",
+   "explanation": "C è corretta: l'inventario «non certifica l'autenticità delle tradizioni» e le descrive come vengono praticate oggi, «compresi i cambiamenti intervenuti nel tempo»: i cambiamenti non impediscono l'iscrizione. A trasforma la possibilità di partecipare a un bando in un diritto al finanziamento, mentre l'iscrizione «non comporta finanziamenti automatici» (negazione). B attribuisce le esclusioni alle proposte arrivate tramite i comuni, che sono un canale ammesso; il comitato le collega a singole persone o imprese (ambito). D aggiunge un collegamento con le liste dell'UNESCO, plausibile ma assente dal brano (fuori testo)."
+  },
+  {
+   "id": 1249,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "premi nazionali per la traduzione letteraria",
+   "passage": "Un ministero della cultura assegna ogni anno due premi per la traduzione letteraria: il primo a una traduzione verso la lingua nazionale, il secondo a una traduzione di un'opera della letteratura nazionale verso una lingua straniera. Possono concorrere i libri pubblicati nei due anni precedenti, su proposta dell'editore o dello stesso traduttore. Ciascun premio vale 12.000 euro: due terzi spettano al traduttore e il resto all'editore, che deve impiegarlo per promuovere il libro. La giuria, composta da cinque traduttori e due critici, valuta la fedeltà al testo originale e la qualità della lingua d'arrivo; per le traduzioni verso le lingue straniere chiede inoltre il parere di lettori madrelingua esterni. Quest'anno le candidature sono state 140, per tre quarti relative a traduzioni dall'inglese, dal francese e dal tedesco. La giuria osserva che le traduzioni da lingue meno diffuse sono poche anche perché gli editori raramente vi investono, e propone di istituire un terzo premio a esse riservato.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il ministero ha già istituito un terzo premio, riservato alle traduzioni da lingue meno diffuse.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Nel valutare le traduzioni candidate, la giuria chiede sempre il parere di lettori madrelingua esterni.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Per le traduzioni verso le lingue straniere, la giuria comprende anche alcuni lettori madrelingua.",
+     "trap": "scope"
+    },
+    {
+     "letter": "D",
+     "text": "Per ogni premio, al traduttore va il doppio della somma destinata all'editore.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "due terzi spettano al traduttore e il resto all'editore",
+   "explanation": "D è corretta: dei 12.000 euro di ciascun premio «due terzi spettano al traduttore e il resto all'editore», cioè 8.000 euro contro 4.000. A presenta come già istituito un terzo premio che la giuria si limita a proporre (tempo). B estende a tutte le traduzioni il parere dei lettori madrelingua, che la giuria chiede solo per quelle verso le lingue straniere (quantificatore). C fa entrare nella giuria i lettori madrelingua, che sono esterni: la giuria è «composta da cinque traduttori e due critici» (ambito)."
+  },
+  {
+   "id": 1250,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 3,
+   "topic": "prestito digitale nelle biblioteche pubbliche",
+   "passage": "Una rete di biblioteche pubbliche offre il prestito di libri elettronici attraverso una piattaforma comune. Possono usarla gli iscritti di tutte le biblioteche della rete, con le credenziali della propria tessera: ciascuno può avere in prestito fino a tre titoli contemporaneamente, per quattordici giorni. Alla scadenza il file diventa illeggibile in modo automatico, per cui non sono previste sanzioni per i ritardi. Gli editori non vendono i file, ma licenze d'uso, che la rete acquista con un fondo alimentato dai comuni in proporzione al numero dei loro iscritti. Alcune licenze consentono un numero fisso di prestiti, superato il quale vanno ricomprate; altre durano due anni, indipendentemente dai prestiti effettuati. Ogni licenza permette la lettura a un solo utente alla volta: per le novità più richieste l'attesa media supera perciò le tre settimane. Nell'ultimo anno i prestiti digitali sono cresciuti del 30%, mentre quelli dei libri a stampa sono rimasti stabili.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Se l'unica licenza di un titolo è già in prestito, un secondo utente non può leggerlo nello stesso momento.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Le licenze d'uso dei libri elettronici sono acquistate dai singoli comuni in proporzione ai loro iscritti.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Ogni licenza acquistata dalla rete deve essere ricomprata dopo un numero fisso di prestiti.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "La durata del prestito è stata fissata in quattordici giorni per ridurre le attese delle novità più richieste.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Ogni licenza permette la lettura a un solo utente alla volta",
+   "explanation": "A è corretta: «Ogni licenza permette la lettura a un solo utente alla volta», quindi se la rete ha una sola licenza di un titolo e questa è già in prestito, nessun altro utente può leggerlo nello stesso momento. B attribuisce ai comuni l'acquisto delle licenze, che è fatto dalla rete con un fondo alimentato dai comuni (ambito). C estende a tutte le licenze una regola che vale solo per alcune: altre «durano due anni, indipendentemente dai prestiti effettuati» (quantificatore). D collega la durata del prestito alle attese per le novità, un nesso che il brano non stabilisce (inferenza)."
+  },
+  {
+   "id": 1251,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "silenzio-assenso nel procedimento amministrativo",
+   "passage": "In un paese europeo, per molte autorizzazioni amministrative vale il silenzio-assenso: se l'ufficio non risponde entro sessanta giorni dalla presentazione della domanda, questa si considera accolta senza bisogno di altri atti. Se la domanda è incompleta, l'ufficio può chiedere una sola volta i documenti mancanti, e il termine ricomincia a decorrere per intero dal giorno in cui il richiedente li consegna. Il meccanismo non si applica alle domande che riguardano l'ambiente, il patrimonio culturale e la salute, per le quali serve sempre un provvedimento espresso. Anche dopo che l'autorizzazione si è formata, l'amministrazione può annullarla entro dodici mesi, se accerta che mancavano i requisiti di legge. Per dimostrare l'accoglimento a banche o acquirenti, il richiedente può chiedere all'ufficio un'attestazione, che deve essere rilasciata entro dieci giorni. Secondo un'indagine su un campione di comuni, nell'ultimo anno un'autorizzazione edilizia su cinque si è formata per silenzio, spesso per la carenza di personale tecnico.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Una domanda su un bene culturale si considera accolta se l'ufficio tace per sessanta giorni.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Una volta formato il silenzio-assenso, l'amministrazione non può più annullare l'autorizzazione.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Una domanda presentata incompleta può essere accolta per silenzio più di sessanta giorni dopo la presentazione.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Il richiedente deve chiedere l'attestazione entro dieci giorni dalla formazione del silenzio.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "il termine ricomincia a decorrere per intero dal giorno in cui il richiedente li consegna",
+   "explanation": "C è corretta: se la domanda è incompleta e l'ufficio chiede i documenti mancanti, «il termine ricomincia a decorrere per intero dal giorno in cui il richiedente li consegna», quindi l'accoglimento per silenzio può arrivare più di sessanta giorni dopo la presentazione. A ignora l'esclusione: per il patrimonio culturale «serve sempre un provvedimento espresso» (negazione). B trascura che l'amministrazione può annullare l'autorizzazione «entro dodici mesi» anche dopo che si è formata (tempo). D riferisce al richiedente il termine di dieci giorni, che riguarda invece il rilascio dell'attestazione da parte dell'ufficio (ambito)."
+  },
+  {
+   "id": 1252,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 3,
+   "topic": "riforma postale e francobollo adesivo",
+   "passage": "Fino alla metà dell'Ottocento, in molti paesi europei il costo di una lettera dipendeva dalla distanza e dal numero dei fogli, e a pagarlo era di norma il destinatario, al momento della consegna. Il sistema aveva vari difetti: chi riceveva una lettera poteva rifiutarla, lasciando al servizio le spese del trasporto, e le tariffe erano così alte che molti affidavano la corrispondenza a viaggiatori e conducenti di diligenze. Uno studio sui registri di un ufficio postale di provincia ricostruisce gli effetti della riforma che, nel paese in cui l'ufficio si trovava, introdusse una tariffa unica e più bassa, pagata in anticipo dal mittente con un francobollo adesivo. Nei cinque anni successivi le lettere spedite dall'ufficio più che raddoppiarono, mentre gli incassi tornarono al livello di prima della riforma solo dopo un decennio. Secondo l'autore, la crescita non dipese soltanto dalla tariffa: negli stessi anni la ferrovia raggiunse la città, accorciando i tempi di consegna.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le tariffe erano alte perché molti affidavano la corrispondenza a viaggiatori e conducenti di diligenze.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Per alcuni anni dopo la riforma, l'ufficio incassò meno di prima.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il francobollo adesivo fu introdotto per la prima volta nel Regno Unito.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo l'autore, l'arrivo della ferrovia contribuì alla crescita delle lettere più della nuova tariffa.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "gli incassi tornarono al livello di prima della riforma solo dopo un decennio",
+   "explanation": "B è corretta: gli incassi «tornarono al livello di prima della riforma solo dopo un decennio», quindi negli anni successivi alla riforma l'ufficio incassò meno di prima. A inverte il rapporto di causa: nel brano sono le tariffe alte a spingere molti ad affidare la corrispondenza a viaggiatori e conducenti di diligenze, non il contrario (inferenza). C riporta un'informazione storica che il brano non contiene: il paese della riforma non è indicato, e un'informazione esterna al brano non rende corretta un'opzione, anche quando è esatta (fuori testo). D attribuisce all'autore un confronto tra ferrovia e tariffa che egli non fa: dice solo che la crescita «non dipese soltanto dalla tariffa» (inferenza)."
+  },
+  {
+   "id": 1253,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 2,
+   "topic": "ritrovamenti archeologici casuali",
+   "passage": "In un paese europeo, chi scopre per caso oggetti di interesse archeologico, per esempio durante lavori agricoli o edilizi, deve denunciare il ritrovamento entro ventiquattro ore all'ufficio statale per i beni culturali, al sindaco o alle forze dell'ordine. Gli oggetti vanno lasciati sul posto, salvo che spostarli sia necessario per evitarne la perdita o il danneggiamento. I beni ritrovati appartengono allo Stato, ma la legge riconosce un premio sia allo scopritore sia al proprietario del terreno: ciascuno può ricevere fino a un quarto del valore stimato, in denaro oppure, su richiesta, con la cessione di una parte degli oggetti. La ricerca intenzionale con il metal detector è invece vietata senza un'autorizzazione dell'ufficio statale. Nell'ultimo anno le denunce sono state circa trecento, in gran parte presentate da agricoltori; dopo le verifiche, quattro su dieci riguardavano oggetti privi di interesse archeologico. Chi non denuncia un ritrovamento perde il diritto al premio e rischia una sanzione penale.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il proprietario del terreno può ricevere un premio anche se gli oggetti sono stati scoperti da un'altra persona.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Gli oggetti ritrovati devono restare sul posto anche quando rischiano di andare perduti.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Le denunce presentate dagli agricoltori riguardavano in gran parte oggetti privi di interesse archeologico.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Se gli oggetti vengono trovati da un lavoratore agricolo, può denunciarli solo il proprietario del terreno.",
+     "trap": "scope"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "la legge riconosce un premio sia allo scopritore sia al proprietario del terreno",
+   "explanation": "A è corretta: «la legge riconosce un premio sia allo scopritore sia al proprietario del terreno», quindi il proprietario può riceverlo anche quando a scoprire gli oggetti è un'altra persona. B ignora l'eccezione: gli oggetti si possono spostare se è necessario «per evitarne la perdita o il danneggiamento» (negazione). C fonde due dati distinti: le denunce sono «in gran parte presentate da agricoltori», ma la quota di oggetti privi di interesse, quattro su dieci, riguarda tutte le denunce e non è indicata per quelle degli agricoltori (parafrasi). D sposta sul proprietario del terreno la denuncia, che spetta a «chi scopre per caso» gli oggetti (ambito)."
+  },
+  {
+   "id": 1254,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 3,
+   "topic": "petizioni online a un consiglio regionale",
+   "passage": "Un consiglio regionale ha attivato una piattaforma online per le petizioni. Può lanciarne una chiunque risieda nella regione e abbia compiuto sedici anni; prima della pubblicazione, l'ufficio di presidenza verifica soltanto che il testo riguardi materie di competenza regionale e non contenga espressioni offensive. Ogni petizione resta aperta alle firme per novanta giorni. Se raccoglie almeno 5.000 firme, la commissione competente deve esaminarla entro sessanta giorni dalla chiusura e ascoltare i promotori; non è tenuta ad accogliere le richieste, ma deve pubblicare una risposta motivata. Le petizioni che restano sotto la soglia rimangono consultabili sulla piattaforma, senza ulteriori seguiti. Nel primo anno sono state pubblicate 85 petizioni: 12 hanno superato le 5.000 firme e, in tre casi, la commissione ha poi presentato una proposta di legge sul tema. Il regolamento sarà rivisto dopo due anni di sperimentazione; tra le ipotesi c'è la possibilità di firmare anche negli uffici comunali, per chi non usa internet.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le petizioni che superano la soglia vengono esaminate dall'ufficio di presidenza entro sessanta giorni.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Chi non usa internet può già firmare le petizioni negli uffici comunali.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "Anche le petizioni che restano sotto la soglia ricevono una risposta motivata dalla commissione.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "D",
+     "text": "Nel primo anno, solo un quarto delle petizioni oltre la soglia ha portato a una proposta di legge.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "12 hanno superato le 5.000 firme e, in tre casi, la commissione ha poi presentato una proposta di legge sul tema",
+   "explanation": "D è corretta: delle 12 petizioni che hanno superato le 5.000 firme, solo 3 hanno portato a una proposta di legge della commissione, cioè una su quattro. A attribuisce l'esame all'ufficio di presidenza, che verifica solo l'ammissibilità prima della pubblicazione; l'esame spetta alla commissione competente (ambito). B presenta come già possibile la firma negli uffici comunali, che è solo un'ipotesi per la revisione del regolamento (tempo). C estende alle petizioni sotto la soglia la risposta motivata, prevista solo per quelle con almeno 5.000 firme: le altre restano consultabili «senza ulteriori seguiti» (negazione)."
+  },
+  {
+   "id": 1255,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 3,
+   "topic": "impatto economico di un festival letterario",
+   "passage": "Un'università ha stimato l'impatto economico di un festival letterario che si svolge ogni anno, per cinque giorni, in una città di medie dimensioni. Gli organizzatori sostengono che sia il festival letterario più frequentato del paese. Nell'ultima edizione le presenze sono state circa 60.000, per il 40% di persone provenienti da fuori provincia. In base a un questionario, i visitatori non residenti hanno speso in media 95 euro al giorno, soprattutto per alloggio e ristorazione, contro i 20 euro dei residenti. Secondo lo studio, la spesa complessiva legata al festival ha raggiunto 4,2 milioni di euro, a fronte di un contributo pubblico di 600.000 euro. Gli autori avvertono però che la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città, per esempio in ristoranti e cinema, e che non tiene conto dei turisti che hanno evitato la città nei giorni del festival per timore della folla. Nei cinque giorni l'occupazione degli alberghi ha raggiunto il 95%, contro una media del 70% nello stesso periodo degli anni precedenti.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Lo studio dimostra che ogni euro di contributo pubblico ha generato sette euro di spesa aggiuntiva in città.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Tra i festival letterari del paese, quello studiato dall'università è il più frequentato.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "La stima comprende spese che ci sarebbero state anche senza il festival.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "La stima dello studio tiene conto anche dei turisti che hanno evitato la città nei giorni del festival.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città",
+   "explanation": "C è corretta: gli autori avvertono che «la stima comprende anche spese che i residenti avrebbero sostenuto comunque in città», cioè spese che ci sarebbero state anche senza il festival. A legge il rapporto tra 4,2 milioni e 600.000 euro come spesa aggiuntiva prodotta dal contributo pubblico, ma la stima non misura questo effetto: gli autori avvertono che «comprende anche spese che i residenti avrebbero sostenuto comunque in città» e non tiene conto dei turisti che hanno evitato la città (inferenza). B presenta come un fatto ciò che gli organizzatori si limitano a sostenere (parafrasi). D rovescia l'avvertenza: la stima «non tiene conto dei turisti che hanno evitato la città» (negazione)."
+  },
+  {
+   "id": 1256,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 3,
+   "topic": "udienze civili in videoconferenza",
+   "passage": "Una riforma della giustizia civile consente al giudice di disporre che un'udienza si svolga in videoconferenza quando non è necessaria la presenza di persone diverse dagli avvocati e dalle parti. Ciascuna parte può opporsi entro cinque giorni dalla comunicazione; in tal caso decide il giudice, tenendo conto delle ragioni indicate. I testimoni devono invece essere sentiti in aula, salvo che risiedano all'estero o non possano spostarsi per motivi di salute. Quando l'udienza è pubblica, il collegamento viene trasmesso su uno schermo in un'aula del tribunale aperta a chiunque. Un monitoraggio condotto in quattro tribunali ha rilevato che le udienze da remoto sono durate in media un terzo in meno di quelle in presenza. Nell'8% dei casi, però, problemi tecnici hanno costretto a rinviare l'udienza. Gli ordini degli avvocati chiedono che il rinvio per un guasto non faccia scadere termini a danno delle parti, e il ministero ha annunciato una circolare sul tema.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Un testimone che risiede all'estero può essere sentito soltanto in aula.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Il giudice può confermare l'udienza in videoconferenza anche se una parte si è opposta.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "In media, le udienze da remoto sono durate un terzo del tempo richiesto da quelle in presenza.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Il ministero ha emanato una circolare sui termini delle udienze rinviate per problemi tecnici.",
+     "trap": "tempo"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "in tal caso decide il giudice, tenendo conto delle ragioni indicate",
+   "explanation": "B è corretta: se una parte si oppone, «in tal caso decide il giudice, tenendo conto delle ragioni indicate», quindi l'opposizione non impedisce di per sé l'udienza in videoconferenza. A ignora l'eccezione: l'obbligo di sentire i testimoni in aula non vale per chi risiede all'estero (negazione). C confonde «un terzo in meno» con un terzo del tempo: le udienze da remoto sono durate in media circa due terzi di quelle in presenza (parafrasi). D presenta come già emanata una circolare che il ministero ha solo annunciato (tempo)."
+  },
+  {
+   "id": 1257,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 3,
+   "topic": "conservazione di manoscritti medievali",
+   "passage": "Una biblioteca conserva circa 1.200 manoscritti medievali, in gran parte su pergamena. I codici sono custoditi in un deposito senza luce naturale, a 18 gradi e con un'umidità relativa del 50%. Secondo i conservatori, per la pergamena sono più dannose le variazioni rapide dell'umidità che i valori leggermente fuori norma, perché il materiale si contrae e si dilata, deformando legature e pagine. Il 70% dei manoscritti è già stato digitalizzato; gli altri, per lo più codici con legature fragili, lo saranno dopo il restauro. Gli originali possono essere consultati soltanto dagli studiosi che dimostrino che la riproduzione digitale non basta alle loro ricerche, per esempio perché devono esaminare la legatura o la composizione degli inchiostri. Un controllo condotto l'anno scorso ha trovato tracce di muffa in quindici codici, tutti provenienti da un fondo che in passato era stato conservato in un sotterraneo umido; i volumi sono stati isolati e trattati.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I manoscritti ancora da digitalizzare saranno restaurati dopo essere stati digitalizzati.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Secondo i conservatori, per la pergamena un'umidità fuori norma è più dannosa delle sue variazioni rapide.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Tutti i codici del fondo conservato in passato in un sotterraneo umido presentano tracce di muffa.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Un codice originale può essere consultato anche se ne esiste la riproduzione digitale.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "Gli originali possono essere consultati soltanto dagli studiosi che dimostrino che la riproduzione digitale non basta alle loro ricerche",
+   "explanation": "D è corretta: gli originali sono consultabili dagli studiosi «che dimostrino che la riproduzione digitale non basta alle loro ricerche», quindi la consultazione è possibile anche quando la riproduzione esiste. A inverte la sequenza: i manoscritti non ancora digitalizzati lo saranno «dopo il restauro» (tempo). B rovescia il confronto dei conservatori, per i quali sono più dannose «le variazioni rapide dell'umidità» (parafrasi). C inverte il rapporto tra i codici con la muffa e il fondo: i quindici codici provengono tutti da quel fondo, ma il brano non dice che tutti i codici del fondo abbiano la muffa (quantificatore)."
+  },
+  {
+   "id": 1258,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 2,
+   "topic": "lettura e libri per ragazzi",
+   "passage": "Secondo un'indagine nazionale, nell'ultimo anno il 58% dei ragazzi tra i 6 e i 17 anni ha letto almeno un libro non scolastico. La quota cresce fino alla fascia tra gli 11 e i 14 anni, dove raggiunge il 66%, e scende al 45% tra i 15 e i 17 anni. In tutte le fasce d'età le ragazze leggono più dei ragazzi. Tra i figli di genitori lettori, la quota di chi legge è quasi doppia rispetto ai figli di genitori che non leggono; gli autori precisano però che il dato riflette anche differenze di reddito e di istruzione tra le famiglie. Nello stesso anno le vendite di libri per ragazzi sono aumentate del 4%, mentre il mercato complessivo è rimasto stabile; secondo le associazioni degli editori, la crescita si deve in larga parte ai fumetti e ai romanzi grafici. Per contrastare il calo della lettura tra gli adolescenti, il ministero ha avviato un programma di biblioteche scolastiche, che sarà valutato al termine del secondo anno.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Tra i 15 e i 17 anni, chi ha letto almeno un libro non scolastico è meno della metà.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "I figli di genitori lettori leggono di più perché in famiglia hanno l'esempio dei genitori.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Le ragazze tra i 15 e i 17 anni leggono più dei ragazzi tra gli 11 e i 14 anni.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo gli editori, l'aumento delle vendite di libri per ragazzi si deve tutto a fumetti e romanzi grafici.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "scende al 45% tra i 15 e i 17 anni",
+   "explanation": "A è corretta: tra i 15 e i 17 anni la quota di chi ha letto almeno un libro non scolastico «scende al 45%», quindi è inferiore alla metà. B trasforma in rapporto di causa una differenza che, secondo gli autori, «riflette anche differenze di reddito e di istruzione tra le famiglie» (inferenza). C fa un confronto tra fasce d'età diverse che il brano non fa: ragazze e ragazzi sono confrontati solo all'interno di ciascuna fascia (inferenza). D trasforma una causa che per gli editori vale «in larga parte» in una causa unica, come se l'aumento si dovesse tutto a fumetti e romanzi grafici (quantificatore)."
+  },
+  {
+   "id": 1259,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 2,
+   "topic": "toponomastica e memoria storica",
+   "passage": "In una grande città, i nomi delle nuove strade e piazze possono essere proposti da cittadini, associazioni e consigli di quartiere; le proposte sono valutate da una commissione per la toponomastica, composta da storici, archivisti e funzionari comunali, che esprime un parere, mentre la decisione finale spetta alla giunta comunale. Il regolamento consente di intitolare una strada a una persona solo dopo dieci anni dalla sua morte, salvo deroghe motivate. Cambiare il nome di una strada esistente è invece possibile solo in casi eccezionali, perché comporta costi per residenti e imprese, che devono aggiornare documenti e indirizzi, e perché anche i vecchi nomi sono considerati testimonianze della storia cittadina. Un censimento della commissione ha rilevato che, delle oltre 1.800 strade intitolate a persone, meno del 5% porta il nome di una donna. Per questo, nei prossimi cinque anni, la commissione darà la precedenza alle proposte dedicate a figure femminili, senza escludere le altre.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il nome delle nuove strade è deciso dalla commissione per la toponomastica, su proposta della giunta comunale.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Il nome di una strada esistente non può mai essere cambiato.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "C",
+     "text": "Con una deroga motivata, una strada può essere intitolata a una persona morta da meno di dieci anni.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Nei prossimi cinque anni la commissione valuterà soltanto proposte dedicate a figure femminili.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "solo dopo dieci anni dalla sua morte, salvo deroghe motivate",
+   "explanation": "C è corretta: il regolamento consente l'intitolazione «solo dopo dieci anni dalla sua morte, salvo deroghe motivate»: con una deroga motivata il limite dei dieci anni non si applica. A inverte i ruoli: la commissione esprime un parere e la decisione spetta alla giunta, mentre le proposte vengono da cittadini, associazioni e consigli di quartiere (ambito). B trasforma i «casi eccezionali» in un divieto assoluto (negazione). D trasforma la precedenza alle proposte dedicate a figure femminili in un'esclusiva, mentre il brano precisa «senza escludere le altre» (parafrasi)."
+  },
+  {
+   "id": 1260,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 3,
+   "topic": "piano di tutela di un centro storico",
+   "passage": "Il piano di tutela approvato da un comune per il proprio centro storico entrerà in vigore in due fasi. Dal mese prossimo sarà vietato installare nuove antenne paraboliche e unità esterne dei condizionatori sulle facciate rivolte verso strade e piazze, mentre quelle già presenti potranno restare dove sono. Entro tre anni, invece, le insegne dei negozi dovranno essere sostituite con modelli conformi a un catalogo approvato dalla soprintendenza; chi lo farà entro il primo anno riceverà un contributo pari al 40% della spesa. Il piano prevede inoltre contributi per il restauro delle facciate con materiali tradizionali, come la calce, e un censimento delle botteghe artigiane storiche, che potranno ottenere una riduzione dei tributi locali. Le associazioni dei residenti giudicano il piano positivo ma insufficiente, perché non affronta lo spopolamento: negli ultimi vent'anni gli abitanti del centro sono diminuiti di un quarto.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Il catalogo dei modelli di insegna ammessi nel centro storico è stato approvato dalle associazioni dei commercianti.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Tutte le antenne paraboliche già presenti sulle facciate verso strada potranno restare al loro posto.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Per avere il contributo del 40% basta sostituire le insegne entro il termine di tre anni.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "D",
+     "text": "Le botteghe artigiane storiche censite non pagheranno più i tributi locali.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "quelle già presenti potranno restare dove sono",
+   "explanation": "B è corretta: il divieto riguarda l'installazione di nuove antenne e unità esterne, mentre «quelle già presenti potranno restare dove sono». A attribuisce l'approvazione del catalogo alle associazioni dei commercianti, mentre il catalogo è «approvato dalla soprintendenza» (ambito). C considera sufficiente il termine di tre anni, mentre il contributo spetta solo a chi sostituisce le insegne «entro il primo anno» (tempo). D trasforma una «riduzione dei tributi locali» in un'esenzione (parafrasi)."
   }
  ]
 });

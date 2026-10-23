@@ -34,8 +34,8 @@
    "C"
   ],
   "evidence": "il 38% delle imprese intervistate dichiarava di vendere attraverso un proprio sito o una piattaforma di terzi, contro il 29% della rilevazione condotta tre anni prima",
-  "explanation": "C è corretta: nel 2025 vendeva online \"il 38% delle imprese intervistate\", contro \"il 29% della rilevazione condotta tre anni prima\": la differenza è di nove punti percentuali. A estende all'insieme delle PMI del settore un dato del solo campione, che esclude le imprese con meno di cinque addetti: l'agenzia avverte che i risultati \"non descrivono l'insieme\" delle imprese (inferenza: generalizzazione da un campione). B trasferisce al fatturato la soglia della metà, che il brano riferisce alla quota di imprese con oltre cento addetti che vendono online (\"superava la metà\"); sul fatturato il brano dà solo la media del 9% per tutte le imprese che vendono online (ambito). D trasforma il 43% in \"la maggior parte\", cioè oltre il 50% (quantificatore).",
-  "review": "Spiegazione di B: la citazione \"oltre la metà\" non era nel brano (che dice \"superava la metà\"); corretta e aggiunto il dato del 9%."
+  "explanation": "C è corretta: nel 2025 vendeva online «il 38% delle imprese intervistate», contro «il 29% della rilevazione condotta tre anni prima»: la differenza è di nove punti percentuali. A estende all'insieme delle PMI del settore un dato del solo campione, che esclude le imprese con meno di cinque addetti: l'agenzia avverte che i risultati «non descrivono l'insieme» delle imprese (inferenza: generalizzazione da un campione). B trasferisce al fatturato la soglia della metà, che il brano riferisce alla quota di imprese con oltre cento addetti che vendono online («superava la metà»); sul fatturato il brano dà solo la media del 9% per tutte le imprese che vendono online (ambito). D parla della maggior parte delle imprese, cioè di oltre il 50%, mentre la logistica è stata «citata dal 43%» (quantificatore).",
+  "review": "Spiegazione di B: la citazione \"oltre la metà\" non era nel brano (che dice \"superava la metà\"); corretta e aggiunto il dato del 9%. Poi: in D «la maggior parte» era la formula dell'opzione tra virgolette come le citazioni del brano; ora D è spiegata con il dato del brano (43%). Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1102,
@@ -72,7 +72,8 @@
    "A"
   ],
   "evidence": "2,8 milioni sono vincolati da leggi o da contributi ricevuti per finalità specifiche e 1,5 milioni sono accantonati a copertura dei crediti di dubbia esigibilità",
-  "explanation": "A è corretta: dall'avanzo di 6,2 milioni si tolgono i 2,8 milioni \"vincolati\" e gli 1,5 milioni \"accantonati\"; la \"parte restante\", cioè l'avanzo libero, è 6,2 − 2,8 − 1,5 = 1,9 milioni. B presenta come già decisa una destinazione che la giunta ha solo proposto e che il consiglio comunale deve ancora approvare (tempo). C trasforma un divieto (\"ma non la spesa corrente ordinaria, come stipendi e utenze\") in un permesso condizionato (negazione). D cambia \"soprattutto\" in \"interamente\" e cancella l'altra causa indicata dai revisori, i ritardi nei cantieri (quantificatore)."
+  "explanation": "A è corretta: dall'avanzo di 6,2 milioni si tolgono i 2,8 milioni «vincolati» e gli 1,5 milioni «accantonati»; la «parte restante», cioè l'avanzo libero, è 6,2 − 2,8 − 1,5 = 1,9 milioni. B presenta come già decisa una destinazione che la giunta ha solo proposto e che il consiglio comunale deve ancora approvare (tempo). C trasforma un divieto («ma non la spesa corrente ordinaria, come stipendi e utenze») in un permesso condizionato (negazione). D trasforma la causa che per i revisori vale «soprattutto» in una causa unica e cancella l'altra che indicano, i ritardi nei cantieri (quantificatore).",
+  "review": "Spiegazione di D: «interamente» era una parola dell'opzione tra virgolette come le citazioni del brano; ora D è spiegata senza citare l'opzione. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1103,
@@ -109,7 +110,8 @@
    "D"
   ],
   "evidence": "è considerato occupato chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito",
-  "explanation": "D è corretta: il brano considera occupato \"chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito\", quindi chiunque abbia lavorato anche una sola ora; qui l'assoluto «ogni» è sostenuto dalla definizione. A attribuisce il calo alla creazione di posti di lavoro, mentre l'istituto lo spiega soprattutto con il passaggio dalla disoccupazione all'inattività (inferenza). B contraddice la definizione, che include tra gli occupati chi è \"temporaneamente assente\" dal proprio impiego \"per ferie o malattia\" (negazione). C cambia il denominatore: il brano rapporta i disoccupati alle forze di lavoro, non all'intera popolazione in età lavorativa (parafrasi)."
+  "explanation": "D è corretta: il brano considera occupato «chi, nella settimana di riferimento, ha svolto almeno un'ora di lavoro retribuito», quindi chiunque abbia lavorato anche una sola ora: l'assoluto dell'opzione (\"ogni persona\") è sostenuto dalla definizione. A attribuisce il calo alla creazione di posti di lavoro, mentre secondo l'istituto «il calo si deve in larga parte al passaggio di persone dalla disoccupazione all'inattività, più che a un aumento dell'occupazione» (inferenza). B contraddice la definizione, che include tra gli occupati chi è «temporaneamente assente» dal proprio impiego «per ferie o malattia» (negazione). C cambia il denominatore: il brano rapporta i disoccupati alle forze di lavoro, non all'intera popolazione in età lavorativa (parafrasi).",
+  "review": "Spiegazione: «ogni» (parola dell'opzione) era tra «» come se fosse del brano; ora è attribuita all'opzione. In A aggiunta la citazione del brano che dà la causa diversa. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1104,
@@ -146,7 +148,8 @@
    "B"
   ],
   "evidence": "percentuale che sale al 25% per le imprese con meno di cinquanta dipendenti",
-  "explanation": "B è corretta: per le imprese con meno di cinquanta dipendenti la percentuale \"sale al 25%\": il 25% di 2 milioni è 500.000 euro, sotto il limite annuo di 4 milioni, e il 2027 rientra nel periodo 2026–2028. A anticipa di un anno l'uso del credito, che il brano consente solo \"a partire dall'anno successivo\" a quello delle spese (tempo). C aggiunge un requisito sulla sede legale che il brano non menziona (fuori testo). D ignora il limite: il 20% di 30 milioni sarebbe 6 milioni, ma per ciascun beneficiario il credito \"non può superare i 4 milioni di euro l'anno\" (negazione: condizione ignorata)."
+  "explanation": "B è corretta: per le imprese con meno di cinquanta dipendenti la percentuale «sale al 25%»: il 25% di 2 milioni è 500.000 euro, sotto il limite annuo di 4 milioni, e il 2027 rientra nel periodo 2026–2028. A anticipa di un anno l'uso del credito, che il brano consente solo «a partire dall'anno successivo» a quello delle spese (tempo). C aggiunge un requisito sulla sede legale che il brano non menziona (fuori testo). D ignora il limite: il 20% di 30 milioni sarebbe 6 milioni, ma per ciascun beneficiario il credito «non può superare i 4 milioni di euro l'anno» (negazione: condizione ignorata).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1105,
@@ -183,7 +186,8 @@
    "A"
   ],
   "evidence": "L'aumento è stato trainato dai mercati extraeuropei, saliti al 45% del totale",
-  "explanation": "A è corretta: se i mercati extraeuropei sono \"saliti al 45% del totale\", ai mercati europei va il restante 55%, cioè oltre la metà delle esportazioni. B attribuisce alle vendite verso gli altri Stati membri la crescita del 6%, che riguarda il totale, mentre il brano le dice \"sostanzialmente stabili in valore\" (ambito). C contraddice l'osservatorio: la crescita riflette soprattutto l'aumento dei prezzi, mentre il numero di paia esportate \"è leggermente diminuito\" (inferenza: crescita in valore scambiata per crescita delle quantità). D introduce una causa, le fiere internazionali, di cui il brano non parla (fuori testo)."
+  "explanation": "A è corretta: se i mercati extraeuropei sono «saliti al 45% del totale», ai mercati europei va il restante 55%, cioè oltre la metà delle esportazioni. B attribuisce alle vendite verso gli altri Stati membri la crescita del 6%, che riguarda il totale, mentre il brano le dice «sostanzialmente stabili in valore» (ambito). C contraddice l'osservatorio: la crescita riflette soprattutto l'aumento dei prezzi, mentre il numero di paia esportate «è leggermente diminuito» (inferenza: crescita in valore scambiata per crescita delle quantità). D introduce una causa, le fiere internazionali, di cui il brano non parla (fuori testo).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1106,
@@ -220,7 +224,8 @@
    "C"
   ],
   "evidence": "Il peso di ciascuna voce riflette la sua quota nella spesa complessiva delle famiglie, stimata sulla base dei dati dei due anni precedenti",
-  "explanation": "C è corretta: il peso di ogni voce riflette la quota di spesa delle famiglie \"stimata sulla base dei dati dei due anni precedenti\", quindi i pesi del 2026 poggiano su dati di anni precedenti. A attribuisce all'indice un uso, l'adeguamento delle pensioni, che il brano non menziona (fuori testo). B sbaglia il confronto: la metà di 12,1% è 6,05%, e l'abbigliamento pesa 6,3%, cioè più della metà (quantificatore). D cambia il motivo dell'uscita dal paniere: non il prezzo, ma il fatto che i lettori siano \"acquistati da una quota trascurabile di famiglie\" (parafrasi)."
+  "explanation": "C è corretta: il peso di ogni voce riflette la quota di spesa delle famiglie «stimata sulla base dei dati dei due anni precedenti», quindi i pesi del 2026 poggiano su dati di anni precedenti. A attribuisce all'indice un uso, l'adeguamento delle pensioni, che il brano non menziona (fuori testo). B sbaglia il confronto: la metà di 12,1% è 6,05%, e l'abbigliamento pesa 6,3%, cioè più della metà (quantificatore). D cambia il motivo dell'uscita dal paniere: non il prezzo, ma il fatto che i lettori siano «acquistati da una quota trascurabile di famiglie» (parafrasi).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1107,
@@ -257,7 +262,8 @@
    "D"
   ],
   "evidence": "per quelli destinati al capitale circolante il 60%; le imprese costituite da meno di tre anni beneficiano di dieci punti percentuali aggiuntivi",
-  "explanation": "D è corretta: per il capitale circolante la garanzia copre il 60%, più \"dieci punti percentuali aggiuntivi\" per le imprese costituite da meno di tre anni; il 70% di 500.000 euro è 350.000 euro, sotto il limite di 2,5 milioni per singolo prestito. A attribuisce alla valutazione la prova di un nesso causale che essa non afferma: rileva una differenza, ma avverte che parte di essa \"potrebbe dipendere\" dal tipo di imprese che si rivolgono al fondo (inferenza). B applica i dieci punti aggiuntivi a un'impresa costituita da cinque anni, che non rientra tra quelle \"costituite da meno di tre anni\": la garanzia copre l'80%, cioè 400.000 euro (ambito). C dice che il tasso di insolvenza \"è sceso\", mentre il brano dice solo che \"si è attestato al 2,1%\", senza confronti con gli anni precedenti (parafrasi)."
+  "explanation": "D è corretta: per il capitale circolante la garanzia copre il 60%, più «dieci punti percentuali aggiuntivi» per le imprese costituite da meno di tre anni; il 70% di 500.000 euro è 350.000 euro, sotto il limite di 2,5 milioni per singolo prestito. A attribuisce alla valutazione la prova di un nesso causale che essa non afferma: rileva una differenza, ma avverte che parte di essa «potrebbe dipendere» dal tipo di imprese che si rivolgono al fondo (inferenza). B applica i dieci punti aggiuntivi a un'impresa costituita da cinque anni, che non rientra tra quelle «costituite da meno di tre anni»: la garanzia copre l'80%, cioè 400.000 euro (ambito). C presenta il 2,1% come un calo del tasso di insolvenza, mentre il brano dice solo che «si è attestato al 2,1%», senza confronti con gli anni precedenti (parafrasi).",
+  "review": "Spiegazione di C: «è sceso» era una parola dell'opzione tra virgolette come le citazioni del brano; riformulata. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1108,
@@ -294,8 +300,8 @@
    "B"
   ],
   "evidence": "per i prodotti agricoli trasformati l'eliminazione avverrà in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore",
-  "explanation": "B è corretta: l'eliminazione dei dazi avviene \"in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore\" (1º gennaio 2027); la quinta e ultima rata cade quindi nel 2031, e prima di allora i dazi non sono del tutto azzerati. A restringe l'intervallo stimato: gli studi indicano un aumento \"compreso tra il 15% e il 25%\", che può quindi risultare anche inferiore al 20% (quantificatore). C aggiunge una procedura di ratifica di cui il brano non parla (fuori testo). D legge l'esclusione dalla liberalizzazione come un divieto, mentre oltre il volume prestabilito si applica semplicemente \"il dazio pieno\" (negazione).",
-  "review": "Brano: \"la riduzione\" → \"l'eliminazione\" per i prodotti agricoli trasformati, così l'azzeramento nel 2031 (chiave B) segue dal testo senza presupposti; evidenza e spiegazione allineate."
+  "explanation": "B è corretta: l'eliminazione dei dazi avviene «in cinque rate annuali di pari entità, la prima delle quali all'entrata in vigore» (1º gennaio 2027); la quinta e ultima rata cade quindi nel 2031, e prima di allora i dazi non sono del tutto azzerati. A restringe l'intervallo stimato: gli studi indicano un aumento «compreso tra il 15% e il 25%», che può quindi risultare anche inferiore al 20% (quantificatore). C aggiunge una procedura di ratifica di cui il brano non parla (fuori testo). D legge l'esclusione dalla liberalizzazione come un divieto, mentre oltre il volume prestabilito si applica semplicemente «il dazio pieno» (negazione).",
+  "review": "Brano: \"la riduzione\" → \"l'eliminazione\" per i prodotti agricoli trasformati, così l'azzeramento nel 2031 (chiave B) segue dal testo senza presupposti; evidenza e spiegazione allineate. Poi: spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1109,
@@ -332,7 +338,8 @@
    "B"
   ],
   "evidence": "per questo viene rivista dopo sessanta giorni, quando sono disponibili dati più completi, e di nuovo con la pubblicazione dei conti annuali",
-  "explanation": "B è corretta: la stima preliminare, pubblicata per ogni trimestre, \"viene rivista dopo sessanta giorni\" e \"di nuovo con la pubblicazione dei conti annuali\"; qui l'assoluto «ogni» è sostenuto dal testo. A contraddice il dato \"in nove casi su dieci\": nel decimo caso il segno è cambiato, quindi non è vero che non sia \"mai\" successo (quantificatore). C generalizza da un solo caso: il brano indica una revisione media di un decimo di punto \"in valore assoluto\", senza dire in quale direzione (inferenza). D confonde i tempi: la stima esce a trenta giorni, mentre a sessanta giorni arriva la prima revisione (tempo)."
+  "explanation": "B è corretta: la stima preliminare, pubblicata per ogni trimestre, «viene rivista dopo sessanta giorni» e «di nuovo con la pubblicazione dei conti annuali»: l'assoluto dell'opzione (\"Ogni stima preliminare\") è quindi sostenuto dal testo. A contraddice il dato «in nove casi su dieci»: nel decimo caso il segno è cambiato, quindi l'assoluto dell'opzione (\"mai\") è falso (quantificatore). C generalizza da un solo caso: il brano indica una revisione media di un decimo di punto «in valore assoluto», senza dire in quale direzione (inferenza). D confonde i tempi: la stima esce a trenta giorni, mentre a sessanta giorni arriva la prima revisione (tempo).",
+  "review": "Spiegazione: «ogni» e «mai» (parole delle opzioni B e A) erano tra virgolette come le citazioni del brano; ora sono attribuite alle opzioni. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1110,
@@ -369,8 +376,8 @@
    "D"
   ],
   "evidence": "Tra chi aveva frequentato i corsi di logistica la quota saliva al 58%",
-  "explanation": "D è corretta: a sei mesi dalla conclusione dei corsi aveva un contratto di lavoro il 46% dei partecipanti, mentre \"tra chi aveva frequentato i corsi di logistica la quota saliva al 58%\". A sposta a diciotto mesi un dato misurato a sei: la verifica a diciotto mesi è solo raccomandata dagli autori (tempo). B rovescia la condizione: l'indennità si perdeva solo abbandonando \"senza giustificato motivo\" (negazione). C cambia \"in larga parte\" in \"interamente\", attribuendo agli autori una certezza che non esprimono (quantificatore).",
-  "review": "Trappola di C: parafrasi → quantificatore (\"in larga parte\" → \"interamente\"), coerente con 1102 D che ha lo stesso schema; nessun cambio a brano o chiave."
+  "explanation": "D è corretta: a sei mesi dalla conclusione dei corsi aveva un contratto di lavoro il 46% dei partecipanti, mentre tra chi aveva frequentato i corsi di logistica «la quota saliva al 58%». A sposta a diciotto mesi un dato misurato a sei: la verifica a diciotto mesi è solo raccomandata dagli autori (tempo). B rovescia la condizione: l'indennità si perdeva solo abbandonando «senza giustificato motivo» (negazione). C trasforma una causa che per gli autori vale «in larga parte» in una causa unica, attribuendo loro una certezza che non esprimono (quantificatore).",
+  "review": "Trappola di C: parafrasi → quantificatore (\"in larga parte\" → \"interamente\"), coerente con 1102 D che ha lo stesso schema; nessun cambio a brano o chiave. Poi: in C «interamente» era la parola dell'opzione tra virgolette come le citazioni del brano, riformulata; citazione in D resa identica al brano; citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1111,
@@ -407,7 +414,8 @@
    "A"
   ],
   "evidence": "il 79% era ancora attivo dopo tre anni e il 63% dopo cinque",
-  "explanation": "A è corretta: era ancora attivo il 79% dopo tre anni e il 63% dopo cinque, quindi tra i tre e i cinque anni di vita ha cessato l'attività il 16% della generazione del 2020 (79 − 63). B attribuisce al registro un nesso causale che il registro stesso \"non permette di stabilire\": il vantaggio potrebbe dipendere dal personale o dal capitale iniziale (inferenza). C sposta a cinque anni la quota dei tre anni: 41.000 è circa il 79% di 52.000, mentre dopo cinque anni era attivo il 63%, cioè circa 32.800 società (tempo). D attribuisce alla manifattura il tasso del commercio al dettaglio e della ristorazione; per la manifattura il brano indica oltre il 70% (ambito)."
+  "explanation": "A è corretta: era ancora attivo il 79% dopo tre anni e il 63% dopo cinque, quindi tra i tre e i cinque anni di vita ha cessato l'attività il 16% della generazione del 2020 (79 − 63). B attribuisce al registro un nesso causale che il registro stesso «non permette di stabilire»: il vantaggio potrebbe dipendere dal personale o dal capitale iniziale (inferenza). C sposta a cinque anni la quota dei tre anni: 41.000 è circa il 79% di 52.000, mentre dopo cinque anni era attivo il 63%, cioè circa 32.800 società (tempo). D attribuisce alla manifattura il tasso del commercio al dettaglio e della ristorazione; per la manifattura il brano indica oltre il 70% (ambito).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1112,
@@ -444,7 +452,8 @@
    "C"
   ],
   "evidence": "termine esteso a sessanta giorni per gli enti del servizio sanitario",
-  "explanation": "C è corretta: per gli enti del servizio sanitario il termine è \"esteso a sessanta giorni\" e, secondo il monitoraggio, nel 2025 questi enti hanno pagato in media in 52 giorni, quindi entro il loro termine. A passa dalla media dei ministeri (29 giorni) a ciascun ministero: una media sotto i trenta giorni non esclude che alcuni abbiano pagato oltre il termine (quantificatore). B contraddice il brano, secondo cui gli interessi spettano \"automaticamente\", \"senza bisogno di una richiesta formale\" (negazione). D applica alle fatture contestate il ritardo medio di 19 giorni, mentre il brano le esclude dai dati (ambito)."
+  "explanation": "C è corretta: per gli enti del servizio sanitario il termine è «esteso a sessanta giorni» e, secondo il monitoraggio, nel 2025 questi enti hanno pagato in media in 52 giorni, quindi entro il loro termine. A passa dalla media dei ministeri (29 giorni) a ciascun ministero: una media sotto i trenta giorni non esclude che alcuni abbiano pagato oltre il termine (quantificatore). B contraddice il brano, secondo cui gli interessi spettano «automaticamente», «senza bisogno di una richiesta formale» (negazione). D applica alle fatture contestate il ritardo medio di 19 giorni, mentre il brano le esclude dai dati (ambito).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1113,
@@ -481,7 +490,8 @@
    "D"
   ],
   "evidence": "Solo il 4% dei contratti è stato aggiudicato direttamente a un'impresa straniera; la quota sale al 12% se si considerano anche le aggiudicazioni a filiali locali di gruppi stranieri",
-  "explanation": "D è corretta: il 4% dei contratti è andato direttamente a imprese straniere e la quota \"sale al 12%\" includendo le filiali locali di gruppi stranieri; a queste spetta quindi la differenza, cioè l'8%. A attribuisce allo studio la conclusione che gli autori escludono: una bassa quota di aggiudicazioni dirette \"non indica necessariamente\" una scarsa integrazione (inferenza). B confonde la quota complessiva con quella delle sole filiali: il 12% comprende anche le aggiudicazioni dirette, quindi le filiali pesano l'8%, il doppio del 4%, non il triplo (ambito). C introduce un effetto sui prezzi di aggiudicazione di cui il brano non parla (fuori testo)."
+  "explanation": "D è corretta: il 4% dei contratti è andato direttamente a imprese straniere e la quota «sale al 12%» includendo le filiali locali di gruppi stranieri; a queste spetta quindi la differenza, cioè l'8%. A attribuisce allo studio la conclusione che gli autori escludono: una bassa quota di aggiudicazioni dirette «non indica necessariamente» una scarsa integrazione (inferenza). B confonde la quota complessiva con quella delle sole filiali: il 12% comprende anche le aggiudicazioni dirette, quindi le filiali pesano l'8%, il doppio del 4%, non il triplo (ambito). C introduce un effetto sui prezzi di aggiudicazione di cui il brano non parla (fuori testo).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1114,
@@ -500,7 +510,7 @@
    },
    {
     "letter": "B",
-    "text": "Secondo l'istituto, rispetto a un anno prima, ad agosto i consumatori hanno speso di più pur acquistando quantità minori.",
+    "text": "Rispetto a un anno prima, ad agosto i consumatori hanno speso di più pur comprando meno, per effetto dei prezzi.",
     "trap": null
    },
    {
@@ -517,8 +527,9 @@
   "correct": [
    "B"
   ],
-  "evidence": "ad agosto le vendite al dettaglio sono aumentate del 2,4% in valore rispetto allo stesso mese dell'anno precedente, ma sono diminuite dello 0,6% in volume",
-  "explanation": "B è corretta: secondo l'istituto, rispetto ad agosto dell'anno precedente le vendite sono \"aumentate del 2,4% in valore\", cioè la spesa, ma \"diminuite dello 0,6% in volume\", cioè le quantità acquistate. A attribuisce alle quantità alimentari la crescita del 4,1%, che riguarda il valore, mentre i volumi del comparto sono \"sostanzialmente stabili\" (parafrasi). C applica al non alimentare l'andamento del totale; il brano dice che lì sono diminuiti \"sia il valore sia il volume\" (ambito). D cambia il periodo di confronto: il +2,4% è rispetto ad agosto dell'anno precedente, mentre rispetto a luglio le vendite sono \"rimaste invariate\" (tempo)."
+  "evidence": "ad agosto le vendite al dettaglio sono aumentate del 2,4% in valore rispetto allo stesso mese dell'anno precedente, ma sono diminuite dello 0,6% in volume. La differenza tra le due misure dipende dall'andamento dei prezzi",
+  "explanation": "B è corretta: rispetto ad agosto dell'anno precedente le vendite sono «aumentate del 2,4% in valore», cioè la spesa, ma «diminuite dello 0,6% in volume», cioè le quantità acquistate, e il brano attribuisce lo scarto ai prezzi: «La differenza tra le due misure dipende dall'andamento dei prezzi». A attribuisce alle quantità alimentari la crescita del 4,1%, che riguarda il valore, mentre i volumi del comparto sono «sostanzialmente stabili» (parafrasi). C applica al non alimentare l'andamento del totale; il brano dice che lì sono diminuiti «sia il valore sia il volume» (ambito). D cambia il periodo di confronto: il +2,4% è rispetto ad agosto dell'anno precedente, mentre rispetto a luglio le vendite sono «rimaste invariate» (tempo).",
+  "review": "Chiave B riformulata con la causa che il brano dà («La differenza tra le due misure dipende dall'andamento dei prezzi»), a contenuto invariato: in banca i marcatori causali stavano quasi solo nei distrattori, un indizio sfruttabile e falso per la prova reale. Evidenza estesa a quella frase, spiegazione allineata. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1115,
@@ -555,7 +566,8 @@
    "A"
   ],
   "evidence": "Per debiti fino a 60.000 euro la rateizzazione, con un massimo di 72 rate mensili, è concessa su semplice richiesta; oltre tale importo il contribuente deve documentare la propria situazione di difficoltà",
-  "explanation": "A è corretta: fino a 60.000 euro la rateizzazione \"è concessa su semplice richiesta\", mentre \"oltre tale importo il contribuente deve documentare la propria situazione di difficoltà\"; qui l'assoluto «solo» è sostenuto dal testo. B rovescia la regola: il piano decade anche con cinque rate \"non consecutive\" (negazione). C trasforma le procedure già avviate, che \"restano sospese\", in procedure annullate (parafrasi). D estende a tutte le imprese l'obbligo di allegare il bilancio, che vale solo per i debiti oltre i 60.000 euro (quantificatore)."
+  "explanation": "A è corretta: fino a 60.000 euro la rateizzazione «è concessa su semplice richiesta», mentre «oltre tale importo il contribuente deve documentare la propria situazione di difficoltà»: la restrizione posta dall'opzione (\"Solo per i debiti superiori a 60.000 euro\") è quindi sostenuta dal testo. B rovescia la regola: il piano decade anche con cinque rate «non consecutive» (negazione). C trasforma le procedure già avviate, che «restano sospese», in procedure annullate (parafrasi). D estende a tutte le imprese l'obbligo di allegare il bilancio, che vale solo per i debiti oltre i 60.000 euro (quantificatore).",
+  "review": "Spiegazione: «solo» (parola dell'opzione) era tra «» come se fosse del brano; ora è attribuita all'opzione. Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1116,
@@ -592,7 +604,8 @@
    "C"
   ],
   "evidence": "il procedimento potrà tuttavia essere riaperto se le imprese non rispetteranno quanto promesso o se emergeranno fatti nuovi",
-  "explanation": "C è corretta: il procedimento può essere riaperto se le imprese non rispettano gli impegni \"o se emergeranno fatti nuovi\"; la seconda ipotesi vale anche quando tutti gli impegni sono rispettati. A contraddice il brano: accettando gli impegni l'autorità \"non ha accertato l'esistenza di un'infrazione\" (inferenza: gli impegni scambiati per la prova dell'accordo). B aggiunge agli impegni una riduzione dei listini che il brano non prevede (fuori testo). D elimina il limite temporale: le imprese si obbligano \"per cinque anni\" (tempo)."
+  "explanation": "C è corretta: il procedimento può essere riaperto se le imprese non rispettano gli impegni «o se emergeranno fatti nuovi»; la seconda ipotesi vale anche quando tutti gli impegni sono rispettati. A contraddice il brano: accettando gli impegni l'autorità «non ha accertato l'esistenza di un'infrazione» (inferenza: gli impegni scambiati per la prova dell'accordo). B aggiunge agli impegni una riduzione dei listini che il brano non prevede (fuori testo). D elimina il limite temporale: le imprese si obbligano «per cinque anni» (tempo).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1117,
@@ -629,8 +642,8 @@
    "B"
   ],
   "evidence": "i lavoratori a tempo parziale rappresentavano il 17% degli occupati di un paese, quota stabile rispetto all'anno precedente, e il 54% di loro dichiarava di aver accettato un orario ridotto",
-  "explanation": "B è corretta: il part-time riguardava il 17% degli occupati e il 54% di questi era involontario; 0,17 × 0,54 = 0,092, cioè circa il 9,2% degli occupati, meno del 10%. A contraddice il dato sulle donne: il 51% di loro era in part-time involontario, quindi la maggioranza non aveva scelto l'orario ridotto (quantificatore). C confonde un tasso con un numero assoluto: poiché le donne sono oltre due terzi dei lavoratori a tempo parziale, le donne in part-time involontario ne sono più del 34% (0,51 × 2/3), gli uomini meno del 21% (0,61 × 1/3): la maggioranza resta femminile (inferenza). D trasforma un divario che, tenendo conto di settore e dimensione d'impresa, \"si riduce sensibilmente\" in un divario che scompare (parafrasi).",
-  "review": "Brano: part-time 18% → 17% degli occupati; con 18% × 54% = 9,72% il margine sul 10% di B cadeva entro l'arrotondamento dei dati (fino a 10,08%); ora 9,2% (max 9,5%). Evidenza e spiegazione allineate."
+  "explanation": "B è corretta: il part-time riguardava il 17% degli occupati e il 54% di questi era involontario; 0,17 × 0,54 = 0,092, cioè circa il 9,2% degli occupati, meno del 10%. A contraddice il dato sulle donne: il 51% di loro era in part-time involontario, quindi la maggioranza non aveva scelto l'orario ridotto (quantificatore). C confonde un tasso con un numero assoluto: poiché le donne sono oltre due terzi dei lavoratori a tempo parziale, le donne in part-time involontario ne sono più del 34% (0,51 × 2/3), gli uomini meno del 21% (0,61 × 1/3): la maggioranza resta femminile (inferenza). D trasforma un divario che, tenendo conto di settore e dimensione d'impresa, «si riduce sensibilmente» in un divario che scompare (parafrasi).",
+  "review": "Brano: part-time 18% → 17% degli occupati; con 18% × 54% = 9,72% il margine sul 10% di B cadeva entro l'arrotondamento dei dati (fino a 10,08%); ora 9,2% (max 9,5%). Evidenza e spiegazione allineate. Poi: spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1118,
@@ -667,7 +680,8 @@
    "D"
   ],
   "evidence": "Chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica",
-  "explanation": "D è corretta: il brano stabilisce che \"chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica\", senza eccezioni; qui l'assoluto «tutti» è sostenuto dal testo. A ignora l'eccezione per le professioni che incidono sulla salute o sulla sicurezza pubblica, per le quali la verifica è possibile anche in caso di prestazione temporanea (quantificatore). B sposta la dichiarazione dopo l'inizio dell'attività: va inviata \"prima della prima prestazione\", mentre i tre mesi sono il termine per concludere il riconoscimento (tempo). C attribuisce alle dichiarazioni il 22% di respingimenti, che riguarda le domande di riconoscimento (ambito)."
+  "explanation": "D è corretta: il brano stabilisce: «Chi intende invece stabilirsi nel paese deve ottenere il riconoscimento della propria qualifica», senza eccezioni; l'assoluto dell'opzione (\"Tutti i professionisti\") è quindi sostenuto dal testo. A ignora l'eccezione per le professioni che incidono sulla salute o sulla sicurezza pubblica, per le quali la verifica è possibile anche in caso di prestazione temporanea (quantificatore). B sposta la dichiarazione dopo l'inizio dell'attività: va inviata «prima della prima prestazione», mentre i tre mesi sono il termine per concludere il riconoscimento (tempo). C attribuisce alle dichiarazioni il 22% di respingimenti, che riguarda le domande di riconoscimento (ambito).",
+  "review": "Spiegazione: «tutti» (parola dell'opzione) era tra «» come se fosse del brano; ora è attribuita all'opzione. Citazione della chiave resa identica al brano (maiuscola). Citazioni dal brano tra «» come nel resto della banca."
  },
  {
   "id": 1119,
@@ -704,7 +718,8 @@
    "C"
   ],
   "evidence": "Il divario comprende inoltre importi non riscossi per ragioni diverse dall'evasione",
-  "explanation": "C è corretta: il brano precisa che il divario \"comprende inoltre importi non riscossi per ragioni diverse dall'evasione\", come i fallimenti e gli errori nelle dichiarazioni. A attribuisce all'obbligo l'intero calo di cinque punti, mentre secondo la stima \"circa un terzo del calo\" dipende da altri fattori (inferenza). B anticipa di un anno l'obbligo, in vigore \"dal 2022\" (tempo). D rovescia la negazione del brano: il commercio al dettaglio \"non è soggetto all'obbligo\", quindi ne è escluso (negazione)."
+  "explanation": "C è corretta: il brano precisa che il divario «comprende inoltre importi non riscossi per ragioni diverse dall'evasione», come i fallimenti e gli errori nelle dichiarazioni. A attribuisce all'obbligo l'intero calo di cinque punti, mentre secondo la stima «circa un terzo del calo» dipende da altri fattori (inferenza). B anticipa di un anno l'obbligo, in vigore «dal 2022» (tempo). D rovescia la negazione del brano: il commercio al dettaglio «non è soggetto all'obbligo», quindi ne è escluso (negazione).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  },
  {
   "id": 1120,
@@ -741,6 +756,7 @@
    "A"
   ],
   "evidence": "il debito pubblico di un paese era pari a 1.240 miliardi di euro, il 112% del prodotto interno lordo, e la spesa annua per interessi aveva raggiunto 44 miliardi",
-  "explanation": "A è corretta: 44 miliardi di interessi su 1.240 miliardi di debito corrispondono a circa il 3,5%, quindi meno del 4%. B presenta come certo un risultato, il calo di due punti dal 112% al 110%, che il documento prevede solo \"a condizione che la crescita nominale dell'economia non sia inferiore al 3% annuo\" (inferenza). C rovescia la previsione del governo, secondo cui la spesa salirà \"anche se i tassi di mercato rimarranno stabili\" (negazione). D contraddice il brano, per cui con una vita media di sette anni l'aumento dei tassi si trasmette \"solo gradualmente\" (tempo)."
+  "explanation": "A è corretta: 44 miliardi di interessi su 1.240 miliardi di debito corrispondono a circa il 3,5%, quindi meno del 4%. B presenta come certo un risultato, il calo di due punti dal 112% al 110%, che il documento prevede solo «a condizione che la crescita nominale dell'economia non sia inferiore al 3% annuo» (inferenza). C rovescia la previsione del governo, secondo cui la spesa salirà «anche se i tassi di mercato rimarranno stabili» (negazione). D contraddice il brano, per cui con una vita media di sette anni l'aumento dei tassi si trasmette «solo gradualmente» (tempo).",
+  "review": "Spiegazione: citazioni dal brano tra «» invece che tra virgolette dritte, come nel resto della banca; testo invariato."
  }
 ]
