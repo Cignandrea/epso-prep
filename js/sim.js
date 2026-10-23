@@ -47,34 +47,53 @@ App.sim = (() => {
     startWith(scope, timerMode, null);
   }
   // Dal percorso: la simulazione completa parte subito, con un timer per prova come nella prova vera [V TAO §6.3.5].
-  function startFull({ step = null } = {}) { startWith('full', 'section', step); }
+  function startFull({ step = null } = {}) { startWith('full', 'section', step, { kind: 'full' }); }
+  // Misura di partenza: le tre prove con metà delle domande e metà del tempo (10 in 17′30″, 5 in 10′, 5 in 5′),
+  // domande prese dall'allenamento: le riserve restano per le due simulazioni complete.
+  function startBaseline({ step = null } = {}) {
+    startWith('full', 'section', step, { kind: 'baseline', training: true, counts: { verbale: { n: 10, minutes: 17.5 }, numerico: { n: 5, minutes: 10 }, astratto: { n: 5, minutes: 5 } } });
+  }
+  // Blocco a tempo: una prova sola, correzione solo alla fine.
+  function startBlock({ step = null, bank = 'verbale', n = 10, minutes = 17.5 } = {}) {
+    startWith(bank, 'section', step, { kind: 'block', training: true, counts: { [bank]: { n, minutes } } });
+  }
+  // Domande dall'allenamento (misura di partenza e blocchi): verbale nuovo prima, generati al livello della prova.
+  function pickTraining(bank, n) {
+    if (bank === 'verbale') {
+      const items = App.select.pickVerbal(n, { levels: [2, 1], due: false });
+      const stats = App.store.itemStats();
+      return { items, fresh: items.filter((q) => !stats.has(`${q.bank}#${q.id}`)).length };
+    }
+    const items = App.select.genPick(bank, n, bank === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
+    return { items, fresh: items.length };
+  }
 
-  function startWith(scope, timerMode, step) {
-    const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef);
+  function startWith(scope, timerMode, step, opts = {}) {
+    const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef).map((d) => ({ ...d, ...((opts.counts || {})[d.bank] || {}) }));
     const sections = [];
     for (const d of defs) {
-      const pick = App.select.pickSim(d.bank, d.n);
+      const pick = opts.training ? pickTraining(d.bank, d.n) : App.select.pickSim(d.bank, d.n);
       for (const q of pick.items) App.banks.remember(q);
       if (pick.items.length < d.n) {
         App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}.`);
         if (pick.items.length === 0) return;
       }
       const n = pick.items.length;
-      const minutes = n === d.n ? d.minutes : Math.max(1, Math.round((n * d.minutes) / d.n));
+      const minutes = n === d.n ? d.minutes : Math.max(1, Math.round(((n * d.minutes) / d.n) * 2) / 2);
       sections.push({ ...d, n, minutes, reduced: n < d.n, items: pick.items.map((q) => ({ bank: q.bank, id: q.id })), fresh: pick.fresh, answers: {}, bookmarks: {}, time: {}, hl: {}, status: 'pending', deadline: null, startedAt: null, submittedAt: null, byTimeout: false });
     }
     // In modalità "timer unico" le sezioni formano una sola unità navigabile, come nel test di esempio.
     const units = timerMode === 'single'
       ? [{ sections: sections.map((_, i) => i), minutes: sections.reduce((s, x) => s + x.minutes, 0) }]
       : sections.map((_, i) => ({ sections: [i], minutes: sections[i].minutes }));
-    SIM = { id: uid(), startedAt: new Date().toISOString(), scope, timerMode, step, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false };
+    SIM = { id: uid(), kind: opts.kind || 'custom', startedAt: new Date().toISOString(), scope, timerMode, step, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false, tools: { elim: false, mask: false } };
     persist();
     resetUi();
     App.ui.show('sim');
     renderIntro();
   }
   // Strumenti e panoramica ripartono puliti a ogni simulazione e a ogni unità (F2-09).
-  function resetUi() { App.calc.reset(); setHighlightMode(false); overviewFilter = 'all'; bubbleStart = 0; }
+  function resetUi() { App.calc.reset(); setHighlightMode(false); overviewFilter = 'all'; bubbleStart = 0; if ($('tao-settings-panel')) toggleSettings(false); }
 
   // Simulazione ferma da ore oltre la scadenza (T-071: conta la scadenza, non il giorno di calendario):
   // le sezioni già consegnate restano e vanno nei risultati; quella interrotta non consuma il pool.
@@ -129,11 +148,26 @@ App.sim = (() => {
     $('tao-timer').textContent = taoClock(u.minutes * 60);
     $('tao-intro-title').textContent = secs.map((s) => `${s.label} · ${s.n} questions${s.reduced ? ' (reduced: question pool)' : ''}`).join(' / ');
     const step = SIM.units.length > 1 ? ` Part ${SIM.unit + 1} of ${SIM.units.length}.` : '';
-    $('tao-intro-text').textContent = `${u.minutes} minutes.${step} You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections.' : 'The timer starts when you press Start.'}`;
+    $('tao-intro-text').textContent = `${minutesText(u.minutes)}.${step} You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections.' : 'This part has its own timer.'} As in TAO, the test starts automatically when the countdown of this page ends.`;
     $('tao-intro-start').onclick = startUnit;
+    if (!SIM.introUntil) { SIM.introUntil = Date.now() + INTRO_SEC * 1000; persist(); }
+    clearInterval(tickId);
+    tickId = setInterval(introTick, 500); introTick();
   }
+  // Pagina di istruzioni con conto alla rovescia, poi avvio automatico [V istruzioni TAO §6.3.5]. Start parte subito.
+  const INTRO_SEC = 60;
+  function introTick() {
+    if (!SIM || SIM.phase !== 'intro') { clearInterval(tickId); return; }
+    const left = Math.max(0, Math.ceil((SIM.introUntil - Date.now()) / 1000));
+    $('tao-intro-start').textContent = `Start (${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')})`;
+    if (left <= 0) { clearInterval(tickId); startUnit(); }
+  }
+  const minutesText = (m) => (m % 1 ? `${Math.floor(m)} minutes ${Math.round((m % 1) * 60)} seconds` : `${m} minutes`);
 
   function startUnit() {
+    if (!SIM || SIM.phase !== 'intro') return;
+    clearInterval(tickId);
+    SIM.introUntil = null;
     const u = SIM.units[SIM.unit];
     const now = Date.now();
     SIM.deadline = now + u.minutes * 60000;
@@ -178,11 +212,20 @@ App.sim = (() => {
     $('tao-question').textContent = q.question;
     const sel = s.answers[it.id] || null;
     const fig = q.format === 'abs5';
+    const tools = SIM.tools || {};
+    const struck = (s.struck && s.struck[it.id]) || [];
+    const masked = (s.masked && s.masked[it.id]) || [];
     $('tao-options').classList.toggle('tao-options-fig', fig);
-    $('tao-options').replaceChildren(...q.options.map((o) => el('label', { class: `tao-opt${fig ? ' tao-opt-fig' : ''}${sel === o.letter ? ' checked' : ''}` },
-      el('input', { type: 'radio', name: 'tao-answer', value: o.letter, checked: sel === o.letter, onchange: () => select(o.letter), 'aria-label': fig ? `Option ${o.letter}` : null }),
-      el('span', { class: 'tao-opt-letter' }, `${o.letter})`),
-      fig ? el('span', { class: 'tao-opt-figure' }, figure(o.fig, { size: 68, label: `Opzione ${o.letter}` })) : el('span', { class: 'tao-opt-text' }, o.text))));
+    $('tao-options').classList.toggle('elim-on', Boolean(tools.elim));
+    $('tao-options').classList.toggle('mask-on', Boolean(tools.mask));
+    $('tao-options').replaceChildren(...q.options.map((o) => el('div', { class: `tao-opt-row${struck.includes(o.letter) ? ' struck' : ''}${masked.includes(o.letter) ? ' masked' : ''}` },
+      el('label', { class: `tao-opt${fig ? ' tao-opt-fig' : ''}${sel === o.letter ? ' checked' : ''}` },
+        el('input', { type: 'radio', name: 'tao-answer', value: o.letter, checked: sel === o.letter, onchange: () => select(o.letter), 'aria-label': fig ? `Option ${o.letter}` : null }),
+        el('span', { class: 'tao-opt-letter' }, `${o.letter})`),
+        fig ? el('span', { class: 'tao-opt-figure' }, figure(o.fig, { size: 68, label: `Opzione ${o.letter}` })) : el('span', { class: 'tao-opt-text' }, o.text)),
+      // Answer Elimination e Answer Masking, come in TAO: si accendono dalle impostazioni [V istruzioni TAO §6.4.6].
+      tools.elim ? el('button', { type: 'button', class: 'tao-opt-tool tao-opt-x', 'aria-pressed': String(struck.includes(o.letter)), 'aria-label': `${struck.includes(o.letter) ? 'Restore' : 'Eliminate'} option ${o.letter}`, title: 'Answer Elimination', onclick: () => toggleMark('struck', o.letter) }, 'abc') : null,
+      tools.mask ? el('button', { type: 'button', class: 'tao-opt-tool tao-opt-eye', 'aria-pressed': String(masked.includes(o.letter)), 'aria-label': `${masked.includes(o.letter) ? 'Show' : 'Hide'} option ${o.letter}`, title: 'Answer Masking', onclick: () => toggleMark('masked', o.letter) }, masked.includes(o.letter) ? '◉' : '◌') : null)));
     paintBookmark(Boolean(s.bookmarks[it.id]));
     $('tao-prev').disabled = SIM.pos === 0;
     $('tao-next').disabled = SIM.pos === items.length - 1;
@@ -310,14 +353,42 @@ App.sim = (() => {
 
   function select(letter) {
     const it = unitItems()[SIM.pos];
-    SIM.sections[it.si].answers[it.id] = letter;
-    for (const l of $('tao-options').querySelectorAll('.tao-opt')) {
-      const input = l.querySelector('input');
+    const s = SIM.sections[it.si];
+    s.answers[it.id] = letter;
+    // Scegliere un'opzione barrata o nascosta la rimette in gioco.
+    for (const k of ['struck', 'masked']) if (s[k] && s[k][it.id]) s[k][it.id] = s[k][it.id].filter((l) => l !== letter);
+    for (const row of $('tao-options').querySelectorAll('.tao-opt-row')) {
+      const input = row.querySelector('input');
       input.checked = input.value === letter;
-      l.classList.toggle('checked', input.value === letter);
+      row.querySelector('.tao-opt').classList.toggle('checked', input.value === letter);
+      if (input.value === letter) row.classList.remove('struck', 'masked');
     }
     renderBubbles();
     persist();
+  }
+  // Barrare (eliminare) o nascondere un'opzione; barrare quella scelta la toglie dalla risposta.
+  function toggleMark(kind, letter) {
+    const it = unitItems()[SIM.pos];
+    const s = SIM.sections[it.si];
+    s[kind] = s[kind] || {};
+    const list = s[kind][it.id] || [];
+    s[kind][it.id] = list.includes(letter) ? list.filter((l) => l !== letter) : [...list, letter];
+    if (kind === 'struck' && s[kind][it.id].includes(letter) && s.answers[it.id] === letter) delete s.answers[it.id];
+    persist();
+    renderItem();
+  }
+  function toggleSettings(open) {
+    const panel = $('tao-settings-panel');
+    const show = open == null ? panel.hidden : open;
+    panel.hidden = !show;
+    $('tao-settings').setAttribute('aria-expanded', String(show));
+    if (show) { $('tao-elim').checked = Boolean(SIM && SIM.tools && SIM.tools.elim); $('tao-mask').checked = Boolean(SIM && SIM.tools && SIM.tools.mask); }
+  }
+  function setTool(name, on) {
+    if (!SIM) return;
+    SIM.tools = { ...(SIM.tools || {}), [name]: on };
+    persist();
+    if (SIM.phase === 'running') renderItem();
   }
   function goTo(i) { accrue(); SIM.pos = Math.max(0, Math.min(unitItems().length - 1, i)); SIM.phase = 'running'; renderItem(); }
   // Il segnalibro non tocca il tempo dell'item (T-067): si aggiornano solo pulsante e bolle.
@@ -414,7 +485,10 @@ App.sim = (() => {
     App.store.addLogMany(entries);
     for (const r of results) App.store.addSession({ t: r.t, mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined, step: SIM.step ? SIM.step.id : undefined });
     // Tappa del percorso: conta solo una simulazione completa consegnata (anche per tempo scaduto), non una interrotta.
-    if (SIM.step && !SIM.stale && SIM.scope === 'full') App.path.complete(SIM.step, { n: results.reduce((s, r) => s + r.n, 0), correct: results.reduce((s, r) => s + r.correct, 0) });
+    if (SIM.step && !SIM.stale) {
+      const by = Object.fromEntries(results.map((r) => [r.bank, { n: r.n, correct: r.correct }]));
+      App.path.complete(SIM.step, { n: results.reduce((s, r) => s + r.n, 0), correct: results.reduce((s, r) => s + r.correct, 0), by });
+    }
     persist();
     if (show) showResults();
   }
@@ -438,9 +512,24 @@ App.sim = (() => {
         el('span', { class: 'num-label' }, `${App.BANK_LABEL[x.bank]} · ${minSec(x.time)} totali · ${x.answered}/${x.n} risposte${x.byTimeout ? ' · tempo scaduto' : ''}`),
         note ? el('span', { class: 'num-note' }, note + seen) : null);
     }));
+    const kind = SIM.kind || 'full';
+    const heading = document.querySelector('#view-sim-results h1');
+    if (heading) heading.textContent = kind === 'baseline' ? 'Misura di partenza' : kind === 'block' ? 'Blocco a tempo' : 'Simulazione completata';
     const sentences = [];
     if (SIM.stale) sentences.push('Simulazione interrotta: qui conta solo la parte consegnata.');
-    for (const x of r) {
+    if (kind === 'baseline' || kind === 'block') {
+      // Prove più corte della vera: si riporta il risultato alla scala della prova, come stima [S].
+      for (const x of r) {
+        const t = App.plan.TARGET[x.bank];
+        const scaled = t && x.n ? Math.round((x.correct / x.n) * t.max) : null;
+        const sec = SIM.sections.find((y) => y.bank === x.bank);
+        const time = sec ? ` in ${minSec(x.time)} su ${minSec(sec.minutes * 60)}` : '';
+        sentences.push(`${App.BANK_LABEL[x.bank]}: ${x.correct}/${x.n}${time}${scaled != null ? `, cioè circa ${scaled}/${t.max} in prova [stima]` : ''}.`);
+      }
+      if (kind === 'baseline') sentences.push('È il punto di partenza: il percorso dà più spazio alle prove sotto le soglie.');
+      $('sim-sentence').textContent = sentences.join(' ');
+    }
+    for (const x of (kind === 'baseline' || kind === 'block') ? [] : r) {
       const t = App.plan.TARGET[x.bank];
       if (!t) continue;
       if (x.bank === 'verbale') {
@@ -454,7 +543,14 @@ App.sim = (() => {
         sentences.push(`${App.BANK_LABEL[x.bank]}: ${x.correct}/${t.max} verso la soglia combinata numerico + astratto di 10/20 (obiettivo ${t.score}/${t.max} ciascuno).`);
       }
     }
-    $('sim-sentence').textContent = sentences.join(' ');
+    // Punto di controllo sul tempo: a metà prova si dovrebbe aver usato al più metà del tempo [S].
+    const short = kind === 'baseline' || kind === 'block';
+    if (!short) for (const sec of SIM.sections) {
+      const half = Math.ceil(sec.items.length / 2);
+      const used = sec.items.slice(0, half).reduce((t, it) => t + (sec.time[it.id] || 0), 0);
+      if (used) sentences.push(`${App.BANK_LABEL[sec.bank]}: le prime ${half} domande hanno richiesto ${minSec(used)} (ritmo della prova: ${minSec((sec.minutes * 60) / 2)}).`);
+    }
+    if (!short) $('sim-sentence').textContent = sentences.join(' ');
     const review = $('sim-review');
     review.replaceChildren();
     for (const s of SIM.sections) {
@@ -484,7 +580,8 @@ App.sim = (() => {
   }
 
   function summaryText() {
-    const lines = [`EU Prep Suite — Simulazione (${SIM.timerMode === 'single' ? 'timer unico' : 'timer per prova'}${SIM.stale ? ', interrotta' : ''}) · ${dateTimeIt(SIM.finishedAt || new Date().toISOString())}`];
+    const what = { baseline: 'Misura di partenza', block: 'Blocco a tempo' }[SIM.kind] || 'Simulazione';
+    const lines = [`EU Prep Suite — ${what} (${SIM.timerMode === 'single' ? 'timer unico' : 'timer per prova'}${SIM.stale ? ', interrotta' : ''}) · ${dateTimeIt(SIM.finishedAt || new Date().toISOString())}`];
     for (const s of SIM.sections) {
       const r = SIM.results.find((x) => x.bank === s.bank);
       const wrong = s.items.filter((it) => (s.answers[it.id] || null) !== App.banks.question(it.bank, it.id).correct[0]);
@@ -518,6 +615,10 @@ App.sim = (() => {
     $('tao-logo').addEventListener('click', abandon);
     $('tao-exit').addEventListener('click', abandon);
     $('tao-highlight').addEventListener('click', () => setHighlightMode(!highlightMode));
+    $('tao-settings').addEventListener('click', () => toggleSettings());
+    $('tao-elim').addEventListener('change', (e) => setTool('elim', e.target.checked));
+    $('tao-mask').addEventListener('change', (e) => setTool('mask', e.target.checked));
+    document.addEventListener('click', (e) => { if (!$('tao-settings-panel').hidden && !e.target.closest('#tao-settings-panel, #tao-settings')) toggleSettings(false); });
     $('tao-passage').addEventListener('mouseup', onPassageMouseUp);
     $('tao-passage').addEventListener('touchend', () => setTimeout(onPassageMouseUp, 0));
     $('tao-passage').addEventListener('click', onPassageClick);
@@ -540,5 +641,5 @@ App.sim = (() => {
     App.store.onReset(() => discard());
   }
 
-  return { init, showSetup, startFull, resume, closeStale, discard, isActive: () => Boolean(App.store.sim()) };
+  return { init, showSetup, startFull, startBaseline, startBlock, resume, closeStale, discard, isActive: () => Boolean(App.store.sim()) };
 })();

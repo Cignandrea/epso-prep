@@ -82,6 +82,36 @@ window.App = window.App || {};
     tempo_scaduto: 'Tempo scaduto',
   };
   App.tagLabel = (t) => App.TAGS[t] || t;
+  // Regola riusabile per ogni trappola (riga sotto «Trappola: …» nella correzione) e scheda da rileggere.
+  App.TAG_RULE = {
+    quantificatore: 'Confronta il quantificatore dell\'opzione con quello del brano: se è più forte, l\'opzione cade.',
+    negazione: 'Un divieto non diventa un permesso; «solo se» è necessario, non sufficiente.',
+    inferenza: 'Vale solo ciò che segue per forza: niente cause da correlazioni, niente generalizzazioni da un campione.',
+    'fuori-testo': 'Vero nel mondo ma assente dal brano vuol dire sbagliato.',
+    tempo: 'Previsto, proposto o stimato non è avvenuto: controlla tempi e date.',
+    scope: 'Il dato vale solo per chi il brano indica: soggetto, gruppo, luogo.',
+    parafrasi: 'Opzione quasi uguale al brano: confrontala parola per parola.',
+    percentuali: 'Variazione = (nuovo − vecchio) ÷ vecchio; i punti percentuali sono una differenza.',
+    rapporti: 'Scrivi «parte ÷ totale» prima dei numeri; il totale spesso va sommato.',
+    'unita-misura': 'Fissa l\'unità del risultato prima del calcolo; converti una volta sola.',
+    'lettura-dati': 'Prima la domanda, poi riga, colonna e anno; solo dopo la calcolatrice.',
+    media: 'Tasso di più gruppi = totale ÷ totale, non la media dei tassi.',
+    conteggio: 'Scrivi la sequenza dei numeri e trova il passo.',
+    rotazione: 'Segui un solo dettaglio, la punta, e misura il passo in 45°.',
+    alternanza: 'Due valori a turno: la 6ª copia la 4ª.',
+    riempimento: 'Tre colori in ciclo: la 6ª copia la 3ª.',
+    posizione: 'Conta di quante caselle si sposta a ogni passo e in che verso.',
+    combinata: 'Una regola per elemento: elimina le opzioni una regola alla volta.',
+    tempo_scaduto: 'Segna sempre una risposta provvisoria prima di andare avanti: in bianco vale zero.',
+  };
+  App.TAG_LESSON = {
+    quantificatore: 'v-quant', negazione: 'v-quant', inferenza: 'v-infer', 'fuori-testo': 'v-infer',
+    tempo: 'v-tempo', scope: 'v-tempo', parafrasi: 'v-tempo',
+    percentuali: 'n-perc', rapporti: 'n-tab', 'unita-misura': 'n-tab', 'lettura-dati': 'n-tab', media: 'n-medie',
+    conteggio: 'a-cont', rotazione: 'a-cont', alternanza: 'a-alt', riempimento: 'a-alt', posizione: 'a-alt', combinata: 'a-comb',
+    tempo_scaduto: 'strategia',
+  };
+  App.tagRule = (t) => App.TAG_RULE[t] || '';
   App.BANK_LABEL = { verbale: 'Verbale', numerico: 'Numerico', astratto: 'Astratto', sim: 'Simulazione completa' };
   // Etichetta breve del livello: base = brani e problemi corti (fondamenta), prova = livello del test reale.
   App.levelLabel = (q) => (q.bank === 'astratto' ? (['', 'una regola', 'due regole', 'tre regole'][q.level] || '') : q.level >= 2 ? 'livello prova' : 'livello base');

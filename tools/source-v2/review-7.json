@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1221,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave da «Per questo»: 7,4% del quinto più povero contro il 5,8% medio, per il peso di alimentari ed energia nella sua spesa. A: un terzo dei dipendenti ha retribuzioni invariate; B: il recupero è solo previsto e condizionato; D: «rincari inferiori» sono comunque rincari."
+ },
+ {
+  "id": 1222,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«Lo scarto» rimanda alla differenza già data (secondo gruppo −1/3), più ampia per chi ha lunghi tragitti: A segue. B estende un'avvertenza in un effetto; C riguarda costi che lo studio non ha valutato; D trasforma un confronto tra gruppi in un calo nel tempo."
+ },
+ {
+  "id": 1223,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave solida: l'80% spetta agli apprendisti di ogni età. Tolto «tutti» dalla regola generale, che alla lettera contraddiceva proprio il caso della chiave (apprendista adulto). A (80% anche sotto i 18), B (ore per dipendente, non numero di dipendenti), C (1 su 8) esclusi."
+ },
+ {
+  "id": 1224,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«almeno la metà» include la metà esatta. C: 4% di rate scadute non equivale a 96% rimborsato (prestiti a sette anni, programma di due); A riguarda solo chi non ha mai gestito un'impresa; D: valuta il comitato della finanziaria regionale."
+ },
+ {
+  "id": 1225,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«fino a un massimo di sette notti consecutive»: dall'ottava non si paga. D estende l'esenzione dai malati ricoverati a chiunque si curi; l'etichetta «negazione» (condizione omessa) è coerente con la convenzione della banca (1136 A, 1211 B). A tempo, C attore sbagliato."
+ },
+ {
+  "id": 1226,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "100/58 ≈ 1,72 < 2; la soglia sarebbe 50 su 100, margine netto. A: il 71% è il tasso complessivo; B: un terzo, non tutta la crescita; C: il consiglio dice «può rallentare»."
+ },
+ {
+  "id": 1227,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Il corso, ancora facoltativo, è già stato seguito da alcuni tutor (imprese «in cui il tutor aziendale aveva seguito il corso»). B: nesso che l'agenzia dichiara non dimostrato; C: «tutti» non detto; D: il corso è proposto dalla regione."
+ },
+ {
+  "id": 1228,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«Solo una piccola parte» delle fibre torna nei tessuti: la maggior parte ha altri usi (imbottiture, isolanti, stracci). B: un quinto è il raccolto, il riutilizzato è circa l'11%; D omette il 15% incenerito; A fuori testo."
+ },
+ {
+  "id": 1229,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Segnalata dall'autore, regge: stesso universo (negozi, scorso anno; «In valore, invece»), pagamento medio in contante 35/52 ≈ 0,67 della media contro 65/48 ≈ 1,35 per gli altri, quindi circa la metà. Il brano dà anche la ragione (carte per gli importi elevati). A 52% è il numero; B servizi pubblici, non tutti i negozi; C causa non detta."
+ },
+ {
+  "id": 1230,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave: 6 mesi rientrano nelle 12 mensilità coperte. «canone concordato» → «canone calmierato» (brano due volte, A, C): il canone concordato è un istituto reale (L. 431/1998, accordi territoriali) e il brano gli dava una definizione inventata (−20% sul mercato). B, C, D esclusi (negazione, riduzione ≠ esenzione, lavori entro tre anni)."
+ },
+ {
+  "id": 1231,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave solida (annua 30% contro oraria 12%, «perché» tempo parziale). C riformulata con «perché» a contenuto invariato: nella banca «perché/grazie» stava solo nei distrattori (0/23), indizio sfruttabile; ora A (causa inventata) e C (causa del brano) sono entrambe causali. B 12% è il dato grezzo; D obbligo dal prossimo anno."
+ },
+ {
+  "id": 1232,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Segnalata dall'autore, regge: B da «solo un quarto di questi» (gli over 60). A, esca di calcolo: 40% × 1/4 = 10% riguarda solo gli over 60, dei titolari più giovani il brano non dice nulla, quindi «solo un titolare su dieci» non è stabilito. C: crescita minore, non calo; D: servizio dal prossimo anno."
+ },
+ {
+  "id": 1233,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«purché la cooperativa gestisca almeno due servizi diversi» esclude chi gestisce solo un negozio. A: soci residenti «in maggioranza»; B: un voto a testa; C non segue da «in genere»."
+ },
+ {
+  "id": 1234,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Segnalata dall'autore, regge: A da «si riduce in media al 12%», vantaggio netto positivo. D inverte la causa del brano (vantaggio quasi nullo perché la vendita diretta è una piccola parte della produzione); la prima metà vera non rende vera la causale, e A è certa. B prezzi ≠ guadagni; C «sempre»."
+ },
+ {
+  "id": 1235,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Il 15% degli accessi del primo anno ha riguardato percorsi di formazione. A: accessi ≠ persone; B: il 22% è la fascia 65–74 anni; D: obbligo dal prossimo anno."
+ },
+ {
+  "id": 1236,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "65% delle ispezioni mirate contro 40% con estrazione casuale. A: il tasso più alto dipende dalla scelta mirata, non dalla diffusione; C: contributi ≠ retribuzione; D: «supera il 40%» non dà la maggioranza."
+ },
+ {
+  "id": 1237,
+  "blind": "C",
+  "key": "C",
+  "confidence": "media",
+  "verdict": "ok",
+  "note": "Dubbio cieco risolto: le attese sono «tra un incarico e l'altro», quindi non tempo dedicato agli incarichi; 38 h × 3/4 ≈ 28,5 h, margine netto. A: le 38 h sono del 40%; B: norma in preparazione; D: «la maggior parte», non tutti."
+ },
+ {
+  "id": 1238,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Bar, ristoranti e asporto aumentati nonostante il −18% complessivo. B: l'11% è la quota di locali vuoti (con un calo netto del 18% le chiusure sono almeno il 18%); A: «ancora presto»; C: nessuna graduatoria delle cause."
+ },
+ {
+  "id": 1239,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "30% × 1.100 = 330 > 300, margine del 10% che regge anche con dati arrotondati. B: il 18% riguarda il quinto più povero; C: la soglia di reddito non coincide col quintile; D: il peso è «simile»."
+ },
+ {
+  "id": 1240,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Segnalata dall'autore, regge: B da «non a singole persone»; C presenta come fatto la valutazione delle aziende («indicano come principale vantaggio»), senza dati sulle dimissioni, quindi non è un secondo corretto. Cambiata solo l'etichetta di C: parafrasi → inferenza, come gli altri «presenta come accertato un effetto» della banca."
+ }
+]

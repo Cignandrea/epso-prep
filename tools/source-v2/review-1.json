@@ -1,0 +1,22 @@
+[
+  {"id": 1101, "blind": "C", "key": "C", "confidence": "alta", "verdict": "fixed", "note": "Chiave solida (38−29=9). Corretta solo la spiegazione di B, che citava \"oltre la metà\": il brano dice \"superava la metà\"."},
+  {"id": 1102, "blind": "A", "key": "A", "confidence": "alta", "verdict": "ok", "note": "6,2−2,8−1,5=1,9; B usa la cifra giusta ma presenta come decisa una proposta: buona esca."},
+  {"id": 1103, "blind": "D", "key": "D", "confidence": "alta", "verdict": "ok", "note": "«ogni» sostenuto dalla definizione; distrattori contraddetti dal brano."},
+  {"id": 1104, "blind": "B", "key": "B", "confidence": "alta", "verdict": "ok", "note": "25% × 2 mln = 500.000, sotto il tetto; D ignora il tetto di 4 mln (20% di 30 = 6)."},
+  {"id": 1105, "blind": "A", "key": "A", "confidence": "alta", "verdict": "ok", "note": "100−45 = 55% europei: partizione europei/extraeuropei necessaria."},
+  {"id": 1106, "blind": "C", "key": "C", "confidence": "alta", "verdict": "ok", "note": "B: 12,1/2 = 6,05 < 6,3, margine robusto anche all'arrotondamento."},
+  {"id": 1107, "blind": "D", "key": "D", "confidence": "alta", "verdict": "ok", "note": "(60+10)% × 500.000 = 350.000; B: 80% = 400.000, non 450.000."},
+  {"id": 1108, "blind": "B", "key": "B", "confidence": "alta", "verdict": "fixed", "note": "Chiave vera in ogni lettura (5 rate dal 2027, ultima nel 2031), ma \"la riduzione\" lasciava implicito l'azzeramento: ora \"l'eliminazione\". A, C, D esclusi."},
+  {"id": 1109, "blind": "B", "key": "B", "confidence": "alta", "verdict": "ok", "note": "Revisione a 60 giorni + conti annuali = almeno due; A smentita da «nove casi su dieci»."},
+  {"id": 1110, "blind": "D", "key": "D", "confidence": "alta", "verdict": "fixed", "note": "Contenuto ok (58% > 46% a sei mesi). Solo trappola di C: parafrasi → quantificatore, come 1102 D (stesso schema «→ interamente»)."},
+  {"id": 1111, "blind": "A", "key": "A", "confidence": "alta", "verdict": "ok", "note": "79−63 = 16: «ancora attivo» rende gli attivi a 5 anni un sottoinsieme di quelli a 3; C = 79% di 52.000, non 63%."},
+  {"id": 1112, "blind": "C", "key": "C", "confidence": "alta", "verdict": "ok", "note": "52 ≤ 60; A: una media di 29 non implica ciascun ministero; D: fatture contestate escluse dai dati."},
+  {"id": 1113, "blind": "D", "key": "D", "confidence": "alta", "verdict": "ok", "note": "12−4 = 8 (categorie disgiunte); B «triplo» è l'esca 12 = 3×4, in realtà il doppio."},
+  {"id": 1114, "blind": "B", "key": "B", "confidence": "alta", "verdict": "ok", "note": "Valore +2,4%, volume −0,6%, con le definizioni date nel brano."},
+  {"id": 1115, "blind": "A", "key": "A", "confidence": "alta", "verdict": "ok", "note": "«solo» sostenuto: fino a 60.000 basta la semplice richiesta."},
+  {"id": 1116, "blind": "C", "key": "C", "confidence": "media", "verdict": "ok", "note": "Inferenza dalla disgiunzione: i «fatti nuovi» sono un motivo di riapertura indipendente dal rispetto degli impegni. A, B, D chiaramente esclusi; C è l'unica modale ma controintuitiva, quindi non è un give-away."},
+  {"id": 1117, "blind": "B", "key": "B", "confidence": "alta", "verdict": "fixed", "note": "Il margine di B sul 10% (9,72%) cadeva dentro l'arrotondamento dei dati interi (fino a 10,08%): 18% → 17%, ora 9,2% (max 9,5%). C verificata: donne > 34% dei part-time, uomini < 21%."},
+  {"id": 1118, "blind": "D", "key": "D", "confidence": "alta", "verdict": "ok", "note": "«tutti» sostenuto da «chi intende invece stabilirsi... deve»."},
+  {"id": 1119, "blind": "C", "key": "C", "confidence": "alta", "verdict": "ok", "note": "Quasi citazione diretta; A ignora «circa un terzo» del calo attribuito ad altri fattori."},
+  {"id": 1120, "blind": "A", "key": "A", "confidence": "alta", "verdict": "ok", "note": "44/1.240 = 3,55% < 4%, robusto all'arrotondamento; B presenta come certa una previsione condizionata."}
+]

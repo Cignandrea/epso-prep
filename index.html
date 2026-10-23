@@ -7,8 +7,10 @@
   <title>EU Prep Suite</title>
   <meta name="description" content="EPSO/AD/427/26, Parte 1: un percorso a tappe da 10 minuti fino alla prova, con verbale, numerico, astratto, schede di studio e simulazione fedele alla piattaforma TAO.">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="preload" href="fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/ibm-plex-mono-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -21,7 +23,7 @@
   <a class="skip" href="#main">Vai al contenuto</a>
 
   <header class="topbar" id="topbar">
-    <button type="button" class="topbar-home" id="btn-home" aria-label="Home">EU Prep</button>
+    <button type="button" class="topbar-home" id="btn-home" aria-label="Home"><span class="brand-mark" aria-hidden="true"></span>EU Prep</button>
     <span class="topbar-title" id="topbar-title"></span>
     <nav class="topbar-nav" aria-label="Sezioni">
       <button type="button" class="link-btn" id="nav-stato">Stato</button>
@@ -31,35 +33,60 @@
   <main id="main" class="main">
 
     <!-- ════════ HOME ════════ -->
-    <section id="view-home" class="view" hidden>
-      <p class="countdown" id="home-countdown"></p>
-      <div class="next-card" id="next-card">
-        <p class="next-label" id="next-label"></p>
-        <h1 class="next-title" id="next-title">…</h1>
-        <p class="next-sub" id="next-sub"></p>
-        <button type="button" class="btn btn-primary btn-xl" id="btn-next">Continua</button>
-        <button type="button" class="link-btn alt-link" id="btn-alt" hidden></button>
-        <div class="today-row"><span class="dots" id="today-dots" aria-hidden="true"></span><span id="today-text"></span></div>
-        <p class="next-note" id="next-note" hidden></p>
-      </div>
-      <div class="todo-card" id="todo-card" hidden>
-        <p class="todo-text" id="todo-text"></p>
-        <button type="button" class="btn btn-ghost" id="todo-done">Fatto</button>
-      </div>
-      <details class="more" id="home-more">
-        <summary>Altro</summary>
-        <div class="alt-row">
-          <button type="button" class="alt-card" id="btn-micro"><span class="alt-title">Micro</span><span class="alt-sub">3 domande, una per prova · ~5′</span></button>
-          <button type="button" class="alt-card" id="btn-review"><span class="alt-title">Ripasso degli errori</span><span class="alt-sub">le domande sbagliate che tornano oggi</span></button>
-          <button type="button" class="alt-card" id="btn-train-v"><span class="alt-title">Verbale libero</span><span class="alt-sub">5 domande a ritmo di prova</span></button>
-          <button type="button" class="alt-card" id="btn-train-n"><span class="alt-title">Numerico libero</span><span class="alt-sub">5 domande su tabella</span></button>
-          <button type="button" class="alt-card" id="btn-train-a"><span class="alt-title">Astratto libero</span><span class="alt-sub">10 serie in 10′</span></button>
-          <button type="button" class="alt-card" id="btn-lessons"><span class="alt-title">Schede di studio</span><span class="alt-sub">metodo e trappole, una per schermata</span></button>
-          <button type="button" class="alt-card" id="btn-sim"><span class="alt-title">Simulazione a scelta</span><span class="alt-sub">Parte 1 completa o una prova sola · sul PC</span></button>
-          <button type="button" class="alt-card" id="btn-official"><span class="alt-title">Test di esempio ufficiale</span><span class="alt-sub">su TAO, poi segni il punteggio qui</span></button>
+    <section id="view-home" class="view home" hidden>
+      <div class="home-head">
+        <div class="hd" id="home-countdown-box">
+          <span class="hd-days" id="home-days">—</span>
+          <span class="hd-text"><span class="hd-unit" id="home-unit">giorni alla Parte 1</span><span class="hd-when" id="home-countdown">mer 11/11 · 14:00</span></span>
         </div>
-      </details>
-      <p class="week-line" id="week-line"></p>
+        <section class="cal" aria-labelledby="cal-h">
+          <h2 class="sec-h" id="cal-h">Fino alla prova</h2>
+          <ol class="cal-strip" id="cal-strip"></ol>
+          <p class="cal-legend" id="cal-legend"><b>S1 S2</b> simulazioni · <b>PR</b> prerequisiti entro le 11:59 · <b>R</b> riposo · <b>P1</b> prova alle 14:00</p>
+        </section>
+      </div>
+      <div class="home-cols">
+        <div class="home-col">
+          <section class="next" id="next-card" aria-labelledby="next-title">
+            <p class="eyebrow" id="next-label"></p>
+            <h1 class="next-title" id="next-title">…</h1>
+            <p class="next-sub" id="next-sub"></p>
+            <button type="button" class="btn btn-primary btn-xl" id="btn-next">Continua</button>
+            <button type="button" class="link-btn alt-link" id="btn-alt" hidden></button>
+            <p class="next-note" id="next-note" hidden></p>
+          </section>
+          <div class="today" aria-live="polite"><span class="segs" id="today-dots" aria-hidden="true"></span><span id="today-text"></span></div>
+          <div class="todo" id="todo-card" hidden>
+            <p class="todo-head">Fuori dall'app</p>
+            <p class="todo-text" id="todo-text"></p>
+            <button type="button" class="btn btn-ghost btn-sm" id="todo-done">Fatto</button>
+          </div>
+        </div>
+        <div class="home-col">
+          <section class="soglie" aria-labelledby="soglie-h">
+            <h2 class="sec-h" id="soglie-h">Rispetto alle soglie</h2>
+            <div id="home-gauges"></div>
+          </section>
+          <section class="tools" aria-labelledby="tools-h">
+            <h2 class="sec-h" id="tools-h">Fuori dal percorso</h2>
+            <div class="tool-row tool-row-train">
+              <span class="tool-title">Allenamento libero</span>
+              <span class="tool-sub">a ritmo di prova, con la correzione subito</span>
+              <span class="chips">
+                <button type="button" class="chip" id="btn-train-v">Verbale <small>5</small></button>
+                <button type="button" class="chip" id="btn-train-n">Numerico <small>5</small></button>
+                <button type="button" class="chip" id="btn-train-a">Astratto <small>10</small></button>
+              </span>
+            </div>
+            <button type="button" class="tool-row" id="btn-review"><span class="tool-title">Ripasso degli errori</span><span class="tool-sub">le domande sbagliate che tornano oggi</span><span class="tool-go" aria-hidden="true">→</span></button>
+            <button type="button" class="tool-row" id="btn-micro"><span class="tool-title">Micro</span><span class="tool-sub">3 domande, una per prova · 5′</span><span class="tool-go" aria-hidden="true">→</span></button>
+            <button type="button" class="tool-row" id="btn-lessons"><span class="tool-title">Schede di studio</span><span class="tool-sub">metodo e trappole, una per schermata</span><span class="tool-go" aria-hidden="true">→</span></button>
+            <button type="button" class="tool-row" id="btn-sim"><span class="tool-title">Simulazione a scelta</span><span class="tool-sub">Parte 1 completa o una prova sola · sul PC</span><span class="tool-go" aria-hidden="true">→</span></button>
+            <button type="button" class="tool-row" id="btn-official"><span class="tool-title">Test di esempio ufficiale</span><span class="tool-sub">su TAO, la piattaforma della prova</span><span class="tool-go" aria-hidden="true">→</span></button>
+          </section>
+          <p class="week-line" id="week-line"></p>
+        </div>
+      </div>
     </section>
 
     <!-- ════════ SCHEDA DI STUDIO ════════ -->
@@ -92,15 +119,15 @@
     <section id="view-official" class="view" hidden>
       <div class="card">
         <h1>Test di esempio ufficiale</h1>
-        <p>È il test di ragionamento di EPSO, sulla stessa piattaforma della prova: 20 domande in italiano (10 verbale, 5 numerico, 5 astratto) con un solo timer di 30′. È l'unica cosa da fare fuori da quest'app.</p>
+        <p>È il test di ragionamento di EPSO sulla stessa piattaforma della prova: 20 domande in italiano (10 verbale, 5 numerico, 5 astratto) con un timer di 30′. Serve a conoscere la piattaforma vera: <strong>TAO non dà il punteggio</strong> delle sessioni pubbliche [istruzioni TAO §2.5.9].</p>
         <ol class="steps">
-          <li>Aprilo dal PC con cui farai la prova, in Chrome o Edge. Non serve il login.</li>
+          <li>Aprilo dal PC con cui farai la prova, in Chrome o Edge, meglio nella stessa seduta dell'EU Login e del test dei prerequisiti. Non serve il login.</li>
           <li>Scegli «Reasoning Test (Verbal/Numerical/Abstract) - IT» e avvialo.</li>
-          <li>Fallo tutto di fila, in silenzio, senza carta: calcolatrice e appunti a schermo.</li>
+          <li>Prova gli strumenti: evidenziatore, calcolatrice (decimale con il punto), appunti, segnalibro, panoramica e, dalle impostazioni, Answer Elimination.</li>
         </ol>
         <p><a class="btn btn-primary btn-lg" id="off-open" href="https://epso.prod.gcp-eu.taocloud.org/public-sessions" target="_blank" rel="noopener noreferrer">Apri le sessioni pubbliche di TAO</a></p>
         <h2>Quando hai finito</h2>
-        <p class="muted">Facoltativo: i punteggi entrano nello Stato come prima misura.</p>
+        <p class="muted">Facoltativo: se sei riuscito a contare le risposte giuste, inseriscile; altrimenti premi solo «Fatto».</p>
         <div class="field-row form">
           <label class="field">Verbale (su 10) <input type="number" id="off-v" min="0" max="10" inputmode="numeric"></label>
           <label class="field">Numerico (su 5) <input type="number" id="off-n" min="0" max="5" inputmode="numeric"></label>
@@ -149,6 +176,7 @@
             <p class="fb-calib" id="s-fb-calib" hidden></p>
             <div class="fb-expl" id="s-fb-expl"></div>
             <p class="fb-tag" id="s-fb-tag"></p>
+            <p class="fb-rule" id="s-fb-rule" hidden></p>
             <button type="button" class="btn btn-primary btn-lg" id="s-next">Prossima</button>
           </div>
         </div>
@@ -161,7 +189,7 @@
         <p class="end-mode" id="e-mode"></p>
         <div class="end-numbers">
           <div class="num"><span class="num-big" id="e-score">0/0</span><span class="num-label">corrette</span></div>
-          <div class="num"><span class="num-big" id="e-pace">—</span><span class="num-label">per domanda</span></div>
+          <div class="num"><span class="num-big" id="e-pace">—</span><span class="num-label" id="e-pace-label">per domanda</span></div>
           <div class="num"><span class="num-big" id="e-trap">—</span><span class="num-label">trappola su cui lavorare</span></div>
         </div>
         <p class="end-sentence" id="e-sentence"></p>
@@ -171,6 +199,7 @@
           <button type="button" class="btn btn-ghost btn-lg" id="e-done">Più tardi</button>
         </div>
         <div class="end-actions end-actions-minor">
+          <button type="button" class="link-btn" id="e-lesson" hidden>Rileggi la scheda</button>
           <button type="button" class="link-btn" id="e-more" hidden>Ancora una</button>
           <button type="button" class="link-btn" id="e-copy">Copia riepilogo</button>
         </div>
@@ -216,8 +245,12 @@
           <button type="button" class="tao-tool" id="tao-highlight" aria-pressed="false" title="Highlighter" aria-label="Highlighter"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 20h16" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 16l-1 1H4l2-4 8-8 3 3-8 8z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M12 7l3 3" stroke="currentColor" stroke-width="1.8"/></svg></button>
           <button type="button" class="tao-tool" id="tao-calc" title="Calculator" aria-label="Calculator"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><rect x="8" y="6" width="8" height="3" fill="currentColor"/><circle cx="9" cy="13" r="1.1" fill="currentColor"/><circle cx="12" cy="13" r="1.1" fill="currentColor"/><circle cx="15" cy="13" r="1.1" fill="currentColor"/><circle cx="9" cy="17" r="1.1" fill="currentColor"/><circle cx="12" cy="17" r="1.1" fill="currentColor"/><circle cx="15" cy="17" r="1.1" fill="currentColor"/></svg></button>
           <button type="button" class="tao-tool" id="tao-pad" title="Scratchpad" aria-label="Scratchpad"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M8 9h8M8 12.5h8M8 16h5" stroke="currentColor" stroke-width="1.6"/></svg></button>
-          <span class="tao-tool tao-tool-inert" title="Settings (not simulated)" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.8"/></svg></span>
+          <button type="button" class="tao-tool" id="tao-settings" aria-expanded="false" aria-controls="tao-settings-panel" title="Settings" aria-label="Settings"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="1.8"/></svg></button>
           <span class="tao-tool tao-tool-inert" title="Accessibility (not simulated)" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="4.5" r="2" fill="currentColor"/><path d="M4 9h16M12 9v6M12 15l-4 6M12 15l4 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></span>
+          <div class="tao-settings-panel" id="tao-settings-panel" role="group" aria-label="Settings" hidden>
+            <label class="tao-switch"><input type="checkbox" id="tao-elim"> Answer Elimination</label>
+            <label class="tao-switch"><input type="checkbox" id="tao-mask"> Answer Masking</label>
+          </div>
         </div>
       </div>
       <div class="tao-intro" id="tao-intro" hidden>
@@ -315,7 +348,12 @@
     <section id="view-stato" class="view" hidden>
       <div class="card">
         <h1>Stato</h1>
+        <h2 class="sec-h">Rispetto alle soglie</h2>
+        <div class="stato-gauges" id="stato-gauges"></div>
+        <h2 class="sec-h">Percorso</h2>
         <div class="stato-grid" id="stato-grid"></div>
+        <h2>Ultimi punteggi per prova</h2>
+        <div class="sessions" id="stato-banks"></div>
         <h2>Trappole, ultimi 14 giorni</h2>
         <div id="stato-tags" class="tagbars"></div>
         <h2>Calibrazione</h2>
@@ -366,6 +404,7 @@
   <script src="js/store.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/plan.js"></script>
+  <script src="js/ready.js"></script>
   <script src="js/select.js"></script>
   <script src="js/lessons.js"></script>
   <script src="js/path.js"></script>

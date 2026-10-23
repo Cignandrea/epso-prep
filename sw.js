@@ -1,12 +1,15 @@
 // Service worker: cache dell'app per l'uso offline, versionata.
 // VERSION deve coincidere con App.main.VERSION (js/main.js): è il nome della cache, quindi ogni build
 // invalida la precedente (T-061). Il controllo è in tests/smoke.py.
-const VERSION = '1.2.0-b2';
+const VERSION = '1.2.0-b3';
 const CACHE = `euprep-${VERSION}`;
 const ASSETS = [
   './', './index.html', './manifest.webmanifest', './css/style.css',
-  './js/banks.js', './js/gen-numerico.js', './js/gen-astratto.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/select.js', './js/lessons.js', './js/path.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/sync.js', './js/main.js',
+  './js/banks.js', './js/gen-numerico.js', './js/gen-astratto.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/ready.js', './js/select.js', './js/lessons.js', './js/path.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/sync.js', './js/main.js',
   './data/bank-verbale.js', './data/bank-verbale-l2.js', './data/bank-numerico.js',
+  './fonts/ibm-plex-sans-latin-400-normal.woff2', './fonts/ibm-plex-sans-latin-500-normal.woff2', './fonts/ibm-plex-sans-latin-600-normal.woff2', './fonts/ibm-plex-sans-latin-700-normal.woff2',
+  './fonts/ibm-plex-mono-latin-400-normal.woff2', './fonts/ibm-plex-mono-latin-500-normal.woff2', './fonts/ibm-plex-mono-latin-600-normal.woff2',
+  './fonts/ibm-plex-serif-latin-400-normal.woff2', './fonts/ibm-plex-serif-latin-400-italic.woff2', './fonts/ibm-plex-serif-latin-600-normal.woff2',
   './icons/favicon-64.png', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
 ];
 // cache: 'reload' scavalca la cache HTTP del browser: la nuova versione non si porta dietro file vecchi di qualche minuto.

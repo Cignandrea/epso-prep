@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1161,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave solida: «benché nessuna norma lo imponesse» descrive la regola, valida per tutti i municipi. Corretta solo la spiegazione, che giustificava C con la sola «maggior parte» (stesso salto parte→tutti condannato in A)."
+ },
+ {
+  "id": 1162,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "4.820/1,12 ≈ 4.304 < 4.500: margine netto (anche il calcolo errato ×0,88 = 4.242 resta sotto). D: i tempi di attesa sono solo una parte («soprattutto») della quota sanitaria."
+ },
+ {
+  "id": 1163,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Termine sospeso ⇒ risposta legittima oltre il 30° giorno. B (20 giorni = pronuncia sul riesame, non termine per chiederlo) e C («valuta se sia possibile») ben distinti."
+ },
+ {
+  "id": 1164,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Parafrasi diretta («il doppio» ⇒ più utenti). A smentita dal brano, C passa dalla media al singolo caso, D fuori testo."
+ },
+ {
+  "id": 1165,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Calcolo esatto: 0,5/0,4 = 1,25 ⇒ +25% del prezzo al kg; nessuna ambiguità. B, C, D chiaramente non sostenute."
+ },
+ {
+  "id": 1166,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Serve almeno un partner in ciascuna regione ⇒ C segue per forza. B «fino all'80%» è un tetto; A è un'opinione, «almeno in parte»."
+ },
+ {
+  "id": 1167,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "9 mln × 1/3 = 3 mln, esatto. Evidenza estesa al totale di 9 milioni, prima assente dal passo evidenziato."
+ },
+ {
+  "id": 1168,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "210.000 − 64.000 = 146.000 > 140.000 (2/3): margine di 6.000, univoco. «Il resto del fondo» per la seconda fase conferma che non sono ancora digitalizzati."
+ },
+ {
+  "id": 1169,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Applicazione diretta della regola (almeno 16 anni, anche senza cittadinanza)."
+ },
+ {
+  "id": 1170,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B («potrà ridurre» contro «potrà proporre una riduzione») è il distrattore più forte ma non difendibile: il brano non dice chi decide la riduzione. È la classica distinzione EPSO tra proporre e decidere, nominata nella spiegazione. C segue dalla fascia 7–24."
+ },
+ {
+  "id": 1171,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Le scolaresche devono prenotare e sono esentate solo dal contributo ⇒ D. B è un errore di attribuzione (commercianti, non amministrazione)."
+ },
+ {
+  "id": 1172,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B e C differiscono solo per il quantificatore (eccezione dell'avvertimento): coppia ben costruita."
+ },
+ {
+  "id": 1173,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«ma non dall'apprendistato» + iscrizione obbligatoria per esercitare ⇒ C."
+ },
+ {
+  "id": 1174,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D: le archiviate sono 100 − 71 − 18 = 11%, non il 18%."
+ },
+ {
+  "id": 1175,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Parafrasi diretta di «i cui costi sono a carico del committente». La chiave è l'opzione più lunga, ma nel lotto non è uno schema sistematico."
+ },
+ {
+  "id": 1176,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Estensione agli enti locali rinviata ⇒ non ancora in uso. C: i funzionari locali sono circa 200, non 800."
+ },
+ {
+  "id": 1177,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "20 × 10 = 200 > 150 ⇒ niente preselezione (margine netto). Tolto il doppio senso di «domande»: «banche dati dei quesiti» nel brano e nell'opzione B."
+ },
+ {
+  "id": 1178,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Telefono fino a tre anni fa ⇒ il dato di cinque anni fa è telefonico, quello attuale online ⇒ C."
+ },
+ {
+  "id": 1179,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«ripartito in parti uguali tra i due governi» ⇒ metà ciascuno."
+ },
+ {
+  "id": 1180,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«ogni nave» + la patente netta è quella dei porti senza epidemie ⇒ A."
+ }
+]

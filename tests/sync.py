@@ -86,7 +86,9 @@ with sync_playwright() as p:
     # 1) Fold: due tappe, poi l'invio al database
     b, fold = device(p, 'fold', 520, 820, True, {})
     check('fold: sincronizzazione attiva', 'attiva' in fold.evaluate("App.sync.status()") or fold.evaluate("App.sync.active()"), fold.evaluate("App.sync.status()"))
-    do_tappa(fold, 3); fold.click('#e-next'); fold.wait_for_timeout(200)
+    do_tappa(fold, 3); fold.click('#e-done'); fold.wait_for_timeout(200)
+    # la tappa 2 è la misura di partenza (33′): «Non ora» porta alla scheda successiva
+    fold.click('#btn-alt'); fold.wait_for_timeout(200)
     if fold.is_visible('#lesson-go'): fold.click('#lesson-go'); fold.wait_for_timeout(200)
     for _ in range(4):
         answer_current(fold); fold.click('#s-next'); fold.wait_for_timeout(150)
@@ -102,11 +104,11 @@ with sync_playwright() as p:
     # 2) PC vuoto: ritrova le due tappe e il registro
     b, pc = device(p, 'pc', 1280, 800, False, db)
     pc.wait_for_timeout(500)
-    check('pc: home alla tappa 3 di 14', 'tappa 3 di 14' in pc.text_content('#next-label'), pc.text_content('#next-label'))
+    check('pc: home alla misura di partenza (tappa 3 di 14)', 'tappa 3 di 14' in pc.text_content('#next-label') and 'Misura' in pc.text_content('#next-title'), pc.text_content('#next-label'))
     check('pc: registro unito (7 risposte)', pc.evaluate("App.store.log().filter((e) => e.mode !== 'external').length") == 7, pc.evaluate("App.store.log().length"))
-    check('pc: due pallini pieni oggi', len(pc.query_selector_all('#today-dots .dot.on')) == 2)
-    # il PC lascia la tappa 3 a metà: scheda → prima domanda risposta → chiusura
-    pc.click('#btn-next'); pc.wait_for_timeout(200)
+    check('pc: due segmenti pieni oggi', len(pc.query_selector_all('#today-dots .seg.on')) == 2)
+    # il PC lascia a metà la scheda successiva («Non ora» sulla misura): scheda → prima domanda risposta → chiusura
+    pc.click('#btn-alt'); pc.wait_for_timeout(200)
     if pc.is_visible('#lesson-go'): pc.click('#lesson-go'); pc.wait_for_timeout(200)
     answer_current(pc); pc.click('#s-next'); pc.wait_for_timeout(300)
     counter_pc = pc.text_content('#s-counter').strip()
@@ -121,7 +123,7 @@ with sync_playwright() as p:
     b, fold2 = device(p, 'fold-2', 520, 820, True, fold_db)
     fold2.wait_for_timeout(500)
     sub = fold2.text_content('#next-sub')
-    check('fold: «Riprendi» la tappa lasciata sul PC', fold2.text_content('#btn-next').strip() == 'Riprendi', fold2.text_content('#btn-next'))
+    check('fold: «Riprendi» la tappa lasciata sul PC', fold2.text_content('#btn-next').strip().startswith('Riprendi'), fold2.text_content('#btn-next'))
     fold2.click('#btn-next'); fold2.wait_for_timeout(250)
     if fold2.is_visible('#lesson-go'): fold2.click('#lesson-go'); fold2.wait_for_timeout(200)
     check('fold: stessa domanda del PC', fold2.text_content('#s-counter').strip() == counter_pc, f"{fold2.text_content('#s-counter')} vs {counter_pc}")

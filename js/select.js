@@ -12,7 +12,9 @@ App.select = (() => {
   const key = (q) => `${q.bank}#${q.id}`;
 
   // Brani di livello prova riservati alle simulazioni: la seconda metà di ogni lotto da 20 (id 1111–1120, 1131–1140…).
-  const isSimReserve = (q) => q.bank === 'verbale' && q.level >= 2 && typeof q.id === 'number' && ((q.id - 1101) % 20 + 20) % 20 >= 10;
+  // Riserve per le due simulazioni complete: 40 brani di livello prova dei primi quattro lotti (id 1101–1180, metà di
+  // ogni lotto). I lotti successivi vanno tutti all'allenamento.
+  const isSimReserve = (q) => q.bank === 'verbale' && q.level >= 2 && typeof q.id === 'number' && q.id <= 1180 && ((q.id - 1101) % 20 + 20) % 20 >= 10;
 
   // Pesi delle trappole: 1 + errori veri negli ultimi 14 giorni (max 4). Le bianche non contano.
   function tagWeights() {
@@ -82,10 +84,11 @@ App.select = (() => {
     const chosen = [];
     const add = (q) => { if (q && chosen.length < n && !chosen.includes(q)) chosen.push(q); };
     if (due) for (const q of dueItems(stats).filter((x) => x.bank === 'verbale' && formats.includes(x.format) && hasTag(x, tags)).slice(0, Math.floor(n / 3))) add(q);
+    // Prima i brani mai visti, di ogni livello in ordine di preferenza; solo dopo quelli già visti (un brano già
+    // risolto si riconosce e gonfia il punteggio).
     const tiers = [];
-    for (const lv of levels) {
-      const base = pool('verbale', { formats, levels: [lv] }).filter(ok);
-      const free = base.filter((q) => !isSimReserve(q));
+    for (const seen of [false, true]) for (const lv of levels) {
+      const free = pool('verbale', { formats, levels: [lv] }).filter(ok).filter((q) => !isSimReserve(q) && stats.has(key(q)) === seen);
       if (tags) tiers.push(free.filter((q) => hasTag(q, tags)));
       tiers.push(free);
     }

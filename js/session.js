@@ -75,7 +75,7 @@ App.session = (() => {
       type: 'button', class: `opt${isFig ? ' opt-fig' : ''}`, 'aria-pressed': String(S.selected === o.letter), dataset: { letter: o.letter },
       'aria-label': isFig ? `Opzione ${o.letter}` : null,
       onclick: () => choose(o.letter),
-    }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, `${o.letter})`),
+    }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, o.letter),
     isFig ? el('span', { class: 'opt-figure' }, figure(o.fig, { size: 60, label: `Opzione ${o.letter}` })) : el('span', { class: 'opt-text' }, o.text));
   }
 
@@ -184,6 +184,10 @@ App.session = (() => {
     $('s-fb-expl').replaceChildren(...paragraphs(q.explanation));
     const tag = a.ok ? q.tag : a.tag;
     $('s-fb-tag').textContent = tag ? `${a.ok ? 'Tema' : 'Trappola'}: ${App.tagLabel(tag)}` : '';
+    // Regola riusabile della trappola: solo dopo un errore (dopo una risposta giusta basta il tema).
+    const rule = !a.ok && tag ? App.tagRule(tag) : '';
+    $('s-fb-rule').hidden = !rule;
+    $('s-fb-rule').textContent = rule ? `Regola: ${rule}` : '';
     const last = S.index === S.items.length - 1;
     $('s-next').textContent = last ? 'Fine' : 'Prossima';
     // Si porta in vista l'esito, non il pulsante: lo stimolo resta raggiungibile sopra, la correzione sotto.
@@ -239,7 +243,8 @@ App.session = (() => {
     $('e-score').textContent = `${sum.correct}/${sum.n}`;
     const avg = sum.n ? sum.sec / sum.n : 0;
     const paceRef = sum.banks.length === 1 ? App.plan.PACE[sum.banks[0]] : null;
-    $('e-pace').textContent = minSec(avg) + (paceRef ? ` / ${minSec(paceRef)}` : '');
+    $('e-pace').textContent = minSec(avg);
+    $('e-pace-label').textContent = paceRef ? `per domanda · prova ${minSec(paceRef)}` : 'per domanda';
     $('e-trap').textContent = sum.trap ? App.tagLabel(sum.trap) : 'nessuna';
     const sentence = [];
     if (sum.n && sum.correct === sum.n) sentence.push('Tutte giuste.');
@@ -251,7 +256,7 @@ App.session = (() => {
     // Prossimo passo: la tappa successiva con un tocco, oppure basta per oggi.
     const c = App.path.counts();
     const nx = App.path.next();
-    const startable = nx && ['lesson', 'drill', 'review', 'sim', 'official'].includes(nx.kind);
+    const startable = nx && ['lesson', 'drill', 'review', 'sim', 'block'].includes(nx.kind);
     $('e-today').textContent = `Oggi ${Math.min(c.today, c.target)} di ${c.target} tappe${c.today >= c.target ? ': obiettivo del giorno fatto.' : '.'}`;
     // Obiettivo del giorno raggiunto: il traguardo diventa l'azione principale, la tappa in più resta a un tocco.
     const enough = c.today >= c.target;
@@ -270,6 +275,15 @@ App.session = (() => {
     const box = $('e-next').parentNode;
     if (doneMain) box.prepend($('e-done')); else box.prepend($('e-next'));
     $('e-more').hidden = sum.mode !== 'micro';
+    // La scheda della trappola dominante, a un tocco; «Chiudi» riporta a questa schermata.
+    const lessonId = sum.trap ? App.TAG_LESSON[sum.trap] : null;
+    const lesson = lessonId ? App.lessons.get(lessonId) : null;
+    $('e-lesson').hidden = !lesson;
+    if (lesson) {
+      $('e-lesson').textContent = `Rileggi la scheda: ${lesson.title}`;
+      const back = () => App.ui.show('end', { title: 'Fatto' });
+      $('e-lesson').onclick = () => App.lessons.show(lessonId, { goText: 'Chiudi', onGo: back, onBack: back, kicker: `${lesson.test} · ripasso` });
+    }
     const wrong = answers.filter((a) => !a.ok);
     $('e-review-wrap').hidden = wrong.length === 0;
     $('e-review').replaceChildren(...wrong.map((a) => reviewNode(App.banks.question(a.bank, a.id), a.sel, a)));
@@ -289,7 +303,7 @@ App.session = (() => {
     const stim = el('div', { class: 'review-passage' });
     renderStimulus(stim, q, { evidence: true, figSize: 46 });
     const opts = q.format === 'abs5'
-      ? el('div', { class: 'review-figs' }, ...q.options.map((o) => el('span', { class: `review-fig${o.letter === co.letter ? ' is-correct' : o.letter === sel ? ' is-wrong' : ''}` }, el('span', { class: 'opt-letter' }, `${o.letter})`), figure(o.fig, { size: 46, label: `Opzione ${o.letter}` }))))
+      ? el('div', { class: 'review-figs' }, ...q.options.map((o) => el('span', { class: `review-fig${o.letter === co.letter ? ' is-correct' : o.letter === sel ? ' is-wrong' : ''}` }, el('span', { class: 'opt-letter' }, o.letter), figure(o.fig, { size: 46, label: `Opzione ${o.letter}` }))))
       : el('ul', { class: 'review-opts' }, ...q.options.map((o) => el('li', { class: o.letter === co.letter ? 'is-correct' : o.letter === sel ? 'is-wrong' : '' }, `${o.letter}) ${o.text}`)));
     return el('div', { class: 'review-item' },
       el('p', { class: 'review-head' }, `${App.BANK_LABEL[q.bank]} · ${a && !a.ok && a.tag ? App.tagLabel(a.tag) : App.tagLabel(q.tag)}${a && a.conf === 'sure' ? ' · eri sicuro' : ''}`),

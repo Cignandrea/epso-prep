@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1201,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Fase II conclusa = farmaco già somministrato a «pazienti affetti dalla malattia». A tempo (fase III dal prossimo anno), B fase sbagliata, D «spesso sani» ≠ «esclusivamente». Descrizione delle fasi corretta e generica."
+ },
+ {
+  "id": 1202,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«solo se un esame di laboratorio dimostra» → senza esame non si può: condizione necessaria, chiave robusta. B soprattutto → soltanto; C «potrebbe dipendere» reso causale; D limitazione resa divieto (negazione accettabile: «negazioni e condizioni»)."
+ },
+ {
+  "id": 1203,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Parafrasi di «solo dopo la conferma di un secondo strumento». A è l'esca buona: assenza di candidati ≠ assenza di pianeti (orbite non allineate). Metodo dei transiti corretto (profondità → dimensioni relative, intervallo → periodo)."
+ },
+ {
+  "id": 1204,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Prima lettura sempre a un radiologo, l'altra metà con due radiologi: «almeno un radiologo» regge. A sposta «un terzo» dal tempo di lettura ai tumori; C contraddetta da «decide un terzo radiologo»; D non ancora valutabile."
+ },
+ {
+  "id": 1205,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Parafrasi diretta di «è rimasta quasi invariata». Nota non bloccante: il brano non dice quando sia stato misurato il «prima» (braccialetto a inizio e fine anno), ma afferma il risultato, quindi B resta l'unica difendibile. Ritardo di fase del sonno negli adolescenti: corretto."
+ },
+ {
+  "id": 1206,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Punto segnalato (B): B cambia «dichiara» in «hanno dimostrato», mentre la società lo «verificherà nei prossimi inverni»: falsa senza ambiguità; parafrasi coerente con la scheda della lezione (stimato → misurato). D sostenuta da «a parità di energia immagazzinata ... più voluminose», detto dal narratore, non dalla società. Fatti sul sodio corretti."
+ },
+ {
+  "id": 1207,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "1 campione su 5 → negli altri 4 su 5 non rilevate; «il metodo adottato non ha rilevato» evita di affermare l'assenza (limite dei 20 micrometri). Definizione (< 5 mm) corretta."
+ },
+ {
+  "id": 1208,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Raccolto distrutto → non sul mercato. A (fungicidi) plausibile ma assente dal brano, e la resistenza in campo non è ancora provata. Fatti corretti: oidio fungino, gene di suscettibilità della pianta, nessun DNA estraneo."
+ },
+ {
+  "id": 1209,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Punto segnalato (chiave in due passaggi): regge. Superamento → il display avvisa; soglia superata nel 70% delle aule > 50%, margine netto (il restante 30% può solo aggiungersi). Corretti solo l'etichetta di B (parafrasi → inferenza) e l'evidenza, estesa alla frase contigua sul display."
+ },
+ {
+  "id": 1210,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Punto segnalato (facile): la chiave ricalca una frase, ma B (infermiere → medico) e C (prima visita → tutte) sono parafrasi con un elemento cambiato e catturano chi legge in fretta. Difficoltà 2 coerente; il lotto ha già 16/20 a difficoltà 3 (lotti 1–4: 10–12/20). Lasciato."
+ },
+ {
+  "id": 1211,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Due passaggi: fase più costosa = estrazione; l'idrogeno arriva «dopo essere stati estratti». B omette la condizione «se la domanda sarà accolta»; D inverte la causa. Riciclo con idrogeno descritto correttamente."
+ },
+ {
+  "id": 1212,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "40% di 50 = 20, esatto. A confonde la probabilità con la durata della pioggia (esca classica). Previsioni d'insieme descritte correttamente."
+ },
+ {
+  "id": 1213,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Punto segnalato: regge. «la differenza tra i due gruppi è scesa all'8%» riprende la stessa misura del 20% («scesa» lo lega al dato precedente); 8 < 10 anche con gli arrotondamenti (rapporto 0,37–0,44). B causale, C una sola rilevazione, D fuori testo (vero nel mondo reale: buona esca)."
+ },
+ {
+  "id": 1214,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Punto segnalato (facile): la chiave richiede un passaggio logico e contiene «Tutte», che punisce chi scarta per riflesso le opzioni assolute; A è un'esca discreta (capacità del metodo ≠ collocazione). Difficoltà 2 coerente. Etichetta di A (fuori-testo) accettabile, difendibile anche inferenza."
+ },
+ {
+  "id": 1215,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "60 − 18 = 42 > 30, margine netto. A «non era obbligato» ≠ non poteva; B scopo della rete separata alterato; D norma ancora in preparazione."
+ },
+ {
+  "id": 1216,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Ritardo di circa tre anni → casi diagnosticati alcuni anni prima. A ambito (solo 50–69), C ignora la spiegazione dello screening, D scambia incidenza e sopravvivenza. Definizioni ed effetto dello screening corretti."
+ },
+ {
+  "id": 1217,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Gas naturale all'inizio, già nel piano annunciato (e commentato «secondo l'azienda»). B: il gas naturale riduce ma non azzera. Chimica corretta (coke → CO2; idrogeno → vapore acqueo; ferro poi fuso in forno elettrico)."
+ },
+ {
+  "id": 1218,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Segreti commerciali = caso di eccezione → almeno una descrizione pubblica. B ignora eccezioni e decorrenza; C decorrenza dal prossimo bando; D motivazione non riportata."
+ },
+ {
+  "id": 1219,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Complemento esatto di «tre partecipanti su quattro hanno seguito almeno due terzi». D «30% in meno» ≠ al 30% (buona esca); A ignora gli incontri mensili; C demenza esclusa."
+ },
+ {
+  "id": 1220,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«si attivano soltanto dopo l'inizio di una scossa». A avviso ≠ previsione; B opposto; D si valuta ancora. Fisica corretta (onde più veloci in testa, zona cieca vicino all'epicentro)."
+ }
+]

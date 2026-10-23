@@ -20,12 +20,15 @@ App.stato = (() => {
     grid.append(tile(`${week.active}/${week.target}`, `giorni attivi questa settimana (${week.elapsed} ${week.elapsed === 1 ? 'trascorso' : 'trascorsi'})`));
 
     // Per prova: ultime 5 sessioni (tappe, allenamento, simulazione, test ufficiale) e confronto con soglia/obiettivo.
-    for (const bank of ['verbale', 'numerico', 'astratto']) {
-      const last = sessions.filter((s) => ['tappa', 'train', 'sim', 'external'].includes(s.mode) && (s.banks || []).includes(bank) && s.n).slice(-5);
+    try { App.ready.render($('stato-gauges')); } catch (err) { console.warn('soglie non calcolabili', err); }
+    $('stato-banks').replaceChildren(...['verbale', 'numerico', 'astratto'].map((bank) => {
+      const last = sessions.filter((s) => ['tappa', 'train', 'sim', 'external'].includes(s.mode) && (s.banks || []).length === 1 && s.banks[0] === bank && s.n).slice(-5);
       const t = App.plan.TARGET[bank];
-      const txt = last.length ? last.map((s) => `${s.correct}/${s.n}`).join(' · ') : 'nessuna sessione';
-      grid.append(tile(App.BANK_LABEL[bank], `${txt}\nobiettivo ${t.score}/${t.max}${t.min ? ` · soglia ${t.min}/${t.max}` : ''}`));
-    }
+      return el('div', { class: 'session-row' },
+        el('span', { class: 'session-what' }, el('strong', {}, App.BANK_LABEL[bank])),
+        el('span', { class: 'session-score' }, last.length ? last.map((s) => `${s.correct}/${s.n}`).join(' · ') : '—'),
+        el('span', { class: 'session-when' }, `obiettivo ${t.score}/${t.max}${t.min ? ` · soglia ${t.min}` : ''}`));
+    }));
 
     // Trappole negli ultimi 14 giorni.
     const since = new Date(); since.setDate(since.getDate() - 14);

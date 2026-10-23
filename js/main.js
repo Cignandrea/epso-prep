@@ -4,10 +4,10 @@
 window.App = window.App || {};
 App.main = (() => {
   'use strict';
-  const { el, rich, daysUntil } = App.utils;
+  const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b2';
+  const VERSION = '1.2.0-b3';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -24,19 +24,52 @@ App.main = (() => {
     }
   }
 
-  function countdownText(now = new Date()) {
+  // Conto alla rovescia: il numero grande sono i giorni, sotto data e ora della prova.
+  function paintHead(now = new Date()) {
     const d = App.path.daysToExam(now);
-    if (d < 0) return 'Parte 1 sostenuta mercoledì 11/11';
-    if (d === 0) return 'Prova oggi alle 14:00 (ora di Bruxelles)';
-    return `Prova mer 11/11 alle 14:00 · ${d === 1 ? 'domani' : `tra ${d} giorni`}`;
+    const days = $('home-days'), unit = $('home-unit'), when = $('home-countdown');
+    if (d < 0) { days.textContent = '✓'; unit.textContent = 'Parte 1 sostenuta'; when.textContent = 'mer 11/11 · i risultati arrivano da EPSO'; return; }
+    if (d === 0) { days.textContent = '0'; unit.textContent = 'Oggi la Parte 1'; when.textContent = 'alle 14:00, ora di Bruxelles'; return; }
+    days.textContent = String(d);
+    unit.textContent = d === 1 ? 'giorno alla Parte 1' : 'giorni alla Parte 1';
+    when.textContent = 'mer 11/11 · 14:00';
   }
 
-  function setCard({ label = '', title = '', sub = '', btn = null, onClick = null, note = '', alt = null }) {
+  // Calendario fino alla prova: una casella per giorno, la barra sono le tappe fatte rispetto all'obiettivo del giorno.
+  const CAL_START = '2026-10-23';
+  const CAL_MARKS = { '2026-10-31': 'S1', '2026-11-07': 'S2', '2026-11-06': 'PR', '2026-11-10': 'R', '2026-11-11': 'P1' };
+  const MARK_LABEL = { S1: 'simulazione n. 1', S2: 'simulazione n. 2', PR: 'test dei prerequisiti entro le 11:59', R: 'riposo', P1: 'Parte 1 alle 14:00' };
+  function paintCalendar(now = new Date()) {
+    const today = todayKey(now);
+    const counts = App.path.dayCounts();
+    const [y, m, dd] = CAL_START.split('-').map(Number);
+    const days = [];
+    for (const d = new Date(y, m - 1, dd, 12); todayKey(d) <= App.path.EXAM.day; d.setDate(d.getDate() + 1)) days.push(new Date(d));
+    const strip = $('cal-strip');
+    strip.style.setProperty('--days', String(days.length));
+    strip.replaceChildren(...days.map((d) => {
+      const k = todayKey(d), dow = d.getDay(), weekend = dow === 0 || dow === 6;
+      const n = counts[k] || 0;
+      const target = weekend ? App.path.PER_DAY_WEEKEND : App.path.PER_DAY;
+      const cls = ['cal-day', k < today ? 'is-past' : k === today ? 'is-today' : 'is-future', weekend && 'is-weekend', k === App.path.EXAM.day && 'is-exam', k === App.path.REST && 'is-rest'].filter(Boolean).join(' ');
+      const fill = el('i');
+      fill.style.setProperty('--fill', String(Math.min(1, n / target)));
+      const mark = CAL_MARKS[k] || '';
+      const label = `${dateIt(d)}${k === today ? ' (oggi)' : ''}: ${n === 1 ? '1 tappa' : `${n} tappe`}${mark ? ` · ${MARK_LABEL[mark]}` : ''}`;
+      return el('li', { class: cls, title: label, 'aria-label': label },
+        el('span', { class: 'cal-dow', 'aria-hidden': 'true' }, 'DLMMGVS'[dow]),
+        el('span', { class: 'cal-num', 'aria-hidden': 'true' }, String(d.getDate())),
+        el('span', { class: 'cal-bar', 'aria-hidden': 'true' }, fill),
+        el('span', { class: 'cal-mark', 'aria-hidden': 'true' }, mark));
+    }));
+  }
+
+  function setCard({ label = '', title = '', sub = '', btn = null, meta = '', onClick = null, note = '', alt = null }) {
     $('next-label').textContent = label;
     $('next-title').textContent = title;
     $('next-sub').textContent = sub;
     $('btn-next').hidden = !btn;
-    if (btn) { $('btn-next').textContent = btn; $('btn-next').onclick = onClick; }
+    if (btn) { $('btn-next').replaceChildren(el('span', {}, btn), meta ? el('span', { class: 'btn-meta' }, meta) : ''); $('btn-next').onclick = onClick; }
     $('next-note').hidden = !note;
     $('next-note').textContent = note;
     $('btn-alt').hidden = !alt;
@@ -47,7 +80,8 @@ App.main = (() => {
     App.session.closeStale();
     App.sim.closeStale();
     App.calc.hideAll();
-    $('home-countdown').textContent = countdownText();
+    paintHead();
+    paintCalendar();
     const sim = App.store.sim();
     const cur = App.store.current();
     const c = App.path.counts();
@@ -64,49 +98,60 @@ App.main = (() => {
     }
     paintToday(c);
     paintTodo();
+    try { App.ready.render($('home-gauges')); } catch (err) { console.warn('soglie non calcolabili', err); $('home-gauges').replaceChildren(); }
     App.ui.show('home', { title: '' });
   }
 
   function pathCard(nx, c) {
     const start = () => App.path.start(nx);
     const first = c.total === 0;
+    const later = () => { const s = shortStep(); return { text: `Non ora: ${s.title} · ${s.min}′`, onClick: () => App.path.start(s) }; };
+    // In settimana la simulazione resta a portata di mano accanto alla tappa del giorno.
+    const simAlt = nx.simAlt ? { text: `Oppure: ${nx.simAlt.title} · 65′`, onClick: () => App.path.start(nx.simAlt) } : null;
+    const meta = (min) => (min ? `${min}′ →` : '→');
     switch (nx.kind) {
       case 'lesson': case 'drill': case 'review': {
         const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : `${nx.phase} · tappa ${c.total + 1}`;
-        setCard({ label, title: nx.title, sub: `${nx.sub} · circa ${nx.min}′`, btn: first ? 'Inizia' : 'Continua', onClick: start, note: first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.' : '' });
+        const note = first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.' : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
+        setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: simAlt });
         break;
       }
+      case 'block':
+        setCard({ label: 'Allenamento · blocco a tempo', title: nx.title, sub: nx.sub, btn: 'Inizia il blocco', meta: meta(nx.min), onClick: start, note: 'Come in TAO: nessuna correzione fino alla fine, con segnalibro e panoramica. Allena la gestione del tempo.', alt: simAlt || later() });
+        break;
       case 'official':
-        setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Apri', onClick: () => showOfficial(nx), note: 'È l\'unica tappa fuori dall\'app: la fai su TAO, poi torni qui.', alt: { text: 'Non ora: una tappa da 10′', onClick: () => App.path.start(shortStep()) } });
+        setCard({ label: 'Fuori dall\'app', title: nx.title, sub: nx.sub, btn: 'Apri', meta: meta(0), onClick: () => showOfficial(nx), alt: later() });
         break;
       case 'sim':
-        setCard({ label: 'Simulazione', title: nx.title, sub: `${nx.sub} · 65′ di fila`, btn: 'Inizia la simulazione', onClick: start, note: 'Sul PC, schermo intero, niente carta e niente pause: come mercoledì 11/11.', alt: { text: 'Non ora: una tappa da 10′', onClick: () => App.path.start(shortStep()) } });
+        if (nx.mode === 'baseline') {
+          setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Serve a capire da dove parti: il percorso darà più spazio a ciò che serve. Meglio sul PC o sul telefono aperto, senza pause.', alt: later() });
+        } else {
+          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, schermo intero, niente carta e niente pause: come mercoledì 11/11.', alt: later() });
+        }
         break;
       case 'rest':
-        setCard({ label: 'Martedì 10/11', title: 'Oggi riposo', sub: 'Domani alle 14:00 c\'è la prova. Prepara il posto e dormi: gli esercizi di oggi non cambiano il risultato.', btn: 'Rileggi «Prima della prova»', onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
+        setCard({ label: 'Martedì 10/11', title: 'Oggi riposo', sub: 'Domani alle 14:00 c\'è la prova. Prepara il posto e dormi: gli esercizi di oggi non cambiano il risultato.', btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
         break;
       case 'examday':
-        setCard({ label: 'Mercoledì 11/11', title: 'Oggi alle 14:00: la prova', sub: 'Durante la prova non aprire quest\'app né Claude. In bocca al lupo.', btn: 'Rileggi «Prima della prova»', onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
+        setCard({ label: 'Mercoledì 11/11', title: 'Oggi alle 14:00: la prova', sub: 'Durante la prova non aprire quest\'app né Claude. In bocca al lupo.', btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
+        break;
+      case 'taper-wait':
+        setCard({ label: 'Scarico', title: 'Per oggi basta', sub: 'Domani, lunedì 09/11, le ultime tappe leggere: un verbale breve e «Prima della prova», con il PC da preparare.', btn: null, alt: { text: 'Ripasso facoltativo degli errori', onClick: () => startReview() } });
         break;
       case 'taper-done':
-        setCard({ label: 'Scarico', title: 'Fatto: basta così', sub: 'Fino alla prova solo riposo. Se vuoi, un ripasso leggero degli errori.', btn: 'Ripasso facoltativo', onClick: () => startReview() });
+        setCard({ label: 'Scarico', title: 'Fatto: basta così', sub: 'Fino alla prova solo riposo. Se vuoi, un ripasso leggero degli errori.', btn: 'Ripasso facoltativo', meta: meta(0), onClick: () => startReview() });
         break;
       default:
         setCard({ label: 'Parte 1', title: 'Parte 1 sostenuta', sub: 'I risultati della Parte 1 arrivano da EPSO dopo la Parte 1. Per la Parte 2 si riparte dal Project.', btn: null });
     }
   }
-  // Alternativa breve a una tappa lunga (simulazione, test ufficiale): la prossima del ciclo di allenamento.
-  function shortStep() {
-    const st = App.path.state();
-    const cy = App.path.CYCLE.find((x) => x.kind === 'drill');
-    return { ...cy, id: `p2-${st.p2.i}`, p2i: st.p2.i, phase: 'Allenamento' };
-  }
+  // Alternativa breve a una tappa lunga (simulazione, misura, blocco): la prossima tappa vera del percorso.
+  const shortStep = () => App.path.shortStep();
 
   function paintToday(c) {
-    const dots = $('today-dots');
-    dots.replaceChildren(...Array.from({ length: c.target }, (_, i) => el('span', { class: `dot${i < c.today ? ' on' : ''}` })));
+    $('today-dots').replaceChildren(...Array.from({ length: c.target }, (_, i) => el('span', { class: `seg${i < c.today ? ' on' : ''}` })));
     $('today-text').textContent = c.today >= c.target ? `Oggi ${c.today} tappe: obiettivo fatto` : `Oggi ${c.today} di ${c.target} tappe`;
-    $('week-line').textContent = c.total ? `Percorso: ${c.total} ${c.total === 1 ? 'tappa fatta' : 'tappe fatte'}. Un giorno saltato non è un debito.` : '';
+    $('week-line').textContent = c.total ? `Percorso: ${c.total} ${c.total === 1 ? 'tappa fatta' : 'tappe fatte'}. Un giorno saltato non è un debito.` : 'Un giorno saltato non è un debito: il percorso riparte da dove sei.';
   }
 
   // Promemoria fuori dallo studio ma decisivo per la Parte 1 [V lettera del 19/10]: sparisce con «Fatto» o a scadenza passata.
@@ -115,7 +160,7 @@ App.main = (() => {
     $('todo-card').hidden = !open;
     if (!open) return;
     const d = daysUntil(App.path.PREREQ.day);
-    $('todo-text').replaceChildren(...rich(`Da fare prima della prova: **EU Login con l'app** e **test dei prerequisiti su TAO**, entro ${App.path.PREREQ.label} (${d === 0 ? 'oggi' : d === 1 ? 'domani' : `tra ${d} giorni`}). Senza, un problema tecnico il giorno della prova non dà diritto a ripeterla.`));
+    $('todo-text').replaceChildren(...rich(`**EU Login con l'app** e **test dei prerequisiti su TAO**, sul PC della prova, entro **${App.path.PREREQ.label}** (${d === 0 ? 'oggi' : d === 1 ? 'domani' : `tra ${d} giorni`}). Senza, un problema tecnico il giorno della prova non dà diritto a ripeterla. Nella stessa seduta: il test di esempio pubblico, per conoscere la piattaforma.`));
   }
 
   // ── Test di esempio ufficiale (l'unica tappa fuori dall'app) ──
@@ -138,8 +183,8 @@ App.main = (() => {
       App.store.addLog({ t, mode: 'external', bank, source: 'Test di esempio EPSO (TAO)', score, max, min: 0, tag: null, note: null });
       App.store.addSession({ t, mode: 'external', banks: [bank], n: max, correct: score, sec: 0, trap: null, source: 'Test di esempio EPSO (TAO)', step: officialStep ? officialStep.id : undefined });
     }
-    if (officialStep && officialStep.id === 'b14') App.path.complete(officialStep, {});
-    App.ui.toast(any ? 'Registrato: è la tua prima misura.' : 'Segnato come fatto.');
+    App.store.setSetting('officialDone', true);
+    App.ui.toast(any ? 'Registrato nello Stato.' : 'Segnato come fatto.');
     home();
   }
 
@@ -199,7 +244,7 @@ App.main = (() => {
     $('btn-review').addEventListener('click', startReview);
     $('btn-lessons').addEventListener('click', () => App.lessons.openIndex());
     $('btn-sim').addEventListener('click', async () => { if (await closePausedIfAny()) App.sim.showSetup(); });
-    $('btn-official').addEventListener('click', () => showOfficial(App.path.isDone('b14') ? { id: 'extra-official' } : { id: 'b14' }));
+    $('btn-official').addEventListener('click', () => showOfficial({ id: 'extra-official', title: 'Test di esempio ufficiale su TAO' }));
     $('off-done').addEventListener('click', saveOfficial);
     $('off-later').addEventListener('click', () => home());
     $('todo-done').addEventListener('click', () => { App.store.setSetting('prereqDone', true); App.ui.toast('Segnato. Un pensiero in meno.'); home(); });

@@ -1,0 +1,746 @@
+[
+ {
+  "id": 1221,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 2,
+  "topic": "inflazione e potere d'acquisto",
+  "passage": "Secondo il rapporto annuale dell'istituto di statistica di un paese europeo, nell'ultimo anno i prezzi al consumo sono aumentati in media del 5,8%, mentre le retribuzioni contrattuali orarie sono cresciute in media del 3,1%. Il potere d'acquisto delle retribuzioni, cioè la quantità di beni e servizi che con esse si può acquistare, si è quindi ridotto. L'aumento dei prezzi non è stato uniforme: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, sono rincarati più della media, mentre i servizi di trasporto e di comunicazione hanno registrato rincari inferiori. Per questo l'inflazione effettivamente sostenuta dal quinto più povero delle famiglie è stimata al 7,4%, contro il 4,9% del quinto più ricco. Circa un terzo dei lavoratori dipendenti ha un contratto scaduto e non ancora rinnovato: per loro le retribuzioni contrattuali sono rimaste invariate. Il rapporto prevede un parziale recupero del potere d'acquisto nel prossimo anno, a condizione che l'inflazione scenda sotto il 3%.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nell'ultimo anno tutti i lavoratori dipendenti hanno ottenuto un aumento delle retribuzioni contrattuali orarie, in media del 3,1%.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "Il potere d'acquisto delle retribuzioni ha ripreso a crescere nel corso dell'anno, perché l'inflazione è scesa sotto il 3%.",
+    "trap": "tempo"
+   },
+   {
+    "letter": "C",
+    "text": "Il quinto più povero delle famiglie ha avuto un'inflazione più alta della media per la composizione della sua spesa.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Nell'ultimo anno i prezzi dei servizi di trasporto e di comunicazione non sono aumentati.",
+    "trap": "parafrasi"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, sono rincarati più della media",
+  "explanation": "C è corretta: alimentari ed energia, che pesano sulla spesa delle famiglie a basso reddito più che su quella delle altre, «sono rincarati più della media»; «per questo» l'inflazione del quinto più povero è stimata al 7,4%, sopra il 5,8% medio. A è smentita dal brano: per circa un terzo dei dipendenti, con il contratto scaduto, le retribuzioni «sono rimaste invariate», e il 3,1% è una media (quantificatore). B presenta come già avvenuto un recupero che il rapporto prevede per il prossimo anno, e solo se l'inflazione scenderà sotto il 3% (tempo). D trasforma «rincari inferiori» alla media in un'assenza di aumenti (parafrasi)."
+ },
+ {
+  "id": 1222,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 3,
+  "topic": "lavoro da remoto e produttività",
+  "passage": "Uno studio universitario ha seguito per diciotto mesi 1.600 impiegati del servizio clienti di una compagnia assicurativa, divisi per sorteggio in due gruppi con le stesse mansioni e gli stessi obiettivi. Il primo gruppo ha continuato a lavorare in ufficio tutti i giorni, il secondo ha potuto lavorare da casa due giorni alla settimana. La produttività, misurata con il numero di pratiche chiuse per ora lavorata, non è risultata diversa in modo significativo tra i due gruppi, mentre nel secondo le dimissioni sono state inferiori di un terzo. Lo scarto nelle dimissioni tra i due gruppi è stato più ampio per i dipendenti con figli piccoli e per quelli con lunghi tragitti casa-lavoro. Gli autori avvertono che le attività esaminate sono facilmente misurabili e svolte in gran parte individualmente: i risultati non possono quindi essere estesi senza verifiche ai lavori che richiedono una collaborazione continua. Lo studio non ha valutato gli effetti sui costi di gestione degli uffici né sulle carriere dei dipendenti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il secondo gruppo ha registrato meno dimissioni del primo anche tra i dipendenti con lunghi tragitti casa-lavoro.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Nei lavori che richiedono una collaborazione continua, il lavoro da casa fa diminuire la produttività dei dipendenti rispetto all'ufficio.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "C",
+    "text": "Grazie al lavoro da casa due giorni alla settimana, la compagnia ha ridotto i costi di gestione dei propri uffici.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "D",
+    "text": "In entrambi i gruppi le dimissioni sono diminuite, soprattutto tra i dipendenti con figli piccoli e con lunghi tragitti.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "Lo scarto nelle dimissioni tra i due gruppi è stato più ampio per i dipendenti con figli piccoli e per quelli con lunghi tragitti casa-lavoro",
+  "explanation": "A è corretta: nel gruppo che poteva lavorare da casa le dimissioni sono state inferiori di un terzo e lo scarto tra i due gruppi «è stato più ampio» per chi ha lunghi tragitti casa-lavoro; anche tra questi dipendenti, quindi, il secondo gruppo ha avuto meno dimissioni del primo. B ricava un calo di produttività da un'avvertenza che dice soltanto che i risultati non possono essere estesi senza verifiche ai lavori di collaborazione (inferenza). C attribuisce allo studio un risparmio sui costi degli uffici, che lo studio dichiara di non aver valutato (fuori testo). D trasforma in un calo delle dimissioni in entrambi i gruppi quello che il brano presenta come uno scarto del secondo gruppo rispetto al primo (ambito)."
+ },
+ {
+  "id": 1223,
+  "level": 2,
+  "format": "epso4",
+  "tag": "negazione",
+  "difficulty": 3,
+  "topic": "salario minimo legale",
+  "passage": "Tre anni fa un paese europeo ha introdotto un salario minimo legale orario, aggiornato ogni anno da una commissione indipendente composta da rappresentanti dei lavoratori e delle imprese e da esperti nominati dal governo. Il minimo si applica ai lavoratori dipendenti di almeno 18 anni; agli apprendisti, compresi quelli che non hanno ancora compiuto 18 anni, spetta un importo pari all'80% del minimo. Secondo la valutazione pubblicata dalla commissione, il provvedimento ha aumentato la retribuzione di circa un dipendente su otto, soprattutto nel commercio, nella ristorazione e nei servizi di pulizia. In questi settori l'occupazione complessiva non è diminuita, mentre nelle piccole imprese si sono leggermente ridotte le ore lavorate per dipendente. La commissione segnala che il rispetto del minimo è difficile da verificare per chi è pagato a cottimo o lavora con orari non registrati, e raccomanda di rafforzare i controlli degli ispettorati. L'aggiornamento per il prossimo anno sarà deciso entro l'autunno.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Gli apprendisti che non hanno ancora compiuto 18 anni non hanno diritto ad alcun salario minimo.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "B",
+    "text": "Nelle piccole imprese il numero dei dipendenti si è ridotto.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Il provvedimento ha aumentato la retribuzione della maggior parte dei lavoratori dipendenti.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Un apprendista di 25 anni ha diritto a un importo inferiore al salario minimo pieno.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "agli apprendisti, compresi quelli che non hanno ancora compiuto 18 anni, spetta un importo pari all'80% del minimo",
+  "explanation": "D è corretta: agli apprendisti, di qualunque età, «spetta un importo pari all'80% del minimo», quindi un apprendista di 25 anni riceve meno del minimo pieno. A rovescia la regola: gli apprendisti che non hanno ancora compiuto 18 anni sono espressamente compresi tra quelli a cui spetta l'80% del minimo (negazione). B confonde la riduzione delle ore lavorate per dipendente nelle piccole imprese con un calo del numero dei dipendenti, che il brano non riporta (parafrasi). C è smentita dal brano: la retribuzione è aumentata per circa un dipendente su otto, non per la maggioranza (quantificatore).",
+  "review": "Tolto «tutti» dalla regola generale: «si applica a tutti i lavoratori dipendenti di almeno 18 anni» contraddiceva alla lettera l'80% spettante agli apprendisti adulti, cioè proprio il caso della chiave D. Ora la frase si legge come regola generale più regola speciale. Chiave, opzioni ed evidenza invariate."
+ },
+ {
+  "id": 1224,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 3,
+  "topic": "microcredito per le imprese femminili",
+  "passage": "Due anni fa una regione ha avviato un programma di microcredito per le imprese femminili, cioè le imprese individuali di cui è titolare una donna e le società in cui le donne detengono almeno la metà delle quote. Il programma concede prestiti da 5.000 a 25.000 euro, senza garanzie personali, a tasso zero e rimborsabili in sette anni. Le domande sono valutate da un comitato della finanziaria regionale sulla base di un piano d'impresa; le richiedenti che non hanno mai gestito un'impresa devono prima seguire un percorso di affiancamento di tre mesi, offerto gratuitamente da associazioni di categoria convenzionate. Nei primi due anni sono stati concessi 640 prestiti, per un importo medio di 14.000 euro; il 70% è andato a imprese dei servizi. I prestiti con rate non pagate da oltre sei mesi sono il 4% del totale. La regione intende raddoppiare la dotazione del fondo dal prossimo anno e sta valutando se estendere il programma alle libere professioniste.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Tutte le richiedenti devono seguire un percorso di affiancamento di tre mesi.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "Una società in cui le donne hanno la metà delle quote è considerata un'impresa femminile.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Il 96% dei prestiti concessi è stato interamente rimborsato.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Le domande di prestito sono valutate dalle associazioni di categoria che offrono il percorso di affiancamento.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "le società in cui le donne detengono almeno la metà delle quote",
+  "explanation": "B è corretta: il programma considera imprese femminili anche le società in cui le donne detengono «almeno la metà delle quote», quindi anche quelle in cui ne detengono esattamente la metà. A estende a tutte le richiedenti un obbligo che riguarda soltanto chi non ha mai gestito un'impresa (quantificatore). C trasforma il 4% di prestiti con rate non pagate da oltre sei mesi in un 96% di prestiti rimborsati per intero, mentre i prestiti durano sette anni e il programma ne ha due (parafrasi). D attribuisce la valutazione delle domande alle associazioni di categoria, che offrono il percorso di affiancamento, mentre spetta a un comitato della finanziaria regionale (ambito)."
+ },
+ {
+  "id": 1225,
+  "level": 2,
+  "format": "epso4",
+  "tag": "tempo",
+  "difficulty": 2,
+  "topic": "imposta di soggiorno in una città d'arte",
+  "passage": "In una città d'arte che registra ogni anno circa tre milioni di pernottamenti, l'imposta di soggiorno è dovuta da chi alloggia in alberghi, bed and breakfast e appartamenti affittati per brevi periodi. L'importo varia da 2 a 5 euro per persona e per notte secondo la categoria della struttura e si applica fino a un massimo di sette notti consecutive. Sono esenti i minori di 14 anni, i malati ricoverati negli ospedali cittadini e le persone che li assistono. L'imposta è riscossa dai gestori delle strutture, che la versano al comune ogni tre mesi. Dal prossimo anno gli importi aumenteranno di un euro nei mesi di alta stagione. Il regolamento destina il gettito, pari lo scorso anno a 11 milioni di euro, alla manutenzione del patrimonio artistico, ai trasporti pubblici e ai servizi di pulizia. Secondo un'indagine dell'osservatorio sul turismo, negli appartamenti affittati per brevi periodi il numero di ospiti dichiarato è in media inferiore a quello effettivo.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nei mesi di alta stagione gli importi dell'imposta di soggiorno sono già più alti di un euro.",
+    "trap": "tempo"
+   },
+   {
+    "letter": "B",
+    "text": "Oltre la settima notte consecutiva l'imposta non è più dovuta.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Sono gli ospiti delle strutture a versare direttamente l'imposta al comune.",
+    "trap": "scope"
+   },
+   {
+    "letter": "D",
+    "text": "Chi soggiorna in città per sottoporsi a cure mediche è esente dall'imposta.",
+    "trap": "negazione"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "si applica fino a un massimo di sette notti consecutive",
+  "explanation": "B è corretta: l'imposta «si applica fino a un massimo di sette notti consecutive», quindi dall'ottava notte consecutiva non è più dovuta. A presenta come già in vigore l'aumento di un euro in alta stagione, previsto dal prossimo anno (tempo). C attribuisce agli ospiti il versamento al comune, che spetta ai gestori delle strutture dopo aver riscosso l'imposta (ambito). D omette una condizione dell'esenzione, che riguarda i malati ricoverati negli ospedali cittadini e chi li assiste, non chiunque venga in città per curarsi (negazione)."
+ },
+ {
+  "id": 1226,
+  "level": 2,
+  "format": "epso4",
+  "tag": "scope",
+  "difficulty": 3,
+  "topic": "invecchiamento e sistema pensionistico",
+  "passage": "Secondo le proiezioni dell'ufficio statistico di un paese europeo, nei prossimi trent'anni il numero di persone con almeno 65 anni ogni 100 persone in età da lavoro, cioè tra 20 e 64 anni, passerà da 36 a 58. Poiché le pensioni sono pagate in gran parte con i contributi di chi lavora, questa evoluzione mette sotto pressione i conti del sistema. Il paese ha già collegato l'età di pensionamento alla speranza di vita: l'età viene aggiornata ogni due anni, ma ciascun aumento non può superare tre mesi. Secondo il consiglio di bilancio, questa misura compenserebbe da sola circa un terzo della crescita prevista della spesa pensionistica. Il resto potrebbe venire da un aumento del tasso di occupazione, oggi pari al 71%, in particolare tra le donne e tra le persone con più di 55 anni. Il consiglio osserva infine che l'arrivo di lavoratori dall'estero può rallentare l'invecchiamento della popolazione, ma non arrestarlo, perché anche chi arriva invecchia.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il tasso di occupazione delle donne è oggi pari al 71%.",
+    "trap": "scope"
+   },
+   {
+    "letter": "B",
+    "text": "Il collegamento tra età di pensionamento e speranza di vita basterebbe da solo a compensare la crescita prevista della spesa pensionistica.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "C",
+    "text": "Secondo il consiglio di bilancio, l'arrivo di lavoratori dall'estero non ha nessun effetto sull'invecchiamento della popolazione.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "D",
+    "text": "Secondo le proiezioni, fra trent'anni vi saranno meno di due persone tra 20 e 64 anni per ogni persona con almeno 65 anni.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "il numero di persone con almeno 65 anni ogni 100 persone in età da lavoro, cioè tra 20 e 64 anni, passerà da 36 a 58",
+  "explanation": "D è corretta: fra trent'anni vi saranno 58 persone con almeno 65 anni ogni 100 in età da lavoro, cioè circa 1,7 persone tra 20 e 64 anni per ciascuna di esse; perché fossero almeno due, le persone con almeno 65 anni non dovrebbero superare 50 ogni 100. A attribuisce alle donne il tasso di occupazione complessivo del 71%: le donne sono indicate solo come uno dei gruppi in cui l'occupazione potrebbe crescere (ambito). B trasforma «circa un terzo» della crescita della spesa in una compensazione completa (quantificatore). C rovescia la posizione del consiglio, secondo cui l'arrivo di lavoratori dall'estero «può rallentare» l'invecchiamento, anche se non arrestarlo (negazione)."
+ },
+ {
+  "id": 1227,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 3,
+  "topic": "apprendistato e conferma dei giovani",
+  "passage": "Un'indagine dell'agenzia nazionale per le politiche attive del lavoro ha seguito 12.000 giovani tra 18 e 24 anni che avevano concluso un contratto di apprendistato. Al termine del periodo formativo il 62% era stato confermato a tempo indeterminato dalla stessa impresa, il 15% lavorava presso un'altra impresa e il restante 23% era senza lavoro o seguiva un corso di studi. I tassi di conferma più alti si registrano nella manifattura e nell'artigianato, i più bassi nel commercio e nella ristorazione. Le imprese che hanno confermato più spesso gli apprendisti sono quelle in cui il tutor aziendale aveva seguito il corso di formazione, facoltativo, proposto dalla regione. Secondo l'agenzia, però, questo legame non basta a dimostrare che il corso migliori i risultati, perché a iscrivere i propri tutor potrebbero essere state soprattutto le imprese già più attente alla formazione. Dal prossimo anno il corso diventerà obbligatorio per i tutor delle imprese con più di quindici dipendenti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Prima che il corso per i tutor diventi obbligatorio, una parte dei tutor aziendali lo ha già seguito.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Il corso seguito dai tutor aziendali ha fatto aumentare le conferme degli apprendisti.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "C",
+    "text": "Nella manifattura tutti gli apprendisti sono stati confermati dall'impresa in cui si erano formati.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Il corso di formazione per i tutor aziendali è proposto dall'agenzia nazionale per le politiche attive.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "quelle in cui il tutor aziendale aveva seguito il corso di formazione, facoltativo, proposto dalla regione",
+  "explanation": "A è corretta: il corso diventerà obbligatorio solo dal prossimo anno, ma il brano parla già di imprese «in cui il tutor aziendale aveva seguito il corso», quando era facoltativo. B presenta come dimostrato un effetto del corso che l'agenzia considera non dimostrato, perché a iscrivere i tutor potrebbero essere state le imprese già più attente alla formazione (inferenza). C trasforma il tasso di conferma più alto, registrato nella manifattura, in una conferma di tutti gli apprendisti (quantificatore). D attribuisce il corso all'agenzia nazionale, mentre è proposto dalla regione (ambito)."
+ },
+ {
+  "id": 1228,
+  "level": 2,
+  "format": "epso4",
+  "tag": "fuori-testo",
+  "difficulty": 3,
+  "topic": "raccolta e riciclo dei prodotti tessili",
+  "passage": "Una regione ha pubblicato i primi dati sulla raccolta separata dei prodotti tessili usati, effettuata con contenitori stradali e nei centri di raccolta comunali. Lo scorso anno sono state raccolte 18.000 tonnellate, pari a circa un quinto dei prodotti tessili immessi sul mercato regionale. Dopo la selezione, il 55% del materiale è stato destinato al riutilizzo come abbigliamento usato, venduto in gran parte all'estero; il 30% è stato avviato al riciclo, soprattutto per produrre imbottiture, materiali isolanti e stracci industriali; il resto, troppo deteriorato o contaminato, è stato incenerito. Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti, perché la maggior parte dei capi è composta da miscele di fibre difficili da separare. La regione intende finanziare un impianto di selezione automatica in grado di riconoscere la composizione dei tessuti; secondo i progettisti, l'impianto potrà trattare un terzo del materiale raccolto, ma non risolverà il problema delle miscele.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La maggior parte degli abiti usati venduti all'estero finisce in discarica dopo un breve utilizzo.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "B",
+    "text": "Circa un quinto dei prodotti tessili immessi sul mercato regionale è stato riutilizzato come abbigliamento.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "La maggior parte delle fibre ricavate dal riciclo è destinata a usi diversi dalla produzione di nuovi tessuti.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Dopo la selezione, il materiale raccolto è stato in parte riutilizzato come abbigliamento e per il resto avviato al riciclo.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "Solo una piccola parte delle fibre ricavate dal riciclo torna a essere utilizzata per produrre nuovi tessuti",
+  "explanation": "C è corretta: «solo una piccola parte» delle fibre ricavate dal riciclo torna a essere usata per nuovi tessuti, quindi la maggior parte ha altri impieghi, come imbottiture, isolanti e stracci. A riporta un fatto plausibile ma assente dal brano, che dice soltanto che gli abiti usati sono venduti in gran parte all'estero (fuori testo). B confonde la quota raccolta, circa un quinto dei prodotti immessi sul mercato, con quella riutilizzata, che è il 55% del materiale raccolto (parafrasi). D presenta come completa una ripartizione parziale: oltre al 55% riutilizzato e al 30% riciclato, il resto del materiale, troppo deteriorato o contaminato, è stato incenerito (ambito)."
+ },
+ {
+  "id": 1229,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 3,
+  "topic": "pagamenti digitali e uso del contante",
+  "passage": "Secondo un'indagine della banca centrale di un paese dell'area dell'euro, lo scorso anno il contante è stato usato nel 52% dei pagamenti effettuati nei negozi, contro il 68% di cinque anni prima. In valore, invece, la quota del contante si è fermata al 35%, perché carte e smartphone sono preferiti soprattutto per gli acquisti di importo elevato. Il contante resta il mezzo più usato dalle persone con più di 65 anni e da chi vive nei comuni con meno di 5.000 abitanti, dove negli ultimi anni è aumentata la distanza media dallo sportello automatico più vicino. Il 60% degli intervistati dichiara di voler conservare la possibilità di pagare in contanti. Gli esercenti indicano come principale ostacolo ai pagamenti elettronici le commissioni sulle transazioni di piccolo importo. La banca centrale raccomanda di garantire l'accettazione del contante nei servizi pubblici essenziali e di rendere più trasparenti le commissioni applicate ai negozianti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Lo scorso anno più della metà del valore degli acquisti effettuati nei negozi è stata pagata in contante.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "La banca centrale raccomanda di garantire l'accettazione del contante in tutti i negozi del paese.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "C",
+    "text": "Nei comuni con meno di 5.000 abitanti il contante è più usato perché vi risiedono molte persone anziane.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "D",
+    "text": "In media, i pagamenti in contante nei negozi sono stati di importo inferiore agli altri.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "In valore, invece, la quota del contante si è fermata al 35%",
+  "explanation": "D è corretta: il contante è stato usato nel 52% dei pagamenti ma copre il 35% del loro valore, perché carte e smartphone sono preferiti per gli acquisti di importo elevato; in media, quindi, un pagamento in contante è stato di importo inferiore agli altri. A attribuisce al valore la quota del 52%, che riguarda il numero dei pagamenti: in valore la quota del contante «si è fermata al 35%» (parafrasi). B estende a tutti i negozi una raccomandazione che riguarda i servizi pubblici essenziali (quantificatore). C aggiunge una spiegazione plausibile ma assente dal brano, che cita le persone anziane e i piccoli comuni come due gruppi distinti (fuori testo)."
+ },
+ {
+  "id": 1230,
+  "level": 2,
+  "format": "epso4",
+  "tag": "negazione",
+  "difficulty": 3,
+  "topic": "alloggi in affitto a prezzi accessibili",
+  "passage": "Un comune capoluogo ha approvato un programma per aumentare l'offerta di alloggi in affitto a prezzi accessibili. I proprietari che affittano un appartamento a canone calmierato, cioè con un canone inferiore di almeno il 20% a quello medio di mercato della zona, ottengono una riduzione dell'imposta comunale sugli immobili e una garanzia pubblica che copre fino a dodici mensilità non pagate dall'inquilino. Il comune metterà inoltre a disposizione 300 alloggi pubblici oggi vuoti perché da ristrutturare: i lavori saranno finanziati con fondi europei e dovranno concludersi entro tre anni. Questi alloggi saranno assegnati alle famiglie con un reddito compreso tra due soglie fissate dal comune, che non hanno diritto a una casa popolare ma faticano a pagare un affitto di mercato. Nel primo anno hanno aderito al canone calmierato 450 proprietari, contro un obiettivo di 1.000. Le associazioni degli inquilini giudicano il programma utile ma insufficiente, perché nello stesso periodo sono aumentati gli appartamenti affittati per brevi periodi ai turisti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il proprietario che affitta a canone calmierato è coperto dalla garanzia pubblica anche se l'inquilino smette di pagare per sei mesi.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "I 300 alloggi pubblici da ristrutturare sono destinati alle famiglie che hanno diritto a una casa popolare.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "C",
+    "text": "I proprietari che affittano a canone calmierato non pagano l'imposta comunale sugli immobili.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "I lavori di ristrutturazione dei 300 alloggi pubblici sono già conclusi.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "una garanzia pubblica che copre fino a dodici mensilità non pagate dall'inquilino",
+  "explanation": "A è corretta: la garanzia pubblica «copre fino a dodici mensilità non pagate dall'inquilino», quindi copre anche sei mesi di mancati pagamenti. B rovescia il requisito: gli alloggi saranno assegnati a famiglie che «non hanno diritto a una casa popolare» (negazione). C trasforma una riduzione dell'imposta comunale in un'esenzione totale (parafrasi). D presenta come già conclusi lavori che dovranno concludersi entro tre anni, mentre gli alloggi sono oggi vuoti perché da ristrutturare (tempo).",
+  "review": "«canone concordato» → «canone calmierato» (brano due volte, opzioni A e C): il canone concordato è un istituto reale (L. 431/1998, canone fissato dagli accordi territoriali) e il brano gli attribuiva una definizione inventata («inferiore di almeno il 20%» al mercato). Con un termine generico la definizione resta quella del programma. Logica del quesito, chiave e spiegazione invariate."
+ },
+ {
+  "id": 1231,
+  "level": 2,
+  "format": "epso4",
+  "tag": "fuori-testo",
+  "difficulty": 3,
+  "topic": "divario retributivo di genere",
+  "passage": "Secondo un'indagine dell'istituto di statistica di un paese europeo, la retribuzione oraria lorda media delle donne è inferiore del 12% a quella degli uomini. Se si confrontano lavoratori e lavoratrici con lo stesso livello di istruzione, la stessa età, la stessa professione e lo stesso settore, il divario scende al 5%: la differenza tra i due valori si spiega in buona parte con la maggiore presenza delle donne in professioni e settori meno retribuiti. Il divario è quasi nullo all'inizio della carriera e cresce dopo i 35 anni, in coincidenza con la nascita dei figli. Se si considera la retribuzione annua invece di quella oraria, la differenza sale al 30%, perché le donne lavorano più spesso a tempo parziale. Dal prossimo anno le imprese con più di 100 dipendenti dovranno pubblicare i dati sulle retribuzioni per genere e, se il divario supera il 5% senza giustificazioni oggettive, dovranno esaminarne le cause insieme ai rappresentanti dei lavoratori.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il divario cresce dopo i 35 anni perché molte donne interrompono il lavoro per occuparsi dei figli.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "B",
+    "text": "A parità di istruzione, età, professione e settore, la retribuzione oraria delle donne è inferiore del 12% a quella degli uomini.",
+    "trap": "scope"
+   },
+   {
+    "letter": "C",
+    "text": "Sulla retribuzione annua il divario è più ampio che su quella oraria perché le donne ricorrono più spesso al tempo parziale.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Le imprese con più di 100 dipendenti sono già tenute a pubblicare i dati sulle retribuzioni per genere.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "la differenza sale al 30%, perché le donne lavorano più spesso a tempo parziale",
+  "explanation": "C è corretta: calcolata sulla retribuzione annua, la differenza «sale al 30%, perché le donne lavorano più spesso a tempo parziale», contro il 12% della retribuzione oraria. A aggiunge una causa plausibile ma non indicata: il brano dice soltanto che il divario cresce «in coincidenza con la nascita dei figli» (fuori testo). B attribuisce al confronto a parità di caratteristiche il 12%, che è il divario medio complessivo; a parità di istruzione, età, professione e settore il divario scende al 5% (ambito). D presenta come già in vigore un obbligo che decorre dal prossimo anno (tempo).",
+  "review": "Chiave C riformulata con «perché», a contenuto invariato (il brano dà la causa con «perché»). In tutta la banca «perché/grazie» compariva solo nei distrattori (0 chiavi su 23 occorrenze, 5 in questo lotto): un indizio sfruttabile e falso per la prova reale. Ora A (causa non detta) e C (causa del brano) sono entrambe causali e si distinguono solo per la fonte. Spiegazione ancora esatta."
+ },
+ {
+  "id": 1232,
+  "level": 2,
+  "format": "epso4",
+  "tag": "tempo",
+  "difficulty": 3,
+  "topic": "passaggio generazionale nelle imprese familiari",
+  "passage": "Un'indagine di una camera di commercio su 2.000 imprese familiari manifatturiere mostra che il 40% dei titolari ha più di 60 anni, ma che solo un quarto di questi ha già individuato chi guiderà l'impresa dopo di lui. Tra le imprese che hanno affrontato il passaggio generazionale negli ultimi dieci anni, una su tre ha affidato la direzione a un manager esterno, mentre la proprietà è rimasta alla famiglia. Le imprese passate ai figli senza un periodo di affiancamento hanno registrato, nei tre anni successivi, una crescita del fatturato inferiore a quella delle imprese in cui il successore aveva lavorato per almeno due anni accanto al titolare uscente. La camera di commercio offre un servizio gratuito di consulenza sulla pianificazione della successione, finora utilizzato da 150 imprese. Dal prossimo anno il servizio comprenderà anche l'assistenza nella stesura degli accordi tra familiari sulla ripartizione delle quote tra gli eredi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Solo un titolare su dieci ha individuato chi guiderà l'impresa dopo di lui.",
+    "trap": "scope"
+   },
+   {
+    "letter": "B",
+    "text": "Tra i titolari con più di 60 anni, quelli che hanno già individuato un successore sono una minoranza.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Le imprese passate ai figli senza affiancamento hanno visto diminuire il fatturato nei tre anni successivi.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Finora 150 imprese hanno ricevuto assistenza nella stesura degli accordi tra familiari sulla ripartizione delle quote.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "solo un quarto di questi ha già individuato chi guiderà l'impresa dopo di lui",
+  "explanation": "B è corretta: dei titolari con più di 60 anni «solo un quarto» ha già individuato chi guiderà l'impresa, quindi si tratta di una minoranza. A applica a tutti i titolari un dato che riguarda quelli con più di 60 anni: sono il 40% e un quarto di loro, cioè il 10% del totale, ha un successore, ma il brano non dice nulla dei titolari più giovani (ambito). C trasforma una crescita del fatturato «inferiore» a quella delle altre imprese in un calo (parafrasi). D anticipa un servizio che sarà offerto solo dal prossimo anno: le 150 imprese hanno usato la consulenza sulla pianificazione della successione (tempo)."
+ },
+ {
+  "id": 1233,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 3,
+  "topic": "cooperative di comunità",
+  "passage": "Una legge regionale riconosce come cooperative di comunità le cooperative i cui soci risiedono in maggioranza in un piccolo comune o in una sua frazione e che gestiscono servizi utili all'intera popolazione locale, come negozi di alimentari, trasporti a chiamata, manutenzione del verde o accoglienza turistica. Possono diventare soci anche enti pubblici e associazioni, ma ogni socio dispone di un solo voto in assemblea, indipendentemente dal capitale versato. La regione concede per l'avvio un contributo pari al 50% delle spese ammissibili, fino a 40.000 euro, purché la cooperativa gestisca almeno due servizi diversi. Un monitoraggio dell'università regionale su 35 cooperative attive da almeno cinque anni ha rilevato che 28 hanno chiuso l'ultimo bilancio in pareggio o in attivo, mentre le altre dipendono ancora in larga parte da contributi pubblici. Secondo i ricercatori, i bilanci migliori si registrano in genere nelle cooperative che hanno coinvolto la popolazione fin dalla fase di progettazione.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Tutti i soci di una cooperativa di comunità devono risiedere nel comune o nella frazione in cui essa opera.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "In assemblea, gli enti pubblici soci dispongono di un numero di voti proporzionale al capitale versato.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "C",
+    "text": "Alcune delle cooperative che dipendono ancora dai contributi pubblici non hanno coinvolto la popolazione nella progettazione.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "Una cooperativa di comunità che gestisce soltanto un negozio di alimentari non può ottenere il contributo regionale per l'avvio.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "purché la cooperativa gestisca almeno due servizi diversi",
+  "explanation": "D è corretta: il contributo per l'avvio spetta «purché la cooperativa gestisca almeno due servizi diversi», quindi non a una cooperativa che gestisce un solo negozio. A trasforma una maggioranza in totalità: basta che i soci risiedano «in maggioranza» nel comune o nella frazione, e possono essere soci anche enti pubblici e associazioni (quantificatore). B rovescia la regola: ogni socio dispone di un solo voto «indipendentemente dal capitale versato» (negazione). C ricava da una tendenza, i bilanci migliori «in genere» nelle cooperative che hanno coinvolto la popolazione, una conclusione su singole cooperative in difficoltà che il brano non consente (inferenza)."
+ },
+ {
+  "id": 1234,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 3,
+  "topic": "vendita diretta e filiera corta agricola",
+  "passage": "Un istituto di ricerca agraria ha confrontato i ricavi di 120 aziende agricole che vendono direttamente ai consumatori, attraverso mercati contadini, spacci aziendali e gruppi di acquisto, con quelli di aziende simili che conferiscono i prodotti alla grande distribuzione o ai grossisti. Le prime ottengono in media prezzi di vendita più alti del 35%, ma sostengono maggiori costi di lavoro per il trasporto, la vendita e la gestione degli ordini: al netto di questi costi, il vantaggio si riduce in media al 12%. Per le aziende con meno di 5 ettari il vantaggio netto è più elevato, mentre per quelle con oltre 50 ettari è quasi nullo, perché la vendita diretta assorbe solo una piccola parte della loro produzione. Lo studio rileva inoltre che nei mercati contadini i prezzi pagati dai consumatori sono più bassi di quelli dei supermercati per la frutta e la verdura di stagione, ma non per formaggi e salumi. Gli autori raccomandano ai comuni di concedere gratuitamente gli spazi pubblici destinati ai mercati.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Al netto dei costi di lavoro, la vendita diretta conserva in media un vantaggio.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Le aziende che vendono direttamente ai consumatori guadagnano in media il 35% in più delle altre.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Nei mercati contadini i consumatori pagano sempre meno che nei supermercati.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Le aziende con oltre 50 ettari vendono direttamente solo una piccola parte della produzione perché per loro il vantaggio netto è quasi nullo.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "al netto di questi costi, il vantaggio si riduce in media al 12%",
+  "explanation": "A è corretta: al netto dei maggiori costi di lavoro il vantaggio «si riduce in media al 12%», quindi diminuisce ma non si annulla. B confonde il prezzo di vendita, più alto del 35%, con il guadagno, il cui vantaggio netto è in media del 12% (parafrasi). C generalizza un risparmio che riguarda frutta e verdura di stagione, non formaggi e salumi (quantificatore). D inverte il rapporto di causa: secondo il brano il vantaggio netto è quasi nullo perché la vendita diretta assorbe solo una piccola parte della produzione, non il contrario (inferenza)."
+ },
+ {
+  "id": 1235,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 3,
+  "topic": "competenze digitali degli adulti",
+  "passage": "Secondo un'indagine condotta su persone tra 16 e 74 anni, in una regione il 46% degli adulti possiede competenze digitali almeno di base, cioè sa svolgere senza aiuto un insieme di attività in cinque aree, tra cui la comunicazione online, la creazione di contenuti e la sicurezza. La quota scende al 22% tra le persone tra 65 e 74 anni e al 30% tra chi ha al massimo la licenza media. Per ridurre il divario, la regione ha aperto 80 punti di facilitazione digitale nelle biblioteche e nei centri civici, dove operatori formati aiutano i cittadini a usare i servizi pubblici online, come la prenotazione di visite mediche. Nel primo anno i punti hanno registrato 25.000 accessi. Secondo la valutazione della regione, si è trattato in gran parte di richieste di assistenza per una singola operazione; solo il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri. Per questo, dal prossimo anno, ogni punto dovrà offrire almeno un corso al mese.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nel primo anno i punti di facilitazione sono stati utilizzati da 25.000 persone.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Tra chi ha al massimo la licenza media, solo il 22% possiede competenze digitali almeno di base.",
+    "trap": "scope"
+   },
+   {
+    "letter": "C",
+    "text": "Già nel primo anno, una parte degli accessi ai punti di facilitazione ha riguardato percorsi di formazione.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "In ogni punto di facilitazione è già obbligatorio offrire almeno un corso al mese.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "solo il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri",
+  "explanation": "C è corretta: nel primo anno «il 15% degli accessi ha riguardato percorsi di formazione di almeno quattro incontri», prima dell'obbligo che scatterà dal prossimo anno. A trasforma 25.000 accessi in 25.000 persone, mentre la stessa persona può essersi rivolta più volte ai punti (parafrasi). B attribuisce a chi ha al massimo la licenza media il 22%, che riguarda le persone tra 65 e 74 anni; per chi ha al massimo la licenza media la quota è del 30% (ambito). D presenta come già in vigore l'obbligo di un corso al mese, che si applicherà dal prossimo anno (tempo)."
+ },
+ {
+  "id": 1236,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 3,
+  "topic": "lavoro non dichiarato",
+  "passage": "Secondo le stime dell'istituto di statistica di un paese europeo, il lavoro non dichiarato, cioè svolto senza contratto o senza il versamento dei contributi, rappresenta circa il 12% delle unità di lavoro complessive. La quota supera il 40% nei servizi domestici e il 20% in agricoltura e nelle costruzioni, mentre resta sotto il 5% nell'industria manifatturiera. Per contrastare il fenomeno, il governo ha introdotto un credito d'imposta pari al 30% dei contributi versati per le famiglie che assumono regolarmente un collaboratore domestico. L'ispettorato del lavoro, inoltre, sceglie ora le imprese da controllare incrociando le banche dati fiscali e previdenziali: nell'ultimo anno ha accertato irregolarità nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso. L'istituto avverte che le stime si basano su modelli statistici e su indagini presso le famiglie, e che il lavoro non dichiarato è per sua natura difficile da misurare con precisione.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nell'ultimo anno è aumentata la quota di imprese che ricorrono al lavoro non dichiarato.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "B",
+    "text": "Da quando i controlli sono mirati, le ispezioni trovano irregolarità più spesso.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Il credito d'imposta restituisce alle famiglie il 30% della retribuzione del collaboratore domestico assunto regolarmente.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Nei servizi domestici la maggior parte delle unità di lavoro è costituita da lavoro non dichiarato.",
+    "trap": "quantificatore"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "nell'ultimo anno ha accertato irregolarità nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso",
+  "explanation": "B è corretta: ora che sceglie le imprese incrociando le banche dati, l'ispettorato ha accertato irregolarità «nel 65% delle ispezioni, contro il 40% di quando le imprese venivano estratte a caso». A ricava una maggiore diffusione del lavoro irregolare da un tasso di irregolarità più alto, che si riferisce a controlli ora mirati e quindi non rappresentativi di tutte le imprese (inferenza). C confonde i contributi versati, su cui si calcola il credito del 30%, con la retribuzione del collaboratore (parafrasi). D trasforma «supera il 40%» in una maggioranza, che il brano non indica (quantificatore)."
+ },
+ {
+  "id": 1237,
+  "level": 2,
+  "format": "epso4",
+  "tag": "scope",
+  "difficulty": 3,
+  "topic": "lavoro tramite piattaforme digitali",
+  "passage": "Un'indagine universitaria su 3.000 persone che lavorano tramite piattaforme digitali, per consegne a domicilio, trasporto di persone o piccoli lavori domestici, mostra che per il 60% di loro questa attività integra altri redditi, mentre per il restante 40% è la fonte di reddito principale. Questi ultimi lavorano in media 38 ore alla settimana, ma circa un quarto di questo tempo è costituito da attese tra un incarico e l'altro, di norma non retribuite. La maggior parte degli intervistati è inquadrata come lavoratore autonomo e non ha quindi diritto a ferie retribuite né a indennità di malattia. Il 70% dichiara di non conoscere i criteri con cui l'applicazione assegna gli incarichi. Il ministero del lavoro sta preparando una norma che presume l'esistenza di un rapporto di lavoro dipendente quando la piattaforma controlla l'orario e la retribuzione, e che obbliga le piattaforme a spiegare ai lavoratori come funzionano i sistemi di assegnazione degli incarichi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Per la maggior parte degli intervistati il lavoro tramite piattaforma occupa in media 38 ore alla settimana.",
+    "trap": "scope"
+   },
+   {
+    "letter": "B",
+    "text": "Quando la piattaforma controlla orario e retribuzione, la legge presume l'esistenza di un rapporto di lavoro dipendente.",
+    "trap": "tempo"
+   },
+   {
+    "letter": "C",
+    "text": "Per chi ne ricava il reddito principale, le ore dedicate in media agli incarichi sono meno di 38 alla settimana.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Nessuno degli intervistati ha diritto a ferie retribuite o a indennità di malattia.",
+    "trap": "quantificatore"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "ma circa un quarto di questo tempo è costituito da attese tra un incarico e l'altro",
+  "explanation": "C è corretta: chi ricava dalle piattaforme il reddito principale lavora in media 38 ore alla settimana, ma «circa un quarto di questo tempo» è fatto di attese tra un incarico e l'altro; le ore dedicate agli incarichi sono quindi meno di 38. A attribuisce alla maggioranza le 38 ore medie, che riguardano il 40% per cui la piattaforma è la fonte di reddito principale (ambito). B presenta come già in vigore una norma che il ministero sta ancora preparando (tempo). D estende a tutti gli intervistati una condizione che il brano riferisce alla maggior parte di loro, inquadrata come lavoratori autonomi (quantificatore)."
+ },
+ {
+  "id": 1238,
+  "level": 2,
+  "format": "epso4",
+  "tag": "tempo",
+  "difficulty": 3,
+  "topic": "negozi di vicinato nei centri storici",
+  "passage": "Un osservatorio sul commercio ha censito i negozi di vicinato, cioè gli esercizi con una superficie di vendita fino a 250 metri quadrati, nei centri storici di 40 città di medie dimensioni. In dieci anni il loro numero è diminuito del 18%, ma il calo non ha riguardato tutti i settori allo stesso modo: si sono ridotti soprattutto i negozi di abbigliamento, di libri e di articoli per la casa, mentre sono aumentati bar, ristoranti e attività di vendita di cibo da asporto. Nello stesso periodo i locali commerciali vuoti sono passati dal 6% all'11% del totale. L'osservatorio attribuisce il calo alla concorrenza delle vendite online e dei centri commerciali periferici, oltre che all'aumento degli affitti nelle zone più frequentate dai turisti. Alcuni comuni hanno introdotto un contributo per chi apre un'attività artigianale o commerciale in un locale vuoto da almeno un anno; secondo l'osservatorio, è ancora presto per valutarne gli effetti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nei comuni che lo hanno introdotto, il contributo ha già ridotto la quota dei locali commerciali vuoti.",
+    "trap": "tempo"
+   },
+   {
+    "letter": "B",
+    "text": "In dieci anni ha chiuso l'11% dei negozi di vicinato dei centri storici censiti.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Secondo l'osservatorio, l'aumento degli affitti nelle zone turistiche è la causa principale del calo.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "Nonostante il calo complessivo, nei centri storici censiti alcuni tipi di esercizi sono aumentati di numero.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "mentre sono aumentati bar, ristoranti e attività di vendita di cibo da asporto",
+  "explanation": "D è corretta: in dieci anni i negozi di vicinato sono diminuiti del 18%, ma «sono aumentati bar, ristoranti e attività di vendita di cibo da asporto». A presenta come già ottenuto un effetto che, secondo l'osservatorio, è «ancora presto» per valutare (tempo). B confonde l'11%, quota dei locali commerciali vuoti sul totale, con la quota di negozi chiusi; il calo dei negozi è stato del 18% (parafrasi). C attribuisce all'osservatorio una graduatoria delle cause che il brano non contiene: l'aumento degli affitti è indicato insieme alla concorrenza delle vendite online e dei centri commerciali (inferenza)."
+ },
+ {
+  "id": 1239,
+  "level": 2,
+  "format": "epso4",
+  "tag": "scope",
+  "difficulty": 2,
+  "topic": "spesa delle famiglie per l'istruzione",
+  "passage": "Secondo l'indagine sui consumi dell'istituto di statistica di un paese europeo, le famiglie con almeno un figlio tra 6 e 18 anni spendono in media 1.100 euro all'anno per l'istruzione: il 45% per libri e materiale scolastico, il 30% per lezioni private e corsi di recupero, il resto per trasporto, mensa e gite. Le famiglie del quinto più ricco spendono circa quattro volte quelle del quinto più povero, soprattutto per la maggiore spesa in lezioni private. In rapporto alla spesa complessiva della famiglia, tuttavia, il peso dell'istruzione è simile nei due gruppi. Lo Stato rimborsa il costo dei libri di testo alle famiglie con un reddito inferiore a una soglia fissata ogni anno; il rimborso non copre il resto del materiale scolastico. L'indagine segnala infine che, nell'ultimo anno, il 18% delle famiglie del quinto più povero ha rinunciato per motivi economici ad almeno un'attività scolastica a pagamento, come una gita o un corso.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Le famiglie con figli tra 6 e 18 anni spendono in media oltre 300 euro l'anno in lezioni private e corsi di recupero.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Nell'ultimo anno il 18% delle famiglie con figli tra 6 e 18 anni ha rinunciato ad almeno un'attività scolastica a pagamento.",
+    "trap": "scope"
+   },
+   {
+    "letter": "C",
+    "text": "Tutte le famiglie del quinto più povero hanno diritto al rimborso dei libri di testo.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Per le famiglie del quinto più povero la spesa per l'istruzione pesa sul bilancio meno che per quelle del quinto più ricco.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "spendono in media 1.100 euro all'anno per l'istruzione: il 45% per libri e materiale scolastico, il 30% per lezioni private e corsi di recupero",
+  "explanation": "A è corretta: il 30% di 1.100 euro, la quota destinata a lezioni private e corsi di recupero, corrisponde a 330 euro, più di 300. B estende a tutte le famiglie con figli in età scolare il 18%, che riguarda quelle del quinto più povero (ambito). C dà per certo un diritto che dipende da una soglia di reddito fissata ogni anno: il brano non dice che tutte le famiglie del quinto più povero vi rientrino (quantificatore). D deduce un peso minore da una spesa minore in valore assoluto, mentre il brano precisa che il peso dell'istruzione sulla spesa complessiva è «simile nei due gruppi» (inferenza)."
+ },
+ {
+  "id": 1240,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 3,
+  "topic": "welfare aziendale",
+  "passage": "Un'indagine di un'associazione di imprese su 1.200 aziende associate mostra che il 58% offre ai dipendenti servizi di welfare aziendale, cioè beni e servizi forniti in aggiunta alla retribuzione, come rimborsi delle spese scolastiche, assistenza sanitaria integrativa, buoni per la spesa o abbonamenti al trasporto pubblico. La quota sale all'85% tra le aziende con più di 250 dipendenti e scende al 40% tra quelle con meno di 50. Nel paese in cui opera l'associazione, questi benefici non sono soggetti né a imposte né a contributi entro una soglia annua, purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone. Le aziende indicano come principale vantaggio la maggiore capacità di trattenere il personale qualificato. Tra i dipendenti che hanno accesso a un piano di welfare, tuttavia, solo il 45% lo utilizza per intero, soprattutto perché conosce poco i servizi disponibili.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La maggior parte dei dipendenti che hanno accesso a un piano di welfare non lo utilizza mai.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Un beneficio concesso a un solo dipendente non è esente da imposte e contributi.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "I piani di welfare hanno ridotto le dimissioni del personale qualificato nelle aziende associate.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "Il 40% delle aziende associate con più di 250 dipendenti non offre servizi di welfare.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone",
+  "explanation": "B è corretta: i benefici sono esenti da imposte e contributi «purché siano offerti a tutti i dipendenti o a intere categorie di essi e non a singole persone»; un beneficio riservato a un solo dipendente non rispetta questa condizione. A trasforma il 55% di dipendenti che non utilizzano il piano per intero in una maggioranza che non lo utilizza mai (parafrasi). C presenta come effetto accertato, una riduzione delle dimissioni, quello che le aziende indicano soltanto come principale vantaggio: il brano riporta la loro valutazione, non dati sulle dimissioni (inferenza). D attribuisce alle aziende con più di 250 dipendenti il 40%, che è la quota di aziende con meno di 50 dipendenti che offrono servizi di welfare; tra le più grandi non li offre il 15% (ambito).",
+  "review": "Trappola di C: parafrasi → inferenza, come gli altri casi «presenta come accertato un effetto» della banca (1144 C, 1167 A, 1227 B); spiegazione allineata. Contenuto ok: «Le aziende indicano come principale vantaggio» è una valutazione dichiarata e il brano non ha dati sulle dimissioni, quindi C non è un secondo corretto; B segue da «non a singole persone»."
+ }
+]

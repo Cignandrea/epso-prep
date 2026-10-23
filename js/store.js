@@ -94,7 +94,7 @@ App.store = (() => {
   // I dati letti dal database arrivano congelati: se ne salva una copia, che il resto dell'app può modificare.
   function applyRemote(name, value, stamp) { silent = true; try { write(name, value == null ? value : JSON.parse(JSON.stringify(value)), { stamp }); } finally { silent = false; } }
 
-  const DEFAULT_SETTINGS = { confidence: true, microVfn: true, prereqDone: false, version: 2 };
+  const DEFAULT_SETTINGS = { confidence: true, microVfn: true, prereqDone: false, officialDone: false, version: 2 };
   const settings = () => ({ ...DEFAULT_SETTINGS, ...read('settings', {}) });
   const setSetting = (k, v) => write('settings', { ...settings(), [k]: v });
 

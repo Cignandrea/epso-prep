@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1141,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave da «non permette di risalire a singoli individui». A: media → ciascuna area; B: piano presentato come fatto; D: condizione inventata su un limite senza eccezioni."
+ },
+ {
+  "id": 1142,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D è il complemento di «solo un campione su quattro rispettava già il tetto». B: 1,7 − 1,6 = 0,1, non 0,2."
+ },
+ {
+  "id": 1143,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Quasi letterale («telefonano a tutte le persone iscritte»). Distrattori netti: item facile, coerente con la difficoltà 2."
+ },
+ {
+  "id": 1144,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Item solido (A: 18 su 40, cioè meno della metà). Corretta solo la spiegazione di C: «la conclusione che il consorzio esclude» insegnava che «non dimostrato» equivale a «falso»."
+ },
+ {
+  "id": 1145,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave dalla clausola sulle imprese. B: sequenza invertita; C: «esclusivamente»; D: esclusione al posto della tariffa. Chiave unica permissiva («può») contro obbligo/assoluto/divieto: lieve, B non cade per sola forma."
+ },
+ {
+  "id": 1146,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "100 − 78 = 22%, più di un quinto. C confonde le coordinate oscurate con le osservazioni escluse."
+ },
+ {
+  "id": 1147,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave da «indica sempre il documento». A: attribuisce all'assistente la richiesta dell'utente; B: estende a tutte le conversazioni il dato di un campione."
+ },
+ {
+  "id": 1148,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Costi a carico della municipalizzata, entità distinta dall'operatore. A: 1.000 su 9.000 ≈ 11%, oltre un quarto solo a pieno regime."
+ },
+ {
+  "id": 1149,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«Nessuno pienamente conforme» = tutti con carenze. B smentita anche dal campione manuale (0 su 400)."
+ },
+ {
+  "id": 1150,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«Pazienti interessati» = quelli i cui dati sono stati copiati. C: 60.000 su 450.000."
+ },
+ {
+  "id": 1151,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave robusta: 20/140 = 1/7; anche se le 20 fossero in aggiunta, 20/160 < 1/6. Give-away: tutti e tre i distrattori avevano un assoluto; tolto «Soltanto» da D, che resta una trappola di attribuzione smentita."
+ },
+ {
+  "id": 1152,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave da «tutti i risultati … sono controllati». A: pseudonimizzati ≠ anonimi; C: scaricare non è possibile «in nessun caso»."
+ },
+ {
+  "id": 1153,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«Scuole non coinvolte» = programma non attivo. C non stabilita: il consenso vale per i minorenni."
+ },
+ {
+  "id": 1154,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "84 / 2 = 42. B: il 70% è calcolato sugli iscritti (84/120); sui diplomati è l'87,5% (84/96)."
+ },
+ {
+  "id": 1155,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "800 × 3 = 2.400 < 2.500: il tetto si raggiunge al quarto accredito. A inverte condizione necessaria e sufficiente. Residuo lieve: B è la più lunga e l'unica senza parola-spia (A «qualsiasi», C «riservato», D «già»); non corretta, gli assoluti forti sono uno solo."
+ },
+ {
+  "id": 1156,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "5 anni mancanti su 10 = metà. B: la causa principale è smentita (saldo naturale)."
+ },
+ {
+  "id": 1157,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Lingua parlata in casa stimata dalle indagini. B: «un terzo del» ≠ «un terzo in meno». D smentita da «non devono più rispondere tutte nello stesso anno»."
+ },
+ {
+  "id": 1158,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«In larga parte … solo in parte» = soprattutto. B: 12% delle donne ≠ 12% dei nati (nel capoluogo la fecondità è più bassa)."
+ },
+ {
+  "id": 1159,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Tariffa che «si azzera». C: priorità invertita; D: sanzione inventata."
+ },
+ {
+  "id": 1160,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "4 strutture esistenti + 2 temporanee. Il villaggio non è tra i sei impianti, quindi non crea un secondo caso."
+ }
+]

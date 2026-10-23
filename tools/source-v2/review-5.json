@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1181,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "420/350: +70, cioè un quinto esatto. B: «resta inferiore» non dice nulla sulla variazione della quota. D è smentita da «è stato negato»."
+ },
+ {
+  "id": 1182,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Chiave solida: gli intervistati sono tutti acquirenti. Nel brano ho corretto un fatto reale: l'etichetta UE delle lavatrici indica i kWh per 100 cicli, non il consumo annuo. «Consumo annuo» → «consumo di energia»."
+ },
+ {
+  "id": 1183,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D = «raccoglie le richieste … e le inoltra al servizio competente». Ogni distrattore è smentito da una frase esplicita: direzioni regionali, «propria amministrazione», 70%."
+ },
+ {
+  "id": 1184,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "24 − 10 = 14 composizioni prive, più delle 10 dotate. C (il dubbio dell'autore) regge: «nessun treno» non è stabilito, perché la flotta si adegua «nei prossimi tre anni» e i vecchi sistemi restano in parallelo proprio per i treni non adeguati."
+ },
+ {
+  "id": 1185,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Fatti verificati sul testo consolidato della dir. 2011/83/UE (versione del 27/09/2026): 14 giorni dalla consegna (art. 9), 12 mesi in più senza informativa (art. 10), rimborso entro 14 giorni con la consegna standard, trattenuto fino al reso o alla prova di spedizione (art. 13), reso a carico del consumatore salvo accordo (art. 14), eccezioni dell'art. 16 c–e. Sugli acquisti tra privati, Your Europe conferma l'esclusione."
+ },
+ {
+  "id": 1186,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«seguiti dagli apparecchi elettrici» ⇒ meno misure sugli apparecchi elettrici. B: le misure correttive le ha adottate l'importatore, non il produttore."
+ },
+ {
+  "id": 1187,
+  "blind": "A",
+  "key": "A",
+  "confidence": "media",
+  "verdict": "ok",
+  "note": "Alla cieca esitavo su «inutilizzate»/«tutte»; dopo la revisione la chiave è solida. «le somme non spese entro quella data tornano» vale anche per le somme assegnate (64 progetti, 45 milioni pagati). B: «potrà». D: «soprattutto» contro «in misura minore»."
+ },
+ {
+  "id": 1188,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Il consenso è esplicito nel brano. B rovescia «purché la ricetta non lo vieti espressamente»."
+ },
+ {
+  "id": 1189,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«non stabilisce quali misure adottare». B inverte la causa (la dose è stata abbassata per gli studi sugli animali). C è smentita dall'esposizione media sotto soglia in tutte le fasce d'età."
+ },
+ {
+  "id": 1190,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Fatti verificati: 24 lingue ufficiali (european-union.europa.eu), 552 combinazioni (Parlamento europeo, Corte di giustizia), lingue pivot come ponte (CESE, Corte di giustizia). C: un risparmio «minimo» resta un risparmio."
+ },
+ {
+  "id": 1191,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "B: tra i pacchi controllati, quasi metà contro 1 su 5, margine netto. D (riscritta dall'autore) è netta per «altrimenti alla consegna»; l'etichetta «negazione» è coerente con il resto della banca. Nel brano ho corretto un dettaglio reale: la dichiarazione la trasmettono corrieri e operatori postali, non il venditore o la piattaforma."
+ },
+ {
+  "id": 1192,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«principalmente» le acque basse, «in parte» la conca. D è un controfattuale non stabilito, perché anche la conca ha inciso."
+ },
+ {
+  "id": 1193,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Un terzo dal fondo, due terzi in parti uguali ⇒ 600 milioni ciascuno. B confonde l'utilizzo medio con il tempo a piena capacità."
+ },
+ {
+  "id": 1194,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "7 attivazioni su 9. C (il dubbio dell'autore) regge: le attivazioni sono richieste d'aiuto fatte quando le risorse nazionali non bastano, non misurano la frequenza delle emergenze. A è letterale, quindi un candidato attento non preferisce C."
+ },
+ {
+  "id": 1195,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Chiave (il dubbio dell'autore) solida anche senza «anche»: «entro trenta giorni» include logicamente «entro sette», e il «7% in meno» lo conferma per l'anno scorso. «Almeno tante» è la formula esatta, perché l'uguaglianza è possibile."
+ },
+ {
+  "id": 1196,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«significativa solo per quelle che hanno ottenuto il coinvestimento» ⇒ non significativa per le altre. D: «potevano» esprime un'ipotesi."
+ },
+ {
+  "id": 1197,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Circa 3.500 contro 3.100 (metà di 6.200): margine di 400, sufficiente anche con «circa»."
+ },
+ {
+  "id": 1198,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Approvato −20% contro −30% raccomandato ⇒ totale più alto. B, C e D sono smentite da frasi esplicite."
+ },
+ {
+  "id": 1199,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "«soprattutto nella gestione degli accessi e nell'aggiornamento dei programmi» ⇒ non solo gli accessi. C: il 60% si riferisce al totale, non a ogni settore."
+ },
+ {
+  "id": 1200,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "Fatti verificati sul reg. 261/2004 (Your Europe): scelta tra rimborso e volo alternativo; 250–600 €; niente compensazione con almeno 14 giorni di preavviso o in circostanze eccezionali; ritardo all'arrivo di almeno 3 ore; reclamo prima alla compagnia, poi all'organismo nazionale. L'assistenza è dovuta anche in circostanze eccezionali (CGUE C-12/11, McDonagh). L'accordo provvisorio del 15/06/2026 sulla revisione, non ancora adottato, mantiene le 3 ore e i 250/400/600 €."
+ }
+]

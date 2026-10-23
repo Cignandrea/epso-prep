@@ -1,0 +1,744 @@
+[
+  {
+    "id": 1141,
+    "level": 2,
+    "format": "epso4",
+    "tag": "quantificatore",
+    "difficulty": 2,
+    "topic": "sorveglianza delle acque reflue",
+    "passage": "Da due anni l'agenzia sanitaria nazionale analizza le acque reflue di 48 impianti di depurazione, che servono complessivamente circa il 40% della popolazione. I campioni, prelevati due volte alla settimana all'ingresso degli impianti, vengono esaminati in laboratorio per individuare tracce genetiche di virus respiratori. Secondo il rapporto annuale, l'aumento della concentrazione virale nei reflui ha preceduto in media di sei giorni quello dei ricoveri registrati negli ospedali delle stesse aree. Il metodo presenta tuttavia alcuni limiti: la concentrazione misurata risente delle piogge, che diluiscono i reflui, e non consente di stimare con precisione il numero di persone infette. Poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema non permette inoltre di risalire a singoli individui. L'agenzia intende estendere il monitoraggio ad altri 30 impianti entro il prossimo anno, dando la precedenza alle zone rurali, oggi le meno coperte.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "In ciascuna delle aree monitorate, l'aumento della concentrazione virale ha preceduto di sei giorni quello dei ricoveri.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "B",
+        "text": "Il monitoraggio non è più limitato ai 48 impianti iniziali, perché è già stato esteso ad altri 30 impianti.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "C",
+        "text": "Il sistema di monitoraggio delle acque reflue non consente di identificare le singole persone infette.",
+        "trap": null
+      },
+      {
+        "letter": "D",
+        "text": "Se si tiene conto dell'effetto delle piogge, il metodo consente di stimare con precisione il numero di persone infette.",
+        "trap": "negazione"
+      }
+    ],
+    "correct": [
+      "C"
+    ],
+    "evidence": "il sistema non permette inoltre di risalire a singoli individui",
+    "explanation": "C è corretta: poiché ogni campione raccoglie gli scarichi di migliaia di abitazioni, il sistema «non permette inoltre di risalire a singoli individui», e quindi non consente di identificare chi è infetto. A trasforma in regola valida per ogni area un dato che il brano presenta come media, «in media di sei giorni» (quantificatore). B presenta come già avvenuta l'estensione ad altri 30 impianti, che l'agenzia intende realizzare entro il prossimo anno (tempo). D trasforma in possibilità condizionata un limite che il brano dichiara senza eccezioni: il metodo «non consente di stimare con precisione» il numero di persone infette (negazione)."
+  },
+  {
+    "id": 1142,
+    "level": 2,
+    "format": "epso4",
+    "tag": "scope",
+    "difficulty": 3,
+    "topic": "sale nel pane",
+    "passage": "L'anno scorso l'autorità sanitaria nazionale e le associazioni dei panificatori hanno firmato un accordo volontario per ridurre gradualmente il contenuto di sale nel pane fresco. L'accordo fissa un tetto di 1,5 grammi di sale per 100 grammi di prodotto, da raggiungere entro tre anni dalla firma: i panificatori hanno chiesto tempi lunghi perché, a loro giudizio, una riduzione troppo rapida altererebbe il sapore del pane. Le panetterie che aderiscono possono esporre un apposito logo, mentre quelle che non aderiscono non sono soggette ad alcuna sanzione. Nel primo controllo, effettuato su 600 campioni prelevati in panetterie aderenti, il contenuto medio è risultato pari a 1,7 grammi e solo un campione su quattro rispettava già il tetto. L'autorità ha annunciato che, se alla scadenza il valore medio supererà ancora 1,6 grammi, valuterà l'introduzione di un limite obbligatorio. Le associazioni dei consumatori chiedono che i controlli si estendano anche al pane confezionato venduto nei supermercati, attualmente escluso dall'accordo.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Allo scadere dei tre anni, il tetto di 1,5 grammi diventerà obbligatorio per tutte le panetterie.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "B",
+        "text": "Nel primo controllo, la media superava di 0,2 grammi la soglia fissata per valutare un limite obbligatorio.",
+        "trap": "scope"
+      },
+      {
+        "letter": "C",
+        "text": "Le panetterie aderenti che superano il tetto perdono il diritto di esporre il logo dell'accordo.",
+        "trap": "fuori-testo"
+      },
+      {
+        "letter": "D",
+        "text": "Nel primo controllo, tre campioni su quattro superavano il tetto fissato dall'accordo.",
+        "trap": null
+      }
+    ],
+    "correct": [
+      "D"
+    ],
+    "evidence": "solo un campione su quattro rispettava già il tetto",
+    "explanation": "D è corretta: se «solo un campione su quattro rispettava già il tetto», gli altri tre campioni su quattro lo superavano. A trasforma in certezza una misura che l'autorità si limita a valutare, e solo se alla scadenza la media supererà ancora 1,6 grammi (inferenza). B confonde le due soglie: la media di 1,7 grammi superava di 0,2 grammi il tetto di 1,5, ma di soli 0,1 grammi la soglia di 1,6 fissata per valutare un limite obbligatorio (ambito). C aggiunge una conseguenza, la perdita del logo, di cui il brano non parla (fuori testo)."
+  },
+  {
+    "id": 1143,
+    "level": 2,
+    "format": "epso4",
+    "tag": "scope",
+    "difficulty": 2,
+    "topic": "piano caldo per anziani soli",
+    "passage": "Durante l'estate il comune attiva un piano di prevenzione degli effetti del caldo rivolto alle persone con più di 75 anni che vivono sole. Il piano si basa su un bollettino giornaliero con tre livelli di rischio, elaborato dal servizio meteorologico regionale. Quando viene dichiarato il livello più alto, i volontari della protezione civile telefonano a tutte le persone iscritte nell'elenco comunale e, se necessario, organizzano una visita a domicilio. L'iscrizione all'elenco è gratuita e avviene su richiesta dell'interessato o di un familiare; il medico di famiglia può segnalare i propri assistiti solo con il loro consenso. La scorsa estate gli iscritti erano 2.300, su circa 9.000 residenti nella fascia di età interessata. Nei giorni di allerta il comune apre inoltre cinque centri climatizzati, dalle 11 alle 18. Per il prossimo anno è allo studio un accordo con le farmacie per distribuire materiale informativo.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Il bollettino giornaliero con i tre livelli di rischio è elaborato dai volontari della protezione civile.",
+        "trap": "scope"
+      },
+      {
+        "letter": "B",
+        "text": "Quando scatta il livello più alto, ogni persona iscritta all'elenco viene chiamata dai volontari.",
+        "trap": null
+      },
+      {
+        "letter": "C",
+        "text": "Il livello di rischio più alto viene dichiarato quando la temperatura supera i 35 gradi.",
+        "trap": "fuori-testo"
+      },
+      {
+        "letter": "D",
+        "text": "Il medico di famiglia non può segnalare al comune i propri assistiti per l'iscrizione all'elenco.",
+        "trap": "negazione"
+      }
+    ],
+    "correct": [
+      "B"
+    ],
+    "evidence": "i volontari della protezione civile telefonano a tutte le persone iscritte nell'elenco comunale",
+    "explanation": "B è corretta: al livello più alto «i volontari della protezione civile telefonano a tutte le persone iscritte nell'elenco comunale». A attribuisce il bollettino ai volontari della protezione civile, mentre è elaborato dal servizio meteorologico regionale (ambito). C aggiunge una soglia di temperatura che il brano non indica (fuori testo). D legge come divieto una facoltà soggetta a condizione: il medico può segnalare i propri assistiti, purché con il loro consenso (negazione)."
+  },
+  {
+    "id": 1144,
+    "level": 2,
+    "format": "epso4",
+    "tag": "fuori-testo",
+    "difficulty": 2,
+    "topic": "replicazione di studi scientifici",
+    "passage": "Un consorzio di 32 laboratori universitari ha tentato di replicare 40 esperimenti di psicologia sociale pubblicati nell'ultimo decennio su riviste di primo piano. Gli esperimenti sono stati estratti a sorte tra quelli che soddisfacevano criteri di fattibilità stabiliti in anticipo. Per ciascun esperimento, il protocollo è stato concordato con gli autori originali e registrato pubblicamente prima della raccolta dei dati. I campioni utilizzati erano in media quattro volte più numerosi di quelli degli studi originali. L'effetto descritto in origine è stato confermato in 22 casi; anche in questi, tuttavia, la sua ampiezza è risultata in media pari a circa la metà di quella riportata. Nei restanti esperimenti non è stato osservato alcun effetto statisticamente significativo. Il consorzio avverte che un mancato riscontro non dimostra che l'effetto originale fosse inesistente, perché può dipendere anche da differenze culturali tra le popolazioni studiate, e raccomanda alle riviste di pubblicare le replicazioni indipendentemente dal loro esito.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Nella maggior parte degli esperimenti replicati non è stato osservato alcun effetto statisticamente significativo.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "B",
+        "text": "Le riviste di primo piano rifiutano di norma le replicazioni che non confermano i risultati originali.",
+        "trap": "fuori-testo"
+      },
+      {
+        "letter": "C",
+        "text": "Negli esperimenti non confermati, l'effetto descritto dagli studi originali era in realtà inesistente.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "D",
+        "text": "Il consorzio raccomanda di pubblicare le replicazioni anche quando non confermano l'effetto originale.",
+        "trap": null
+      }
+    ],
+    "correct": [
+      "D"
+    ],
+    "evidence": "raccomanda alle riviste di pubblicare le replicazioni indipendentemente dal loro esito",
+    "explanation": "D è corretta: il consorzio «raccomanda alle riviste di pubblicare le replicazioni indipendentemente dal loro esito», quindi anche quando non confermano l'effetto originale. A è smentita dai numeri: gli esperimenti senza effetto significativo sono 18 su 40 (i 40 meno i 22 confermati), cioè meno della metà (quantificatore). B descrive una prassi delle riviste che il brano non riporta: la raccomandazione del consorzio non dice come si comportino oggi (fuori testo). C presenta come accertata una conclusione che i dati non autorizzano: il consorzio avverte che un mancato riscontro «non dimostra che l'effetto originale fosse inesistente» (inferenza).",
+    "review": "Spiegazione di C precisata: il consorzio non «esclude» l'inesistenza dell'effetto, dice che non è dimostrata; «non dimostrato» non equivale a «falso». Brano, opzioni e chiave invariati."
+  },
+  {
+    "id": 1145,
+    "level": 2,
+    "format": "epso4",
+    "tag": "tempo",
+    "difficulty": 2,
+    "topic": "centro di calcolo ad alte prestazioni",
+    "passage": "Il nuovo centro nazionale di calcolo ad alte prestazioni mette a disposizione della comunità scientifica circa 400 milioni di ore-processore all'anno, assegnate tramite due bandi semestrali. Il 70% delle ore è riservato a progetti di università ed enti pubblici di ricerca, il 20% a imprese e il restante 10% a richieste urgenti, come quelle legate a emergenze sanitarie o ambientali. Le proposte sono valutate da esperti esterni in base al merito scientifico e alla capacità di utilizzare in modo efficiente l'infrastruttura. I gruppi di ricerca pubblici accedono gratuitamente, a condizione di pubblicare i risultati entro due anni dalla conclusione del progetto. Le imprese possono invece mantenere riservati i risultati, ma in tal caso pagano una tariffa oraria; se accettano di pubblicarli, l'accesso è gratuito anche per loro. Nel primo bando le ore richieste sono state pari al triplo di quelle disponibili. Per il secondo bando il centro ha quindi ridotto il numero massimo di ore assegnabili a ciascun progetto.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Un'impresa può utilizzare gratuitamente il centro se accetta di pubblicare i propri risultati.",
+        "trap": null
+      },
+      {
+        "letter": "B",
+        "text": "I gruppi di ricerca pubblici devono pubblicare i risultati prima di ottenere l'accesso gratuito.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "C",
+        "text": "Le proposte sono valutate dagli esperti esclusivamente in base al merito scientifico.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "D",
+        "text": "Le imprese che preferiscono mantenere riservati i risultati non possono accedere al centro.",
+        "trap": "negazione"
+      }
+    ],
+    "correct": [
+      "A"
+    ],
+    "evidence": "se accettano di pubblicarli, l'accesso è gratuito anche per loro",
+    "explanation": "A è corretta: per le imprese il brano prevede che, «se accettano di pubblicarli, l'accesso è gratuito anche per loro». B inverte la sequenza: i gruppi pubblici devono pubblicare i risultati entro due anni dalla conclusione del progetto, non prima di accedere al centro (tempo). C riduce a un solo criterio una valutazione che considera anche la capacità di utilizzare in modo efficiente l'infrastruttura (quantificatore). D trasforma in esclusione una condizione economica: le imprese che mantengono riservati i risultati accedono comunque, pagando una tariffa oraria (negazione)."
+  },
+  {
+    "id": 1146,
+    "level": 2,
+    "format": "epso4",
+    "tag": "parafrasi",
+    "difficulty": 3,
+    "topic": "scienza partecipata sugli anfibi",
+    "passage": "Un museo di storia naturale coordina da tre anni un progetto di scienza partecipata sugli anfibi, con l'obiettivo di documentare la presenza delle diverse specie e i loro periodi di riproduzione nel corso dell'anno. I volontari, oltre 5.000 nell'ultima stagione, fotografano rane, rospi e tritoni osservati in stagni, giardini e campi e caricano le immagini in un'applicazione gratuita, indicando luogo e data. Ogni segnalazione viene esaminata da un erpetologo del museo prima di entrare nella banca dati: lo scorso anno ne è stato convalidato il 78%, mentre le altre sono state scartate perché dalle foto non era possibile riconoscere la specie. I dati convalidati sono liberamente consultabili online, ma le coordinate esatte delle specie rare vengono oscurate per proteggerne gli habitat. Il museo sottolinea che le segnalazioni si concentrano nelle aree urbane, dove vive la maggior parte dei partecipanti, e che quindi non descrivono in modo uniforme la distribuzione degli anfibi nel territorio regionale.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Nel territorio regionale gli anfibi sono più numerosi nelle aree urbane che nelle campagne.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "B",
+        "text": "Lo scorso anno le segnalazioni scartate hanno superato un quinto di quelle esaminate.",
+        "trap": null
+      },
+      {
+        "letter": "C",
+        "text": "Le osservazioni relative alle specie rare non compaiono tra i dati consultabili online.",
+        "trap": "parafrasi"
+      },
+      {
+        "letter": "D",
+        "text": "Le segnalazioni vengono convalidate dai volontari più esperti prima di entrare nella banca dati.",
+        "trap": "scope"
+      }
+    ],
+    "correct": [
+      "B"
+    ],
+    "evidence": "lo scorso anno ne è stato convalidato il 78%, mentre le altre sono state scartate",
+    "explanation": "B è corretta: se lo scorso anno è stato convalidato il 78% delle segnalazioni e «le altre sono state scartate», gli scarti sono stati il 22%, cioè più di un quinto. A ricava la distribuzione degli anfibi da quella delle segnalazioni, che secondo il museo si concentrano dove vivono i partecipanti e non descrivono in modo uniforme il territorio (inferenza). C confonde l'oscuramento delle coordinate esatte con l'esclusione delle osservazioni, che restano consultabili (parafrasi). D attribuisce ai volontari la convalida, che spetta a un erpetologo del museo (ambito)."
+  },
+  {
+    "id": 1147,
+    "level": 2,
+    "format": "epso4",
+    "tag": "inferenza",
+    "difficulty": 3,
+    "topic": "assistente virtuale della previdenza",
+    "passage": "Da gennaio l'ente previdenziale nazionale offre sul proprio sito un assistente virtuale basato sull'intelligenza artificiale, che risponde alle domande più frequenti su pensioni, contributi e prestazioni familiari. Il servizio è attivo a qualsiasi ora ed è disponibile in tre lingue. L'assistente utilizza esclusivamente le circolari e le guide pubblicate dall'ente e indica sempre il documento da cui ricava ciascuna risposta. Non ha accesso alle posizioni contributive personali e non può avviare pratiche né decidere sulle domande di prestazione: in questi casi indirizza l'utente all'area riservata o a un operatore. Nei primi sei mesi ha gestito 1,2 milioni di conversazioni; nel 15% dei casi l'utente ha chiesto di parlare con un operatore. Il personale dell'ente ha verificato un campione di 3.000 risposte e ne ha giudicate corrette il 91%. L'ente prevede di estendere il servizio alle domande sulle indennità di disoccupazione dopo una nuova fase di verifica.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Nel 15% delle conversazioni è stato l'assistente a proporre all'utente di parlare con un operatore.",
+        "trap": "scope"
+      },
+      {
+        "letter": "B",
+        "text": "L'assistente ha fornito risposte corrette nel 91% delle conversazioni gestite.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "C",
+        "text": "L'assistente non è in grado di rispondere alle domande sulle prestazioni familiari.",
+        "trap": "negazione"
+      },
+      {
+        "letter": "D",
+        "text": "Per ogni risposta, l'assistente segnala la circolare o la guida dell'ente su cui si basa.",
+        "trap": null
+      }
+    ],
+    "correct": [
+      "D"
+    ],
+    "evidence": "utilizza esclusivamente le circolari e le guide pubblicate dall'ente e indica sempre il documento da cui ricava ciascuna risposta",
+    "explanation": "D è corretta: l'assistente usa «esclusivamente le circolari e le guide» dell'ente e «indica sempre il documento da cui ricava ciascuna risposta». A attribuisce all'assistente un'iniziativa che il brano riferisce agli utenti: nel 15% dei casi è stato l'utente a chiedere di parlare con un operatore (ambito). B estende a tutte le conversazioni il 91% di risposte corrette rilevato su un campione di 3.000 risposte (inferenza). C confonde il divieto di decidere sulle domande di prestazione con l'impossibilità di rispondere, mentre le prestazioni familiari sono tra i temi trattati (negazione)."
+  },
+  {
+    "id": 1148,
+    "level": 2,
+    "format": "epso4",
+    "tag": "parafrasi",
+    "difficulty": 3,
+    "topic": "recupero di calore da un centro dati",
+    "passage": "Un operatore di servizi cloud ha inaugurato alla periferia della città un centro dati che cede parte del calore prodotto dai server alla rete di teleriscaldamento comunale. Il calore, che altrimenti verrebbe disperso nell'atmosfera, viene portato a una temperatura più elevata da pompe di calore e immesso nella rete, alla quale sono allacciati circa 9.000 appartamenti. Secondo l'operatore, a pieno regime l'impianto potrà coprire il fabbisogno di riscaldamento di 2.500 appartamenti; nel primo inverno, con il centro dati utilizzato al 40% della capacità, ne ha coperto circa 1.000. L'accordo con il comune prevede che il calore sia ceduto gratuitamente per dieci anni, mentre i costi delle pompe di calore sono a carico dell'azienda municipalizzata che gestisce la rete. Il centro dati utilizza energia elettrica proveniente interamente da fonti rinnovabili, acquistata con contratti pluriennali. Il comune presenta il progetto come parte del piano per ridurre l'uso di combustibili fossili nel riscaldamento.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Nel primo inverno il calore recuperato ha coperto il fabbisogno di oltre un quarto degli appartamenti allacciati alla rete.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "B",
+        "text": "L'energia elettrica usata dal centro dati è prodotta da impianti rinnovabili di proprietà dell'operatore.",
+        "trap": "parafrasi"
+      },
+      {
+        "letter": "C",
+        "text": "I costi delle pompe di calore non sono a carico dell'operatore di servizi cloud che ha inaugurato il centro dati.",
+        "trap": null
+      },
+      {
+        "letter": "D",
+        "text": "Il centro dati cede alla rete di teleriscaldamento comunale tutto il calore prodotto dai propri server.",
+        "trap": "quantificatore"
+      }
+    ],
+    "correct": [
+      "C"
+    ],
+    "evidence": "i costi delle pompe di calore sono a carico dell'azienda municipalizzata che gestisce la rete",
+    "explanation": "C è corretta: secondo l'accordo, «i costi delle pompe di calore sono a carico dell'azienda municipalizzata che gestisce la rete», quindi non dell'operatore di servizi cloud. A presenta come già raggiunta una quota che corrisponde al pieno regime: nel primo inverno sono stati coperti circa 1.000 appartamenti su 9.000, cioè circa l'11%, mentre oltre un quarto si avrebbe solo con i 2.500 previsti (tempo). B trasforma energia rinnovabile «acquistata con contratti pluriennali» in energia prodotta da impianti propri (parafrasi). D afferma che alla rete viene ceduto tutto il calore dei server, mentre il brano parla soltanto di una «parte del calore prodotto» (quantificatore)."
+  },
+  {
+    "id": 1149,
+    "level": 2,
+    "format": "epso4",
+    "tag": "inferenza",
+    "difficulty": 2,
+    "topic": "accessibilità dei siti pubblici",
+    "passage": "Un'agenzia nazionale per i servizi digitali ha pubblicato il primo rapporto sull'accessibilità dei siti web delle amministrazioni pubbliche per le persone con disabilità. Il monitoraggio si è svolto in due fasi. Nella prima, un software ha analizzato automaticamente 12.000 siti e ha individuato almeno un errore in nove casi su dieci; l'agenzia precisa però che gli strumenti automatici rilevano solo una parte dei problemi, come l'assenza di testi alternativi per le immagini, e non sono in grado di valutare se tali testi siano comprensibili. Nella seconda fase, esperti affiancati da utenti con disabilità visive e motorie hanno esaminato manualmente un campione di 400 siti: nessuno è risultato pienamente conforme ai requisiti. Nel campione, le carenze più frequenti riguardano i moduli online, spesso impossibili da compilare senza mouse, e i documenti pubblicati in formati non leggibili dai programmi di sintesi vocale. Le amministrazioni hanno ricevuto l'elenco degli errori riscontrati e dovranno correggerli entro un anno. Non sono previste sanzioni, ma i risultati del controllo successivo saranno resi pubblici.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "L'analisi automatica ha individuato almeno un errore in ciascuno dei 12.000 siti esaminati.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "B",
+        "text": "Circa un sito pubblico su dieci è pienamente accessibile alle persone con disabilità.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "C",
+        "text": "Nel campione esaminato manualmente, tutti i siti presentavano carenze rispetto ai requisiti.",
+        "trap": null
+      },
+      {
+        "letter": "D",
+        "text": "I risultati del controllo successivo sulle correzioni sono già stati resi pubblici.",
+        "trap": "tempo"
+      }
+    ],
+    "correct": [
+      "C"
+    ],
+    "evidence": "hanno esaminato manualmente un campione di 400 siti: nessuno è risultato pienamente conforme ai requisiti",
+    "explanation": "C è corretta: dei 400 siti esaminati manualmente «nessuno è risultato pienamente conforme ai requisiti», quindi ognuno presentava almeno una carenza. A estende a tutti i 12.000 siti un risultato che riguarda nove casi su dieci (quantificatore). B deduce la piena accessibilità dall'assenza di errori rilevati dal software, mentre l'agenzia avverte che gli strumenti automatici rilevano solo una parte dei problemi (inferenza). D presenta come già avvenuta una pubblicazione che il brano colloca nel futuro (tempo)."
+  },
+  {
+    "id": 1150,
+    "level": 2,
+    "format": "epso4",
+    "tag": "inferenza",
+    "difficulty": 2,
+    "topic": "attacco informatico a un'azienda sanitaria",
+    "passage": "Un'azienda sanitaria locale ha comunicato di aver subito un attacco informatico che ha reso inaccessibile per quattro giorni il sistema di prenotazione delle visite; durante l'interruzione le prenotazioni sono state raccolte per telefono. Secondo la ricostruzione dei tecnici, gli autori dell'attacco hanno copiato una parte dell'archivio amministrativo, contenente nomi, recapiti e date degli appuntamenti di circa 60.000 pazienti, su un totale di 450.000 assistiti; i referti clinici, conservati su server separati e cifrati, non risultano coinvolti. L'azienda ha notificato la violazione all'autorità di controllo entro 72 ore dalla scoperta e sta informando per lettera i pazienti interessati. Ha inoltre attivato un numero verde e invita a diffidare di messaggi che, a suo nome, chiedano dati bancari o codici di accesso. Le indagini sono ancora in corso e non è stato possibile stabilire se i dati sottratti siano stati diffusi. Entro la fine dell'anno l'azienda introdurrà l'autenticazione a due fattori per tutti i dipendenti.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "L'azienda sta comunicando per iscritto la violazione ai pazienti i cui dati sono stati copiati.",
+        "trap": null
+      },
+      {
+        "letter": "B",
+        "text": "I dati sottratti sono già stati usati per inviare ai pazienti messaggi che chiedono dati bancari.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "C",
+        "text": "L'attacco ha riguardato i dati amministrativi di tutti i pazienti dell'azienda sanitaria.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "D",
+        "text": "Gli autori dell'attacco hanno cancellato una parte dell'archivio amministrativo dell'azienda.",
+        "trap": "parafrasi"
+      }
+    ],
+    "correct": [
+      "A"
+    ],
+    "evidence": "sta informando per lettera i pazienti interessati",
+    "explanation": "A è corretta: l'azienda «sta informando per lettera i pazienti interessati», cioè quelli i cui dati sono stati copiati. B trasforma un invito alla prudenza in un fatto accaduto, mentre il brano precisa che non è stato possibile stabilire se i dati siano stati diffusi (inferenza). C estende a tutti i pazienti un attacco che ha riguardato i dati di circa 60.000 persone, su un totale di 450.000 assistiti (quantificatore). D sostituisce «copiato» con «cancellato», un'azione che il brano non riferisce (parafrasi)."
+  },
+  {
+    "id": 1151,
+    "level": 2,
+    "format": "epso4",
+    "tag": "negazione",
+    "difficulty": 3,
+    "topic": "videosorveglianza comunale",
+    "passage": "Il comune ha approvato il nuovo regolamento sulla videosorveglianza, che disciplina le 140 telecamere installate in strade, parchi e parcheggi pubblici. Le immagini sono conservate per sette giorni e poi cancellate automaticamente, salvo che siano richieste dall'autorità giudiziaria per un'indagine in corso. Nella centrale operativa possono visionarle soltanto gli agenti della polizia locale autorizzati, e ogni accesso viene registrato in un archivio consultabile dal responsabile della protezione dei dati. Venti telecamere, collocate agli ingressi della città, leggono anche le targhe dei veicoli per verificare in tempo reale l'assicurazione e la revisione. Il regolamento esclude espressamente il riconoscimento facciale. Ogni area videosorvegliata deve essere segnalata da cartelli ben visibili, collocati prima del raggio d'azione delle telecamere. I cittadini possono chiedere di accedere alle immagini che li riguardano entro il termine di conservazione, con una richiesta scritta che indichi data, ora e luogo della ripresa.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Le immagini registrate vengono cancellate in ogni caso al termine del settimo giorno.",
+        "trap": "negazione"
+      },
+      {
+        "letter": "B",
+        "text": "I cittadini possono chiedere in qualsiasi momento di accedere alle immagini che li riguardano.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "C",
+        "text": "Le telecamere che leggono anche le targhe dei veicoli sono meno di un sesto di quelle installate.",
+        "trap": null
+      },
+      {
+        "letter": "D",
+        "text": "Il responsabile della protezione dei dati è autorizzato a visionare le immagini registrate dalle telecamere.",
+        "trap": "scope"
+      }
+    ],
+    "correct": [
+      "C"
+    ],
+    "evidence": "Venti telecamere, collocate agli ingressi della città, leggono anche le targhe dei veicoli",
+    "explanation": "C è corretta: le telecamere che leggono le targhe sono 20 su 140, cioè un settimo del totale, meno di un sesto (che corrisponderebbe a circa 23 telecamere). A ignora l'eccezione prevista dal brano: le immagini non vengono cancellate se le richiede l'autorità giudiziaria per un'indagine in corso (negazione). B elimina il limite di tempo, perché l'accesso va chiesto «entro il termine di conservazione» (tempo). D attribuisce al responsabile della protezione dei dati la visione delle immagini, che nella centrale operativa è riservata agli agenti autorizzati della polizia locale, mentre il responsabile consulta l'archivio degli accessi (ambito).",
+    "review": "D senza «Soltanto»: tutti e tre i distrattori portavano un assoluto («in ogni caso», «in qualsiasi momento», «soltanto») e la chiave C si trovava per esclusione senza leggere il brano. D resta una trappola di attribuzione, ancora smentita. Spiegazione di D precisata con «nella centrale operativa»."
+  },
+  {
+    "id": 1152,
+    "level": 2,
+    "format": "epso4",
+    "tag": "negazione",
+    "difficulty": 2,
+    "topic": "laboratorio per dati sanitari pseudonimizzati",
+    "passage": "Un'agenzia regionale per la salute ha aperto un laboratorio che consente a università ed enti di ricerca di analizzare dati sanitari relativi a ricoveri, prescrizioni e visite specialistiche. I dati sono pseudonimizzati: nomi, indirizzi e codici identificativi vengono sostituiti da codici casuali, ma le informazioni restanti potrebbero in teoria permettere di risalire a singole persone. Per questo i ricercatori possono lavorare sui dati solo da postazioni situate nei locali dell'agenzia o, previa autorizzazione specifica, tramite un collegamento remoto protetto; in nessun caso possono scaricarli. Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia, che verifica che nessuna cella si riferisca a meno di dieci persone. Le domande di accesso sono esaminate da un comitato che valuta l'interesse pubblico dei progetti: nel primo anno ne sono state approvate 85 sulle 110 presentate. L'accesso è gratuito per gli enti pubblici, mentre gli istituti privati di ricerca versano un contributo annuale.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "I dati messi a disposizione sono anonimi e non permettono quindi di risalire alle singole persone.",
+        "trap": "parafrasi"
+      },
+      {
+        "letter": "B",
+        "text": "Ogni risultato destinato a uscire dal laboratorio viene prima verificato dal personale dell'agenzia.",
+        "trap": null
+      },
+      {
+        "letter": "C",
+        "text": "Con un'autorizzazione specifica, i ricercatori possono scaricare i dati sui propri computer.",
+        "trap": "negazione"
+      },
+      {
+        "letter": "D",
+        "text": "L'accesso al laboratorio è gratuito sia per gli enti di ricerca pubblici sia per quelli privati.",
+        "trap": "scope"
+      }
+    ],
+    "correct": [
+      "B"
+    ],
+    "evidence": "Prima di uscire dal laboratorio, tutti i risultati, come tabelle e grafici, sono controllati dal personale dell'agenzia",
+    "explanation": "B è corretta: il brano stabilisce che «prima di uscire dal laboratorio, tutti i risultati» sono controllati dal personale dell'agenzia. A confonde pseudonimizzazione e anonimato: secondo il brano, le informazioni restanti potrebbero in teoria permettere di risalire a singole persone (parafrasi). C applica allo scaricamento l'autorizzazione prevista per il collegamento remoto, mentre i dati non si possono scaricare «in nessun caso» (negazione). D estende la gratuità agli istituti privati, che invece versano un contributo annuale (ambito)."
+  },
+  {
+    "id": 1153,
+    "level": 2,
+    "format": "epso4",
+    "tag": "inferenza",
+    "difficulty": 2,
+    "topic": "tutoraggio contro l'abbandono scolastico",
+    "passage": "Per contrastare l'abbandono scolastico, una regione ha avviato un programma di tutoraggio nelle scuole secondarie di secondo grado con i tassi di abbandono più elevati. Agli studenti considerati a rischio in base alle assenze e ai risultati del primo trimestre viene offerto un tutor, che li incontra una volta alla settimana fino al termine dell'anno scolastico. La partecipazione è volontaria e, per i minorenni, richiede il consenso della famiglia. Nel primo anno hanno aderito 1.800 dei 2.400 studenti individuati. Una valutazione indipendente ha confrontato i partecipanti con studenti dal profilo simile di scuole non coinvolte: tra i primi le assenze sono diminuite in media del 30%, tra i secondi sono rimaste stabili. I valutatori avvertono però che è troppo presto per stabilire se il programma riduca l'abbandono, che potrà essere misurato solo al termine del ciclo di studi. La regione ha confermato il finanziamento per altri due anni.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Il programma di tutoraggio ha ridotto l'abbandono scolastico tra gli studenti che vi hanno partecipato.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "B",
+        "text": "Ciascuno degli studenti che hanno partecipato al programma ha ridotto le proprie assenze del 30%.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "C",
+        "text": "Gli studenti maggiorenni non possono aderire al programma senza il consenso della propria famiglia.",
+        "trap": "scope"
+      },
+      {
+        "letter": "D",
+        "text": "Gli studenti del gruppo di confronto frequentavano scuole in cui il programma non era attivo.",
+        "trap": null
+      }
+    ],
+    "correct": [
+      "D"
+    ],
+    "evidence": "ha confrontato i partecipanti con studenti dal profilo simile di scuole non coinvolte",
+    "explanation": "D è corretta: la valutazione ha confrontato i partecipanti con «studenti dal profilo simile di scuole non coinvolte», cioè di scuole in cui il programma non era attivo. A presenta come accertato un effetto sull'abbandono che, secondo i valutatori, è ancora troppo presto per stabilire (inferenza). B trasforma una diminuzione media delle assenze in un risultato ottenuto da ciascun partecipante (quantificatore). C estende ai maggiorenni l'obbligo del consenso della famiglia, che il brano prevede solo per i minorenni (ambito)."
+  },
+  {
+    "id": 1154,
+    "level": 2,
+    "format": "epso4",
+    "tag": "scope",
+    "difficulty": 3,
+    "topic": "formazione tecnica superiore in alternanza",
+    "passage": "Un istituto tecnico superiore ha avviato un percorso biennale in meccatronica, organizzato insieme a 25 imprese del territorio. La frequenza è gratuita e i contenuti dei corsi sono definiti con le imprese partner. Gli studenti trascorrono in azienda metà delle ore di formazione e, durante i periodi di lavoro, ricevono un'indennità mensile versata dall'impresa ospitante. Metà delle lezioni in aula è tenuta da professionisti provenienti dal mondo produttivo, l'altra metà da docenti dell'istituto. Al termine del percorso, chi supera l'esame finale ottiene un diploma di tecnico superiore riconosciuto a livello nazionale. Dei 120 iscritti al primo ciclo, 96 hanno conseguito il diploma; un anno dopo, 84 diplomati risultavano occupati, la metà dei quali presso le imprese partner. L'istituto sottolinea che questi risultati non possono essere confrontati direttamente con quelli dei corsi universitari, perché gli studenti sono selezionati con un colloquio di ammissione e le imprese partecipano alla scelta dei candidati.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Un anno dopo il diploma, 42 diplomati del primo ciclo lavoravano presso le imprese partner.",
+        "trap": null
+      },
+      {
+        "letter": "B",
+        "text": "Un anno dopo il diploma, risultava occupato il 70% dei diplomati del primo ciclo.",
+        "trap": "scope"
+      },
+      {
+        "letter": "C",
+        "text": "Il percorso offre ai diplomati prospettive di occupazione migliori di quelle dei corsi universitari.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "D",
+        "text": "Gli studenti ricevono l'indennità mensile anche nei periodi dedicati alle lezioni in aula.",
+        "trap": "tempo"
+      }
+    ],
+    "correct": [
+      "A"
+    ],
+    "evidence": "un anno dopo, 84 diplomati risultavano occupati, la metà dei quali presso le imprese partner",
+    "explanation": "A è corretta: un anno dopo, «84 diplomati risultavano occupati, la metà dei quali presso le imprese partner», cioè 42. B calcola la percentuale sugli iscritti invece che sui diplomati: 84 su 120 è il 70%, ma 84 su 96 diplomati è l'87,5% (ambito). C ricava un confronto con i corsi universitari che l'istituto stesso dichiara non possibile, perché gli studenti sono selezionati (inferenza). D estende l'indennità ai periodi in aula, mentre il brano la collega ai periodi di lavoro in azienda (tempo)."
+  },
+  {
+    "id": 1155,
+    "level": 2,
+    "format": "epso4",
+    "tag": "negazione",
+    "difficulty": 3,
+    "topic": "conto individuale di formazione",
+    "passage": "Un paese europeo ha deciso di introdurre, dal prossimo anno, un conto individuale di formazione per ogni lavoratore, dipendente o autonomo, alimentato con un credito di 500 euro all'anno. Le somme non utilizzate si accumulano fino a un massimo di 2.500 euro e restano disponibili anche in caso di cambio di lavoro o di disoccupazione. Il conto è personale e non può essere trasferito ad altre persone. Il credito può essere speso esclusivamente per i corsi inseriti in un catalogo nazionale, che comprende soltanto percorsi con una certificazione riconosciuta. Per i lavoratori privi di diploma di scuola secondaria il credito annuale sale a 800 euro, mentre il tetto resta invariato. In una sperimentazione condotta in tre regioni, il conto è stato utilizzato dal 35% dei lavoratori laureati e solo dal 12% di quelli senza diploma. Per ridurre questo divario, il governo intende affiancare al conto un servizio di orientamento gratuito, le cui modalità saranno definite entro sei mesi.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Il credito può essere speso per qualsiasi corso che rilasci una certificazione riconosciuta.",
+        "trap": "negazione"
+      },
+      {
+        "letter": "B",
+        "text": "Se non spende il credito, un lavoratore senza diploma raggiunge il tetto con il quarto accredito annuale.",
+        "trap": null
+      },
+      {
+        "letter": "C",
+        "text": "Il credito annuale di 800 euro è riservato ai lavoratori che si trovano in stato di disoccupazione.",
+        "trap": "scope"
+      },
+      {
+        "letter": "D",
+        "text": "Il servizio di orientamento gratuito è già a disposizione dei lavoratori senza diploma.",
+        "trap": "tempo"
+      }
+    ],
+    "correct": [
+      "B"
+    ],
+    "evidence": "Le somme non utilizzate si accumulano fino a un massimo di 2.500 euro",
+    "explanation": "B è corretta: con 800 euro all'anno, dopo tre accrediti il conto arriva a 2.400 euro e con il quarto raggiunge il massimo, perché le somme non utilizzate «si accumulano fino a un massimo di 2.500 euro» e per questi lavoratori il tetto «resta invariato». A inverte il rapporto tra catalogo e certificazione: il catalogo comprende solo corsi certificati, ma non è detto che comprenda tutti i corsi certificati, e il credito si spende esclusivamente per i corsi del catalogo (negazione). C attribuisce il credito maggiorato ai disoccupati, mentre spetta ai lavoratori privi di diploma (ambito). D presenta come già attivo un servizio le cui modalità devono ancora essere definite (tempo)."
+  },
+  {
+    "id": 1156,
+    "level": 2,
+    "format": "epso4",
+    "tag": "fuori-testo",
+    "difficulty": 3,
+    "topic": "spopolamento dei comuni montani",
+    "passage": "Negli ultimi vent'anni i 60 comuni montani di una provincia alpina hanno perso complessivamente il 18% dei residenti, mentre la popolazione del capoluogo è cresciuta del 4%. Il calo è dovuto soprattutto al saldo naturale negativo: nei comuni montani i decessi sono circa il triplo delle nascite. Per contrastare la tendenza, la provincia concede un contributo di 15.000 euro a chi acquista e ristruttura un'abitazione in uno di questi comuni e vi trasferisce la residenza per almeno dieci anni. Chi lascia il comune prima della scadenza deve restituire il contributo in proporzione agli anni mancanti. Nei primi due anni le domande accolte sono state 420, per il 60% presentate da famiglie con figli minorenni. Secondo l'ufficio statistico provinciale, i nuovi arrivi non bastano ancora a compensare il saldo naturale, ma nei comuni con più domande il numero degli iscritti alle scuole primarie si è stabilizzato.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Per ottenere il contributo occorre aver già risieduto nel comune per almeno dieci anni.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "B",
+        "text": "Il calo dei residenti si deve soprattutto al trasferimento dei giovani verso il capoluogo.",
+        "trap": "fuori-testo"
+      },
+      {
+        "letter": "C",
+        "text": "Nei comuni con più domande, il contributo ha fatto aumentare il numero delle nascite.",
+        "trap": "inferenza"
+      },
+      {
+        "letter": "D",
+        "text": "Chi lascia il comune dopo cinque anni deve restituire metà del contributo ricevuto.",
+        "trap": null
+      }
+    ],
+    "correct": [
+      "D"
+    ],
+    "evidence": "Chi lascia il comune prima della scadenza deve restituire il contributo in proporzione agli anni mancanti",
+    "explanation": "D è corretta: chi lascia il comune prima dei dieci anni restituisce il contributo «in proporzione agli anni mancanti»; dopo cinque anni ne mancano cinque su dieci, quindi va restituita la metà. A trasforma in requisito passato un impegno futuro: la residenza va mantenuta per dieci anni dopo il trasferimento, non maturata prima (tempo). B propone una spiegazione plausibile ma diversa da quella del brano, che attribuisce il calo soprattutto al saldo naturale negativo (fuori testo). C ricava un aumento delle nascite dalla stabilizzazione degli iscritti alle scuole primarie, che può dipendere anche dall'arrivo di famiglie con figli (inferenza)."
+  },
+  {
+    "id": 1157,
+    "level": 2,
+    "format": "epso4",
+    "tag": "parafrasi",
+    "difficulty": 3,
+    "topic": "censimento permanente",
+    "passage": "L'istituto statistico di un paese europeo ha sostituito il tradizionale censimento decennale, che prevedeva l'invio di un questionario a tutte le famiglie, con un censimento permanente. Il nuovo sistema combina i dati dei registri amministrativi, come le anagrafi comunali e gli archivi fiscali, con indagini campionarie annuali che coinvolgono a rotazione circa il 5% delle famiglie. Grazie ai registri, il numero dei residenti viene aggiornato ogni anno; le informazioni che i registri non contengono, come la lingua parlata in casa o il tipo di riscaldamento delle abitazioni, vengono invece stimate a partire dalle indagini. Secondo l'istituto, il nuovo sistema costa circa un terzo del precedente e riduce l'onere per le famiglie, che non devono più rispondere tutte nello stesso anno. Alcuni studiosi osservano però che nei comuni più piccoli, dove il campione comprende poche famiglie, le stime sono meno precise di quelle del censimento tradizionale.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Le stime prodotte dal censimento permanente sono meno precise di quelle del censimento tradizionale.",
+        "trap": "scope"
+      },
+      {
+        "letter": "B",
+        "text": "Secondo l'istituto, il censimento permanente costa un terzo in meno del sistema precedente.",
+        "trap": "parafrasi"
+      },
+      {
+        "letter": "C",
+        "text": "Il dato sulla lingua parlata in casa deriva da stime basate su indagini campionarie.",
+        "trap": null
+      },
+      {
+        "letter": "D",
+        "text": "Con il nuovo sistema, le famiglie non sono più tenute a rispondere ai questionari dell'istituto.",
+        "trap": "negazione"
+      }
+    ],
+    "correct": [
+      "C"
+    ],
+    "evidence": "le informazioni che i registri non contengono, come la lingua parlata in casa o il tipo di riscaldamento delle abitazioni, vengono invece stimate a partire dalle indagini",
+    "explanation": "C è corretta: la lingua parlata in casa è tra le informazioni che i registri non contengono e che «vengono invece stimate a partire dalle indagini» campionarie. A estende a tutte le stime una minore precisione che alcuni studiosi segnalano solo per i comuni più piccoli (ambito). B confonde «un terzo del precedente» con «un terzo in meno»: il nuovo sistema costa circa il 33% del vecchio, non il 67% (parafrasi). D legge «non devono più rispondere tutte nello stesso anno» come se le famiglie non dovessero più rispondere affatto (negazione)."
+  },
+  {
+    "id": 1158,
+    "level": 2,
+    "format": "epso4",
+    "tag": "scope",
+    "difficulty": 3,
+    "topic": "natalità",
+    "passage": "Secondo l'ultimo rapporto dell'ufficio statistico regionale, lo scorso anno nella regione sono nati 31.200 bambini, il 2,5% in meno rispetto all'anno precedente e il 20% in meno rispetto a dieci anni prima. Il calo ha interessato tutte le province, ma è stato più marcato nelle aree interne. L'età media delle madri alla nascita del primo figlio ha raggiunto i 32,4 anni. Il numero medio di figli per donna è sceso a 1,21; nel capoluogo regionale, dove risiede il 12% delle donne in età fertile, è pari a 1,05. Il rapporto osserva che il calo delle nascite dipende in larga parte dalla diminuzione delle donne tra i 25 e i 39 anni, nate in anni di bassa natalità, e solo in parte dalla minore propensione ad avere figli. Le proiezioni indicano che, anche ipotizzando un aumento della fecondità, il numero annuo delle nascite continuerà a diminuire almeno fino al 2035.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Secondo il rapporto, il calo delle nascite dipende soprattutto dal minor numero di donne tra i 25 e i 39 anni.",
+        "trap": null
+      },
+      {
+        "letter": "B",
+        "text": "Circa il 12% dei bambini nati lo scorso anno nella regione ha una madre che risiede nel capoluogo regionale.",
+        "trap": "scope"
+      },
+      {
+        "letter": "C",
+        "text": "Le nascite continueranno a diminuire fino al 2035 solo se la fecondità non aumenterà.",
+        "trap": "negazione"
+      },
+      {
+        "letter": "D",
+        "text": "Secondo il rapporto, la minore propensione ad avere figli è dovuta soprattutto all'aumento del costo delle abitazioni.",
+        "trap": "fuori-testo"
+      }
+    ],
+    "correct": [
+      "A"
+    ],
+    "evidence": "il calo delle nascite dipende in larga parte dalla diminuzione delle donne tra i 25 e i 39 anni",
+    "explanation": "A è corretta: il rapporto osserva che il calo «dipende in larga parte dalla diminuzione delle donne tra i 25 e i 39 anni» e solo in parte dalla minore propensione ad avere figli. B applica alle nascite una percentuale che il brano riferisce alle donne in età fertile residenti nel capoluogo, dove peraltro la fecondità è più bassa della media regionale (ambito). C trasforma in condizione un'ipotesi che il brano ha già considerato: le nascite continueranno a diminuire «anche ipotizzando un aumento della fecondità» (negazione). D attribuisce al rapporto una causa che il brano non menziona (fuori testo)."
+  },
+  {
+    "id": 1159,
+    "level": 2,
+    "format": "epso4",
+    "tag": "tempo",
+    "difficulty": 2,
+    "topic": "palestre scolastiche aperte allo sport",
+    "passage": "Con un accordo triennale, il comune ha messo a disposizione delle associazioni sportive dilettantistiche le palestre di 22 scuole primarie e secondarie di primo grado, in orario extrascolastico. Le palestre sono utilizzabili dal lunedì al venerdì dalle 17 alle 22 e il sabato pomeriggio, mentre la domenica restano chiuse. Le associazioni pagano una tariffa oraria ridotta, che si azzera per le attività rivolte a persone con disabilità. In cambio devono pulire gli spazi dopo ogni utilizzo e stipulare un'assicurazione per eventuali danni alle strutture. Le scuole mantengono comunque la priorità sugli spazi per le proprie attività pomeridiane, come i tornei studenteschi. Nel primo anno 64 associazioni hanno ottenuto almeno una fascia oraria, mentre 15 richieste non sono state accolte per mancanza di spazi. Il comune ha inoltre stanziato 1,2 milioni di euro per rinnovare entro due anni l'illuminazione e gli spogliatoi di otto palestre.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Il sabato le palestre sono a disposizione delle associazioni per l'intera giornata.",
+        "trap": "tempo"
+      },
+      {
+        "letter": "B",
+        "text": "Per le attività rivolte a persone con disabilità, le associazioni non pagano alcuna tariffa oraria.",
+        "trap": null
+      },
+      {
+        "letter": "C",
+        "text": "Nell'uso pomeridiano delle palestre, le associazioni hanno la precedenza sulle attività scolastiche.",
+        "trap": "scope"
+      },
+      {
+        "letter": "D",
+        "text": "Le associazioni che non puliscono gli spazi dopo l'uso perdono la fascia oraria assegnata.",
+        "trap": "fuori-testo"
+      }
+    ],
+    "correct": [
+      "B"
+    ],
+    "evidence": "Le associazioni pagano una tariffa oraria ridotta, che si azzera per le attività rivolte a persone con disabilità",
+    "explanation": "B è corretta: le associazioni pagano una tariffa oraria ridotta, «che si azzera per le attività rivolte a persone con disabilità». A estende all'intera giornata la disponibilità del sabato, che il brano limita al pomeriggio (tempo). C inverte la priorità: sono le scuole a mantenerla sugli spazi per le proprie attività pomeridiane (ambito). D aggiunge una sanzione che il brano non prevede: l'obbligo di pulizia è indicato, la conseguenza del mancato rispetto no (fuori testo)."
+  },
+  {
+    "id": 1160,
+    "level": 2,
+    "format": "epso4",
+    "tag": "parafrasi",
+    "difficulty": 3,
+    "topic": "eredità degli impianti sportivi",
+    "passage": "Per ospitare i giochi internazionali universitari, una città di medie dimensioni ha scelto di limitare al minimo le nuove costruzioni. Dei sei impianti utilizzati per gare e allenamenti, quattro erano strutture esistenti, ristrutturate per l'occasione; gli altri due, una pista di riscaldamento e una tribuna da 8.000 posti, erano strutture temporanee e sono già stati smontati. Il villaggio degli atleti, realizzato da un fondo immobiliare privato, è stato progettato fin dall'inizio per essere trasformato in residenza universitaria e accoglierà 1.100 studenti dal prossimo anno accademico. Il comitato organizzatore ha chiuso il bilancio con un attivo di 3 milioni di euro, che per statuto deve essere destinato allo sport di base nella regione. Uno studio commissionato dal comitato stima in 140 milioni di euro le ricadute economiche dell'evento sul territorio; alcuni economisti ne hanno però contestato il metodo, che non tiene conto della spesa che i residenti avrebbero comunque sostenuto in altri settori.",
+    "question": "Quale delle seguenti affermazioni è corretta?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Nessuno dei sei impianti utilizzati è stato costruito come struttura permanente per i giochi.",
+        "trap": null
+      },
+      {
+        "letter": "B",
+        "text": "Tutti e sei gli impianti utilizzati erano strutture già esistenti, ristrutturate in vista dei giochi.",
+        "trap": "quantificatore"
+      },
+      {
+        "letter": "C",
+        "text": "I giochi hanno prodotto sul territorio ricadute economiche per un valore di 140 milioni di euro.",
+        "trap": "parafrasi"
+      },
+      {
+        "letter": "D",
+        "text": "Il villaggio degli atleti ospita già 1.100 studenti nella nuova residenza universitaria.",
+        "trap": "tempo"
+      }
+    ],
+    "correct": [
+      "A"
+    ],
+    "evidence": "quattro erano strutture esistenti, ristrutturate per l'occasione; gli altri due, una pista di riscaldamento e una tribuna da 8.000 posti, erano strutture temporanee",
+    "explanation": "A è corretta: dei sei impianti, quattro erano strutture esistenti ristrutturate e gli altri due «erano strutture temporanee», quindi nessuno è stato costruito come impianto permanente per i giochi. B estende a tutti e sei gli impianti ciò che vale solo per quattro (quantificatore). C presenta come dato accertato una stima commissionata dal comitato, il cui metodo è per giunta contestato (parafrasi). D presenta come già avvenuto l'arrivo degli studenti, previsto dal prossimo anno accademico (tempo)."
+  }
+]

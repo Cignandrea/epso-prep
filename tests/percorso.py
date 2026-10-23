@@ -19,7 +19,7 @@ def check(name, ok, detail=''):
     checks.append((name, bool(ok)))
     print(('PASS' if ok else 'FAIL'), '-', name, ('— ' + str(detail)) if detail else '')
 
-# Data fissa: venerdì 23/10/2026 sera (fase Basi). Il test non dipende dal giorno in cui gira.
+# Data fissa: sabato 24/10/2026 mattina (fase Basi, obiettivo del fine settimana: 6 tappe). Il test non dipende dal giorno in cui gira.
 FAKE_NOW = "2026-10-24T09:00:00+02:00"
 CLOCK = """
 (() => { const fixed = new Date('%s').getTime(); const R = Date;
@@ -30,7 +30,9 @@ CLOCK = """
   window.Date = D; })();
 """ % FAKE_NOW
 
-VIEWPORTS = [('fold-esterno', 520, 820, True), ('fold-interno', 930, 700, True), ('pc', 1280, 800, False)]
+# Galaxy Z Fold 8 di Andrea, zoom dello schermo al minimo (densità 360 → 2,25 px per px CSS), app installata (PWA):
+# chiuso 1248×1972 → 555×825 utili; aperto 2448×1848 → 1088×780 in orizzontale, 821×1046 in verticale [V adb, 23/10].
+VIEWPORTS = [('fold8-chiuso', 555, 825, True), ('fold8-chiuso-orizz', 876, 520, True), ('fold8-aperto-orizz', 1088, 780, True), ('fold8-aperto-vert', 821, 1046, True), ('pc', 1280, 800, False)]
 
 def answer_current(page):
     opts = page.query_selector_all('#s-options .opt')
@@ -42,7 +44,7 @@ def answer_current(page):
 def run(p, vp):
     name, w, h, mobile = vp
     browser = p.chromium.launch()
-    ctx = browser.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2 if mobile else 1, is_mobile=mobile, has_touch=mobile)
+    ctx = browser.new_context(viewport={'width': w, 'height': h}, device_scale_factor=2.25 if mobile else 1, is_mobile=mobile, has_touch=mobile)
     ctx.add_init_script(CLOCK)
     page = ctx.new_page()
     if os.environ.get('STUB_ASTRATTO'):
@@ -51,11 +53,16 @@ def run(p, vp):
     page.on('pageerror', lambda e: errors.append(f'[{name}] {e}'))
     page.goto(f'http://127.0.0.1:{PORT}/index.html'); page.wait_for_timeout(400)
     tag = f'[{name}]'
-    check(f'{tag} home: un solo pulsante principale', page.is_visible('#btn-next') and page.text_content('#btn-next').strip() == 'Inizia', page.text_content('#btn-next'))
+    check(f'{tag} home: un solo pulsante principale', page.is_visible('#btn-next') and page.text_content('#btn-next').strip().startswith('Inizia'), page.text_content('#btn-next'))
     check(f'{tag} home: tappa 1 di 14', 'tappa 1 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
-    check(f'{tag} home: conto alla rovescia', 'tra 18 giorni' in page.text_content('#home-countdown'), page.text_content('#home-countdown'))
+    check(f'{tag} home: conto alla rovescia', page.text_content('#home-days').strip() == '18' and 'giorni alla Parte 1' in page.text_content('#home-unit'), page.text_content('#home-days'))
+    cells = page.query_selector_all('#cal-strip .cal-day')
+    today = page.query_selector('#cal-strip .cal-day.is-today .cal-num')
+    check(f'{tag} home: calendario di 20 giorni, oggi 24', len(cells) == 20 and today and today.text_content() == '24', len(cells))
+    check(f'{tag} home: due righelli delle soglie', len(page.query_selector_all('#home-gauges .gauge')) == 2)
     check(f'{tag} home: promemoria prerequisiti', page.is_visible('#todo-card'))
-    check(f'{tag} home: «Altro» chiuso', not page.is_visible('#btn-micro'))
+    check(f'{tag} home: strumenti a vista', page.is_visible('#btn-micro') and len(page.query_selector_all('.tools .tool-row')) == 6 and len(page.query_selector_all('.tools .chip')) == 3)
+    check(f'{tag} home: niente scorrimento orizzontale', page.evaluate('() => document.documentElement.scrollWidth <= window.innerWidth'))
     page.screenshot(path=f'{OUT}/percorso-{name}-home.png')
 
     # Tappa 1: scheda + 3 domande (verbale, numerico, astratto)
@@ -80,21 +87,46 @@ def run(p, vp):
             page.screenshot(path=f'{OUT}/percorso-{name}-numerico.png')
         answer_current(page)
         check(f'{tag} tappa 1 q{i+1}: correzione subito', page.is_visible('#s-feedback'), page.text_content('#s-fb-head'))
+        if not page.text_content('#s-fb-head').startswith('Corretta'):
+            check(f'{tag} tappa 1 q{i+1}: regola della trappola', page.is_visible('#s-fb-rule') and page.text_content('#s-fb-rule').startswith('Regola:'), page.text_content('#s-fb-rule'))
         if i == 0: page.screenshot(path=f'{OUT}/percorso-{name}-feedback.png')
         page.click('#s-next'); page.wait_for_timeout(200)
     check(f'{tag} tappa 1: una domanda per prova', sum('Verbale' in b for b in banks) == 1 and sum('Numerico' in b for b in banks) == 1 and sum('Astratto' in b for b in banks) == 1, banks)
-    check(f'{tag} fine tappa: «Continua» verso la tappa 2', page.is_visible('#e-next') and 'Verbale · il metodo' in page.text_content('#e-next'), page.text_content('#e-next'))
-    check(f'{tag} fine tappa: oggi 1 di 3', 'Oggi 1 di 3' in page.text_content('#e-today'), page.text_content('#e-today'))
+    check(f'{tag} fine tappa: «Continua» verso la misura di partenza', page.is_visible('#e-next') and 'Misura di partenza' in page.text_content('#e-next'), page.text_content('#e-next'))
+    check(f'{tag} fine tappa: oggi 1 di 6 (sabato)', 'Oggi 1 di 6' in page.text_content('#e-today'), page.text_content('#e-today'))
     page.screenshot(path=f'{OUT}/percorso-{name}-fine.png')
 
-    # Tappa 2: scheda → «Più tardi» → home in pausa → Riprendi → una risposta → chiusura (reload) → ripresa esatta
-    page.click('#e-next'); page.wait_for_timeout(200)
-    check(f'{tag} tappa 2: scheda del verbale', 'metodo' in page.text_content('#lesson-title').lower())
+    # Tappa 2: misura di partenza nel clone TAO (10 + 5 + 5, tempi dimezzati), con Answer Elimination
+    page.click('#e-next'); page.wait_for_timeout(250)
+    check(f'{tag} misura: intro verbale da 10', 'Verbal Reasoning · 10 questions' in page.text_content('#tao-intro-title'), page.text_content('#tao-intro-title'))
+    check(f'{tag} misura: conto alla rovescia sull\'avvio', 'Start (' in page.text_content('#tao-intro-start'), page.text_content('#tao-intro-start'))
+    for k, sec in enumerate(['Verbal', 'Numerical', 'Abstract']):
+        page.click('#tao-intro-start'); page.wait_for_timeout(200)
+        check(f'{tag} misura {sec}: in corso', sec in page.text_content('#tao-section-name'), page.text_content('#tao-section-name'))
+        if k == 0:
+            page.click('#tao-settings'); page.wait_for_timeout(100)
+            page.check('#tao-elim'); page.wait_for_timeout(100)
+            page.click('#tao-settings'); page.wait_for_timeout(100)
+            page.click('#tao-options .tao-opt-x >> nth=1'); page.wait_for_timeout(100)
+            check(f'{tag} Answer Elimination: opzione barrata', 'struck' in (page.get_attribute('#tao-options .tao-opt-row >> nth=1', 'class') or ''))
+            page.screenshot(path=f'{OUT}/percorso-{name}-sim-elim.png')
+        page.click('#tao-options .tao-opt'); page.wait_for_timeout(80)
+        page.evaluate("() => sessionStorage.setItem('__warp', String(Number(sessionStorage.getItem('__warp') || 0) + 20 * 60 * 1000))")
+        page.wait_for_timeout(1300)
+    check(f'{tag} misura: risultati con stima in prova', page.is_visible('#view-sim-results') and len(page.query_selector_all('#sim-scores .sim-score')) == 3, page.text_content('#sim-sentence'))
+    page.screenshot(path=f'{OUT}/percorso-{name}-misura-risultati.png', full_page=True)
+    page.click('#sim-close'); page.wait_for_timeout(200)
+    check(f'{tag} dopo la misura: tappa 3 di 14', 'tappa 3 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
+    check(f'{tag} dopo la misura: oggi 4 di 6', 'Oggi 4 di 6' in page.text_content('#today-text'), page.text_content('#today-text'))
+
+    # Tappa 3: scheda → «Più tardi» → home in pausa → Riprendi → una risposta → chiusura (reload) → ripresa esatta
+    page.click('#btn-next'); page.wait_for_timeout(200)
+    check(f'{tag} tappa 3: scheda del verbale', 'metodo' in page.text_content('#lesson-title').lower())
     page.click('#lesson-back'); page.wait_for_timeout(200)
-    check(f'{tag} pausa dalla scheda: home «Riprendi»', page.text_content('#btn-next').strip() == 'Riprendi' and 'dalla scheda' in page.text_content('#next-sub'), page.text_content('#next-sub'))
+    check(f'{tag} pausa dalla scheda: home «Riprendi»', page.text_content('#btn-next').strip().startswith('Riprendi') and 'dalla scheda' in page.text_content('#next-sub'), page.text_content('#next-sub'))
     page.click('#btn-next'); page.wait_for_timeout(200)
     page.click('#lesson-go'); page.wait_for_timeout(200)
-    check(f'{tag} tappa 2: 4 domande', page.text_content('#s-counter').strip() == '1 / 4', page.text_content('#s-counter'))
+    check(f'{tag} tappa 3: 4 domande', page.text_content('#s-counter').strip() == '1 / 4', page.text_content('#s-counter'))
     answer_current(page); page.click('#s-next'); page.wait_for_timeout(150)
     page.wait_for_timeout(1200)  # un po' di tempo sulla domanda 2
     page.reload(); page.wait_for_timeout(400)
@@ -103,18 +135,16 @@ def run(p, vp):
     check(f'{tag} ripresa esatta: 2 / 4', page.text_content('#s-counter').strip() == '2 / 4', page.text_content('#s-counter'))
     for i in range(3):
         answer_current(page); page.click('#s-next'); page.wait_for_timeout(150)
-    check(f'{tag} tappa 2 finita: oggi 2 di 3', 'Oggi 2 di 3' in page.text_content('#e-today'), page.text_content('#e-today'))
+    check(f'{tag} tappa 3 finita: oggi 5 di 6', 'Oggi 5 di 6' in page.text_content('#e-today'), page.text_content('#e-today'))
     page.click('#e-done'); page.wait_for_timeout(200)
-    check(f'{tag} home: tappa 3 di 14', 'tappa 3 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
-    check(f'{tag} home: due pallini pieni', len(page.query_selector_all('#today-dots .dot.on')) == 2)
+    check(f'{tag} home: tappa 4 di 14', 'tappa 4 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
+    check(f'{tag} home: cinque segmenti pieni', len(page.query_selector_all('#today-dots .seg.on')) == 5)
+    check(f'{tag} home: soglia verbale accesa dopo la misura', page.query_selector('#home-gauges .gauge .gauge-dot') is not None or 'Finora' in page.text_content('#home-gauges'), page.text_content('#home-gauges')[:120])
 
-    # «Altro»: schede, ripasso, simulazione completa con le tre prove
-    page.click('#home-more summary'); page.wait_for_timeout(150)
-    check(f'{tag} «Altro» aperto: 8 voci', len(page.query_selector_all('#home-more .alt-card')) == 8)
+    # Strumenti: schede, simulazione completa con le tre prove
     page.click('#btn-lessons'); page.wait_for_timeout(150)
-    check(f'{tag} indice delle schede', len(page.query_selector_all('#lessons-list .alt-card')) >= 14)
+    check(f'{tag} indice delle schede', len(page.query_selector_all('#lessons-list .alt-card')) >= 15)
     page.click('#lessons-back'); page.wait_for_timeout(150)
-    page.click('#home-more summary') if not page.is_visible('#btn-sim') else None
     page.click('#btn-sim'); page.wait_for_timeout(200)
     page.click('#sim-start'); page.wait_for_timeout(200)
     check(f'{tag} sim: intro verbale', 'Verbal Reasoning' in page.text_content('#tao-intro-title'), page.text_content('#tao-intro-title'))
@@ -134,9 +164,10 @@ def run(p, vp):
     check(f'{tag} sim: risultati con le tre prove', page.is_visible('#view-sim-results') and len(page.query_selector_all('#sim-scores .sim-score')) == 3, len(page.query_selector_all('#sim-scores .sim-score')))
     page.screenshot(path=f'{OUT}/percorso-{name}-sim-risultati.png', full_page=True)
     page.click('#sim-close'); page.wait_for_timeout(200)
-    check(f'{tag} home dopo la sim: percorso intatto', 'tappa 3 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
+    check(f'{tag} home dopo la sim: percorso intatto', 'tappa 4 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
     page.click('#nav-stato'); page.wait_for_timeout(200)
     check(f'{tag} Stato: si apre', page.is_visible('#view-stato'))
+    check(f'{tag} Stato: righelli delle soglie', len(page.query_selector_all('#stato-gauges .gauge')) == 2)
     check(f'{tag} Stato: sincronizzazione spiegata', 'Sincronizzazione' in page.text_content('#stato-sync'), page.text_content('#stato-sync'))
     page.screenshot(path=f'{OUT}/percorso-{name}-stato.png', full_page=True)
     browser.close()

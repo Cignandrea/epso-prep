@@ -1,0 +1,462 @@
+[
+ {
+  "id": 1201,
+  "passage": "La sperimentazione di un nuovo farmaco sull'uomo si svolge in tre fasi, che precedono la richiesta di autorizzazione all'immissione in commercio. Nella fase I il prodotto viene somministrato a un piccolo numero di volontari, spesso sani, per valutarne la sicurezza e stabilire le dosi tollerate. Nella fase II è testato su alcune centinaia di pazienti affetti dalla malattia, per ottenere le prime indicazioni sull'efficacia e scegliere la dose più adatta. Nella fase III, che coinvolge migliaia di pazienti, il farmaco viene confrontato con il trattamento standard o con un placebo, assegnando i partecipanti ai gruppi in modo casuale. Anche dopo l'autorizzazione la sorveglianza continua, perché gli effetti indesiderati molto rari possono sfuggire a studi con un numero limitato di partecipanti. Un'azienda farmaceutica ha appena concluso la fase II di un nuovo farmaco contro l'emicrania e ha annunciato che la fase III comincerà il prossimo anno in 40 ospedali di sei paesi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il nuovo farmaco contro l'emicrania è stato confrontato con il trattamento standard su migliaia di pazienti."
+   },
+   {
+    "letter": "B",
+    "text": "La dose più adatta di un nuovo farmaco viene scelta nella fase III, su migliaia di pazienti."
+   },
+   {
+    "letter": "C",
+    "text": "Il nuovo farmaco contro l'emicrania è già stato somministrato a persone che soffrono di questa malattia."
+   },
+   {
+    "letter": "D",
+    "text": "Nella fase I il farmaco viene somministrato esclusivamente a volontari in buona salute."
+   }
+  ]
+ },
+ {
+  "id": 1202,
+  "passage": "Secondo il rapporto annuale dell'istituto veterinario di un paese europeo, in dieci anni le vendite di antibiotici destinati agli animali da allevamento si sono ridotte del 40%. Il calo riguarda soprattutto i trattamenti somministrati a interi gruppi di animali con l'acqua o con i mangimi, che le norme ammettono ormai solo per curare un'infezione diagnosticata in una parte del gruppo e non più per prevenirla. Gli antibiotici considerati di importanza critica per la medicina umana possono essere usati negli animali solo se un esame di laboratorio dimostra che nessun'altra sostanza sarebbe efficace. L'istituto ha analizzato anche i batteri isolati dalle carni in vendita: la quota di ceppi resistenti è diminuita nei campioni di pollame, mentre è rimasta stabile in quelli di carne suina. Secondo i ricercatori, la differenza potrebbe dipendere dal fatto che negli allevamenti suini la riduzione degli antibiotici è cominciata più tardi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Un antibiotico di importanza critica per la medicina umana non può essere usato negli animali senza un esame di laboratorio."
+   },
+   {
+    "letter": "B",
+    "text": "La riduzione delle vendite di antibiotici ha riguardato soltanto i trattamenti somministrati a interi gruppi di animali."
+   },
+   {
+    "letter": "C",
+    "text": "Nella carne suina la quota di batteri resistenti è rimasta stabile perché la riduzione degli antibiotici è cominciata più tardi."
+   },
+   {
+    "letter": "D",
+    "text": "I trattamenti somministrati con l'acqua o con i mangimi sono ormai vietati negli allevamenti."
+   }
+  ]
+ },
+ {
+  "id": 1203,
+  "passage": "Un telescopio spaziale dedicato alla ricerca di esopianeti, cioè di pianeti in orbita attorno a stelle diverse dal Sole, misura senza interruzione la luminosità di decine di migliaia di stelle. Quando un pianeta passa davanti alla propria stella, ne oscura una piccola parte e la luce ricevuta dal telescopio diminuisce, in genere per alcune ore. Dalla profondità di questa diminuzione si ricavano le dimensioni del pianeta rispetto a quelle della stella, mentre l'intervallo tra due passaggi successivi indica la durata della sua orbita. Il metodo permette però di individuare solo i pianeti la cui orbita è allineata con la linea di vista dalla Terra. Un segnale diventa un «candidato» quando si ripete almeno tre volte con la stessa profondità, ma viene considerato una scoperta solo dopo la conferma di un secondo strumento. Nei primi due anni di attività sono stati segnalati candidati attorno a meno del 2% delle stelle osservate.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La grande maggioranza delle stelle osservate dal telescopio non ha pianeti in orbita attorno a sé."
+   },
+   {
+    "letter": "B",
+    "text": "La profondità della diminuzione di luce indica quanto dura l'orbita del pianeta attorno alla sua stella."
+   },
+   {
+    "letter": "C",
+    "text": "Il telescopio può individuare ogni pianeta in orbita attorno alle stelle che osserva."
+   },
+   {
+    "letter": "D",
+    "text": "Un candidato diventa una scoperta soltanto con la conferma di un secondo strumento."
+   }
+  ]
+ },
+ {
+  "id": 1204,
+  "passage": "Un programma regionale di screening mammografico sta sperimentando un sistema di intelligenza artificiale per la lettura degli esami. Di norma ogni mammografia viene esaminata in modo indipendente da due radiologi. Nella sperimentazione, che coinvolge 60.000 donne, per metà delle partecipanti, scelte per sorteggio, la seconda lettura è affidata al sistema, mentre la prima resta a un radiologo; l'altra metà segue la procedura abituale. In entrambi i gruppi, quando le due letture non concordano, decide un terzo radiologo. Il sistema non ha accesso alla storia clinica delle pazienti e non comunica con loro: l'esito è sempre firmato da un medico. Dopo il primo anno i tumori individuati sono stati circa sei ogni mille donne in entrambi i gruppi, mentre nel gruppo seguito dal sistema il tempo dedicato dai radiologi alla lettura si è ridotto di circa un terzo. I responsabili avvertono che non è ancora possibile sapere se il sistema riduca i tumori che compaiono tra un controllo e l'altro: per stabilirlo serviranno almeno due anni di osservazione.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nel gruppo seguito dal sistema i tumori individuati sono diminuiti di circa un terzo."
+   },
+   {
+    "letter": "B",
+    "text": "Nella sperimentazione ogni mammografia è stata esaminata da almeno un radiologo."
+   },
+   {
+    "letter": "C",
+    "text": "Quando la lettura del sistema e quella del radiologo non concordano, decide il radiologo che ha eseguito la prima lettura."
+   },
+   {
+    "letter": "D",
+    "text": "La sperimentazione ha già dimostrato che il sistema riduce i tumori che compaiono tra un controllo e l'altro."
+   }
+  ]
+ },
+ {
+  "id": 1205,
+  "passage": "Durante l'adolescenza l'orologio biologico tende a spostare in avanti l'ora in cui ci si addormenta. Per studiarne le conseguenze sulla scuola, un'università ha seguito per un anno scolastico 1.800 studenti di dodici istituti superiori. Sei istituti, che si erano offerti volontari, hanno posticipato l'inizio delle lezioni dalle 8.00 alle 8.50; gli altri sei hanno mantenuto l'orario abituale e sono serviti da confronto. Gli studenti hanno indossato un braccialetto che registra il sonno per due settimane all'inizio dell'anno e per due settimane alla fine. Negli istituti con l'inizio posticipato gli studenti hanno dormito in media 34 minuti in più nelle notti precedenti le lezioni: l'ora del risveglio si è spostata in avanti, mentre quella in cui si addormentavano è rimasta quasi invariata. Le assenze alla prima ora sono diminuite, mentre sui voti in matematica non sono emerse differenze statisticamente significative.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Posticipare l'inizio delle lezioni ha migliorato i risultati degli studenti in matematica."
+   },
+   {
+    "letter": "B",
+    "text": "Con l'inizio posticipato gli studenti si addormentavano quasi alla stessa ora di prima."
+   },
+   {
+    "letter": "C",
+    "text": "Il sonno degli studenti è stato registrato ogni notte per l'intero anno scolastico."
+   },
+   {
+    "letter": "D",
+    "text": "Dormire di più nelle notti prima delle lezioni aiuta gli adolescenti a ricordare ciò che hanno studiato."
+   }
+  ]
+ },
+ {
+  "id": 1206,
+  "passage": "Una società elettrica municipale ha installato accanto a un impianto fotovoltaico un sistema di accumulo con batterie agli ioni di sodio, che immagazzina l'energia prodotta nelle ore centrali della giornata e la restituisce alla rete la sera. Rispetto alle più diffuse batterie al litio, quelle al sodio utilizzano un elemento abbondante e facilmente reperibile, ma a parità di energia immagazzinata sono più pesanti e voluminose. Per questo, secondo la società, sono poco adatte ai veicoli elettrici destinati a percorrere lunghe distanze, mentre in un impianto fisso peso e ingombro contano meno. Il fornitore dichiara inoltre che le batterie mantengono buone prestazioni anche a basse temperature, un aspetto che la società verificherà nei prossimi inverni. La sperimentazione durerà tre anni: al termine, i risultati saranno confrontati con quelli di un sistema al litio della stessa capacità, installato nello stesso periodo in un altro comune della provincia.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Secondo la società, le batterie al sodio non possono essere utilizzate sui veicoli elettrici."
+   },
+   {
+    "letter": "B",
+    "text": "Le batterie al sodio installate dalla società hanno dimostrato di mantenere buone prestazioni anche a basse temperature."
+   },
+   {
+    "letter": "C",
+    "text": "Il sistema al sodio restituisce alla rete più energia del sistema al litio installato nell'altro comune."
+   },
+   {
+    "letter": "D",
+    "text": "Un sistema di accumulo al sodio occupa più spazio di un sistema al litio della stessa capacità."
+   }
+  ]
+ },
+ {
+  "id": 1207,
+  "passage": "Il gestore del servizio idrico di una regione ha pubblicato i risultati del primo anno di monitoraggio delle microplastiche, frammenti di plastica di dimensioni inferiori a cinque millimetri. Sono stati analizzati campioni d'acqua prelevati da fiumi, laghi e pozzi prima della potabilizzazione e dai rubinetti di alcune scuole. Il metodo di laboratorio adottato conta solo le particelle più grandi di 20 micrometri: quelle più piccole, che secondo il gestore potrebbero essere numerose, non vengono rilevate. Le microplastiche sono state trovate in tutti i campioni di acque superficiali, mentre nei pozzi profondi sono state rilevate soltanto in un campione su cinque. Gli impianti di potabilizzazione ne hanno trattenuto in media oltre il 90%. Il gestore precisa che per le microplastiche nell'acqua potabile non esistono ancora limiti di legge e che le conoscenze sui loro effetti sulla salute sono limitate. Nel secondo anno il monitoraggio sarà esteso alle acque in bottiglia vendute nella regione.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nella maggior parte dei campioni prelevati dai pozzi profondi il metodo adottato non ha rilevato microplastiche."
+   },
+   {
+    "letter": "B",
+    "text": "Secondo il gestore, le particelle più piccole di 20 micrometri sono poco numerose e possono essere trascurate."
+   },
+   {
+    "letter": "C",
+    "text": "Nel primo anno di monitoraggio sono state analizzate anche le acque in bottiglia vendute nella regione."
+   },
+   {
+    "letter": "D",
+    "text": "Le microplastiche presenti nell'acqua derivano soprattutto dalla degradazione degli imballaggi."
+   }
+  ]
+ },
+ {
+  "id": 1208,
+  "passage": "Un istituto pubblico di ricerca agraria ha avviato la prima prova in campo di una varietà di frumento ottenuta con una nuova tecnica genomica. I ricercatori hanno modificato in modo mirato un gene della pianta che la rende sensibile all'oidio, una malattia causata da un fungo, senza introdurre DNA di altre specie. In serra le piante modificate si sono ammalate molto meno di quelle della varietà di partenza. La prova, autorizzata dal ministero per tre anni, si svolge in un appezzamento recintato di mille metri quadrati, sorvegliato da telecamere. Attorno all'appezzamento è stata lasciata una fascia di terreno incolto, per ridurre la possibilità che il polline raggiunga altre coltivazioni, e al termine di ogni stagione il raccolto viene distrutto. La prova dovrà stabilire se la resistenza osservata in serra si mantiene in condizioni reali e se la produzione di granella resta pari a quella della varietà di partenza.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La varietà modificata permetterà di ridurre l'uso di fungicidi nella coltivazione del frumento."
+   },
+   {
+    "letter": "B",
+    "text": "La prova in campo ha già confermato che la resistenza all'oidio si mantiene anche in condizioni reali."
+   },
+   {
+    "letter": "C",
+    "text": "Il frumento raccolto nell'appezzamento sperimentale non viene immesso sul mercato."
+   },
+   {
+    "letter": "D",
+    "text": "Con la nuova tecnica i ricercatori hanno modificato un gene del fungo che causa l'oidio."
+   }
+  ]
+ },
+ {
+  "id": 1209,
+  "passage": "Una provincia ha installato sensori di anidride carbonica in 400 aule di 50 scuole superiori. La concentrazione di questo gas, prodotto dalla respirazione, è usata come indicatore del ricambio d'aria: non misura direttamente gli inquinanti o i virus presenti, ma valori elevati segnalano che la ventilazione è insufficiente. Quando la concentrazione supera la soglia di 1.000 parti per milione, un display avvisa l'insegnante. Nel primo inverno la soglia è stata superata per almeno metà del tempo di lezione nel 70% delle aule. Nella maggior parte dei casi è bastato aprire le finestre per cinque minuti ogni ora per riportare i valori sotto la soglia. Nelle 60 aule dotate di ventilazione meccanica, invece, i superamenti sono stati rari. Il prossimo anno la provincia installerà questi impianti in altre 100 aule, dando la precedenza a quelle che si affacciano su strade molto trafficate, dove aprire le finestre fa entrare rumore e smog.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Aprire le finestre per cinque minuti ogni ora è bastato a riportare i valori sotto la soglia in tutte le aule."
+   },
+   {
+    "letter": "B",
+    "text": "Un valore di anidride carbonica inferiore alla soglia indica che nell'aula non sono presenti inquinanti."
+   },
+   {
+    "letter": "C",
+    "text": "Le aule che si affacciano su strade molto trafficate sono già dotate di ventilazione meccanica."
+   },
+   {
+    "letter": "D",
+    "text": "Durante il primo inverno il display ha avvisato gli insegnanti in più della metà delle aule."
+   }
+  ]
+ },
+ {
+  "id": 1210,
+  "passage": "Nei comuni montani di una regione è attivo da un anno un servizio di telemedicina per le persone con diabete o scompenso cardiaco. I partecipanti ricevono apparecchi per misurare a casa pressione, peso e glicemia; i dati vengono trasmessi ogni giorno all'infermiere di comunità del distretto, che in caso di valori anomali contatta il medico di famiglia. Le visite specialistiche di controllo possono svolgersi in videochiamata, ma la prima visita con lo specialista avviene sempre in ambulatorio. A chi non dispone di una connessione a internet la regione fornisce in comodato d'uso un tablet con una scheda dati. Al servizio hanno aderito 1.200 pazienti; il 15% lo ha abbandonato nel corso dell'anno, soprattutto per difficoltà nell'uso degli apparecchi. Tra i pazienti rimasti i ricoveri sono diminuiti rispetto all'anno precedente, ma la regione osserva che manca un gruppo di confronto e che una parte del calo potrebbe dipendere da altri fattori.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "I partecipanti senza connessione a internet ricevono un tablet con una scheda dati."
+   },
+   {
+    "letter": "B",
+    "text": "I valori misurati a casa dai pazienti vengono trasmessi ogni giorno al medico di famiglia."
+   },
+   {
+    "letter": "C",
+    "text": "Tutte le visite con lo specialista possono svolgersi in videochiamata."
+   },
+   {
+    "letter": "D",
+    "text": "Il calo dei ricoveri tra i pazienti rimasti nel servizio è dovuto alla telemedicina."
+   }
+  ]
+ },
+ {
+  "id": 1211,
+  "passage": "Un consorzio di università e imprese ha avviato un impianto pilota per recuperare le terre rare contenute nei magneti permanenti di dischi rigidi e motori elettrici dismessi. Questi elementi sono indispensabili per i magneti delle turbine eoliche e dei veicoli elettrici, e l'Europa li importa quasi interamente. Nell'impianto i magneti, dopo essere stati estratti dagli apparecchi, vengono esposti all'idrogeno, che li riduce in polvere; la polvere viene poi usata direttamente per produrre nuovi magneti, senza separare i singoli elementi. Nel primo anno l'impianto ha trattato 40 tonnellate di magneti, recuperandone oltre il 90% del materiale. La fase più costosa resta l'estrazione dei magneti, che oggi avviene in gran parte a mano, perché la maggior parte degli apparecchi non è progettata per essere smontata. Il consorzio ha chiesto un finanziamento pubblico per costruire un impianto industriale con una linea di smontaggio automatica; se la domanda sarà accolta, i lavori potranno cominciare tra due anni.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nell'impianto pilota i magneti vengono già estratti dagli apparecchi con una linea di smontaggio automatica."
+   },
+   {
+    "letter": "B",
+    "text": "Tra due anni cominceranno i lavori per un impianto industriale dotato di una linea di smontaggio automatica."
+   },
+   {
+    "letter": "C",
+    "text": "La fase più costosa del processo precede il trattamento dei magneti con l'idrogeno."
+   },
+   {
+    "letter": "D",
+    "text": "La maggior parte degli apparecchi non è progettata per essere smontata perché l'estrazione dei magneti è costosa."
+   }
+  ]
+ },
+ {
+  "id": 1212,
+  "passage": "Il servizio meteorologico nazionale ha messo in funzione un nuovo supercalcolatore, che gli consente di elaborare previsioni «d'insieme». Invece di una sola simulazione, il modello ne esegue cinquanta, ciascuna partendo da condizioni iniziali leggermente diverse: le misure dello stato dell'atmosfera non sono mai perfette e piccoli errori iniziali possono crescere con il passare dei giorni. Se le simulazioni concordano, la previsione è considerata affidabile; se divergono, l'incertezza è elevata. La probabilità di pioggia indicata per una località corrisponde alla quota di simulazioni che vi prevedono precipitazioni. Il nuovo sistema calcola inoltre le previsioni su una griglia di 2,5 chilometri, contro i 7 del precedente, e rappresenta meglio i temporali e i rilievi montuosi. Per le scadenze oltre i dieci giorni il servizio continuerà a diffondere soltanto tendenze generali, come temperature superiori o inferiori alla media. Dal prossimo mese le mappe di probabilità saranno pubblicate anche sul sito del servizio.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Una probabilità di pioggia del 30% indica che in quella località pioverà per circa il 30% della giornata."
+   },
+   {
+    "letter": "B",
+    "text": "Una probabilità di pioggia del 40% significa che 20 delle 50 simulazioni prevedono precipitazioni in quella località."
+   },
+   {
+    "letter": "C",
+    "text": "Con il nuovo supercalcolatore il servizio fornirà previsioni dettagliate anche oltre i dieci giorni."
+   },
+   {
+    "letter": "D",
+    "text": "Le mappe di probabilità sono consultabili sul sito del servizio fin dall'avvio del nuovo supercalcolatore."
+   }
+  ]
+ },
+ {
+  "id": 1213,
+  "passage": "Uno studio universitario ha seguito per dodici anni 40.000 adulti, che all'inizio avevano compilato un questionario sulle proprie abitudini alimentari. Chi dichiarava di mangiare legumi almeno tre volte alla settimana ha avuto infarti e ictus con una frequenza inferiore del 20% rispetto a chi li consumava raramente. I grandi consumatori di legumi, però, fumavano meno, praticavano più attività fisica e avevano in media un livello di istruzione più alto. Tenendo conto di questi fattori con metodi statistici, la differenza tra i due gruppi è scesa all'8%, ma è rimasta significativa. Gli autori sottolineano che uno studio osservazionale può mettere in luce un'associazione, ma non dimostrare un rapporto di causa ed effetto: potrebbero esistere altre differenze tra i gruppi che lo studio non ha misurato. Inoltre, l'alimentazione è stata rilevata una sola volta, all'inizio, e potrebbe essere cambiata negli anni successivi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Considerando fumo, attività fisica e istruzione, la differenza si è più che dimezzata."
+   },
+   {
+    "letter": "B",
+    "text": "Mangiare legumi almeno tre volte alla settimana riduce dell'8% il rischio di infarto e ictus."
+   },
+   {
+    "letter": "C",
+    "text": "Le abitudini alimentari dei partecipanti sono state rilevate più volte nel corso dei dodici anni."
+   },
+   {
+    "letter": "D",
+    "text": "I legumi contengono fibre che contribuiscono a ridurre il colesterolo nel sangue."
+   }
+  ]
+ },
+ {
+  "id": 1214,
+  "passage": "Un parco nazionale ha collocato nei propri boschi 80 registratori automatici per studiare uccelli, pipistrelli e anfibi attraverso i suoni che emettono. Gli apparecchi registrano per dieci minuti ogni ora, di giorno e di notte, e captano anche gli ultrasuoni dei pipistrelli, che l'orecchio umano non percepisce. Un programma addestrato su registrazioni di riferimento riconosce le specie; quando il grado di certezza è basso, il riconoscimento viene controllato da un esperto. Il metodo consente di sorvegliare aree difficili da raggiungere senza disturbare gli animali, ma ha alcuni limiti: non rileva le specie che non emettono suoni e il numero di richiami registrati non indica quanti individui siano presenti. Nel primo anno sono state raccolte oltre un milione di registrazioni e sono state riconosciute 112 specie, tre delle quali mai segnalate prima nel parco. Il parco intende ora confrontare questi dati con quelli dei censimenti tradizionali svolti dagli osservatori sul campo.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "I registratori sono stati collocati soprattutto nelle zone del parco più difficili da raggiungere."
+   },
+   {
+    "letter": "B",
+    "text": "Le specie di cui sono stati registrati più richiami sono anche quelle più numerose nel parco."
+   },
+   {
+    "letter": "C",
+    "text": "I riconoscimenti effettuati dal programma vengono sempre controllati da un esperto."
+   },
+   {
+    "letter": "D",
+    "text": "Tutte le specie riconosciute nel primo anno sono specie che emettono suoni."
+   }
+  ]
+ },
+ {
+  "id": 1215,
+  "passage": "L'agenzia nazionale per la sicurezza informatica ha analizzato 60 dispositivi domestici connessi a internet, tra cui telecamere, termostati, altoparlanti intelligenti e prese comandate a distanza. In 21 dispositivi la password di fabbrica era identica per tutti gli esemplari dello stesso modello e l'utente non era obbligato a cambiarla alla prima accensione. Solo per 18 dispositivi il produttore indicava per quanto tempo avrebbe fornito aggiornamenti di sicurezza. L'agenzia raccomanda di cambiare subito la password, di installare gli aggiornamenti appena disponibili e di collegare questi apparecchi a una rete separata da quella usata per computer e telefoni, in modo che un dispositivo violato non permetta di accedere agli altri. Il governo sta preparando una norma che vieterà la vendita di dispositivi con password di fabbrica uguali per tutti gli esemplari e obbligherà i produttori a dichiarare sulla confezione la durata degli aggiornamenti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "In 21 dei dispositivi analizzati l'utente non aveva la possibilità di cambiare la password di fabbrica."
+   },
+   {
+    "letter": "B",
+    "text": "Secondo l'agenzia, collegare i dispositivi a una rete separata impedisce che vengano violati."
+   },
+   {
+    "letter": "C",
+    "text": "Per oltre metà dei 60 dispositivi analizzati mancava l'indicazione della durata degli aggiornamenti di sicurezza."
+   },
+   {
+    "letter": "D",
+    "text": "I produttori sono tenuti a dichiarare sulla confezione per quanto tempo forniranno gli aggiornamenti."
+   }
+  ]
+ },
+ {
+  "id": 1216,
+  "passage": "Il registro tumori di una regione raccoglie i dati su tutti i nuovi casi di tumore diagnosticati tra i residenti, incrociando le schede di dimissione ospedaliera, i referti di anatomia patologica e i certificati di morte. Ogni caso viene verificato da personale specializzato prima di essere inserito: per questo i dati sono pubblicati con circa tre anni di ritardo. Dal registro si ricavano l'incidenza, cioè il numero di nuovi casi in un anno ogni 100.000 abitanti, e la sopravvivenza dei pazienti a cinque anni dalla diagnosi. L'ultimo rapporto segnala che, dopo l'avvio dello screening, l'incidenza del tumore del colon-retto è aumentata nella fascia d'età tra i 50 e i 69 anni, perché lo screening permette di scoprire anche tumori in fase iniziale. Nella stessa fascia d'età la mortalità per questo tumore è invece diminuita. I dati sui residenti curati in ospedali di altre regioni arrivano con un ulteriore ritardo e, secondo il rapporto, potrebbero far aumentare leggermente le stime.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Dopo l'avvio dello screening la mortalità per tumore del colon-retto è diminuita in tutte le fasce d'età."
+   },
+   {
+    "letter": "B",
+    "text": "I casi descritti nell'ultimo rapporto erano stati diagnosticati alcuni anni prima della sua pubblicazione."
+   },
+   {
+    "letter": "C",
+    "text": "L'aumento dell'incidenza tra i 50 e i 69 anni dimostra che il tumore del colon-retto si sta diffondendo nella popolazione."
+   },
+   {
+    "letter": "D",
+    "text": "L'incidenza indica la quota di pazienti ancora in vita cinque anni dopo la diagnosi."
+   }
+  ]
+ },
+ {
+  "id": 1217,
+  "passage": "Nell'altoforno tradizionale il minerale di ferro viene trasformato in ferro grazie al carbon coke, che sottrae ossigeno al minerale liberando grandi quantità di anidride carbonica. Una tecnica alternativa, la riduzione diretta, utilizza invece un gas: se si impiega idrogeno, il principale prodotto della reazione è vapore acqueo. Il ferro così ottenuto viene poi fuso in un forno elettrico. Un gruppo siderurgico ha annunciato che sostituirà il proprio altoforno con un impianto di riduzione diretta, la cui entrata in funzione è prevista tra quattro anni. All'inizio l'impianto sarà alimentato con gas naturale, che secondo l'azienda riduce le emissioni rispetto all'altoforno, ma meno dell'idrogeno. Il passaggio all'idrogeno avverrà gradualmente, man mano che saranno costruiti gli elettrolizzatori necessari a produrlo con elettricità da fonti rinnovabili. L'altoforno resterà in attività fino all'avvio del nuovo impianto, per non interrompere le forniture ai clienti.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il nuovo impianto di riduzione diretta sarà alimentato con idrogeno fin dalla sua entrata in funzione."
+   },
+   {
+    "letter": "B",
+    "text": "Una volta avviato, il nuovo impianto non produrrà emissioni di anidride carbonica."
+   },
+   {
+    "letter": "C",
+    "text": "L'acciaio prodotto con l'idrogeno ha oggi un costo superiore a quello prodotto nell'altoforno."
+   },
+   {
+    "letter": "D",
+    "text": "Il gruppo ha già indicato con quale gas alimenterà il nuovo impianto nella fase iniziale."
+   }
+  ]
+ },
+ {
+  "id": 1218,
+  "passage": "Un'agenzia nazionale che finanzia la ricerca ha adottato nuove regole sulla scienza aperta, che si applicheranno ai progetti selezionati a partire dal prossimo bando. Gli articoli prodotti dovranno essere liberamente accessibili online dal giorno della pubblicazione. Anche i dati su cui si basano dovranno essere depositati in un archivio pubblico, salvo quando la loro diffusione violerebbe la riservatezza delle persone, segreti commerciali o esigenze di sicurezza: in questi casi il progetto dovrà motivare l'eccezione e rendere pubblica almeno una descrizione dei dati. Ogni progetto dovrà presentare un piano di gestione dei dati entro sei mesi dall'avvio. I costi di pubblicazione saranno rimborsabili fino al 5% del budget del progetto. In una fase sperimentale condotta su 200 progetti, il 60% aveva depositato i propri dati, ma solo metà di questi era accompagnata da una documentazione sufficiente a consentirne il riutilizzo da parte di altri ricercatori.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Per i dati coperti da segreto commerciale il progetto deve pubblicare almeno una descrizione."
+   },
+   {
+    "letter": "B",
+    "text": "Tutti i progetti finanziati dall'agenzia dovranno depositare i propri dati in un archivio pubblico."
+   },
+   {
+    "letter": "C",
+    "text": "Le nuove regole si applicano anche ai progetti selezionati con i bandi precedenti."
+   },
+   {
+    "letter": "D",
+    "text": "Secondo l'agenzia, la condivisione dei dati rende più rapido il progresso della ricerca scientifica."
+   }
+  ]
+ },
+ {
+  "id": 1219,
+  "passage": "Uno studio controllato ha coinvolto 600 persone tra i 70 e gli 85 anni che vivevano a casa propria ed erano in grado di camminare senza assistenza. Metà dei partecipanti, scelti per sorteggio, ha seguito per un anno due sessioni settimanali di esercizi di equilibrio e di rinforzo muscolare, guidate da un fisioterapista; l'altra metà ha partecipato soltanto a incontri mensili di educazione alla salute. Nel gruppo che si è allenato le cadute sono state il 30% in meno e la velocità del cammino è migliorata, mentre i ricoveri ospedalieri sono rimasti simili nei due gruppi. Le persone con una diagnosi di demenza erano state escluse dallo studio. Secondo i ricercatori, i benefici si sono concentrati tra chi si è allenato con regolarità: nel gruppo degli esercizi, tre partecipanti su quattro hanno seguito almeno due terzi delle sessioni. Sulla base di questi risultati, l'azienda sanitaria locale offrirà il programma gratuitamente nei centri anziani del territorio dalla prossima primavera.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "I partecipanti del gruppo di confronto non hanno ricevuto nessun intervento nel corso dello studio."
+   },
+   {
+    "letter": "B",
+    "text": "Nel gruppo degli esercizi, un partecipante su quattro ha seguito meno di due terzi delle sessioni."
+   },
+   {
+    "letter": "C",
+    "text": "Il programma di esercizi ha ridotto le cadute anche tra le persone con una diagnosi di demenza."
+   },
+   {
+    "letter": "D",
+    "text": "Nel gruppo che si è allenato le cadute si sono ridotte al 30% di quelle registrate nell'altro gruppo."
+   }
+  ]
+ },
+ {
+  "id": 1220,
+  "passage": "I sistemi di allerta sismica non prevedono i terremoti: si attivano soltanto dopo l'inizio di una scossa. Le prime onde generate da un terremoto viaggiano più velocemente di quelle che causano i danni maggiori. I sensori più vicini all'epicentro le registrano e un centro di calcolo stima in pochi secondi la posizione e la forza della scossa, inviando un avviso alle zone che verranno raggiunte più tardi. Il tempo a disposizione va da pochi secondi ad alcune decine di secondi e cresce con la distanza dall'epicentro; nelle zone più vicine l'avviso arriva troppo tardi. Un istituto di ricerca sta sperimentando un sistema di questo tipo lungo una linea ferroviaria: quando ricevono l'avviso, i treni rallentano automaticamente. Nel primo anno il sistema ha inviato 14 avvisi; in due casi la forza della scossa era stata sovrastimata e i treni hanno rallentato anche se lungo la linea non si sono avuti effetti. L'istituto valuta ora se estendere il servizio alle scuole della zona.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "I sistemi di allerta sismica consentono di prevedere un terremoto con alcuni secondi di anticipo."
+   },
+   {
+    "letter": "B",
+    "text": "Le zone più vicine all'epicentro ricevono sempre l'avviso con il maggiore anticipo."
+   },
+   {
+    "letter": "C",
+    "text": "Quando un avviso viene inviato, il terremoto è già cominciato."
+   },
+   {
+    "letter": "D",
+    "text": "Il servizio di allerta è già attivo anche nelle scuole della zona."
+   }
+  ]
+ }
+]
