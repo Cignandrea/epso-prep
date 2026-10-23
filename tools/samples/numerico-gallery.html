@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galleria numerico</title>
+<link rel="stylesheet" href="../../css/style.css">
+<style> .item{border:1px solid var(--line);border-radius:8px;padding:10px;margin:10px} .meta{font-size:12px;color:var(--ink-2)} </style>
+</head><body>
+<script src="../../js/utils.js"></script>
+<script src="../../js/gen-numerico.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+const g = App.gen.numerico;
+const blind = qs.get('blind') === '1';
+const want = (qs.get('t') || 'G1,G2,G3,G4,G5,G6,G7').split(',');
+const lvOf = { G1: 1, G2: 1, G3: 2, G4: 2, G5: 2, G6: 3, G7: 3 };
+let seed = Number(qs.get('seed') || 1);
+for (const t of want) {
+  let q = null;
+  for (let s = seed; s < seed + 400 && !q; s++) { const x = g.chart.make(s, lvOf[t]); if (x.meta.template === t) q = x; }
+  if (!q) continue;
+  const box = document.createElement('div'); box.className = 'item';
+  const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = blind ? q.id : `${q.id} · ${q.meta.template} · chiave ${q.correct[0]}`;
+  const stim = document.createElement('div'); App.utils.renderStimulus(stim, q);
+  const qq = document.createElement('p'); qq.style.fontWeight = '600'; qq.textContent = q.question;
+  const ol = document.createElement('ol'); ol.type = 'A'; q.options.forEach(o => { const li = document.createElement('li'); li.textContent = o.text; ol.append(li); });
+  box.append(meta, stim, qq, ol);
+  if (!blind) { const ex = document.createElement('p'); ex.className = 'meta'; ex.textContent = q.explanation; box.append(ex); }
+  document.body.append(box);
+}
+</script></body></html>

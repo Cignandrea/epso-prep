@@ -3,7 +3,7 @@ window.App = window.App || {};
 App.ui = (() => {
   'use strict';
   const { el } = App.utils;
-  const VIEWS = ['home', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
+  const VIEWS = ['home', 'lesson', 'lessons', 'official', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
   let currentView = 'home';
 
   function show(name, { title = '' } = {}) {

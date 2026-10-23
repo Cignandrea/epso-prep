@@ -4,7 +4,7 @@ App.stato = (() => {
   'use strict';
   const { el, minSec, dateTimeIt, copyText, mondayOf, todayKey, isTrapError } = App.utils;
   const $ = (id) => document.getElementById(id);
-  const MODE = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso', sim: 'Simulazione', external: 'Esterna' };
+  const MODE = { tappa: 'Tappa', micro: 'Micro', train: 'Allenamento', review: 'Ripasso', sim: 'Simulazione', external: 'Test ufficiale' };
   const todayStart = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d; };
 
   function render() {
@@ -14,12 +14,14 @@ App.stato = (() => {
     const grid = $('stato-grid');
     grid.replaceChildren();
 
-    // Settimana: 5 su 7, senza catene.
+    // Percorso e settimana: 5 giorni su 7, senza catene.
+    const pc = App.path.counts();
+    grid.append(tile(String(pc.total), `tappe del percorso fatte · ${App.path.daysToExam() >= 0 ? `prova tra ${App.path.daysToExam()} giorni` : 'prova sostenuta'}`));
     grid.append(tile(`${week.active}/${week.target}`, `giorni attivi questa settimana (${week.elapsed} ${week.elapsed === 1 ? 'trascorso' : 'trascorsi'})`));
 
-    // Per prova: ultime 5 sessioni (allenamento, simulazione, esterne) e confronto con soglia/obiettivo.
+    // Per prova: ultime 5 sessioni (tappe, allenamento, simulazione, test ufficiale) e confronto con soglia/obiettivo.
     for (const bank of ['verbale', 'numerico', 'astratto']) {
-      const last = sessions.filter((s) => (s.mode === 'train' || s.mode === 'sim' || s.mode === 'external') && (s.banks || []).includes(bank) && s.n).slice(-5);
+      const last = sessions.filter((s) => ['tappa', 'train', 'sim', 'external'].includes(s.mode) && (s.banks || []).includes(bank) && s.n).slice(-5);
       const t = App.plan.TARGET[bank];
       const txt = last.length ? last.map((s) => `${s.correct}/${s.n}`).join(' · ') : 'nessuna sessione';
       grid.append(tile(App.BANK_LABEL[bank], `${txt}\nobiettivo ${t.score}/${t.max}${t.min ? ` · soglia ${t.min}/${t.max}` : ''}`));
@@ -59,8 +61,8 @@ App.stato = (() => {
     if (!sessions.length) $('stato-sessions').append(el('p', { class: 'muted' }, 'Ancora nessuna sessione.'));
 
     // Pool.
-    const rep = App.select.poolReport();
-    $('stato-pools').textContent = Object.entries(rep).map(([b, r]) => `${App.BANK_LABEL[b]}: ${r.total} domande L1, ${r.unseen} mai viste, ${r.freshForSim} disponibili per le simulazioni`).join(' · ') + '. Batterie L2 (livello EPSO) dalla v1.2; astratto dalla v1.3.';
+    const rep = App.select.poolReport().verbale;
+    $('stato-pools').textContent = `Verbale: ${rep.l2} brani di livello prova (${rep.l2Unseen} mai visti, di cui ${rep.reserve} riservati alle simulazioni) e ${rep.l1} di livello base (${rep.l1Unseen} mai visti). Numerico su tabelle e astratto: domande generate, sempre nuove; quelle sbagliate tornano nel ripasso.`;
 
     // Impostazioni.
     const st = App.store.settings();
@@ -97,6 +99,10 @@ App.stato = (() => {
     const seg = (window.viewport && window.viewport.segments) ? window.viewport.segments.length : (window.visualViewport && window.visualViewport.segments ? window.visualViewport.segments.length : 1);
     const posture = navigator.devicePosture ? navigator.devicePosture.type : 'n/d';
     const sw = screen.width, sh = screen.height;
+    const sync = App.sync ? App.sync.status() : 'off';
+    $('stato-sync').textContent = sync === 'on' ? 'Sincronizzazione attiva: Fold e PC vedono gli stessi progressi, nell\'area privata del tuo account.'
+      : sync === 'error' ? 'Sincronizzazione: ultimo tentativo non riuscito, riprovo da solo. I dati restano salvati su questo dispositivo.'
+        : 'Sincronizzazione non attiva qui: i progressi restano su questo dispositivo.';
     $('stato-device').textContent = `viewport ${window.innerWidth}×${window.innerHeight} CSS px · schermo ${sw}×${sh} · pixel ratio ${Number(window.devicePixelRatio).toFixed(2)} · segmenti ${seg} · postura ${posture} · ${matchMedia('(pointer: coarse)').matches ? 'tocco' : 'mouse'} · ${matchMedia('(prefers-color-scheme: dark)').matches ? 'tema scuro' : 'tema chiaro'} · ${navigator.onLine ? 'online' : 'offline'}`;
   }
 
@@ -116,8 +122,8 @@ App.stato = (() => {
     lines.push(`Trappole: ${top.length ? top.map(([t, n]) => `${App.tagLabel(t)} ×${n}`).join(' · ') : 'nessun errore'}`);
     const sw = log.filter((e) => e.mode !== 'external' && e.conf === 'sure' && !e.ok).length, dok = log.filter((e) => e.mode !== 'external' && e.conf === 'doubt' && e.ok).length;
     lines.push(`Calibrazione: ${sw} sbagliate da sicuro · ${dok} giuste in dubbio`);
-    const rep = App.select.poolReport();
-    lines.push(`Pool: verbale ${rep.verbale.unseen} mai viste / ${rep.verbale.freshForSim} per simulazioni · numerico ${rep.numerico.unseen} / ${rep.numerico.freshForSim}`);
+    const rep = App.select.poolReport().verbale;
+    lines.push(`Percorso: ${App.path.counts().total} tappe fatte · verbale livello prova mai visto ${rep.l2Unseen}/${rep.l2}`);
     return lines.join('\n');
   }
 
@@ -131,8 +137,6 @@ App.stato = (() => {
     };
     $('ext-bank').onchange = fill;
     fill();
-    const plan = App.plan.today();
-    if (plan.kind === 'external') { $('ext-bank').value = plan.bank; fill(); }
     const date = $('ext-date');
     const minD = new Date(); minD.setDate(minD.getDate() - 400);
     date.value = todayKey(); date.max = todayKey(); date.min = todayKey(minD);
@@ -170,9 +174,18 @@ App.stato = (() => {
   function init() {
     $('nav-stato').addEventListener('click', open);
     $('st-copy-week').addEventListener('click', async () => { (await copyText(weekSummary())) ? App.ui.toast('Riepilogo della settimana copiato.') : App.ui.toast('Copia non riuscita.'); });
-    $('st-export').addEventListener('click', () => {
-      const blob = new Blob([App.store.exportAll()], { type: 'application/json' });
-      const a = el('a', { href: URL.createObjectURL(blob), download: `eu-prep-${todayKey()}.json` });
+    $('st-export').addEventListener('click', async () => {
+      const filename = `eu-prep-${todayKey()}.json`;
+      const data = App.store.exportAll();
+      // Su claude.ai il salvataggio passa dalla conferma del visualizzatore (un link «download» lì non funziona).
+      const dl = window.claude && typeof window.claude.use === 'function' ? await window.claude.use('downloads').catch(() => null) : null;
+      if (dl) {
+        try { await dl.save({ filename, data }); App.ui.toast('File pronto da salvare.'); }
+        catch (err) { App.ui.toast(err && err.code === 'declined' ? 'Salvataggio annullato.' : 'Salvataggio non disponibile qui.'); }
+        return;
+      }
+      const blob = new Blob([data], { type: 'application/json' });
+      const a = el('a', { href: URL.createObjectURL(blob), download: filename });
       document.body.append(a); a.click(); a.remove();
     });
     $('st-import').addEventListener('change', async (e) => {
@@ -188,6 +201,7 @@ App.stato = (() => {
     $('set-conf').addEventListener('change', (e) => App.store.setSetting('confidence', e.target.checked));
     $('set-vfn').addEventListener('change', (e) => App.store.setSetting('microVfn', e.target.checked));
     $('ext-form').addEventListener('submit', saveExternal);
+    $('st-external').addEventListener('click', showExternal);
     $('ext-cancel').addEventListener('click', () => App.main.home());
     window.addEventListener('resize', () => { if (App.ui.view() === 'stato') renderDevice(); });
   }

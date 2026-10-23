@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><title>Galleria astratto</title>
+<style>
+ body{font:14px system-ui,sans-serif;margin:16px;background:#f6f6f4;color:#1b1b1b}
+ .item{background:#fff;border:1px solid #ddd;border-radius:8px;padding:10px;margin:0 0 12px;max-width:520px}
+ .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+ .q{width:58px;height:58px;border:2px dashed #999;display:grid;place-items:center;font-weight:700}
+ .opts{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+ .opt{display:grid;justify-items:center;gap:2px;border:1px solid #ccc;border-radius:6px;padding:4px}
+ .opt.ok{border:2px solid #1a7f37}
+ .meta{font-size:12px;color:#555;margin:4px 0}
+ p{margin:4px 0;font-size:12px}
+</style></head><body>
+<script src="../../js/gen-astratto.js"></script>
+<script>
+const g = App.gen.astratto;
+const qs = new URLSearchParams(location.search);
+const from = Number(qs.get('from') || 1), n = Number(qs.get('n') || 9), blind = qs.get('blind') === '1';
+for (let s = from; s < from + n; s++) {
+  const lv = 1 + (s % 3);
+  const q = g.make(Number(qs.get('seed') || 31) * s, lv);
+  const box = document.createElement('div'); box.className = 'item';
+  const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = blind ? q.id : `${q.id} · ${q.rules.map(r => r.type).join(' + ')} · chiave ${q.correct[0]}`;
+  const row = document.createElement('div'); row.className = 'row';
+  q.series.forEach((sp, i) => row.append(g.frameSvg(sp, { size: 64, label: `Figura ${i + 1}` })));
+  const qm = document.createElement('span'); qm.className = 'q'; qm.textContent = '?'; row.append(qm);
+  const opts = document.createElement('div'); opts.className = 'opts';
+  q.options.forEach(o => { const c = document.createElement('div'); c.className = 'opt' + (!blind && o.letter === q.correct[0] ? ' ok' : ''); const l = document.createElement('b'); l.textContent = o.letter; c.append(l, g.frameSvg(o.fig, { size: 60, label: `Opzione ${o.letter}` })); opts.append(c); });
+  const ex = document.createElement('p'); ex.textContent = q.explanation;
+  box.append(meta, row, opts); if (!blind) box.append(ex); document.body.append(box);
+}
+</script></body></html>

@@ -1,7 +1,7 @@
 {
   "name": "EU Prep Suite — EPSO AD5",
   "short_name": "EU Prep",
-  "description": "Preparazione EPSO/AD/427/26, Parte 1: micro-sessioni, allenamento a tempo, simulazione fedele alla piattaforma TAO.",
+  "description": "EPSO/AD/427/26, Parte 1: un percorso a tappe fino alla prova, con verbale, numerico e astratto, schede di studio e simulazione fedele alla piattaforma TAO.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

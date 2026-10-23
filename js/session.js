@@ -1,13 +1,13 @@
-// Sessioni Micro / Allenamento / Ripasso — namespace App.session
+// Sessioni: tappe del percorso, Micro, Allenamento, Ripasso — namespace App.session
 // Un item per volta, ritmo visibile, «Sicuro/Dubbio», feedback subito, registro per item,
-// ripresa dalla home dopo un'interruzione (stato salvato a ogni passo).
+// ripresa esatta dopo un'interruzione (stato salvato a ogni passo). Una tappa può aprirsi con una scheda di studio.
 window.App = window.App || {};
 App.session = (() => {
   'use strict';
-  const { el, minSec, paragraphs, uid, copyText, dateTimeIt, renderPassage } = App.utils;
+  const { el, minSec, paragraphs, uid, copyText, dateTimeIt, renderStimulus, hasStimulus, figure } = App.utils;
   const $ = (id) => document.getElementById(id);
 
-  const MODE_LABEL = { micro: 'Micro', train: 'Allenamento', review: 'Ripasso' };
+  const MODE_LABEL = { tappa: 'Tappa', micro: 'Micro', train: 'Allenamento', review: 'Ripasso' };
   let S = null;          // stato della sessione corrente (null quando nessuna sessione è a schermo)
   let tickId = null;
   let itemShownAt = 0;   // epoch ms: quando l'item corrente è apparso (per il tempo)
@@ -17,19 +17,33 @@ App.session = (() => {
   const persist = () => { if (S) App.store.setCurrent(S); };
   const live = () => Boolean(S) && !S.finished && App.ui.view() === 'session';
 
-  function start(mode, questions, { bankLabel = '' } = {}) {
+  function start(mode, questions, { bankLabel = '', step = null, lessonId = null } = {}) {
     if (!questions.length) { App.ui.toast('Nessuna domanda disponibile.'); return; }
-    const extra = App.plan.today().done; // oltre la sessione del giorno: si registra come «extra», senza pressione
+    for (const q of questions) App.banks.remember(q);
     App.calc.reset();
     S = {
-      id: uid(), mode, bankLabel, extra, startedAt: new Date().toISOString(),
+      id: uid(), mode, bankLabel, step, lessonId, lessonSeen: !lessonId, startedAt: new Date().toISOString(),
       items: questions.map((q) => ({ bank: q.bank, id: q.id })),
       index: 0, phase: 'answer', selected: null, elapsed: 0,
       answers: [], // { bank, id, sel, ok, sec, conf, tag }
     };
     persist();
-    App.ui.show('session', { title: MODE_LABEL[mode] });
+    if (!S.lessonSeen) { showLesson(); return; }
+    App.ui.show('session', { title: titleOf() });
     renderItem();
+  }
+
+  const titleOf = () => (S.mode === 'tappa' && S.step ? S.step.title : MODE_LABEL[S.mode]);
+
+  // La scheda di studio prima delle domande: «Alle domande» avvia, «Più tardi» lascia la tappa in pausa.
+  function showLesson() {
+    const ok = App.lessons.show(S.lessonId, {
+      goText: 'Alle domande',
+      kicker: S.step ? S.step.title.split(' · ')[0] : '',
+      onGo: () => { if (!S) return; S.lessonSeen = true; persist(); App.ui.show('session', { title: titleOf() }); renderItem(); },
+      onBack: () => { persist(); S = null; App.main.home(); },
+    });
+    if (!ok) { S.lessonSeen = true; persist(); App.ui.show('session', { title: titleOf() }); renderItem(); }
   }
 
   function resume() {
@@ -46,7 +60,8 @@ App.session = (() => {
       App.store.setCurrent(c);
     }
     S = c;
-    App.ui.show('session', { title: MODE_LABEL[S.mode] });
+    if (S.lessonId && !S.lessonSeen) { showLesson(); return true; }
+    App.ui.show('session', { title: titleOf() });
     if (S.phase === 'feedback') { renderItem(); showFeedback(S.answers[S.answers.length - 1], true); }
     else renderItem();
     return true;
@@ -54,30 +69,41 @@ App.session = (() => {
 
   function current() { const it = S.items[S.index]; return App.banks.question(it.bank, it.id); }
 
+  function optionButton(q, o) {
+    const isFig = q.format === 'abs5';
+    return el('button', {
+      type: 'button', class: `opt${isFig ? ' opt-fig' : ''}`, 'aria-pressed': String(S.selected === o.letter), dataset: { letter: o.letter },
+      'aria-label': isFig ? `Opzione ${o.letter}` : null,
+      onclick: () => choose(o.letter),
+    }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, `${o.letter})`),
+    isFig ? el('span', { class: 'opt-figure' }, figure(o.fig, { size: 60, label: `Opzione ${o.letter}` })) : el('span', { class: 'opt-text' }, o.text));
+  }
+
   function renderItem() {
     const q = current();
     const pace = App.plan.PACE[q.bank] || 90;
     $('s-counter').textContent = `${S.index + 1} / ${S.items.length}`;
-    $('s-mode').textContent = `${MODE_LABEL[S.mode]} · ${App.BANK_LABEL[q.bank] || q.bank}${q.level ? ' L' + q.level : ''}${q.format === 'vfn' ? ' · fondamenta' : ''}`;
+    $('s-mode').textContent = `${S.mode === 'tappa' ? 'Tappa' : MODE_LABEL[S.mode]} · ${App.BANK_LABEL[q.bank] || q.bank} · ${App.levelLabel(q)}${q.format === 'vfn' ? ' · vero/falso' : ''}`;
     $('s-target').textContent = minSec(pace);
     $('s-tools').hidden = q.bank !== 'numerico';
     if (q.bank !== 'numerico') App.calc.hideAll();
     const p = $('s-passage');
-    p.hidden = !q.passage;
-    renderPassage(p, q.passage);
+    p.hidden = !hasStimulus(q);
+    p.classList.toggle('is-series', Boolean(q.series));
+    p.classList.toggle('is-table', Boolean(q.table || q.chart));
+    renderStimulus(p, q, { figSize: 58 });
     const qn = $('s-question');
     if (q.format === 'vfn') { qn.replaceChildren(el('span', { class: 'q-lead' }, 'In base al brano, questa affermazione è vera, falsa o indecidibile?'), el('br'), el('span', {}, q.question)); }
     else qn.textContent = q.question;
-    $('s-options').replaceChildren(...q.options.map((o) => el('button', {
-      type: 'button', class: 'opt', 'aria-pressed': String(S.selected === o.letter), dataset: { letter: o.letter },
-      onclick: () => choose(o.letter),
-    }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, `${o.letter})`), el('span', { class: 'opt-text' }, o.text))));
+    const opts = $('s-options');
+    opts.classList.toggle('options-fig', q.format === 'abs5');
+    opts.replaceChildren(...q.options.map((o) => optionButton(q, o)));
     const conf = App.store.settings().confidence;
     $('s-sure').hidden = !conf; $('s-doubt').hidden = !conf; $('s-answer').hidden = conf;
     setActions(S.selected != null);
     $('s-feedback').hidden = true;
     $('s-actions').hidden = false;
-    $('s-options').classList.remove('revealed');
+    opts.classList.remove('revealed');
     elapsedBefore = S.phase === 'answer' ? (S.elapsed || 0) : 0;
     itemShownAt = Date.now();
     clearInterval(tickId);
@@ -112,13 +138,16 @@ App.session = (() => {
   }
   function setActions(enabled) { for (const id of ['s-sure', 's-doubt', 's-answer']) $(id).disabled = !enabled; }
 
+  // La trappola registrata è quella dell'opzione scelta (se l'item la indica), altrimenti quella dell'item.
+  const trapOf = (q, letter) => { const o = q.options.find((x) => x.letter === letter); return (o && o.trap) || q.tag; };
+
   function answer(conf) {
     if (!S || S.phase !== 'answer' || S.selected == null) return;
     clearInterval(tickId);
     const q = current();
     const sec = Math.round(elapsedBefore + (Date.now() - itemShownAt) / 1000);
     const ok = q.correct[0] === S.selected;
-    const a = { bank: q.bank, id: q.id, sel: S.selected, ok, sec, conf, tag: q.tag, level: q.level, format: q.format };
+    const a = { bank: q.bank, id: q.id, sel: S.selected, ok, sec, conf, tag: ok ? q.tag : trapOf(q, S.selected), level: q.level, format: q.format };
     S.answers.push(a);
     S.phase = 'feedback';
     S.elapsed = 0;
@@ -132,6 +161,8 @@ App.session = (() => {
     const pace = App.plan.PACE[q.bank] || 90;
     paint(a.sec, pace); // anche alla ripresa: il tempo mostrato è quello dell'item appena risposto
     $('s-actions').hidden = true;
+    // Verbale: la prova della risposta corretta si evidenzia nel brano.
+    if (q.evidence) renderStimulus($('s-passage'), q, { evidence: true, figSize: 58 });
     const opts = $('s-options');
     opts.classList.add('revealed');
     for (const b of opts.querySelectorAll('.opt')) {
@@ -144,17 +175,18 @@ App.session = (() => {
     fb.className = `feedback ${a.ok ? 'ok' : 'ko'}`;
     $('s-fb-head').textContent = a.ok ? `Corretta · ${minSec(a.sec)}${a.sec > pace ? ' (oltre il ritmo di ' + minSec(pace) + ')' : ''}` : `Sbagliata · ${minSec(a.sec)}`;
     const correctOpt = q.options.find((o) => o.letter === q.correct[0]);
-    $('s-fb-correct').textContent = a.ok ? '' : `Risposta corretta: ${correctOpt.letter}) ${correctOpt.text}`;
+    $('s-fb-correct').textContent = a.ok ? '' : `Risposta corretta: ${correctOpt.letter})${q.format === 'abs5' ? '' : ' ' + correctOpt.text}`;
     const calib = $('s-fb-calib');
     if (a.conf === 'sure' && !a.ok) { calib.hidden = false; calib.textContent = 'Eri sicuro: questa è una trappola pericolosa, va capita a fondo.'; }
     else if (a.conf === 'doubt' && a.ok) { calib.hidden = false; calib.textContent = 'Giusta, ma in dubbio: in prova, segnalibro e avanti, si torna dopo.'; }
     else if (a.conf === 'doubt' && !a.ok) { calib.hidden = false; calib.textContent = 'Dubbio e sbagliata: il dubbio era fondato. In prova vale il segnalibro.'; }
     else calib.hidden = true;
     $('s-fb-expl').replaceChildren(...paragraphs(q.explanation));
-    $('s-fb-tag').textContent = q.tag ? `Trappola: ${App.tagLabel(q.tag)}` : '';
+    const tag = a.ok ? q.tag : a.tag;
+    $('s-fb-tag').textContent = tag ? `${a.ok ? 'Tema' : 'Trappola'}: ${App.tagLabel(tag)}` : '';
     const last = S.index === S.items.length - 1;
-    $('s-next').textContent = last ? 'Fine sessione' : 'Prossima';
-    // Si porta in vista l'esito, non il pulsante: il brano resta raggiungibile sopra, la correzione sotto.
+    $('s-next').textContent = last ? 'Fine' : 'Prossima';
+    // Si porta in vista l'esito, non il pulsante: lo stimolo resta raggiungibile sopra, la correzione sotto.
     if (!resumed) setTimeout(() => { $('s-fb-head').scrollIntoView({ block: 'start', behavior: 'auto' }); $('s-next').focus({ preventScroll: true }); }, 30);
   }
 
@@ -168,7 +200,7 @@ App.session = (() => {
 
   // Pausa: lo stato resta salvato (eps2.current), la sessione esce dalla memoria. Si riprende dalla home.
   async function quit() {
-    const ok = await App.ui.confirm({ title: 'Interrompere?', message: 'Le risposte date restano nel registro. Puoi riprendere più tardi dalla home, oggi stesso.', okText: 'Metti in pausa', cancelText: 'Continua' });
+    const ok = await App.ui.confirm({ title: 'Mettere in pausa?', message: 'Le risposte date restano. Quando riapri l\'app, «Riprendi» ti riporta qui, alla stessa domanda.', okText: 'Metti in pausa', cancelText: 'Continua' });
     if (!ok || !S) return;
     clearInterval(tickId);
     try { if (S.phase === 'answer') tick(); persist(); } finally { S = null; }
@@ -176,7 +208,7 @@ App.session = (() => {
     App.main.home();
   }
 
-  // Chiusura: riepilogo di sessione, log, schermata di fine.
+  // Chiusura: riepilogo di sessione, log, tappa completata, schermata di fine.
   function finish() {
     if (!S || S.finished) return;
     S.finished = true;
@@ -186,11 +218,12 @@ App.session = (() => {
     const sec = answers.reduce((s, a) => s + a.sec, 0);
     const banks = [...new Set(answers.map((a) => a.bank))];
     const trap = dominantTrap(answers);
-    const summary = { mode: S.mode, id: S.id, banks, n, correct, sec, trap, extra: Boolean(S.extra), sure_wrong: answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: answers.filter((a) => a.conf === 'doubt' && a.ok).length };
+    const summary = { mode: S.mode, id: S.id, banks, n, correct, sec, trap, step: S.step ? S.step.id : undefined, sure_wrong: answers.filter((a) => a.conf === 'sure' && !a.ok).length, doubt_ok: answers.filter((a) => a.conf === 'doubt' && a.ok).length };
     App.store.addSession(summary);
+    if (S.step) App.path.complete(S.step, summary);
     App.store.setCurrent(null);
     renderEnd(summary, answers);
-    App.ui.show('end', { title: 'Fine sessione' });
+    App.ui.show('end', { title: 'Fatto' });
   }
 
   function dominantTrap(answers) {
@@ -202,7 +235,7 @@ App.session = (() => {
 
   function renderEnd(sum, answers) {
     const items = S.items;
-    $('e-mode').textContent = `${MODE_LABEL[sum.mode]} · ${sum.banks.map((b) => App.BANK_LABEL[b] || b).join(' + ')} · ${dateTimeIt(new Date().toISOString())}`;
+    $('e-mode').textContent = `${S.mode === 'tappa' && S.step ? '✓ ' + S.step.title : MODE_LABEL[sum.mode]} · ${sum.banks.map((b) => App.BANK_LABEL[b] || b).join(' + ')}`;
     $('e-score').textContent = `${sum.correct}/${sum.n}`;
     const avg = sum.n ? sum.sec / sum.n : 0;
     const paceRef = sum.banks.length === 1 ? App.plan.PACE[sum.banks[0]] : null;
@@ -210,25 +243,37 @@ App.session = (() => {
     $('e-trap').textContent = sum.trap ? App.tagLabel(sum.trap) : 'nessuna';
     const sentence = [];
     if (sum.n && sum.correct === sum.n) sentence.push('Tutte giuste.');
-    if (sum.trap) sentence.push(`Prossima sessione: più attenzione a «${App.tagLabel(sum.trap)}».`);
+    if (sum.trap) sentence.push(`Da allenare: «${App.tagLabel(sum.trap)}».`);
     if (sum.sure_wrong) sentence.push(`${sum.sure_wrong} error${sum.sure_wrong === 1 ? 'e' : 'i'} da sicuro: ${sum.sure_wrong === 1 ? 'quella è la trappola' : 'quelle sono le trappole'} da capire a fondo.`);
     if (paceRef && avg > paceRef) sentence.push(`Ritmo oltre la prova di ${minSec(avg - paceRef)} a domanda.`);
-    if (!sentence.length) sentence.push('Fatto. Basta per questa sessione.');
+    if (!sentence.length) sentence.push('Fatto.');
     $('e-sentence').textContent = sentence.join(' ');
+    // Prossimo passo: la tappa successiva con un tocco, oppure basta per oggi.
+    const c = App.path.counts();
+    const nx = App.path.next();
+    const startable = nx && ['lesson', 'drill', 'review', 'sim', 'official'].includes(nx.kind);
+    $('e-today').textContent = `Oggi ${Math.min(c.today, c.target)} di ${c.target} tappe${c.today >= c.target ? ': obiettivo del giorno fatto.' : '.'}`;
+    // Obiettivo del giorno raggiunto: il traguardo diventa l'azione principale, la tappa in più resta a un tocco.
+    const enough = c.today >= c.target;
+    $('e-next').hidden = !startable;
+    if (startable) {
+      $('e-next').textContent = enough ? `Un'altra tappa: ${nx.title}` : `Continua: ${nx.title}${nx.min ? ` · ${nx.min}′` : ''}`;
+      $('e-next').onclick = () => App.path.start(nx);
+    }
+    $('e-done').textContent = enough ? 'Basta per oggi' : 'Più tardi';
+    const doneMain = enough || !startable;
+    $('e-done').classList.toggle('btn-primary', doneMain);
+    $('e-done').classList.toggle('btn-ghost', !doneMain);
+    $('e-next').classList.toggle('btn-primary', !doneMain);
+    $('e-next').classList.toggle('btn-ghost', doneMain);
+    // L'azione principale viene prima (anche per il fuoco da tastiera).
+    const box = $('e-next').parentNode;
+    if (doneMain) box.prepend($('e-done')); else box.prepend($('e-next'));
     $('e-more').hidden = sum.mode !== 'micro';
     const wrong = answers.filter((a) => !a.ok);
     $('e-review-wrap').hidden = wrong.length === 0;
-    $('e-review').replaceChildren(...wrong.map((a) => {
-      const q = App.banks.question(a.bank, a.id);
-      const co = q.options.find((o) => o.letter === q.correct[0]);
-      return el('div', { class: 'review-item' },
-        el('p', { class: 'review-head' }, `#${q.id} · ${App.BANK_LABEL[q.bank]} · ${App.tagLabel(q.tag)}${a.conf === 'sure' ? ' · eri sicuro' : ''}`),
-        q.passage ? el('details', {}, el('summary', {}, 'Brano'), ...q.passage.split('\n').map((l) => el('p', {}, l))) : null,
-        el('p', { class: 'review-q' }, q.question),
-        el('p', {}, `Tua: ${a.sel} · Corretta: ${co.letter}) ${co.text}`),
-        el('div', { class: 'review-expl' }, ...paragraphs(q.explanation)));
-    }));
-    $('e-copy').onclick = async () => { (await copyText(summaryText(sum, answers))) ? App.ui.toast('Riepilogo copiato: incollalo in chat.') : App.ui.toast('Copia non riuscita.'); };
+    $('e-review').replaceChildren(...wrong.map((a) => reviewNode(App.banks.question(a.bank, a.id), a.sel, a)));
+    $('e-copy').onclick = async () => { (await copyText(summaryText(sum, answers))) ? App.ui.toast('Riepilogo copiato.') : App.ui.toast('Copia non riuscita.'); };
     $('e-more').onclick = async () => {
       if (!(await App.main.closePausedIfAny())) return;
       const more = App.select.pickOneMore(items);
@@ -238,9 +283,26 @@ App.session = (() => {
     $('e-done').onclick = () => App.main.home();
   }
 
+  // Un item rivisto (fine sessione, simulazione): stimolo, domanda, opzioni con esito, spiegazione.
+  function reviewNode(q, sel, a = null) {
+    const co = q.options.find((o) => o.letter === q.correct[0]);
+    const stim = el('div', { class: 'review-passage' });
+    renderStimulus(stim, q, { evidence: true, figSize: 46 });
+    const opts = q.format === 'abs5'
+      ? el('div', { class: 'review-figs' }, ...q.options.map((o) => el('span', { class: `review-fig${o.letter === co.letter ? ' is-correct' : o.letter === sel ? ' is-wrong' : ''}` }, el('span', { class: 'opt-letter' }, `${o.letter})`), figure(o.fig, { size: 46, label: `Opzione ${o.letter}` }))))
+      : el('ul', { class: 'review-opts' }, ...q.options.map((o) => el('li', { class: o.letter === co.letter ? 'is-correct' : o.letter === sel ? 'is-wrong' : '' }, `${o.letter}) ${o.text}`)));
+    return el('div', { class: 'review-item' },
+      el('p', { class: 'review-head' }, `${App.BANK_LABEL[q.bank]} · ${a && !a.ok && a.tag ? App.tagLabel(a.tag) : App.tagLabel(q.tag)}${a && a.conf === 'sure' ? ' · eri sicuro' : ''}`),
+      hasStimulus(q) ? el('details', {}, el('summary', {}, q.series ? 'Serie' : q.table ? 'Tabella' : 'Brano'), stim) : null,
+      el('p', { class: 'review-q' }, q.question),
+      opts,
+      el('p', {}, `Tua: ${sel || 'in bianco'} · Corretta: ${co.letter}`),
+      el('div', { class: 'review-expl' }, ...paragraphs(q.explanation)));
+  }
+
   function summaryText(sum, answers) {
-    const lines = [`EU Prep Suite — ${MODE_LABEL[sum.mode]} · ${dateTimeIt(new Date().toISOString())}`];
-    lines.push(`${sum.banks.map((b) => App.BANK_LABEL[b] || b).join(' + ')} L1 · ${sum.n} domande · ${sum.correct}/${sum.n} · ${minSec(sum.n ? sum.sec / sum.n : 0)} a domanda`);
+    const lines = [`EU Prep — ${S.mode === 'tappa' && S.step ? S.step.title : MODE_LABEL[sum.mode]} · ${dateTimeIt(new Date().toISOString())}`];
+    lines.push(`${sum.banks.map((b) => App.BANK_LABEL[b] || b).join(' + ')} · ${sum.n} domande · ${sum.correct}/${sum.n} · ${minSec(sum.n ? sum.sec / sum.n : 0)} a domanda`);
     const wrong = answers.filter((a) => !a.ok);
     lines.push(wrong.length ? `Errori: ${wrong.map((a) => `#${a.id} (${a.tag}${a.conf === 'sure' ? ', sicuro' : a.conf === 'doubt' ? ', dubbio' : ''}, ${minSec(a.sec)})`).join(' · ')}` : 'Errori: nessuno');
     lines.push(`Calibrazione: ${sum.sure_wrong} sbagliate da sicuro · ${sum.doubt_ok} giuste in dubbio`);
@@ -292,10 +354,11 @@ App.session = (() => {
 
   // Sessione lasciata a metà in un giorno precedente (e da almeno 3 ore: una pausa alle 00:05 di una Micro
   // iniziata alle 23:55 non è «di ieri», F2-10): si chiude e si conta ciò che è stato fatto.
+  // Le tappe del percorso invece restano in pausa finché non si finiscono: si riprende da lì, anche giorni dopo.
   const STALE_MS = 3 * 3600 * 1000;
   function closeStale() {
     const c = App.store.current();
-    if (!c) return;
+    if (!c || c.step) return;
     const started = new Date(c.startedAt);
     if (App.utils.todayKey(started) === App.utils.todayKey() || Date.now() - started.getTime() < STALE_MS) return;
     closeAsPartial(c);
@@ -312,5 +375,8 @@ App.session = (() => {
     if (S && S.id === c.id) { clearInterval(tickId); S = null; }
   }
 
-  return { start, resume, init, closeStale, closeAsPartial, MODE_LABEL, isActive: () => Boolean(App.store.current()) };
+  // Ricarica a schermo lo stato arrivato da un altro dispositivo (sincronizzazione), se nessuna sessione è attiva qui.
+  const isLive = () => live();
+
+  return { start, resume, init, closeStale, closeAsPartial, reviewNode, MODE_LABEL, isLive, isActive: () => Boolean(App.store.current()) };
 })();

@@ -40,6 +40,8 @@ App.calc = (() => {
     const d = $('calc-display');
     if (k === 'C') { d.value = ''; return; }
     if (k === '⌫') { d.value = d.value.slice(0, -1); return; }
+    // Come in TAO la virgola non è un separatore decimale [V TAO §6.4.5]: l'app lo segnala invece di correggerla in silenzio.
+    if (k === '=' && d.value.includes(',')) { d.classList.add('calc-err'); setTimeout(() => d.classList.remove('calc-err'), 400); if (App.ui) App.ui.toast('In TAO il decimale è il punto: 12.5, non 12,5.', 3500); return; }
     if (k === '=') { try { d.value = String(evaluate(d.value)); } catch { d.classList.add('calc-err'); setTimeout(() => d.classList.remove('calc-err'), 400); } return; }
     d.value += k;
     focusIfKeyboard(d);

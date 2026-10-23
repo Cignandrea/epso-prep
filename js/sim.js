@@ -5,14 +5,17 @@
 window.App = window.App || {};
 App.sim = (() => {
   'use strict';
-  const { el, taoClock, minSec, paragraphs, uid, copyText, dateTimeIt, renderPassage } = App.utils;
+  const { el, taoClock, minSec, paragraphs, uid, copyText, dateTimeIt, renderPassage, renderStimulus, hasStimulus, figure } = App.utils;
   const $ = (id) => document.getElementById(id);
 
   // Nomi come in TAO; numero di domande e minuti dai metadati della banca (data/bank-*.js, exam), con riserva.
+  // Ordine e tempi della Parte 1 [V lettera d'invito del 19/10]: verbale 35′ (20), numerico 20′ (10), astratto 10′ (10).
   const SECTION_NAMES = {
     verbale: { name: 'Verbal', label: 'Verbal Reasoning', n: 20, minutes: 35 },
     numerico: { name: 'Numerical', label: 'Numerical Reasoning', n: 10, minutes: 20 },
+    astratto: { name: 'Abstract', label: 'Abstract Reasoning', n: 10, minutes: 10 },
   };
+  const FULL = ['verbale', 'numerico', 'astratto'];
   function sectionDef(bank) {
     const exam = (App.banks.get(bank) || {}).exam || {};
     const d = SECTION_NAMES[bank];
@@ -33,20 +36,27 @@ App.sim = (() => {
   // ── Setup ──
   function showSetup() {
     $('sim-device-note').hidden = !(matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 1);
-    const rep = App.select.poolReport();
-    $('sim-pool-note').textContent = `Domande mai usate in simulazione: verbale ${rep.verbale.freshForSim}/${rep.verbale.total}, numerico ${rep.numerico.freshForSim}/${rep.numerico.total} (livello L1; il livello EPSO arriva con la v1.2).`;
+    const rep = App.select.poolReport().verbale;
+    $('sim-pool-note').textContent = `Verbale: ${rep.reserve + Math.max(0, rep.l2Unseen - rep.reserve)} brani di livello prova mai visti (${rep.reserve} riservati alle simulazioni) e ${rep.l1Unseen} di livello base. Numerico e astratto: domande nuove generate a ogni simulazione.`;
     App.ui.show('sim-setup', { title: 'Simulazione' });
   }
 
   function startFromSetup() {
     const scope = document.querySelector('input[name="sim-scope"]:checked').value;
     const timerMode = document.querySelector('input[name="sim-timer"]:checked').value;
-    const defs = scope === 'full' ? [sectionDef('verbale'), sectionDef('numerico')] : [sectionDef(scope)];
+    startWith(scope, timerMode, null);
+  }
+  // Dal percorso: la simulazione completa parte subito, con un timer per prova come nella prova vera [V TAO §6.3.5].
+  function startFull({ step = null } = {}) { startWith('full', 'section', step); }
+
+  function startWith(scope, timerMode, step) {
+    const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef);
     const sections = [];
     for (const d of defs) {
       const pick = App.select.pickSim(d.bank, d.n);
+      for (const q of pick.items) App.banks.remember(q);
       if (pick.items.length < d.n) {
-        App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}. Servono le batterie L2.`);
+        App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}.`);
         if (pick.items.length === 0) return;
       }
       const n = pick.items.length;
@@ -57,7 +67,7 @@ App.sim = (() => {
     const units = timerMode === 'single'
       ? [{ sections: sections.map((_, i) => i), minutes: sections.reduce((s, x) => s + x.minutes, 0) }]
       : sections.map((_, i) => ({ sections: [i], minutes: sections[i].minutes }));
-    SIM = { id: uid(), startedAt: new Date().toISOString(), scope, timerMode, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false };
+    SIM = { id: uid(), startedAt: new Date().toISOString(), scope, timerMode, step, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false };
     persist();
     resetUi();
     App.ui.show('sim');
@@ -118,7 +128,8 @@ App.sim = (() => {
     $('tao-item-id').textContent = ''; $('tao-item-sep').hidden = true;
     $('tao-timer').textContent = taoClock(u.minutes * 60);
     $('tao-intro-title').textContent = secs.map((s) => `${s.label} · ${s.n} questions${s.reduced ? ' (reduced: question pool)' : ''}`).join(' / ');
-    $('tao-intro-text').textContent = `${u.minutes} minutes. You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections, as in the EPSO sample test.' : 'The timer starts when you press Start.'} Contenuti di livello L1: brani più corti e tabelle più semplici della prova reale (livello EPSO dalla v1.2).`;
+    const step = SIM.units.length > 1 ? ` Part ${SIM.unit + 1} of ${SIM.units.length}.` : '';
+    $('tao-intro-text').textContent = `${u.minutes} minutes.${step} You can move freely between questions, bookmark them and review them in the overview before submitting. No feedback is given until the end. ${secs.length > 1 ? 'A single timer covers all sections.' : 'The timer starts when you press Start.'}`;
     $('tao-intro-start').onclick = startUnit;
   }
 
@@ -158,16 +169,20 @@ App.sim = (() => {
     const s = SIM.sections[it.si];
     const q = App.banks.question(it.bank, it.id);
     $('tao-section-name').textContent = s.name;
-    $('tao-item-id').textContent = `IT${String(q.id).padStart(4, '0')}`; $('tao-item-sep').hidden = false;
+    $('tao-item-id').textContent = typeof q.id === 'number' ? `IT${String(q.id).padStart(4, '0')}` : `IT-${q.id}`; $('tao-item-sep').hidden = false;
     const p = $('tao-passage');
-    p.hidden = !q.passage;
-    renderPassage(p, q.passage, { tableClass: 'data-table tao-table' });
-    applyHighlights(p, (s.hl && s.hl[it.id]) || []);
+    p.hidden = !hasStimulus(q);
+    p.classList.toggle('is-series', Boolean(q.series));
+    renderStimulus(p, q, { tableClass: 'data-table tao-table', figSize: 72 });
+    if (isText(q)) applyHighlights(p, (s.hl && s.hl[it.id]) || []);
     $('tao-question').textContent = q.question;
     const sel = s.answers[it.id] || null;
-    $('tao-options').replaceChildren(...q.options.map((o) => el('label', { class: `tao-opt${sel === o.letter ? ' checked' : ''}` },
-      el('input', { type: 'radio', name: 'tao-answer', value: o.letter, checked: sel === o.letter, onchange: () => select(o.letter) }),
-      el('span', { class: 'tao-opt-letter' }, `${o.letter})`), el('span', { class: 'tao-opt-text' }, o.text))));
+    const fig = q.format === 'abs5';
+    $('tao-options').classList.toggle('tao-options-fig', fig);
+    $('tao-options').replaceChildren(...q.options.map((o) => el('label', { class: `tao-opt${fig ? ' tao-opt-fig' : ''}${sel === o.letter ? ' checked' : ''}` },
+      el('input', { type: 'radio', name: 'tao-answer', value: o.letter, checked: sel === o.letter, onchange: () => select(o.letter), 'aria-label': fig ? `Option ${o.letter}` : null }),
+      el('span', { class: 'tao-opt-letter' }, `${o.letter})`),
+      fig ? el('span', { class: 'tao-opt-figure' }, figure(o.fig, { size: 68, label: `Opzione ${o.letter}` })) : el('span', { class: 'tao-opt-text' }, o.text))));
     paintBookmark(Boolean(s.bookmarks[it.id]));
     $('tao-prev').disabled = SIM.pos === 0;
     $('tao-next').disabled = SIM.pos === items.length - 1;
@@ -255,12 +270,15 @@ App.sim = (() => {
     s.hl = s.hl || {};
     return { it, s, list: s.hl[it.id] || [] };
   }
+  // L'evidenziatore funziona solo sul testo dei brani: in TAO non agisce sulle immagini (tabelle, figure) [V TAO §6.4.2].
+  const isText = (q) => Boolean(q && q.passage && !q.table && !q.series && !q.chart);
   function repaint(root, it, list) {
     renderPassage(root, App.banks.question(it.bank, it.id).passage, { tableClass: 'data-table tao-table' });
     applyHighlights(root, list);
   }
   function onPassageMouseUp() {
     if (!highlightMode || !SIM || SIM.phase !== 'running') return;
+    if (!isText(App.banks.question(unitItems()[SIM.pos].bank, unitItems()[SIM.pos].id))) return;
     const sel = window.getSelection();
     if (!sel || sel.isCollapsed || !sel.rangeCount) return;
     const range = sel.getRangeAt(0);
@@ -394,7 +412,9 @@ App.sim = (() => {
     }
     SIM.results = results;
     App.store.addLogMany(entries);
-    for (const r of results) App.store.addSession({ t: r.t, mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined });
+    for (const r of results) App.store.addSession({ t: r.t, mode: 'sim', id: SIM.id, banks: [r.bank], n: r.n, correct: r.correct, sec: r.time, trap: trapOf(entries.filter((e) => e.bank === r.bank)), timerMode: SIM.timerMode, byTimeout: r.byTimeout, stale: SIM.stale || undefined, step: SIM.step ? SIM.step.id : undefined });
+    // Tappa del percorso: conta solo una simulazione completa consegnata (anche per tempo scaduto), non una interrotta.
+    if (SIM.step && !SIM.stale && SIM.scope === 'full') App.path.complete(SIM.step, { n: results.reduce((s, r) => s + r.n, 0), correct: results.reduce((s, r) => s + r.correct, 0) });
     persist();
     if (show) showResults();
   }
@@ -444,11 +464,17 @@ App.sim = (() => {
         const sel = s.answers[it.id] || null;
         const ok = sel === q.correct[0];
         const co = q.options.find((o) => o.letter === q.correct[0]);
+        const trap = sel && !ok ? ((q.options.find((o) => o.letter === sel) || {}).trap || q.tag) : q.tag;
+        const stim = el('div', { class: 'review-passage' });
+        if (hasStimulus(q)) renderStimulus(stim, q, { evidence: true, figSize: 46 });
+        const opts = q.format === 'abs5'
+          ? el('div', { class: 'review-figs' }, ...q.options.map((o) => el('span', { class: `review-fig${o.letter === co.letter ? ' is-correct' : o.letter === sel ? ' is-wrong' : ''}` }, el('span', { class: 'opt-letter' }, `${o.letter})`), figure(o.fig, { size: 46, label: `Opzione ${o.letter}` }))))
+          : el('ul', { class: 'review-opts' }, ...q.options.map((o) => el('li', { class: o.letter === co.letter ? 'is-correct' : o.letter === sel ? 'is-wrong' : '' }, `${o.letter}) ${o.text}`)));
         review.append(el('details', { class: `review-item ${ok ? 'ok' : 'ko'}` },
-          el('summary', {}, `${i + 1}. ${ok ? '✓' : '✗'} · ${sel ? 'tua ' + sel : 'in bianco'} · corretta ${co.letter} · ${minSec(s.time[it.id] || 0)} · ${App.tagLabel(q.tag)}`),
-          q.passage ? el('div', { class: 'review-passage' }, ...q.passage.split('\n').map((l) => el('p', {}, l))) : null,
+          el('summary', {}, `${i + 1}. ${ok ? '✓' : '✗'} · ${sel ? 'tua ' + sel : 'in bianco'} · corretta ${co.letter} · ${minSec(s.time[it.id] || 0)} · ${App.tagLabel(trap)}`),
+          hasStimulus(q) ? stim : null,
           el('p', { class: 'review-q' }, q.question),
-          el('ul', { class: 'review-opts' }, ...q.options.map((o) => el('li', { class: o.letter === q.correct[0] ? 'is-correct' : o.letter === sel ? 'is-wrong' : '' }, `${o.letter}) ${o.text}`))),
+          opts,
           el('div', { class: 'review-expl' }, ...paragraphs(q.explanation))));
       });
     }
@@ -462,7 +488,7 @@ App.sim = (() => {
     for (const s of SIM.sections) {
       const r = SIM.results.find((x) => x.bank === s.bank);
       const wrong = s.items.filter((it) => (s.answers[it.id] || null) !== App.banks.question(it.bank, it.id).correct[0]);
-      lines.push(`${App.BANK_LABEL[s.bank]} L1: ${r.correct}/${r.n} · ${minSec(r.time)} · ${minSec(r.n ? r.time / r.n : 0)} a domanda${r.byTimeout ? ' · tempo scaduto' : ''}`);
+      lines.push(`${App.BANK_LABEL[s.bank]}: ${r.correct}/${r.n} · ${minSec(r.time)} · ${minSec(r.n ? r.time / r.n : 0)} a domanda${r.byTimeout ? ' · tempo scaduto' : ''}`);
       lines.push(wrong.length ? `  errori: ${wrong.map((it) => { const q = App.banks.question(it.bank, it.id); return `#${q.id} (${q.tag}${s.answers[it.id] ? '' : ', in bianco'})`; }).join(' · ')}` : '  errori: nessuno');
     }
     return lines.join('\n');
@@ -514,5 +540,5 @@ App.sim = (() => {
     App.store.onReset(() => discard());
   }
 
-  return { init, showSetup, resume, closeStale, discard, isActive: () => Boolean(App.store.sim()) };
+  return { init, showSetup, startFull, resume, closeStale, discard, isActive: () => Boolean(App.store.sim()) };
 })();

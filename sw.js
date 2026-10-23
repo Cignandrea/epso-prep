@@ -1,15 +1,16 @@
 // Service worker: cache dell'app per l'uso offline, versionata.
 // VERSION deve coincidere con App.main.VERSION (js/main.js): è il nome della cache, quindi ogni build
 // invalida la precedente (T-061). Il controllo è in tests/smoke.py.
-const VERSION = '1.1.0-b5';
+const VERSION = '1.2.0-b2';
 const CACHE = `euprep-${VERSION}`;
 const ASSETS = [
   './', './index.html', './manifest.webmanifest', './css/style.css',
-  './js/banks.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/select.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/main.js',
-  './data/bank-verbale.js', './data/bank-numerico.js',
+  './js/banks.js', './js/gen-numerico.js', './js/gen-astratto.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/select.js', './js/lessons.js', './js/path.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/sync.js', './js/main.js',
+  './data/bank-verbale.js', './data/bank-verbale-l2.js', './data/bank-numerico.js',
   './icons/favicon-64.png', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
 ];
-self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
+// cache: 'reload' scavalca la cache HTTP del browser: la nuova versione non si porta dietro file vecchi di qualche minuto.
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 // Rete prima per l'HTML (per prendere subito gli aggiornamenti), cache prima per il resto.
 self.addEventListener('fetch', (e) => {

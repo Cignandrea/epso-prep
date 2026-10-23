@@ -5,12 +5,25 @@
 //   eps2.current   sessione Micro/Allenamento/Ripasso in corso (o null)
 //   eps2.sim       simulazione in corso (o null)
 //   eps2.settings  impostazioni
+//   eps2.path      percorso: tappe fatte (v1.2)
+//   eps2.stamps    ora dell'ultima modifica di current/sim/settings/path (per la sincronizzazione tra dispositivi)
+// Ogni voce nuova di registro e sessioni porta `dev`, l'id di questo dispositivo: la sincronizzazione unisce senza doppioni.
 window.App = window.App || {};
 App.store = (() => {
   'use strict';
   const PREFIX = 'eps2.';
   const memory = {};
   let storageOk = true;
+  const STAMPED = ['current', 'sim', 'settings', 'path'];
+  const writeListeners = [];
+  let silent = false;
+  const DEV = (() => {
+    try {
+      let d = localStorage.getItem(`${PREFIX}dev`);
+      if (!d) { d = `d${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`; localStorage.setItem(`${PREFIX}dev`, d); }
+      return d;
+    } catch { return `d${Math.random().toString(36).slice(2, 8)}`; }
+  })();
 
   const corrupt = [];
   const isoT = (t) => typeof t === 'string' && !Number.isNaN(Date.parse(t));
@@ -20,6 +33,8 @@ App.store = (() => {
     log: { list: true, ok: (e) => isObj(e) && isoT(e.t) && typeof e.mode === 'string' },
     sessions: { list: true, ok: (e) => isObj(e) && isoT(e.t) && typeof e.mode === 'string', fix: (s) => (Array.isArray(s.banks) ? s : { ...s, banks: typeof s.banks === 'string' ? [s.banks] : [] }) },
     settings: { list: false, ok: isObj },
+    path: { list: false, ok: isObj },
+    stamps: { list: false, ok: isObj },
   };
   function setAside(k, raw) { try { localStorage.setItem(`${k}.corrupt`, typeof raw === 'string' ? raw : JSON.stringify(raw)); } catch { /* ignora */ } }
   function sanitize(name, v) {
@@ -58,16 +73,28 @@ App.store = (() => {
   // Un'altra scheda ha scritto: la copia in memoria non vale più.
   window.addEventListener('storage', (e) => { if (e.key && e.key.startsWith(PREFIX)) delete memory[e.key]; });
   let warned = false;
-  function write(name, value) {
+  function write(name, value, { stamp = null } = {}) {
     const k = PREFIX + name;
     memory[k] = value;
     try { localStorage.setItem(k, JSON.stringify(value)); } catch {
       storageOk = false;
       if (!warned && window.App && App.ui) { warned = true; App.ui.toast('Impossibile salvare sul dispositivo: i dati di questa sessione andranno persi alla chiusura. Esporta da Stato.', 6000); }
     }
+    if (STAMPED.includes(name)) {
+      const st = { ...read('stamps', {}) };
+      st[name] = stamp || new Date().toISOString();
+      memory[`${PREFIX}stamps`] = st;
+      try { localStorage.setItem(`${PREFIX}stamps`, JSON.stringify(st)); } catch { /* ignora */ }
+    }
+    if (!silent) for (const fn of writeListeners) { try { fn(name); } catch (err) { console.warn('listener di scrittura', err); } }
   }
+  const onWrite = (fn) => writeListeners.push(fn);
+  const stamps = () => ({ ...read('stamps', {}) });
+  // Scrittura che arriva da un altro dispositivo: non riparte verso la sincronizzazione e tiene l'ora d'origine.
+  // I dati letti dal database arrivano congelati: se ne salva una copia, che il resto dell'app può modificare.
+  function applyRemote(name, value, stamp) { silent = true; try { write(name, value == null ? value : JSON.parse(JSON.stringify(value)), { stamp }); } finally { silent = false; } }
 
-  const DEFAULT_SETTINGS = { confidence: true, microVfn: true, version: 2 };
+  const DEFAULT_SETTINGS = { confidence: true, microVfn: true, prereqDone: false, version: 2 };
   const settings = () => ({ ...DEFAULT_SETTINGS, ...read('settings', {}) });
   const setSetting = (k, v) => write('settings', { ...settings(), [k]: v });
 
@@ -80,7 +107,7 @@ App.store = (() => {
     const now = new Date().toISOString();
     const last = l.length ? l[l.length - 1].t : '';
     let reorder = false;
-    for (const e of entries) { const row = { t: now, ...e }; if (row.t < last) reorder = true; l.push(row); }
+    for (const e of entries) { const row = { t: now, dev: DEV, ...e }; if (row.t < last) reorder = true; l.push(row); }
     if (reorder) l.sort(byT);
     write('log', l);
   }
@@ -89,10 +116,14 @@ App.store = (() => {
   const sessions = () => read('sessions', []);
   function addSession(s) {
     const l = sessions();
-    l.push({ t: new Date().toISOString(), ...s });
+    l.push({ t: new Date().toISOString(), dev: DEV, ...s });
     l.sort(byT);
     write('sessions', l.slice(-500));
   }
+
+  // ── Percorso ──
+  const path = () => read('path', {});
+  const setPath = (v) => write('path', v);
 
   // ── Stato in corso (con controllo di forma: una chiave malformata viene scartata, non fa cadere la home) ──
   function validShape(name, v, check) {
@@ -158,7 +189,7 @@ App.store = (() => {
   // ── Export / import ──
   const SCHEMA = 2;
   function exportAll() {
-    return JSON.stringify({ app: 'EU Prep Suite v2', version: SCHEMA, exported: new Date().toISOString(), settings: settings(), log: log(), sessions: sessions() }, null, 1);
+    return JSON.stringify({ app: 'EU Prep Suite v2', version: SCHEMA, exported: new Date().toISOString(), settings: settings(), path: path(), log: log(), sessions: sessions() }, null, 1);
   }
   const sessionKey = (s) => (s.id ? `${s.id}|${(s.banks || []).join('+')}` : `${s.t}|${s.mode}`);
   function importAll(json, { merge = true } = {}) {
@@ -185,6 +216,10 @@ App.store = (() => {
       write('log', data.log);
       write('sessions', data.sessions || []);
     }
+    if (data.path && typeof data.path === 'object' && !Array.isArray(data.path)) {
+      const cur = path();
+      write('path', { ...cur, ...data.path, done: { ...(data.path.done || {}), ...(cur.done || {}) }, p2: { i: Math.max((cur.p2 || {}).i || 0, (data.path.p2 || {}).i || 0) } });
+    }
     if (data.settings) {
       const allowed = {};
       for (const k of Object.keys(DEFAULT_SETTINGS)) if (k in data.settings) allowed[k] = data.settings[k];
@@ -195,9 +230,12 @@ App.store = (() => {
   const resetListeners = [];
   const onReset = (fn) => resetListeners.push(fn);
   function resetAll() {
-    for (const k of ['log', 'sessions', 'current', 'sim', 'settings']) write(k, k === 'settings' ? {} : (k === 'current' || k === 'sim' ? null : []));
+    for (const k of ['log', 'sessions', 'current', 'sim', 'settings', 'path']) write(k, k === 'settings' || k === 'path' ? {} : (k === 'current' || k === 'sim' ? null : []));
     for (const fn of resetListeners) fn();
   }
 
-  return { settings, setSetting, log, addLog, addLogMany, sessions, addSession, current, setCurrent, sim, setSim, itemStats, exportAll, importAll, resetAll, onReset, corruptKeys: () => corrupt.slice(), isStorageOk: () => storageOk };
+  // Lettura grezza per la sincronizzazione (senza controllo di forma su current/sim: lo fa chi li usa).
+  const raw = (name) => read(name, ['log', 'sessions'].includes(name) ? [] : null);
+
+  return { settings, setSetting, log, addLog, addLogMany, sessions, addSession, current, setCurrent, sim, setSim, path, setPath, itemStats, exportAll, importAll, resetAll, onReset, onWrite, stamps, applyRemote, raw, DEV, corruptKeys: () => corrupt.slice(), isStorageOk: () => storageOk };
 })();

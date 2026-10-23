@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; manifest-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <title>EU Prep Suite</title>
-  <meta name="description" content="Preparazione EPSO/AD/427/26, Parte 1: micro-sessioni, allenamento a tempo e simulazione fedele alla piattaforma TAO.">
+  <meta name="description" content="EPSO/AD/427/26, Parte 1: un percorso a tappe da 10 minuti fino alla prova, con verbale, numerico, astratto, schede di studio e simulazione fedele alla piattaforma TAO.">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
@@ -32,33 +32,85 @@
 
     <!-- ════════ HOME ════════ -->
     <section id="view-home" class="view" hidden>
-      <p class="today" id="home-date"></p>
+      <p class="countdown" id="home-countdown"></p>
       <div class="next-card" id="next-card">
-        <p class="next-label" id="next-label">Prossima</p>
+        <p class="next-label" id="next-label"></p>
         <h1 class="next-title" id="next-title">…</h1>
         <p class="next-sub" id="next-sub"></p>
-        <button type="button" class="btn btn-primary btn-xl" id="btn-next">Inizia</button>
+        <button type="button" class="btn btn-primary btn-xl" id="btn-next">Continua</button>
+        <button type="button" class="link-btn alt-link" id="btn-alt" hidden></button>
+        <div class="today-row"><span class="dots" id="today-dots" aria-hidden="true"></span><span id="today-text"></span></div>
         <p class="next-note" id="next-note" hidden></p>
       </div>
-      <div class="alt-row">
-        <button type="button" class="alt-card" id="btn-micro">
-          <span class="alt-title">Micro</span>
-          <span class="alt-sub">3 domande · ~5′ · anche una sola conta</span>
-        </button>
-        <button type="button" class="alt-card" id="btn-sim">
-          <span class="alt-title">Simulazione</span>
-          <span class="alt-sub">Come la prova vera · sul PC</span>
-        </button>
-        <button type="button" class="alt-card" id="btn-review" hidden>
-          <span class="alt-title">Ripasso</span>
-          <span class="alt-sub" id="review-sub"></span>
-        </button>
-        <button type="button" class="alt-card" id="btn-external">
-          <span class="alt-title">Registra sessione esterna</span>
-          <span class="alt-sub">Libro, PDF astratto, test EPSO</span>
-        </button>
+      <div class="todo-card" id="todo-card" hidden>
+        <p class="todo-text" id="todo-text"></p>
+        <button type="button" class="btn btn-ghost" id="todo-done">Fatto</button>
       </div>
+      <details class="more" id="home-more">
+        <summary>Altro</summary>
+        <div class="alt-row">
+          <button type="button" class="alt-card" id="btn-micro"><span class="alt-title">Micro</span><span class="alt-sub">3 domande, una per prova · ~5′</span></button>
+          <button type="button" class="alt-card" id="btn-review"><span class="alt-title">Ripasso degli errori</span><span class="alt-sub">le domande sbagliate che tornano oggi</span></button>
+          <button type="button" class="alt-card" id="btn-train-v"><span class="alt-title">Verbale libero</span><span class="alt-sub">5 domande a ritmo di prova</span></button>
+          <button type="button" class="alt-card" id="btn-train-n"><span class="alt-title">Numerico libero</span><span class="alt-sub">5 domande su tabella</span></button>
+          <button type="button" class="alt-card" id="btn-train-a"><span class="alt-title">Astratto libero</span><span class="alt-sub">10 serie in 10′</span></button>
+          <button type="button" class="alt-card" id="btn-lessons"><span class="alt-title">Schede di studio</span><span class="alt-sub">metodo e trappole, una per schermata</span></button>
+          <button type="button" class="alt-card" id="btn-sim"><span class="alt-title">Simulazione a scelta</span><span class="alt-sub">Parte 1 completa o una prova sola · sul PC</span></button>
+          <button type="button" class="alt-card" id="btn-official"><span class="alt-title">Test di esempio ufficiale</span><span class="alt-sub">su TAO, poi segni il punteggio qui</span></button>
+        </div>
+      </details>
       <p class="week-line" id="week-line"></p>
+    </section>
+
+    <!-- ════════ SCHEDA DI STUDIO ════════ -->
+    <section id="view-lesson" class="view" hidden>
+      <article class="lesson-card">
+        <p class="lesson-kicker" id="lesson-kicker"></p>
+        <h1 id="lesson-title"></h1>
+        <ul class="lesson-points" id="lesson-points"></ul>
+        <div class="lesson-example" id="lesson-example" hidden></div>
+        <p class="lesson-tip" id="lesson-tip"></p>
+        <p class="lesson-src small muted" id="lesson-src" hidden></p>
+        <div class="end-actions">
+          <button type="button" class="btn btn-ghost" id="lesson-back">Più tardi</button>
+          <button type="button" class="btn btn-primary btn-lg" id="lesson-go">Alle domande</button>
+        </div>
+      </article>
+    </section>
+
+    <!-- ════════ INDICE DELLE SCHEDE ════════ -->
+    <section id="view-lessons" class="view" hidden>
+      <div class="card">
+        <h1>Schede di studio</h1>
+        <p class="muted">Le stesse schede che aprono le tappe del percorso: rileggile quando vuoi.</p>
+        <div id="lessons-list"></div>
+        <div class="end-actions"><button type="button" class="btn btn-ghost" id="lessons-back">Torna alla home</button></div>
+      </div>
+    </section>
+
+    <!-- ════════ TEST DI ESEMPIO UFFICIALE ════════ -->
+    <section id="view-official" class="view" hidden>
+      <div class="card">
+        <h1>Test di esempio ufficiale</h1>
+        <p>È il test di ragionamento di EPSO, sulla stessa piattaforma della prova: 20 domande in italiano (10 verbale, 5 numerico, 5 astratto) con un solo timer di 30′. È l'unica cosa da fare fuori da quest'app.</p>
+        <ol class="steps">
+          <li>Aprilo dal PC con cui farai la prova, in Chrome o Edge. Non serve il login.</li>
+          <li>Scegli «Reasoning Test (Verbal/Numerical/Abstract) - IT» e avvialo.</li>
+          <li>Fallo tutto di fila, in silenzio, senza carta: calcolatrice e appunti a schermo.</li>
+        </ol>
+        <p><a class="btn btn-primary btn-lg" id="off-open" href="https://epso.prod.gcp-eu.taocloud.org/public-sessions" target="_blank" rel="noopener noreferrer">Apri le sessioni pubbliche di TAO</a></p>
+        <h2>Quando hai finito</h2>
+        <p class="muted">Facoltativo: i punteggi entrano nello Stato come prima misura.</p>
+        <div class="field-row form">
+          <label class="field">Verbale (su 10) <input type="number" id="off-v" min="0" max="10" inputmode="numeric"></label>
+          <label class="field">Numerico (su 5) <input type="number" id="off-n" min="0" max="5" inputmode="numeric"></label>
+          <label class="field">Astratto (su 5) <input type="number" id="off-a" min="0" max="5" inputmode="numeric"></label>
+        </div>
+        <div class="end-actions">
+          <button type="button" class="btn btn-ghost" id="off-later">Più tardi</button>
+          <button type="button" class="btn btn-primary btn-lg" id="off-done">Fatto</button>
+        </div>
+      </div>
     </section>
 
     <!-- ════════ SESSIONE (Micro / Allenamento / Ripasso) ════════ -->
@@ -113,10 +165,14 @@
           <div class="num"><span class="num-big" id="e-trap">—</span><span class="num-label">trappola su cui lavorare</span></div>
         </div>
         <p class="end-sentence" id="e-sentence"></p>
-        <div class="end-actions">
-          <button type="button" class="btn btn-ghost" id="e-copy">Copia riepilogo</button>
-          <button type="button" class="btn btn-ghost" id="e-more" hidden>Ancora una</button>
-          <button type="button" class="btn btn-primary btn-lg" id="e-done">Fatto per oggi</button>
+        <p class="end-today" id="e-today"></p>
+        <div class="end-actions end-actions-main">
+          <button type="button" class="btn btn-primary btn-lg" id="e-next" hidden>Continua</button>
+          <button type="button" class="btn btn-ghost btn-lg" id="e-done">Più tardi</button>
+        </div>
+        <div class="end-actions end-actions-minor">
+          <button type="button" class="link-btn" id="e-more" hidden>Ancora una</button>
+          <button type="button" class="link-btn" id="e-copy">Copia riepilogo</button>
         </div>
         <details class="end-review" id="e-review-wrap">
           <summary>Rivedi gli errori</summary>
@@ -133,17 +189,17 @@
         <p class="device-note" id="sim-device-note" hidden>Stai usando un telefono: la simulazione funziona, ma la prova vera sarà sul PC.</p>
         <fieldset class="fieldset">
           <legend>Prove</legend>
-          <label class="choice"><input type="radio" name="sim-scope" value="full" checked> Parte 1: verbale (20 · 35′) → numerico (10 · 20′)</label>
+          <label class="choice"><input type="radio" name="sim-scope" value="full" checked> Parte 1 completa: verbale (20 · 35′) → numerico (10 · 20′) → astratto (10 · 10′)</label>
           <label class="choice"><input type="radio" name="sim-scope" value="verbale"> Solo verbale (20 · 35′)</label>
           <label class="choice"><input type="radio" name="sim-scope" value="numerico"> Solo numerico (10 · 20′)</label>
+          <label class="choice"><input type="radio" name="sim-scope" value="astratto"> Solo astratto (10 · 10′)</label>
         </fieldset>
         <fieldset class="fieldset">
           <legend>Timer</legend>
-          <label class="choice"><input type="radio" name="sim-timer" value="section" checked> Un timer per prova, come nel bando (35′ e 20′)</label>
-          <label class="choice"><input type="radio" name="sim-timer" value="single"> Un solo timer per tutta la parte, come nel test di esempio EPSO (55′)</label>
+          <label class="choice"><input type="radio" name="sim-timer" value="section" checked> Un timer per prova, come nella prova vera (35′, 20′, 10′)</label>
+          <label class="choice"><input type="radio" name="sim-timer" value="single"> Un solo timer per tutte le prove scelte</label>
         </fieldset>
         <p class="muted" id="sim-pool-note"></p>
-        <p class="muted">L'astratto arriva nella v1.3: nel frattempo si fa sul PDF e si registra come sessione esterna.</p>
         <div class="end-actions">
           <button type="button" class="btn btn-ghost" id="sim-cancel">Indietro</button>
           <button type="button" class="btn btn-primary btn-lg" id="sim-start">Avvia la simulazione</button>
@@ -221,7 +277,7 @@
     <section id="view-external" class="view" hidden>
       <div class="card">
         <h1>Registra una sessione esterna</h1>
-        <p class="muted">Per ciò che fai fuori dall'app: PDF astratto, test del libro, test di esempio EPSO. Così il registro resta uno solo.</p>
+        <p class="muted">Per un test fatto fuori dall'app (per esempio il test di esempio ufficiale): così il registro resta uno solo.</p>
         <form id="ext-form" class="form">
           <label class="field">Prova
             <select id="ext-bank">
@@ -233,13 +289,7 @@
           </label>
           <label class="field">Fonte
             <select id="ext-source">
-              <option>PDF astratto Maggioli</option>
-              <option>Maggioli esercizi guidati</option>
-              <option>Maggioli allenamento</option>
-              <option>Maggioli test n. 1</option>
-              <option>Maggioli test n. 2</option>
-              <option>Maggioli test n. 3</option>
-              <option>Test di esempio EPSO</option>
+              <option>Test di esempio EPSO (TAO)</option>
               <option>Altro</option>
             </select>
           </label>
@@ -285,8 +335,9 @@
         <label class="choice"><input type="checkbox" id="set-conf"> Chiedi «Sicuro / Dubbio» prima di rivelare la risposta</label>
         <label class="choice"><input type="checkbox" id="set-vfn"> Nelle Micro includi la batteria Vero/Falso/Non si può dire (fondamenta)</label>
         <h2>Dispositivo</h2>
+        <p id="stato-sync" class="muted"></p>
         <p id="stato-device" class="muted mono"></p>
-        <p class="muted small">EU Prep Suite v2 · <span id="app-version"></span> · contenuti L1 corretti l'08–09/10/2026</p>
+        <p class="muted small">EU Prep · Parte 1 · <span id="app-version"></span> · <button type="button" class="link-btn" id="st-external">registra un test fatto fuori dall'app</button></p>
       </div>
     </section>
   </main>
@@ -307,16 +358,22 @@
 
   <script src="js/banks.js"></script>
   <script src="data/bank-verbale.js"></script>
+  <script src="data/bank-verbale-l2.js"></script>
   <script src="data/bank-numerico.js"></script>
+  <script src="js/gen-numerico.js"></script>
+  <script src="js/gen-astratto.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/store.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/plan.js"></script>
   <script src="js/select.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/path.js"></script>
   <script src="js/session.js"></script>
   <script src="js/calc.js"></script>
   <script src="js/sim.js"></script>
   <script src="js/stato.js"></script>
+  <script src="js/sync.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
