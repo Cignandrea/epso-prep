@@ -43,4 +43,4 @@ Gli id dei generati sono **seme + livello**: lo stesso id ricostruisce lo stesso
 Sulla PWA (GitHub Pages) i dati stanno nel `localStorage` del dispositivo: export e import JSON dallo Stato. Come artifact su claude.ai stanno nel database dell'artifact, area privata `data/users/<id>/` (doc `state` e `log-<AAAAMMGG>-<dispositivo>`).
 
 ## Test
-`TZ=Europe/Rome node tests/path.test.js` · `node tests/twins.test.js` · `node tests/gen_numerico.test.js` · `node tests/gen_astratto.test.js` · `python3 tests/percorso.py` (end-to-end sul Fold 8 in 4 posture + PC) · `python3 tests/sync.py`. Versione: `App.main.VERSION` = `VERSION` in `sw.js`.
+`TZ=Europe/Rome node tests/path.test.js` · `node tests/twins.test.js` · `node tests/gen_numerico.test.js` · `node tests/gen_multi.test.js` · `node tests/gen_astratto.test.js` · `node tests/gen_astratto2.test.js` · `python3 tests/percorso.py` (end-to-end sul Fold 8 in 4 posture + PC) · `python3 tests/sync.py`. Versione: `App.main.VERSION` = `VERSION` in `sw.js`.

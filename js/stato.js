@@ -135,7 +135,7 @@ App.stato = (() => {
     const tagSel = $('ext-tag');
     const fill = () => {
       const bank = $('ext-bank').value;
-      const tagsFor = { astratto: ['conteggio', 'rotazione', 'alternanza', 'riempimento', 'posizione', 'combinata', 'tempo_scaduto'], verbale: ['quantificatore', 'inferenza', 'fuori-testo', 'negazione', 'tempo', 'scope', 'parafrasi', 'tempo_scaduto'], numerico: ['percentuali', 'rapporti', 'unita-misura', 'lettura-dati', 'media', 'tempo_scaduto'], sim: ['tempo_scaduto', 'inferenza', 'quantificatore', 'lettura-dati', 'percentuali', 'rotazione', 'conteggio'] };
+      const tagsFor = { astratto: ['conteggio', 'rotazione', 'alternanza', 'riempimento', 'posizione', 'dimensione', 'combinata', 'costante', 'tempo_scaduto'], verbale: ['quantificatore', 'inferenza', 'fuori-testo', 'negazione', 'tempo', 'scope', 'parafrasi', 'tempo_scaduto'], numerico: ['percentuali', 'rapporti', 'unita-misura', 'lettura-dati', 'media', 'calcolo', 'tempo_scaduto'], sim: ['tempo_scaduto', 'inferenza', 'quantificatore', 'lettura-dati', 'percentuali', 'rotazione', 'conteggio'] };
       tagSel.replaceChildren(el('option', { value: '' }, 'nessuna / non so'), ...tagsFor[bank].map((t) => el('option', { value: t }, App.tagLabel(t))));
     };
     $('ext-bank').onchange = fill;

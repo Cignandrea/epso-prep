@@ -155,17 +155,19 @@ App.lessons = (() => {
       id: 'a-cont', test: 'Astratto', title: 'Conteggio e rotazione',
       points: [
         '**Conteggio**: gli elementi aumentano o diminuiscono di 1 o 2 a ogni passo; oppure crescono i lati (triangolo → quadrato → pentagono).',
-        '**Rotazione**: un elemento gira di 45°, 90° o 135° a ogni passo. Il verso (orario o antiorario) si legge confrontando due figure vicine.',
+        '**Rotazione**: un elemento gira di 45°, 90° o 135° a ogni passo, oppure con un passo che cresce (45°, poi 90°, poi 135°…). Il verso (orario o antiorario) si legge confrontando due figure vicine.',
+        '**Settori**: uno spicchio colorato che si allarga o si stringe di 45° a ogni passo si conta come gli elementi.',
         'Le forme simmetriche ingannano: un quadrato girato di 90° sembra uguale. Guarda il dettaglio che si muove (la punta, il punto, il lato pieno).',
       ],
       tip: 'Ricava la regola dal passaggio 1ª → 2ª, verificala su 2ª → 3ª e 4ª → 5ª, poi applicala alla 6ª.',
     },
     {
-      id: 'a-alt', test: 'Astratto', title: 'Alternanza, riempimento, posizione',
+      id: 'a-alt', test: 'Astratto', title: 'Alternanza, riempimento, posizione, dimensione',
       points: [
         '**Alternanza**: un attributo cambia tra due valori (bianco/nero, cerchio/quadrato, piccolo/grande): la 6ª figura è come la 4ª e la 2ª.',
         '**Riempimento**: il colore gira in ciclo (bianco → grigio → nero → bianco), quindi la 6ª è come la 3ª; oppure il pieno passa da un elemento al successivo.',
-        '**Posizione**: un elemento si sposta lungo il bordo della griglia di 1 o 2 caselle a ogni passo, sempre nello stesso verso.',
+        '**Posizione**: un elemento si sposta lungo il bordo della griglia di 1 o 2 caselle a ogni passo, sempre nello stesso verso; oppure in diagonale, e quando esce da un lato rientra da quello opposto o torna indietro.',
+        '**Dimensione**: la figura cresce o cala a ogni passo, oppure va avanti e indietro; confronta le misure a due a due.',
       ],
       tip: 'Per l\'alternanza guarda separatamente le figure pari e quelle dispari.',
     },

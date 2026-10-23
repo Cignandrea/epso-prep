@@ -15,6 +15,7 @@ App.session = (() => {
   let hiddenSince = 0;   // epoch ms: da quando l'app è in secondo piano (0 = visibile)
 
   const persist = () => { if (S) App.store.setCurrent(S); };
+  const bigFigs = () => window.matchMedia('(min-width: 760px)').matches;
   const live = () => Boolean(S) && !S.finished && App.ui.view() === 'session';
 
   function start(mode, questions, { bankLabel = '', step = null, lessonId = null } = {}) {
@@ -76,7 +77,7 @@ App.session = (() => {
       'aria-label': isFig ? `Opzione ${o.letter}` : null,
       onclick: () => choose(o.letter),
     }, el('span', { class: 'opt-radio', 'aria-hidden': 'true' }), el('span', { class: 'opt-letter' }, o.letter),
-    isFig ? el('span', { class: 'opt-figure' }, figure(o.fig, { size: 60, label: `Opzione ${o.letter}` })) : el('span', { class: 'opt-text' }, o.text));
+    isFig ? el('span', { class: 'opt-figure' }, figure(o.fig, { size: bigFigs() ? 72 : 60, label: `Opzione ${o.letter}` })) : el('span', { class: 'opt-text' }, o.text));
   }
 
   function renderItem() {
@@ -91,7 +92,8 @@ App.session = (() => {
     p.hidden = !hasStimulus(q);
     p.classList.toggle('is-series', Boolean(q.series));
     p.classList.toggle('is-table', Boolean(q.table || q.chart));
-    renderStimulus(p, q, { figSize: 58 });
+    // Figure più grandi sugli schermi larghi (telefono aperto, PC): le serie con più elementi restano leggibili.
+    renderStimulus(p, q, { figSize: bigFigs() ? 78 : 58 });
     // Tabelle larghe: se nella colonna non ci stanno, la tabella va sopra la domanda a tutta larghezza (come in TAO).
     const layout = $('s-item');
     layout.classList.remove('is-wide');
