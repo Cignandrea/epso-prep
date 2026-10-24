@@ -1,12 +1,14 @@
 // Service worker: cache dell'app per l'uso offline, versionata.
 // VERSION deve coincidere con App.main.VERSION (js/main.js): è il nome della cache, quindi ogni build
 // invalida la precedente (T-061). Il controllo è in tests/smoke.py.
-const VERSION = '1.2.0-b9';
+const VERSION = '1.2.0-b10';
 const CACHE = `euprep-${VERSION}`;
+// CSS e script con ?v=VERSION, come in index.html: un HTML nuovo non pesca mai file vecchi dalla cache (tools/bump.py).
+const V = (u) => `${u}?v=${VERSION}`;
 const ASSETS = [
-  './', './index.html', './manifest.webmanifest', './css/style.css',
-  './js/banks.js', './js/gen-numerico.js', './js/gen-astratto.js', './js/gen-astratto2.js', './js/utils.js', './js/store.js', './js/ui.js', './js/plan.js', './js/ready.js', './js/select.js', './js/lessons.js', './js/path.js', './js/session.js', './js/calc.js', './js/sim.js', './js/stato.js', './js/sync.js', './js/main.js',
-  './data/bank-verbale.js', './data/bank-verbale-l2.js', './data/bank-numerico.js',
+  './', './index.html', './manifest.webmanifest', V('./css/style.css'),
+  ...['banks', 'gen-numerico', 'gen-astratto', 'gen-astratto2', 'utils', 'store', 'ui', 'plan', 'ready', 'select', 'lessons', 'path', 'session', 'calc', 'sim', 'stato', 'sync', 'main'].map((n) => V(`./js/${n}.js`)),
+  ...['bank-verbale', 'bank-verbale-l2', 'bank-numerico'].map((n) => V(`./data/${n}.js`)),
   './fonts/ibm-plex-sans-latin-400-normal.woff2', './fonts/ibm-plex-sans-latin-500-normal.woff2', './fonts/ibm-plex-sans-latin-600-normal.woff2', './fonts/ibm-plex-sans-latin-700-normal.woff2',
   './fonts/ibm-plex-mono-latin-400-normal.woff2', './fonts/ibm-plex-mono-latin-500-normal.woff2', './fonts/ibm-plex-mono-latin-600-normal.woff2',
   './fonts/ibm-plex-serif-latin-400-normal.woff2', './fonts/ibm-plex-serif-latin-400-italic.woff2', './fonts/ibm-plex-serif-latin-600-normal.woff2',
