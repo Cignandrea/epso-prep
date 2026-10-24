@@ -201,6 +201,24 @@ def run(p, vp):
     check(f'{tag} Stato: righelli delle soglie', len(page.query_selector_all('#stato-gauges .gauge')) == 2)
     check(f'{tag} Stato: sincronizzazione spiegata', 'Sincronizzazione' in page.text_content('#stato-sync'), page.text_content('#stato-sync'))
     page.screenshot(path=f'{OUT}/percorso-{name}-stato.png', full_page=True)
+    # Banca privata: import da file (quesiti inventati per il test, nessun testo di libri), conteggio, fonte, rimozione.
+    pb = {'kind': 'eps-private-bank', 'bank': 'verbale', 'label': 'Banca di prova', 'source': 'test',
+          'questions': [{'id': 5990 + k, 'format': 'mag5' if k % 2 else 'epso4', 'passage': f'Brano di prova numero {k}: il comune ha aderito al progetto nel 2020.',
+                         'question': 'Quale affermazione è corretta?', 'options': [{'letter': L, 'text': f'Opzione {L}'} for L in ('ABCDE' if k % 2 else 'ABCD')],
+                         'correct': ['B'], 'explanation': 'B è giusta per prova.', 'src': {'book': 'Libro di prova', 'section': 'Test', 'n': k, 'page': 10 + k}} for k in range(4)]}
+    pbf = f'{OUT}/private-bank-test.json'
+    json.dump(pb, open(pbf, 'w'), ensure_ascii=False)
+    page.set_input_files('#st-import', pbf); page.wait_for_timeout(2600)
+    page.click('#nav-stato'); page.wait_for_timeout(250)
+    check(f'{tag} banca privata: caricata e contata', 'Banca privata: 4 quesiti' in page.text_content('#stato-privbank'), page.text_content('#stato-privbank'))
+    check(f'{tag} banca privata: nei pool', 'banca privata: 4' in page.text_content('#stato-pools'), page.text_content('#stato-pools'))
+    check(f'{tag} banca privata: fonte e livello', page.evaluate("App.srcLabel(App.banks.question('verbale', 5991)).includes('p. 11') && App.levelLabel(App.banks.question('verbale', 5991)).startsWith('dal libro')"))
+    check(f'{tag} banca privata: fuori dall\'export', '5991' not in page.evaluate('App.store.exportAll()'))
+    check(f'{tag} banca privata: le simulazioni non usano il formato a 5', page.evaluate("!App.select.pickSim('verbale', 20, {}).items.some((q) => q.format === 'mag5')") if page.evaluate("typeof App.select.pickSim === 'function'") else True)
+    page.click('#st-privbank-clear'); page.wait_for_timeout(250)
+    page.click('#modal-root .modal-actions .btn-danger'); page.wait_for_timeout(2200)
+    page.click('#nav-stato'); page.wait_for_timeout(250)
+    check(f'{tag} banca privata: rimossa', 'nessuna' in page.text_content('#stato-privbank') and page.evaluate("App.banks.question('verbale', 5991) === null"), page.text_content('#stato-privbank'))
     browser.close()
 
 with sync_playwright() as p:

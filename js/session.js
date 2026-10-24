@@ -188,7 +188,7 @@ App.session = (() => {
     else if (a.conf === 'doubt' && a.ok) { calib.hidden = false; calib.textContent = 'Giusta, ma in dubbio: in prova, segnalibro e avanti, si torna dopo.'; }
     else if (a.conf === 'doubt' && !a.ok) { calib.hidden = false; calib.textContent = 'Dubbio e sbagliata: il dubbio era fondato. In prova vale il segnalibro.'; }
     else calib.hidden = true;
-    $('s-fb-expl').replaceChildren(...paragraphs(q.explanation));
+    $('s-fb-expl').replaceChildren(...paragraphs(q.explanation), ...(App.srcLabel(q) ? [el('p', { class: 'muted small' }, App.srcLabel(q))] : []));
     const tag = a.ok ? q.tag : a.tag;
     $('s-fb-tag').textContent = tag ? `${a.ok ? 'Tema' : 'Trappola'}: ${App.tagLabel(tag)}` : '';
     // Regola riusabile della trappola: solo dopo un errore (dopo una risposta giusta basta il tema).
@@ -318,7 +318,7 @@ App.session = (() => {
       el('p', { class: 'review-q' }, q.question),
       opts,
       el('p', {}, `Tua: ${sel || 'in bianco'} · Corretta: ${co.letter}`),
-      el('div', { class: 'review-expl' }, ...paragraphs(q.explanation)));
+      el('div', { class: 'review-expl' }, ...paragraphs(q.explanation), ...(App.srcLabel(q) ? [el('p', { class: 'muted small' }, App.srcLabel(q))] : [])));
   }
 
   function summaryText(sum, answers) {

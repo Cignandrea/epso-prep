@@ -63,6 +63,14 @@ window.App = window.App || {};
     all: () => App.banks.list().flatMap((b) => b.questions),
   };
 
+  // Fonte di un quesito della banca privata (libro): «Maggioli, Libro I, p. 23 · Test n. 1, domanda 4».
+  App.srcLabel = (q) => {
+    const s = q && q.src;
+    if (!s || typeof s !== 'object') return '';
+    const where = [s.section, s.n != null ? `n. ${s.n}` : ''].filter(Boolean).join(', ');
+    return `Fonte: ${s.book || 'libro'}${s.page ? `, p. ${s.page}` : ''}${where ? ` · ${where}` : ''}${s.explPage && s.explPage !== s.page ? ` (spiegazione a p. ${s.explPage})` : ''}`;
+  };
+
   App.TAGS = {
     quantificatore: 'Quantificatori (tutti/alcuni/solo)',
     inferenza: 'Inferenza oltre il testo',
@@ -123,5 +131,5 @@ window.App = window.App || {};
   App.tagRule = (t) => App.TAG_RULE[t] || '';
   App.BANK_LABEL = { verbale: 'Verbale', numerico: 'Numerico', astratto: 'Astratto', sim: 'Simulazione completa' };
   // Etichetta breve del livello: base = brani e problemi corti (fondamenta), prova = livello del test reale.
-  App.levelLabel = (q) => (q.bank === 'astratto' ? (['', 'una regola', 'due regole', 'tre regole'][q.level] || '') : q.level >= 2 ? 'livello prova' : 'livello base');
+  App.levelLabel = (q) => (q.priv ? `dal libro${q.src && q.src.book ? ` (${q.src.book.split(',')[0]})` : ''}` : q.bank === 'astratto' ? (['', 'una regola', 'due regole', 'tre regole'][q.level] || '') : q.level >= 2 ? 'livello prova' : 'livello base');
 })();

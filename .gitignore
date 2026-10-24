@@ -3,3 +3,8 @@ tests/__pycache__/
 tests/out/
 *.log
 dist/
+
+# Banche private (quesiti da libri): mai nel repository
+*maggioli*
+*Maggioli*
+private-bank*.json

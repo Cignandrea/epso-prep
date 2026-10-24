@@ -575,7 +575,7 @@ App.sim = (() => {
           hasStimulus(q) ? stim : null,
           el('p', { class: 'review-q' }, q.question),
           opts,
-          el('div', { class: 'review-expl' }, ...paragraphs(q.explanation))));
+          el('div', { class: 'review-expl' }, ...paragraphs(q.explanation), ...(App.srcLabel(q) ? [el('p', { class: 'muted small' }, App.srcLabel(q))] : []))));
       });
     }
     $('sim-copy').onclick = async () => { (await copyText(summaryText())) ? App.ui.toast('Riepilogo copiato: incollalo in chat.') : App.ui.toast('Copia non riuscita.'); };

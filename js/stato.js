@@ -65,7 +65,10 @@ App.stato = (() => {
 
     // Pool.
     const rep = App.select.poolReport().verbale;
-    $('stato-pools').textContent = `Verbale: ${rep.l2} brani di livello prova (${rep.l2Unseen} mai visti, di cui ${rep.reserve} riservati alle simulazioni) e ${rep.l1} di livello base (${rep.l1Unseen} mai visti). Numerico su tabelle e astratto: domande generate, sempre nuove; quelle sbagliate tornano nel ripasso.`;
+    $('stato-pools').textContent = `Verbale: ${rep.l2} brani di livello prova (${rep.l2Unseen} mai visti, di cui ${rep.reserve} riservati alle simulazioni) e ${rep.l1} di livello base (${rep.l1Unseen} mai visti)${rep.priv ? `; banca privata: ${rep.priv} quesiti dal libro (${rep.privUnseen} mai visti)` : ''}. Numerico su tabelle e astratto: domande generate, sempre nuove; quelle sbagliate tornano nel ripasso.`;
+    const pb = App.store.privBank();
+    $('stato-privbank').textContent = pb ? `Banca privata: ${pb.questions.length} quesiti · ${pb.label} · solo su questo dispositivo.` : 'Banca privata: nessuna. Si carica con «Importa JSON» (file della banca privata).';
+    $('st-privbank-clear').hidden = !pb;
 
     // Impostazioni.
     const st = App.store.settings();
@@ -193,9 +196,17 @@ App.stato = (() => {
     });
     $('st-import').addEventListener('change', async (e) => {
       const f = e.target.files[0]; if (!f) return;
-      try { const r = App.store.importAll(await f.text()); App.ui.toast(r.items || r.sessions ? `Importati ${r.items} item nuovi e ${r.sessions} sessioni nuove.` : 'Niente di nuovo da importare: tutto era già presente.'); render(); }
+      try {
+        const r = App.store.importAll(await f.text());
+        if (r.privbank) { App.ui.toast(`Banca privata caricata: ${r.privbank} quesiti (${r.label}). Riapro l'app.`, 3000); setTimeout(() => location.reload(), 1500); }
+        else { App.ui.toast(r.items || r.sessions ? `Importati ${r.items} item nuovi e ${r.sessions} sessioni nuove.` : 'Niente di nuovo da importare: tutto era già presente.'); render(); }
+      }
       catch (err) { App.ui.toast(`Import fallito: ${err.message}`); }
       e.target.value = '';
+    });
+    $('st-privbank-clear').addEventListener('click', async () => {
+      const ok = await App.ui.confirm({ title: 'Rimuovere la banca privata?', message: 'I quesiti spariscono da questo dispositivo; il registro delle risposte resta. Per riaverli basta reimportare il file.', okText: 'Rimuovi', danger: true });
+      if (ok) { App.store.clearPrivBank(); App.ui.toast('Banca privata rimossa. Riapro l\'app.'); setTimeout(() => location.reload(), 1200); }
     });
     $('st-reset').addEventListener('click', async () => {
       const ok = await App.ui.confirm({ title: 'Azzerare tutto?', message: 'Registro, sessioni e impostazioni verranno cancellati da questo dispositivo. Esporta prima, se vuoi conservarli.', okText: 'Azzera', danger: true });

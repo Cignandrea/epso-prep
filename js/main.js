@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b11';
+  const VERSION = '1.2.0-b12';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {

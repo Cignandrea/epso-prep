@@ -7,6 +7,8 @@
 //   eps2.settings  impostazioni
 //   eps2.path      percorso: tappe fatte (v1.2)
 //   eps2.stamps    ora dell'ultima modifica di current/sim/settings/path (per la sincronizzazione tra dispositivi)
+//   eps2.privbank  banca privata importata da file (es. quesiti trascritti dal proprio libro): resta solo su questo
+//                  dispositivo, non va nell'export, non si sincronizza e «Azzera tutto» non la tocca
 // Ogni voce nuova di registro e sessioni porta `dev`, l'id di questo dispositivo: la sincronizzazione unisce senza doppioni.
 window.App = window.App || {};
 App.store = (() => {
@@ -199,9 +201,45 @@ App.store = (() => {
     return JSON.stringify({ app: 'EU Prep Suite v2', version: SCHEMA, exported: new Date().toISOString(), settings: settings(), path: path(), log: log(), sessions: sessions() }, null, 1);
   }
   const sessionKey = (s) => (s.id ? `${s.id}|${(s.banks || []).join('+')}` : `${s.t}|${s.mode}`);
+
+  // ── Banca privata (file kind «eps-private-bank») ──
+  // Quesiti che non possono stare nel repository pubblico: vivono solo in questo browser.
+  const PRIV_FORMATS = ['epso4', 'mag5'];
+  function checkPrivBank(data) {
+    if (data.bank !== 'verbale') throw new Error('banca privata: per ora solo «verbale».');
+    if (!Array.isArray(data.questions) || !data.questions.length) throw new Error('banca privata senza quesiti.');
+    const builtIn = new Set(((window.App && App.banks && App.banks.get('verbale')) || { questions: [] }).questions.filter((q) => !q.priv).map((q) => q.id));
+    const seen = new Set();
+    data.questions.forEach((q, i) => {
+      const where = `quesito ${i + 1}`;
+      if (!isObj(q) || !Number.isInteger(q.id) || q.id < 5000) throw new Error(`${where}: id mancante o sotto 5000.`);
+      if (builtIn.has(q.id) || seen.has(q.id)) throw new Error(`${where}: id ${q.id} già usato.`);
+      seen.add(q.id);
+      if (typeof q.passage !== 'string' || typeof q.question !== 'string' || !q.passage.trim()) throw new Error(`${where}: brano o domanda mancanti.`);
+      if (!PRIV_FORMATS.includes(q.format)) throw new Error(`${where}: formato «${q.format}» non previsto.`);
+      if (!Array.isArray(q.options) || q.options.length < 2 || q.options.length > 6 || !q.options.every((o) => isObj(o) && /^[A-F]$/.test(o.letter) && typeof o.text === 'string')) throw new Error(`${where}: opzioni non valide.`);
+      if (!Array.isArray(q.correct) || q.correct.length !== 1 || !q.options.some((o) => o.letter === q.correct[0])) throw new Error(`${where}: risposta corretta non valida.`);
+    });
+  }
+  function privBank() { const v = read('privbank', null); return isObj(v) && Array.isArray(v.questions) ? v : null; }
+  function registerPrivBank(pb) {
+    if (!pb || typeof window.registerBank !== 'function') return 0;
+    window.registerBank({ id: pb.bank, questions: pb.questions.map((q) => ({ ...q, priv: true, level: q.level || 2 })) });
+    return pb.questions.length;
+  }
+  function setPrivBank(data) {
+    checkPrivBank(data);
+    const pb = { kind: 'eps-private-bank', bank: data.bank, label: String(data.label || 'Banca privata'), source: String(data.source || ''), imported: new Date().toISOString(), questions: data.questions };
+    write('privbank', pb);
+    registerPrivBank(pb);
+    return pb;
+  }
+  function clearPrivBank() { try { localStorage.removeItem(`${PREFIX}privbank`); } catch { /* ignora */ } delete memory[`${PREFIX}privbank`]; }
+
   function importAll(json, { merge = true } = {}) {
     let data;
     try { data = JSON.parse(json); } catch { throw new Error('non è un file JSON.'); }
+    if (isObj(data) && data.kind === 'eps-private-bank') { const pb = setPrivBank(data); return { items: 0, sessions: 0, privbank: pb.questions.length, label: pb.label }; }
     if (!data || typeof data !== 'object' || !Array.isArray(data.log)) throw new Error('manca il registro (log).');
     data.log.forEach((e, i) => {
       if (!e || typeof e !== 'object' || !isoT(e.t) || typeof e.mode !== 'string' || typeof e.bank !== 'string') throw new Error(`voce ${i + 1} del registro non valida.`);
@@ -244,5 +282,8 @@ App.store = (() => {
   // Lettura grezza per la sincronizzazione (senza controllo di forma su current/sim: lo fa chi li usa).
   const raw = (name) => read(name, ['log', 'sessions'].includes(name) ? [] : null);
 
-  return { settings, setSetting, log, addLog, addLogMany, sessions, addSession, current, setCurrent, sim, setSim, path, setPath, itemStats, exportAll, importAll, resetAll, onReset, onWrite, stamps, applyRemote, raw, DEV, corruptKeys: () => corrupt.slice(), isStorageOk: () => storageOk };
+  // All'avvio la banca privata rientra nel registro delle banche (banks.js è già caricato).
+  try { registerPrivBank(privBank()); } catch (err) { console.warn('banca privata non caricata', err); }
+
+  return { settings, setSetting, log, addLog, addLogMany, sessions, addSession, current, setCurrent, sim, setSim, path, setPath, itemStats, exportAll, importAll, privBank, setPrivBank, clearPrivBank, resetAll, onReset, onWrite, stamps, applyRemote, raw, DEV, corruptKeys: () => corrupt.slice(), isStorageOk: () => storageOk };
 })();
