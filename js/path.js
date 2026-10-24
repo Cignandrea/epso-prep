@@ -137,19 +137,49 @@ App.path = (() => {
       if (e.bank !== bank || e.mode === 'external' || e.unanswered || typeof e.id !== 'string' || (e.level || 0) < minLevel) continue;
       n++; if (e.ok) hits++;
     }
-    return n >= 8 ? hits / n : null;
+    return n >= 6 ? hits / n : null;
+  }
+
+  // ── Chi va forte salta il livello base ──
+  // Forte in una prova: misura di partenza al 75% o più, oppure almeno l'85% delle ultime 8 risposte (qualsiasi
+  // livello; ripasso e gemelli esclusi; servono almeno 6 risposte).
+  function recentRate(bank, last = 8) {
+    const log = (App.store.log && App.store.log()) || [];
+    let hits = 0, n = 0;
+    for (let i = log.length - 1; i >= 0 && n < last; i--) {
+      const e = log[i];
+      if (e.bank !== bank || e.mode === 'external' || e.mode === 'review' || e.unanswered || e.twinOf != null) continue;
+      n++; if (e.ok) hits++;
+    }
+    return n >= 6 ? hits / n : null;
+  }
+  function strong(st, bank) {
+    const m = st.done.bm && st.done.bm.by && st.done.bm.by[bank];
+    if (m && m.n && m.correct / m.n >= 0.75) return true;
+    return (recentRate(bank) || 0) >= 0.85;
+  }
+  // Le schede delle Basi di una prova in cui vai forte passano a domande di livello prova (nel verbale prima i brani
+  // più difficili): il metodo resta, la difficoltà no.
+  function boost(step, st) {
+    const p = step.pick;
+    if (!p || !p.bank || !strong(st, p.bank)) return step;
+    const pick = p.bank === 'verbale' ? { ...p, levels: [2], formats: ['epso4'], hard: true } : { ...p, gen: [2, 3] };
+    const sub = step.sub.replace(/(\d+) domande/, '$1 domande di livello prova').replace(/(\d+) serie di figure/, '$1 serie di livello prova');
+    return { ...step, pick, sub, boosted: true };
   }
 
   function cycleStep(st, now, basiLeft = null) {
     const { keys, why } = cycleFor(st);
-    const hardN = (accuracy('numerico') || 0) >= 0.7;
-    const hardA = (accuracy('astratto') || 0) >= 0.7;
+    const hardN = (accuracy('numerico') || 0) >= 0.7 || strong(st, 'numerico');
+    const hardA = (accuracy('astratto') || 0) >= 0.7 || strong(st, 'astratto');
+    const hardV = strong(st, 'verbale');
     for (let i = st.p2.i; i < st.p2.i + keys.length; i++) {
       const base = DRILL[keys[i % keys.length]];
       if (base.kind === 'review' && App.select.dueItems().length < 3) continue; // pochi errori in scadenza: si salta
       const pick = base.pick ? { ...base.pick } : null;
       if (pick && hardN && pick.bank === 'numerico') pick.gen = [2, 3];
       if (pick && hardA && pick.bank === 'astratto') pick.gen = base === DRILL.a5 ? [2, 3, 3] : [2, 2, 3, 3];
+      if (pick && hardV && pick.bank === 'verbale') pick.hard = true;
       // Recupero: la scheda rimasta di questa prova si legge prima del drill e conta come fatta.
       let lesson = null, alsoDone = null;
       if (basiLeft && base.slot !== 'r') {
@@ -198,7 +228,7 @@ App.path = (() => {
     // A 12 giorni o meno dalla prova, con più di 3 Basi da fare, le schede rimaste si leggono dentro i drill.
     const compress = basiLeft.length > 3 && daysToExam(now) <= 12;
     let step;
-    if (basiLeft.length && !compress) step = { ...basiLeft[0], phase: 'Basi', index: BASI.length - basiLeft.length + 1, of: BASI.length };
+    if (basiLeft.length && !compress) step = boost({ ...basiLeft[0], phase: 'Basi', index: BASI.length - basiLeft.length + 1, of: BASI.length }, st);
     else step = blockStep(st, now) || cycleStep(st, now, compress ? basiLeft : null);
     return sim ? { ...step, simAlt: { ...sim, phase: 'Simulazione' } } : step;
   }
@@ -207,7 +237,7 @@ App.path = (() => {
   function shortStep(now = new Date()) {
     const st = state();
     const basiLeft = BASI.filter((s) => !st.done[s.id] && s.kind === 'lesson');
-    if (basiLeft.length && daysToExam(now) > 12) return { ...basiLeft[0], phase: 'Basi' };
+    if (basiLeft.length && daysToExam(now) > 12) return boost({ ...basiLeft[0], phase: 'Basi' }, st);
     return cycleStep(st, now, basiLeft.length ? basiLeft : null);
   }
 
@@ -242,5 +272,5 @@ App.path = (() => {
   const daysToExam = (now = new Date()) => daysUntil(EXAM.day, now);
   const prereqOpen = (now = new Date()) => !App.store.settings().prereqDone && now < PREREQ.at;
 
-  return { EXAM, PREREQ, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, BASI, CYCLE, DRILL, BLOCKS, SIMS, TAPERS, next, shortStep, complete, isDone, start, counts, dayCounts, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, isWeekend };
+  return { EXAM, PREREQ, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, BASI, CYCLE, DRILL, BLOCKS, SIMS, TAPERS, next, shortStep, complete, isDone, start, counts, dayCounts, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, strong, isWeekend };
 })();

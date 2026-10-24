@@ -127,8 +127,28 @@ n = P.next(at('2026-10-26T10:00:00+01:00'));
 check('8/10 al livello 2: numerico sale al 3', n.pick.gen.includes(3), JSON.stringify(n.pick));
 LOG = Array.from({ length: 10 }, (_, i) => ({ t: '2026-10-26T09:00:00+01:00', mode: 'tappa', bank: 'numerico', id: `N1-${i}`, ok: true, level: 1 }));
 n = P.next(at('2026-10-26T10:00:00+01:00'));
-check('le risposte di livello base non fanno salire', n.pick.gen.join() === '2', JSON.stringify(n.pick));
+check('dieci risposte giuste anche di livello base: chi va forte sale', n.pick.gen.includes(3), JSON.stringify(n.pick));
+LOG = Array.from({ length: 10 }, (_, i) => ({ t: '2026-10-26T09:00:00+01:00', mode: 'tappa', bank: 'numerico', id: `N1-${i}`, ok: i < 6, level: 1 }));
+n = P.next(at('2026-10-26T10:00:00+01:00'));
+check('6 su 10 di livello base: si resta al livello 2', n.pick.gen.join() === '2', JSON.stringify(n.pick));
 LOG = [];
+
+// ── 8b. Chi va forte salta il livello base nelle Basi ──
+reset();
+mark(['b01', 'bm']);
+PATH.done.bm.by = { verbale: { n: 10, correct: 8 }, numerico: { n: 5, correct: 4 }, astratto: { n: 5, correct: 2 } };
+n = P.next(at('2026-10-24T12:00:00+02:00'));
+check('misura forte nel verbale: scheda con brani di livello prova, prima i difficili', n.id === 'b02' && n.pick.levels.join() === '2' && n.pick.hard === true && /livello prova/.test(n.sub), JSON.stringify(n));
+mark(['b02']);
+n = P.next(at('2026-10-24T12:10:00+02:00'));
+check('astratto debole nella misura: la scheda resta al livello base', n.id === 'b03' && n.pick.gen.join() === '1' && !n.boosted, JSON.stringify(n.pick));
+mark(['b03']);
+n = P.next(at('2026-10-24T12:20:00+02:00'));
+check('numerico forte nella misura: livelli 2 e 3', n.id === 'b04' && n.pick.gen.join() === '2,3', JSON.stringify(n.pick));
+mark(['b04', 'b05', 'b06', 'b07', 'b08', 'b09', 'b10', 'b11', 'b12', 'b13']);
+PATH.p2 = { i: 0 };
+n = P.next(at('2026-10-26T10:00:00+01:00'));
+check('drill verbale: prima i brani più difficili', n.slot === 'v' && n.pick.hard === true, JSON.stringify(n.pick));
 
 // ── 9. Simulazione 2 e scarico ──
 reset();

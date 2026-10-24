@@ -76,7 +76,8 @@ App.select = (() => {
   // ── Verbale ──
   // levels in ordine di preferenza ([2, 1] = prima il livello prova, poi il base). Le riserve delle simulazioni
   // si usano in allenamento solo se non resta altro.
-  function pickVerbal(n, { levels = [1, 2], tags = null, formats = ['epso4'], due = true, exclude = [] } = {}) {
+  // hard: prima i brani più difficili (difficoltà 4, poi 3), per chi va forte.
+  function pickVerbal(n, { levels = [1, 2], tags = null, formats = ['epso4'], due = true, exclude = [], hard = false } = {}) {
     const stats = App.store.itemStats();
     const weights = tagWeights();
     const pending = pendingSimKeys();
@@ -90,8 +91,11 @@ App.select = (() => {
     const tiers = [];
     for (const seen of [false, true]) for (const lv of levels) {
       const free = pool('verbale', { formats, levels: [lv] }).filter(ok).filter((q) => !isSimReserve(q) && stats.has(key(q)) === seen);
-      if (tags) tiers.push(free.filter((q) => hasTag(q, tags)));
-      tiers.push(free);
+      const parts = hard ? [free.filter((q) => (q.difficulty || 0) >= 4), free.filter((q) => (q.difficulty || 0) === 3), free] : [free];
+      for (const part of parts) {
+        if (tags) tiers.push(part.filter((q) => hasTag(q, tags)));
+        tiers.push(part);
+      }
     }
     for (const tier of tiers) for (const q of rank(tier, stats, weights)) add(q);
     // Ultima risorsa: le riserve, poi qualsiasi brano non visto in simulazione.
@@ -203,7 +207,7 @@ App.select = (() => {
     const p = step.pick || {};
     if (p.mix) return mixItems();
     const n = p.n || 5;
-    if (p.bank === 'verbale') return pickVerbal(n, { levels: p.levels || [1, 2], tags: p.tags || null, formats: p.formats || ['epso4'] });
+    if (p.bank === 'verbale') return pickVerbal(n, { levels: p.levels || [1, 2], tags: p.tags || null, formats: p.formats || ['epso4'], hard: Boolean(p.hard) });
     if (p.bank === 'numerico' && !p.gen) return pickTraining('numerico', n, { levels: p.levels || [1] });
     if (p.bank === 'numerico' || p.bank === 'astratto') {
       const due = dueOf(p.bank, Math.floor(n / 3), (q) => !p.tags || hasTag(q, p.tags));
