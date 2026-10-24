@@ -25,67 +25,70 @@
   <header class="topbar" id="topbar">
     <button type="button" class="topbar-home" id="btn-home" aria-label="Home"><span class="brand-mark" aria-hidden="true"></span>EU Prep</button>
     <span class="topbar-title" id="topbar-title"></span>
-    <nav class="topbar-nav" aria-label="Sezioni">
-      <button type="button" class="link-btn" id="nav-stato">Stato</button>
+    <nav class="tabbar" id="tabbar" aria-label="Sezioni">
+      <button type="button" class="tab" id="nav-home" data-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span>Oggi</span></button>
+      <button type="button" class="tab" id="nav-train" data-tab="train"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M6 18V9m4 9V5m4 13v-7m4 7v-4"/></svg><span>Allenati</span></button>
+      <button type="button" class="tab" id="nav-agenda" data-tab="agenda"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 9.5h17M8 3v4m8-4v4"/></svg><span>Agenda</span><b class="tab-badge" id="agenda-badge" hidden></b></button>
+      <button type="button" class="tab" id="nav-stato" data-tab="stato"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4m0 16h16"/><path d="M7.5 15l3.5-4 3 2.5 5-6"/></svg><span>Progressi</span></button>
     </nav>
   </header>
 
   <main id="main" class="main">
 
-    <!-- ════════ HOME ════════ -->
+    <!-- ════════ OGGI (home) ════════ -->
     <section id="view-home" class="view home" hidden>
-      <div class="home-head">
-        <div class="hd" id="home-countdown-box">
-          <span class="hd-days" id="home-days">—</span>
-          <span class="hd-text"><span class="hd-unit" id="home-unit">giorni alla Parte 1</span><span class="hd-when" id="home-countdown">mer 11/11 · 14:00</span></span>
-        </div>
-        <section class="cal" aria-labelledby="cal-h">
-          <h2 class="sec-h" id="cal-h">Fino alla prova</h2>
-          <ol class="cal-strip" id="cal-strip"></ol>
-          <p class="cal-legend" id="cal-legend"><b>S1 S2</b> simulazioni · <b>PR</b> prerequisiti entro le 11:59 · <b>R</b> riposo · <b>P1</b> prova alle 14:00</p>
+      <div class="hd" id="home-countdown-box">
+        <span class="hd-days" id="home-days">—</span>
+        <span class="hd-text"><span class="hd-unit" id="home-unit">giorni alla Parte 1</span><span class="hd-when" id="home-countdown">mer 11/11 · 14:00</span></span>
+      </div>
+      <section class="next" id="next-card" aria-labelledby="next-title">
+        <p class="eyebrow" id="next-label"></p>
+        <h1 class="next-title" id="next-title">…</h1>
+        <p class="next-sub" id="next-sub"></p>
+        <button type="button" class="btn btn-primary btn-xl" id="btn-next">Continua</button>
+        <button type="button" class="link-btn alt-link" id="btn-alt" hidden></button>
+        <p class="next-note" id="next-note" hidden></p>
+      </section>
+      <div class="today" aria-live="polite"><span class="segs" id="today-dots" aria-hidden="true"></span><span id="today-text"></span></div>
+      <button type="button" class="nudge" id="home-nudge" hidden></button>
+    </section>
+
+    <!-- ════════ ALLENATI ════════ -->
+    <section id="view-train" class="view" hidden>
+      <div class="card">
+        <h1 class="view-h">Allenati</h1>
+        <p class="view-sub">Fuori dal percorso, quando vuoi.</p>
+        <section class="tools" aria-label="Strumenti">
+          <div class="tool-row tool-row-train">
+            <span class="tool-title">Allenamento libero</span>
+            <span class="tool-sub">a ritmo di prova, con la correzione subito</span>
+            <span class="chips">
+              <button type="button" class="chip" id="btn-train-v">Verbale <small>5</small></button>
+              <button type="button" class="chip" id="btn-train-n">Numerico <small>5</small></button>
+              <button type="button" class="chip" id="btn-train-a">Astratto <small>10</small></button>
+            </span>
+          </div>
+          <button type="button" class="tool-row" id="btn-review"><span class="tool-title">Ripasso degli errori</span><span class="tool-sub">le domande sbagliate che tornano oggi</span><span class="tool-go" aria-hidden="true">→</span></button>
+          <button type="button" class="tool-row" id="btn-micro"><span class="tool-title">Micro</span><span class="tool-sub">3 domande, una per prova · 5′</span><span class="tool-go" aria-hidden="true">→</span></button>
+          <button type="button" class="tool-row" id="btn-lessons"><span class="tool-title">Schede di studio</span><span class="tool-sub">metodo e trappole, una per schermata</span><span class="tool-go" aria-hidden="true">→</span></button>
+          <button type="button" class="tool-row" id="btn-sim"><span class="tool-title">Simulazione a scelta</span><span class="tool-sub">Parte 1 completa o una prova sola · sul PC</span><span class="tool-go" aria-hidden="true">→</span></button>
+          <button type="button" class="tool-row" id="btn-official"><span class="tool-title">Test di esempio ufficiale</span><span class="tool-sub">su TAO, la piattaforma della prova</span><span class="tool-go" aria-hidden="true">→</span></button>
         </section>
       </div>
-      <div class="home-cols">
-        <div class="home-col">
-          <section class="next" id="next-card" aria-labelledby="next-title">
-            <p class="eyebrow" id="next-label"></p>
-            <h1 class="next-title" id="next-title">…</h1>
-            <p class="next-sub" id="next-sub"></p>
-            <button type="button" class="btn btn-primary btn-xl" id="btn-next">Continua</button>
-            <button type="button" class="link-btn alt-link" id="btn-alt" hidden></button>
-            <p class="next-note" id="next-note" hidden></p>
-          </section>
-          <div class="today" aria-live="polite"><span class="segs" id="today-dots" aria-hidden="true"></span><span id="today-text"></span></div>
-          <div class="todo" id="todo-card" hidden>
-            <p class="todo-head">Fuori dall'app</p>
-            <p class="todo-text" id="todo-text"></p>
-            <button type="button" class="btn btn-ghost btn-sm" id="todo-done">Fatto</button>
-          </div>
-        </div>
-        <div class="home-col">
-          <section class="soglie" aria-labelledby="soglie-h">
-            <h2 class="sec-h" id="soglie-h">Rispetto alle soglie</h2>
-            <div id="home-gauges"></div>
-          </section>
-          <section class="tools" aria-labelledby="tools-h">
-            <h2 class="sec-h" id="tools-h">Fuori dal percorso</h2>
-            <div class="tool-row tool-row-train">
-              <span class="tool-title">Allenamento libero</span>
-              <span class="tool-sub">a ritmo di prova, con la correzione subito</span>
-              <span class="chips">
-                <button type="button" class="chip" id="btn-train-v">Verbale <small>5</small></button>
-                <button type="button" class="chip" id="btn-train-n">Numerico <small>5</small></button>
-                <button type="button" class="chip" id="btn-train-a">Astratto <small>10</small></button>
-              </span>
-            </div>
-            <button type="button" class="tool-row" id="btn-review"><span class="tool-title">Ripasso degli errori</span><span class="tool-sub">le domande sbagliate che tornano oggi</span><span class="tool-go" aria-hidden="true">→</span></button>
-            <button type="button" class="tool-row" id="btn-micro"><span class="tool-title">Micro</span><span class="tool-sub">3 domande, una per prova · 5′</span><span class="tool-go" aria-hidden="true">→</span></button>
-            <button type="button" class="tool-row" id="btn-lessons"><span class="tool-title">Schede di studio</span><span class="tool-sub">metodo e trappole, una per schermata</span><span class="tool-go" aria-hidden="true">→</span></button>
-            <button type="button" class="tool-row" id="btn-sim"><span class="tool-title">Simulazione a scelta</span><span class="tool-sub">Parte 1 completa o una prova sola · sul PC</span><span class="tool-go" aria-hidden="true">→</span></button>
-            <button type="button" class="tool-row" id="btn-official"><span class="tool-title">Test di esempio ufficiale</span><span class="tool-sub">su TAO, la piattaforma della prova</span><span class="tool-go" aria-hidden="true">→</span></button>
-          </section>
-          <p class="week-line" id="week-line"></p>
-        </div>
+    </section>
+
+    <!-- ════════ AGENDA ════════ -->
+    <section id="view-agenda" class="view" hidden>
+      <div class="card">
+        <h1 class="view-h">Agenda</h1>
+        <section class="cal" aria-label="Calendario fino alla prova">
+          <ol class="cal-strip" id="cal-strip"></ol>
+        </section>
+        <h2 class="sec-h">Da fare fuori dall'app</h2>
+        <ul class="todo-list" id="todo-list"></ul>
+        <p class="muted small" id="todo-empty" hidden>Niente da fare fuori dall'app, per ora.</p>
+        <h2 class="sec-h">Date</h2>
+        <ul class="date-list" id="date-list"></ul>
       </div>
     </section>
 
@@ -111,7 +114,7 @@
         <h1>Schede di studio</h1>
         <p class="muted">Le stesse schede che aprono le tappe del percorso: rileggile quando vuoi.</p>
         <div id="lessons-list"></div>
-        <div class="end-actions"><button type="button" class="btn btn-ghost" id="lessons-back">Torna alla home</button></div>
+        <div class="end-actions"><button type="button" class="btn btn-ghost" id="lessons-back">Indietro</button></div>
       </div>
     </section>
 
@@ -349,7 +352,7 @@
     <!-- ════════ STATO ════════ -->
     <section id="view-stato" class="view" hidden>
       <div class="card">
-        <h1>Stato</h1>
+        <h1 class="view-h">Progressi</h1>
         <h2 class="sec-h">Rispetto alle soglie</h2>
         <div class="stato-gauges" id="stato-gauges"></div>
         <h2 class="sec-h">Percorso</h2>

@@ -3,7 +3,8 @@ window.App = window.App || {};
 App.ui = (() => {
   'use strict';
   const { el } = App.utils;
-  const VIEWS = ['home', 'lesson', 'lessons', 'official', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
+  const VIEWS = ['home', 'train', 'agenda', 'lesson', 'lessons', 'official', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
+  const TABS = ['home', 'train', 'agenda', 'stato'];
   let currentView = 'home';
 
   function show(name, { title = '' } = {}) {
@@ -13,6 +14,11 @@ App.ui = (() => {
     }
     currentView = name;
     document.body.dataset.view = name;
+    // Le quattro schede: quella aperta è segnata; nelle altre viste (sessione, simulazione…) la barra sparisce.
+    document.body.classList.toggle('has-tabs', TABS.includes(name));
+    for (const b of document.querySelectorAll('.tab')) {
+      if (b.dataset.tab === name) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    }
     const t = document.getElementById('topbar-title');
     if (t) t.textContent = title;
     document.getElementById('topbar').hidden = name === 'sim';

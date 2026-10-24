@@ -215,5 +215,18 @@ check('prerequisiti segnati come fatti', P.prereqOpen(at('2026-10-23T20:00:00+02
 check('ora della prova in UTC', P.EXAM.at.toISOString() === '2026-11-11T13:00:00.000Z', P.EXAM.at.toISOString());
 check('scadenza prerequisiti in UTC', P.PREREQ.at.toISOString() === '2026-11-06T10:59:00.000Z', P.PREREQ.at.toISOString());
 
+// ── 12b. Cose da fare fuori dall'app (Agenda) ──
+reset();
+let td = P.todos(at('2026-10-25T10:00:00+01:00'));
+check('25/10: prerequisiti, permesso e portale in agenda, niente di urgente', td.map((t) => t.id).sort().join() === 'leave,portal,prereq' && !td.some((t) => t.urgent), JSON.stringify(td));
+td = P.todos(at('2026-10-27T10:00:00+01:00'));
+check('27/10: prerequisiti e portale urgenti', td.filter((t) => t.urgent).map((t) => t.id).sort().join() === 'portal,prereq', JSON.stringify(td));
+SETTINGS.portalChecked = '2026-10-27'; SETTINGS.prereqDone = true;
+td = P.todos(at('2026-10-28T10:00:00+01:00'));
+check('portale controllato il 27/10: prossimo il 30/10, non urgente', td.find((t) => t.id === 'portal').due === '2026-10-30' && !td.find((t) => t.id === 'portal').urgent && !td.some((t) => t.id === 'prereq'), JSON.stringify(td));
+td = P.todos(at('2026-11-12T10:00:00+01:00'));
+check('dopo la prova: reclami urgenti fino al 14/11, niente permesso', td.some((t) => t.id === 'complaints' && t.urgent) && !td.some((t) => t.id === 'leave'), JSON.stringify(td));
+check('15/11: reclami spariti', !P.todos(at('2026-11-15T10:00:00+01:00')).some((t) => t.id === 'complaints'));
+reset();
 console.log(`${passes} passati, ${fails} falliti`);
 process.exit(fails ? 1 : 0);

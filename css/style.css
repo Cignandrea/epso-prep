@@ -86,7 +86,6 @@ a { color: inherit; text-decoration-color: var(--rule-2); text-underline-offset:
 .topbar-title { flex: 1; color: var(--ink-2); font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .link-btn { background: none; border: 0; color: var(--ink); padding: 10px 8px; min-height: 44px; text-decoration: underline; text-decoration-color: var(--rule-2); text-underline-offset: 4px; }
 .link-btn:hover { text-decoration-color: var(--ink); }
-body[data-view="session"] #nav-stato { display: none; }
 
 .main { max-width: 1180px; margin: 0 auto; padding: 18px 16px; padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); padding-bottom: max(28px, env(safe-area-inset-bottom)); }
 .card { max-width: 760px; margin: 0 auto; }
@@ -108,9 +107,8 @@ body[data-view="session"] #nav-stato { display: none; }
 .kbd { display: none; font: 500 .7rem var(--mono); border: 1px solid currentColor; border-radius: 3px; padding: 0 4px; opacity: .6; }
 @media (pointer: fine) { .kbd { display: inline-block; } }
 
-/* ══════════ Home ══════════ */
-.home { display: grid; gap: 26px; }
-.home-head { display: grid; gap: 18px; }
+/* ══════════ Oggi (home): giorni alla prova, prossima tappa, tappe di oggi. Nient'altro. ══════════ */
+.home { display: grid; gap: 28px; max-width: 620px; margin: 0 auto; padding-top: 8px; }
 .hd { display: flex; align-items: center; gap: 14px; }
 .hd-days { font-family: var(--mono); font-weight: 600; font-size: clamp(3.1rem, 11vw, 4.4rem); line-height: .9; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; }
 .hd-text { display: flex; flex-direction: column; gap: 2px; }
@@ -135,11 +133,7 @@ body[data-view="session"] #nav-stato { display: none; }
 .cal-day.is-exam { box-shadow: inset 0 0 0 2px var(--ink); }
 .cal-day.is-exam .cal-num { font-weight: 700; }
 .cal-day.is-rest .cal-bar { background: repeating-linear-gradient(90deg, var(--rule) 0 2px, transparent 2px 4px); }
-.cal-legend { margin: 8px 0 0; font-size: .74rem; color: var(--ink-2); line-height: 1.45; }
-.cal-legend b { font-family: var(--mono); font-weight: 600; color: var(--ink); }
-
-.home-cols { display: grid; gap: 26px; }
-.home-col { display: grid; gap: 18px; align-content: start; min-width: 0; }
+.cal { margin: 4px 0 26px; }
 
 /* Prossima tappa: l'unica azione in evidenza. */
 .next { border-top: 2px solid var(--ink); padding-top: 14px; display: grid; gap: 4px; }
@@ -151,10 +145,26 @@ body[data-view="session"] #nav-stato { display: none; }
 .segs { display: inline-grid; grid-auto-flow: column; gap: 3px; }
 .seg { width: 20px; height: 7px; background: var(--rule); }
 .seg.on { background: var(--ink); }
-.todo { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; padding: 10px 0 10px 14px; border-left: 3px solid var(--ko); }
-.todo-head { grid-column: 1; font-family: var(--mono); font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ko); margin: 0; }
-.todo-text { grid-column: 1; margin: 0; font-size: .95rem; }
-.todo .btn { grid-column: 2; grid-row: 1 / span 2; }
+/* Promemoria in «Oggi»: una riga sola, solo quando una scadenza è vicina; porta all'Agenda. */
+.nudge { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: none; border: 0; border-top: 1px solid var(--rule); padding: 14px 2px; min-height: 52px; color: var(--ink); font-size: .95rem; }
+.nudge:hover { background: var(--paper-2); }
+.nudge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ko); flex: none; }
+.nudge-go { margin-left: auto; font-family: var(--mono); color: var(--ink-3); }
+
+/* Agenda: cose da fare (una per riga, il pulsante a destra) e date. */
+.todo-list, .date-list { list-style: none; margin: 0 0 26px; padding: 0; }
+.todo-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.todo-item:first-child { border-top: 0; }
+.todo-body { display: grid; gap: 2px; min-width: 0; }
+.todo-body p { margin: 0; }
+.todo-title { font-weight: 500; }
+.todo-when { font-family: var(--mono); font-size: .78rem; color: var(--ink-2); }
+.todo-item.is-urgent .todo-when { color: var(--ko); font-weight: 600; }
+.todo-detail { font-size: .86rem; color: var(--ink-2); line-height: 1.4; }
+.date-row { display: grid; grid-template-columns: 6.2em minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: .95rem; }
+.date-when { font-family: var(--mono); font-size: .82rem; color: var(--ink-2); padding-top: 2px; }
+.date-row.is-past { color: var(--ink-3); }
+.date-row.is-exam .date-what { font-weight: 600; }
 
 /* Soglie: righello 0–20 con la soglia (rosso) e l'obiettivo (tratteggio); in giallo la stima e il suo margine. */
 .gauge { display: grid; gap: 2px; margin-bottom: 18px; }
@@ -193,14 +203,31 @@ button.tool-row:hover { background: var(--paper-2); }
 .chip { display: inline-flex; align-items: baseline; gap: 6px; border: 1px solid var(--rule-2); background: var(--sheet); border-radius: 4px; padding: 0 12px; min-height: 44px; align-items: center; font-weight: 500; }
 .chip small { font-family: var(--mono); font-size: .75rem; color: var(--ink-2); }
 .chip:hover { border-color: var(--ink); }
-.week-line { color: var(--ink-2); font-size: .85rem; margin: 0; }
+
+/* Titoli delle schede (Allenati, Agenda, Progressi) */
+.view-h { font-size: 1.5rem; letter-spacing: -0.01em; margin: 6px 0 4px; }
+.view-sub { color: var(--ink-2); margin: 0 0 14px; }
 
 @media (min-width: 760px) {
-  .home { gap: 30px; }
-  .home-head { grid-template-columns: auto minmax(0, 1fr); column-gap: 40px; align-items: end; }
-  .hd { padding-bottom: 6px; }
-  .home-cols { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; }
   .cal-num { font-size: .9rem; }
+}
+
+/* ══════════ Barra delle schede: in basso sul telefono, nella barra in alto sugli schermi larghi ══════════ */
+.tabbar { display: none; }
+body.has-tabs .tabbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--paper); border-top: 1px solid var(--rule); padding: 4px max(8px, env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left)); }
+.tab { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 52px; background: none; border: 0; color: var(--ink-2); font-size: .72rem; font-weight: 500; letter-spacing: .01em; }
+.tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.tab[aria-current="page"] { color: var(--ink); }
+.tab[aria-current="page"]::before { content: ""; position: absolute; top: -5px; left: 28%; right: 28%; height: 3px; background: var(--hl); }
+.tab-badge { position: absolute; top: 8px; left: calc(50% + 8px); width: 8px; height: 8px; border-radius: 50%; background: var(--ko); }
+body.has-tabs .main { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 760px) {
+  body.has-tabs .tabbar { position: static; display: flex; gap: 2px; margin-left: auto; padding: 0; border: 0; background: none; }
+  .tab { flex-direction: row; gap: 7px; min-height: 44px; padding: 0 12px; font-size: .92rem; }
+  .tab svg { width: 18px; height: 18px; }
+  .tab[aria-current="page"]::before { top: auto; bottom: -4px; left: 12px; right: 12px; }
+  .tab-badge { top: 9px; left: 26px; }
+  body.has-tabs .main { padding-bottom: max(28px, env(safe-area-inset-bottom)); }
 }
 
 /* ══════════ Scheda di studio ══════════ */

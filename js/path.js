@@ -12,6 +12,12 @@ App.path = (() => {
   // Date della prova [V lettera d'invito del 19/10; TAO, «My sessions», letto il 23/10]. Ora di Bruxelles = ora italiana.
   const EXAM = { day: '2026-11-11', at: new Date('2026-11-11T14:00:00+01:00'), label: 'mer 11/11 alle 14:00' };
   const PREREQ = { at: new Date('2026-11-06T11:59:00+01:00'), day: '2026-11-06', label: 'ven 06/11 alle 11:59' };
+  // Reclami (domanda errata, problema tecnico): 3 giorni di calendario dal giorno dopo la prova [V bando, Allegato I §7].
+  const COMPLAINTS = { at: new Date('2026-11-14T23:59:00+01:00'), day: '2026-11-14', label: 'sab 14/11' };
+  // Portale EPSO: il bando chiede di controllare l'account almeno ogni 3 giorni di calendario [V Allegato I §1].
+  // Ultimo controllo verificato prima di questa funzione: 24/10, dal Chrome di Andrea [V portale].
+  const PORTAL = { every: 3, seed: '2026-10-24' };
+  const PREREQ_SOON = '2026-10-27'; // consigliato entro martedì 27/10 [S, Piano di studio]
   const TAPER = '2026-11-08';   // scarico da domenica 08/11 [S, Piano di studio]
   const REST = '2026-11-10';    // il giorno prima: niente
   // Tappe al giorno: 3 nei feriali (circa 35′, il budget deciso l'08/10), 6 nel fine settimana (sessioni lunghe).
@@ -290,5 +296,23 @@ App.path = (() => {
   const daysToExam = (now = new Date()) => daysUntil(EXAM.day, now);
   const prereqOpen = (now = new Date()) => !App.store.settings().prereqDone && now < PREREQ.at;
 
-  return { EXAM, PREREQ, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, BASI, CYCLE, DRILL, BLOCKS, SIMS, TAPERS, next, shortStep, complete, isDone, start, counts, dayCounts, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, strong, isWeekend };
+  // Cose da fare fuori dall'app, con la scadenza: l'app è l'unico punto di contatto con la prova (decisione del 24/10).
+  // urgent = da mostrare anche in «Oggi»; le altre stanno solo nell'Agenda.
+  function todos(now = new Date()) {
+    const s = App.store.settings();
+    const k = todayKey(now);
+    const out = [];
+    if (!s.prereqDone && now < PREREQ.at) {
+      out.push({ id: 'prereq', due: PREREQ.day, urgent: k >= PREREQ_SOON || daysUntil(PREREQ.day, now) <= 7 });
+    }
+    if (!s.leaveDone && now < EXAM.at) out.push({ id: 'leave', due: EXAM.day, urgent: daysUntil(EXAM.day, now) <= 10 });
+    const last = /^\d{4}-\d{2}-\d{2}$/.test(s.portalChecked || '') ? s.portalChecked : PORTAL.seed;
+    const lastDate = new Date(`${last}T12:00:00`);
+    const next = new Date(lastDate); next.setDate(next.getDate() + PORTAL.every);
+    out.push({ id: 'portal', last, due: todayKey(next), urgent: k >= todayKey(next) });
+    if (!s.complaintsDone && now >= EXAM.at && now <= COMPLAINTS.at) out.push({ id: 'complaints', due: COMPLAINTS.day, urgent: true });
+    return out.sort((a, b) => (b.urgent - a.urgent) || a.due.localeCompare(b.due));
+  }
+
+  return { EXAM, PREREQ, COMPLAINTS, PORTAL, todos, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, BASI, CYCLE, DRILL, BLOCKS, SIMS, TAPERS, next, shortStep, complete, isDone, start, counts, dayCounts, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, strong, isWeekend };
 })();

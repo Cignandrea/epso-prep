@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b8';
+  const VERSION = '1.2.0-b9';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -81,7 +81,6 @@ App.main = (() => {
     App.sim.closeStale();
     App.calc.hideAll();
     paintHead();
-    paintCalendar();
     const sim = App.store.sim();
     const cur = App.store.current();
     const c = App.path.counts();
@@ -98,8 +97,7 @@ App.main = (() => {
       pathCard(App.path.next(), c, cur);
     }
     paintToday(c);
-    paintTodo();
-    try { App.ready.render($('home-gauges')); } catch (err) { console.warn('soglie non calcolabili', err); $('home-gauges').replaceChildren(); }
+    paintNudge();
     App.ui.show('home', { title: '' });
   }
 
@@ -116,24 +114,22 @@ App.main = (() => {
     switch (nx.kind) {
       case 'lesson': case 'drill': case 'review': {
         const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : `${nx.phase} · tappa ${c.total + 1}`;
-        const note = first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.'
-          : nx.boosted === 'forte' ? 'In questa prova vai forte: la scheda resta, le domande sono di livello prova, prima le più difficili.'
-          : nx.boosted ? 'Nella misura sei sopra la soglia: la scheda resta, le domande sono di livello prova.'
+        const note = first ? 'Puoi fermarti quando vuoi: riparti dallo stesso punto.'
           : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
         setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: simAlt });
         break;
       }
       case 'block':
-        setCard({ label: 'Allenamento · blocco a tempo', title: nx.title, sub: nx.sub, btn: 'Inizia il blocco', meta: meta(nx.min), onClick: start, note: 'Come in TAO: nessuna correzione fino alla fine, con segnalibro e panoramica. Allena la gestione del tempo.', alt: simAlt || later() });
+        setCard({ label: 'Allenamento · blocco a tempo', title: nx.title, sub: nx.sub, btn: 'Inizia il blocco', meta: meta(nx.min), onClick: start, note: 'Come in TAO: la correzione arriva alla fine.', alt: simAlt || later() });
         break;
       case 'official':
         setCard({ label: 'Fuori dall\'app', title: nx.title, sub: nx.sub, btn: 'Apri', meta: meta(0), onClick: () => showOfficial(nx), alt: later() });
         break;
       case 'sim':
         if (nx.mode === 'baseline') {
-          setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Serve a capire da dove parti: il percorso darà più spazio a ciò che serve. Falla senza pause e sul dispositivo dove segui il percorso: i dati restano lì.', alt: later() });
+          setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Senza pause, sul dispositivo dove segui il percorso.', alt: later() });
         } else {
-          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, schermo intero, niente carta e niente pause: come mercoledì 11/11. Poi esporta i dati e importali sul telefono.', alt: later() });
+          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, a schermo intero, senza pause. Alla fine esporta i dati e importali sul telefono.', alt: later() });
         }
         break;
       case 'rest':
@@ -160,16 +156,70 @@ App.main = (() => {
   function paintToday(c) {
     $('today-dots').replaceChildren(...Array.from({ length: c.target }, (_, i) => el('span', { class: `seg${i < c.today ? ' on' : ''}` })));
     $('today-text').textContent = c.today >= c.target ? `Oggi ${c.today} tappe: obiettivo fatto` : `Oggi ${c.today} di ${c.target} tappe`;
-    $('week-line').textContent = c.total ? `Percorso: ${c.total} ${c.total === 1 ? 'tappa fatta' : 'tappe fatte'}. Un giorno saltato non è un debito.` : 'Un giorno saltato non è un debito: il percorso riparte da dove sei.';
   }
 
-  // Promemoria fuori dallo studio ma decisivo per la Parte 1 [V lettera del 19/10]: sparisce con «Fatto» o a scadenza passata.
-  function paintTodo() {
-    const open = App.path.prereqOpen();
-    $('todo-card').hidden = !open;
-    if (!open) return;
-    const d = daysUntil(App.path.PREREQ.day);
-    $('todo-text').replaceChildren(...rich(`**EU Login con l'app** e **test dei prerequisiti su TAO**, sul PC della prova, entro **${App.path.PREREQ.label}** (${d === 0 ? 'oggi' : d === 1 ? 'domani' : `tra ${d} giorni`}). Senza, un problema tecnico il giorno della prova non dà diritto a ripeterla. Nella stessa seduta: il test di esempio pubblico, per conoscere la piattaforma.`));
+  // ── Agenda: calendario, cose da fare fuori dall'app, date ──
+  const shortDate = (key) => { const d = new Date(`${key}T12:00:00`); return `${'dom lun mar mer gio ven sab'.split(' ')[d.getDay()]} ${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}`; };
+  const inDays = (key) => { const d = daysUntil(key); return d <= 0 ? 'oggi' : d === 1 ? 'domani' : `tra ${d} giorni`; };
+  // Testi delle cose da fare [V lettera del 19/10; bando, Allegato I §1 e §7]
+  function todoInfo(t) {
+    switch (t.id) {
+      case 'prereq': return { title: 'EU Login con l\'app e test dei prerequisiti su TAO', when: `entro ${App.path.PREREQ.label} · ${inDays(t.due)}`, detail: 'Sul PC e nel posto della prova, meglio entro mar 27/10. Senza, un problema tecnico il giorno della prova non dà diritto a ripeterla.', btn: 'Fatto', short: 'prerequisiti su TAO' };
+      case 'leave': return { title: 'Permesso dal lavoro per mer 11/11 pomeriggio', when: 'prima possibile', detail: 'La prova non si sposta per impegni di lavoro.', btn: 'Fatto', short: 'permesso per l\'11/11' };
+      case 'portal': return { title: 'Controlla le comunicazioni nel portale EPSO', when: t.urgent ? 'da fare oggi' : `prossimo controllo ${shortDate(t.due)}`, detail: `Il bando chiede almeno ogni 3 giorni. Ultimo controllo: ${shortDate(t.last)}.`, btn: 'Controllato oggi', short: 'controlla il portale' };
+      case 'complaints': return { title: 'Reclami, se servono', when: `entro ${App.path.COMPLAINTS.label} · ${inDays(t.due)}`, detail: 'Domanda errata o problema tecnico, dal tuo account EPSO. Se non ne hai, premi «Nessun reclamo».', btn: 'Nessun reclamo', short: 'reclami entro il 14/11' };
+      default: return null;
+    }
+  }
+  function doneTodo(id) {
+    const key = { prereq: 'prereqDone', leave: 'leaveDone', complaints: 'complaintsDone' }[id];
+    if (key) App.store.setSetting(key, true);
+    if (id === 'portal') App.store.setSetting('portalChecked', todayKey());
+    App.ui.toast('Segnato.');
+    paintAgenda();
+    paintBadge();
+  }
+  function paintTodos() {
+    const list = App.path.todos();
+    $('todo-list').replaceChildren(...list.map((t) => {
+      const info = todoInfo(t);
+      return el('li', { class: `todo-item${t.urgent ? ' is-urgent' : ''}` },
+        el('div', { class: 'todo-body' },
+          el('p', { class: 'todo-title' }, info.title),
+          el('p', { class: 'todo-when' }, info.when),
+          el('p', { class: 'todo-detail' }, info.detail)),
+        el('button', { type: 'button', class: 'btn btn-ghost btn-sm', onclick: () => doneTodo(t.id) }, info.btn));
+    }));
+    $('todo-empty').hidden = list.length > 0;
+  }
+  // Le date che contano, in ordine; quelle passate restano in grigio.
+  const DATES = [
+    { key: '2026-10-31', text: 'Simulazione n. 1, sul PC (fino a ven 06/11)' },
+    { key: '2026-11-06', text: 'Scadenza dei prerequisiti su TAO, alle 11:59' },
+    { key: '2026-11-07', text: 'Simulazione n. 2, sul PC, se puoi alle 14:00' },
+    { key: '2026-11-10', text: 'Riposo' },
+    { key: '2026-11-11', text: 'Parte 1, alle 14:00 (ora di Bruxelles, la stessa dell\'Italia)' },
+    { key: '2026-11-14', text: 'Ultimo giorno per i reclami' },
+  ];
+  function paintDates() {
+    const today = todayKey();
+    $('date-list').replaceChildren(...DATES.map((d) => el('li', { class: `date-row${d.key < today ? ' is-past' : ''}${d.key === App.path.EXAM.day ? ' is-exam' : ''}` },
+      el('span', { class: 'date-when' }, shortDate(d.key)), el('span', { class: 'date-what' }, d.text))));
+  }
+  function paintAgenda() { paintCalendar(); paintTodos(); paintDates(); }
+  function agendaView() { App.calc.hideAll(); paintAgenda(); paintBadge(); App.ui.show('agenda', { title: '' }); }
+  function trainView() { App.calc.hideAll(); App.ui.show('train', { title: '' }); }
+  // Pallino sull'Agenda e una riga in «Oggi» solo quando una scadenza è vicina.
+  function paintBadge() { $('agenda-badge').hidden = !App.path.todos().some((t) => t.urgent); }
+  function paintNudge() {
+    const urgent = App.path.todos().filter((t) => t.urgent);
+    paintBadge();
+    const n = $('home-nudge');
+    n.hidden = !urgent.length;
+    if (!urgent.length) return;
+    const first = todoInfo(urgent[0]);
+    n.replaceChildren(el('span', { class: 'nudge-dot', 'aria-hidden': 'true' }), el('span', {}, `Da fare: ${first.short}${urgent.length > 1 ? ` e altre ${urgent.length - 1}` : ''}`), el('span', { class: 'nudge-go', 'aria-hidden': 'true' }, '→'));
+    n.onclick = agendaView;
   }
 
   // ── Test di esempio ufficiale (l'unica tappa fuori dall'app) ──
@@ -256,8 +306,10 @@ App.main = (() => {
     $('btn-official').addEventListener('click', () => showOfficial({ id: 'extra-official', title: 'Test di esempio ufficiale su TAO' }));
     $('off-done').addEventListener('click', saveOfficial);
     $('off-later').addEventListener('click', () => home());
-    $('todo-done').addEventListener('click', () => { App.store.setSetting('prereqDone', true); App.ui.toast('Segnato. Un pensiero in meno.'); home(); });
-    $('lessons-back').addEventListener('click', () => home());
+    $('nav-home').addEventListener('click', () => { if (App.ui.view() !== 'session' && App.ui.view() !== 'sim') home(); });
+    $('nav-train').addEventListener('click', trainView);
+    $('nav-agenda').addEventListener('click', agendaView);
+    $('lessons-back').addEventListener('click', () => trainView());
     // Avvio: la home mostra ciò che era in corso (tappa in pausa, simulazione, risultati) e lo si riprende con un tocco.
     home();
     if (App.sync) App.sync.init();

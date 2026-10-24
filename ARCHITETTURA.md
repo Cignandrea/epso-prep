@@ -3,7 +3,7 @@
 Mappa per chi lavora sull'app dopo (persona o AI). Una pagina.
 
 ## Che cosa fa
-Un solo percorso fino alla Parte 1 (mer 11/11/2026, 14:00). La home mostra i giorni che mancano, il calendario fino alla prova (simulazioni, prerequisiti, riposo, prova), **una sola prossima tappa** e la posizione rispetto alle soglie (verbale 10/20; numerico + astratto 10/20).
+Un solo percorso fino alla Parte 1 (mer 11/11/2026, 14:00), in **quattro schede** (dalla b9): **Oggi** (giorni alla prova, **una sola prossima tappa**, tappe di oggi, una riga di promemoria solo se una scadenza è vicina) · **Allenati** (allenamento libero, ripasso, Micro, schede, simulazione a scelta, test ufficiale) · **Agenda** (calendario, cose da fare fuori dall'app con scadenza: prerequisiti, permesso, portale ogni 3 giorni, reclami; le date) · **Progressi** (soglie, trappole, sessioni, dati). L'app è l'unico punto di contatto con la prova (decisione di Andrea, 24/10).
 Fasi:
 - **Basi**: 14 tappe. Tappa 1: com'è fatta la prova. Tappa 2: **misura di partenza** nel clone TAO (10 verbali + 5 numeriche + 5 serie, tempi dimezzati). Poi 12 schede con 4–5 domande corrette subito.
 - **Allenamento**: ciclo verbale · numerico · verbale · astratto · ripasso, **tarato** sulla misura più recente (misura, poi simulazioni). Dal 27/10, ogni due giorni, un **blocco a tempo** nel clone TAO. Numerico e astratto salgono di livello con almeno 7 risposte giuste su 10 di livello prova.

@@ -79,7 +79,7 @@ App.stato = (() => {
   // Lo Stato si apre sempre: se le statistiche non si calcolano (dati danneggiati), restano Dati e Azzera (F2-05).
   function open() {
     try { render(); } catch (err) { console.warn('stato: statistiche non calcolabili', err); App.ui.toast('Statistiche non calcolabili: dati danneggiati. Esporta il JSON e poi «Azzera tutto».', 7000); }
-    App.ui.show('stato', { title: 'Stato' });
+    App.ui.show('stato', { title: '' });
   }
 
   function tile(big, label) { return el('div', { class: 'tile' }, el('span', { class: 'num-big' }, big), el('span', { class: 'num-label' }, label)); }

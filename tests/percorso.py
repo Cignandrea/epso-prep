@@ -56,14 +56,25 @@ def run(p, vp):
     check(f'{tag} home: un solo pulsante principale', page.is_visible('#btn-next') and page.text_content('#btn-next').strip().startswith('Inizia'), page.text_content('#btn-next'))
     check(f'{tag} home: tappa 1 di 14', 'tappa 1 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
     check(f'{tag} home: conto alla rovescia', page.text_content('#home-days').strip() == '18' and 'giorni alla Parte 1' in page.text_content('#home-unit'), page.text_content('#home-days'))
-    cells = page.query_selector_all('#cal-strip .cal-day')
-    today = page.query_selector('#cal-strip .cal-day.is-today .cal-num')
-    check(f'{tag} home: calendario di 20 giorni, oggi 24', len(cells) == 20 and today and today.text_content() == '24', len(cells))
-    check(f'{tag} home: due righelli delle soglie', len(page.query_selector_all('#home-gauges .gauge')) == 2)
-    check(f'{tag} home: promemoria prerequisiti', page.is_visible('#todo-card'))
-    check(f'{tag} home: strumenti a vista', page.is_visible('#btn-micro') and len(page.query_selector_all('.tools .tool-row')) == 6 and len(page.query_selector_all('.tools .chip')) == 3)
+    check(f'{tag} home: quattro schede, «Oggi» aperta', page.is_visible('#tabbar') and len(page.query_selector_all('#tabbar .tab')) == 4 and page.get_attribute('#nav-home', 'aria-current') == 'page')
+    check(f'{tag} home: niente calendario né strumenti in «Oggi»', not page.is_visible('#cal-strip') and not page.is_visible('#btn-micro'))
     check(f'{tag} home: niente scorrimento orizzontale', page.evaluate('() => document.documentElement.scrollWidth <= window.innerWidth'))
     page.screenshot(path=f'{OUT}/percorso-{name}-home.png')
+    # Agenda: calendario, cose da fare, date
+    page.click('#nav-agenda'); page.wait_for_timeout(150)
+    cells = page.query_selector_all('#cal-strip .cal-day')
+    today = page.query_selector('#cal-strip .cal-day.is-today .cal-num')
+    check(f'{tag} agenda: calendario di 20 giorni, oggi 24', len(cells) == 20 and today and today.text_content() == '24', len(cells))
+    todos = page.text_content('#todo-list')
+    check(f'{tag} agenda: prerequisiti, permesso e portale da fare', 'prerequisiti' in todos and 'Permesso' in todos and 'portale' in todos, todos[:160])
+    check(f'{tag} agenda: date fino ai reclami', len(page.query_selector_all('#date-list .date-row')) == 6)
+    check(f'{tag} agenda: niente scorrimento orizzontale', page.evaluate('() => document.documentElement.scrollWidth <= window.innerWidth'))
+    page.screenshot(path=f'{OUT}/percorso-{name}-agenda.png', full_page=True)
+    # Allenati: gli strumenti fuori dal percorso
+    page.click('#nav-train'); page.wait_for_timeout(150)
+    check(f'{tag} allenati: strumenti a vista', page.is_visible('#btn-micro') and len(page.query_selector_all('.tools .tool-row')) == 6 and len(page.query_selector_all('.tools .chip')) == 3)
+    page.screenshot(path=f'{OUT}/percorso-{name}-allenati.png')
+    page.click('#nav-home'); page.wait_for_timeout(150)
 
     # Tappa 1: scheda + 3 domande (verbale, numerico, astratto)
     page.click('#btn-next'); page.wait_for_timeout(200)
@@ -139,9 +150,12 @@ def run(p, vp):
     page.click('#e-done'); page.wait_for_timeout(200)
     check(f'{tag} home: tappa 4 di 14', 'tappa 4 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
     check(f'{tag} home: cinque segmenti pieni', len(page.query_selector_all('#today-dots .seg.on')) == 5)
-    check(f'{tag} home: soglia verbale accesa dopo la misura', page.query_selector('#home-gauges .gauge .gauge-dot') is not None or 'Finora' in page.text_content('#home-gauges'), page.text_content('#home-gauges')[:120])
+    page.click('#nav-stato'); page.wait_for_timeout(200)
+    check(f'{tag} progressi: soglia verbale accesa dopo la misura', page.query_selector('#stato-gauges .gauge .gauge-dot') is not None or 'Finora' in page.text_content('#stato-gauges'), page.text_content('#stato-gauges')[:120])
+    page.click('#nav-home'); page.wait_for_timeout(150)
 
     # Strumenti: schede, simulazione completa con le tre prove
+    page.click('#nav-train'); page.wait_for_timeout(150)
     page.click('#btn-lessons'); page.wait_for_timeout(150)
     check(f'{tag} indice delle schede', len(page.query_selector_all('#lessons-list .alt-card')) >= 15)
     page.click('#lessons-back'); page.wait_for_timeout(150)
@@ -168,6 +182,7 @@ def run(p, vp):
 
     # Allenamento libero in pausa: la tappa del percorso resta in primo piano e la sessione va nel link sotto
     # (sul Fold, il 24/10, un allenamento in pausa nascondeva la misura di partenza).
+    page.click('#nav-train'); page.wait_for_timeout(150)
     page.click('#btn-train-v'); page.wait_for_timeout(250)
     answer_current(page); page.click('#s-next'); page.wait_for_timeout(150)
     page.click('#s-quit'); page.wait_for_timeout(150)
@@ -182,7 +197,7 @@ def run(p, vp):
     page.click('#lesson-back'); page.wait_for_timeout(200)
     check(f'{tag} home: ora in pausa c\'è la tappa', page.text_content('#btn-next').strip().startswith('Riprendi') and not page.is_visible('#btn-alt'), page.text_content('#next-title'))
     page.click('#nav-stato'); page.wait_for_timeout(200)
-    check(f'{tag} Stato: si apre', page.is_visible('#view-stato'))
+    check(f'{tag} Stato: si apre', page.is_visible('#view-stato') and page.get_attribute('#nav-stato', 'aria-current') == 'page')
     check(f'{tag} Stato: righelli delle soglie', len(page.query_selector_all('#stato-gauges .gauge')) == 2)
     check(f'{tag} Stato: sincronizzazione spiegata', 'Sincronizzazione' in page.text_content('#stato-sync'), page.text_content('#stato-sync'))
     page.screenshot(path=f'{OUT}/percorso-{name}-stato.png', full_page=True)
