@@ -1,0 +1,748 @@
+[
+ {
+  "id": 1281,
+  "level": 2,
+  "format": "epso4",
+  "tag": "tempo",
+  "difficulty": 4,
+  "topic": "linea internazionale del cambiamento di data",
+  "passage": "Poiché la Terra compie una rotazione completa in 24 ore, la sua superficie è divisa convenzionalmente in 24 fusi orari, ciascuno ampio in teoria 15 gradi di longitudine. Procedendo verso est l'ora locale è sempre più avanzata, e questo obbliga a fissare un punto in cui cambia la data: è la linea internazionale del cambiamento di data, che segue in gran parte il meridiano di 180 gradi, nell'oceano Pacifico. Chi la attraversa viaggiando verso ovest deve aggiungere un giorno alla data, mentre chi la attraversa verso est vive due volte lo stesso giorno. Il suo tracciato, tuttavia, non è fissato da alcun trattato internazionale: la linea è soltanto il risultato delle scelte dei singoli paesi sul proprio fuso orario, e per questo devia dal meridiano per non dividere arcipelaghi e stati. Nel 2011 uno stato insulare del Pacifico che si trovava a est della linea ha deciso di passare sul lato occidentale, per allineare il proprio calendario a quello dei principali partner commerciali: nel paese, al 29 dicembre è seguito direttamente il 31.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Chi attraversa la linea viaggiando verso est salta sempre un giorno del calendario.",
+    "trap": "scope"
+   },
+   {
+    "letter": "B",
+    "text": "Il tracciato della linea non dipende dalle scelte dei singoli paesi, ma da accordi tra gli stati del Pacifico.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "C",
+    "text": "Un paese può spostare il tracciato della linea cambiando il proprio fuso orario.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Prima del 2011 lo stato insulare aveva già la stessa data dei suoi principali partner commerciali.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "la linea è soltanto il risultato delle scelte dei singoli paesi sul proprio fuso orario",
+  "explanation": "C è corretta: la linea «è soltanto il risultato delle scelte dei singoli paesi sul proprio fuso orario», e nel 2011 uno stato insulare, cambiando lato, ne ha modificato il tracciato con una propria decisione. A rovescia la direzione: è chi viaggia verso ovest ad aggiungere un giorno, mentre chi va verso est «vive due volte lo stesso giorno» (ambito). B contraddice il brano: il tracciato «non è fissato da alcun trattato internazionale» e dipende proprio dalle scelte dei singoli paesi (negazione). D inverte il prima e il dopo: lo stato ha cambiato lato «per allineare» il calendario a quello dei partner, quindi prima del 2011 non aveva la loro stessa data (tempo).",
+  "review": "Trappola di A: inferenza → scope, spiegazione allineata («ambito»): A non va oltre il testo, attribuisce a chi viaggia verso est ciò che il brano dice di chi viaggia verso ovest (stesso schema di 1295 D e 1297 C). Contenuto invariato; fatti verificati (Samoa, 29 → 31 dicembre 2011)."
+ },
+ {
+  "id": 1282,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 4,
+  "topic": "monsoni dell'Asia meridionale",
+  "passage": "Il termine «monsone» indica un'inversione stagionale dei venti dominanti, tipica soprattutto dell'Asia meridionale: d'estate i venti soffiano dall'oceano verso il continente e portano aria umida, che scarica piogge abbondanti; d'inverno prevalgono venti secchi diretti dalla terraferma verso il mare. In India il monsone estivo, tra giugno e settembre, fornisce circa tre quarti delle precipitazioni annue, e un suo ritardo di poche settimane basta a compromettere i raccolti. La spiegazione classica attribuisce il fenomeno al diverso comportamento termico di terre e mari: d'estate il continente si riscalda più in fretta dell'oceano e sopra di esso si forma una zona di bassa pressione, che richiama l'aria marina. Molti climatologi ritengono però che questo contrasto non basti da solo a spiegare l'intensità del monsone, e attribuiscono un ruolo decisivo allo spostamento verso nord, durante l'estate, della fascia in cui convergono i venti equatoriali. Secondo alcuni studi, anche il riscaldamento dell'altopiano tibetano contribuirebbe a rafforzare la circolazione.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "In India la maggior parte delle piogge annue arriva con venti che soffiano dal mare verso la terraferma.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Secondo la spiegazione classica, la bassa pressione sopra il continente non è la causa dell'arrivo dell'aria marina, ma il suo effetto.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "C",
+    "text": "Il riscaldamento dell'altopiano tibetano contribuisce a rafforzare la circolazione del monsone.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Secondo molti climatologi, l'intensità del monsone si spiega soltanto con lo spostamento verso nord della fascia di convergenza dei venti equatoriali.",
+    "trap": "quantificatore"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "In India il monsone estivo, tra giugno e settembre, fornisce circa tre quarti delle precipitazioni annue",
+  "explanation": "A è corretta: in India il monsone estivo «fornisce circa tre quarti delle precipitazioni annue», e d'estate «i venti soffiano dall'oceano verso il continente»; la maggior parte delle piogge arriva quindi con venti diretti dal mare alla terraferma. B rovescia il rapporto di causa: nella spiegazione classica la bassa pressione che si forma sopra il continente riscaldato è la causa, perché «richiama l'aria marina» (inferenza). C presenta come un fatto ciò che il brano attribuisce ad «alcuni studi» e scrive al condizionale («contribuirebbe») (parafrasi). D trasforma un «ruolo decisivo» in una causa unica, mentre per gli stessi climatologi il contrasto tra terra e mare conta, anche se «non basti da solo» (quantificatore)."
+ },
+ {
+  "id": 1283,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 4,
+  "topic": "carsismo: doline, inghiottitoi e grotte",
+  "passage": "Si chiama carsismo, dal nome dell'altopiano del Carso, l'insieme dei fenomeni prodotti dall'acqua nelle rocce solubili, soprattutto nei calcari. L'acqua piovana assorbe anidride carbonica dall'aria e dal suolo e diventa leggermente acida: in questo stato scioglie il carbonato di calcio e allarga a poco a poco le fratture della roccia. In superficie si formano così le doline, conche chiuse di forma per lo più circolare, e gli inghiottitoi, nei quali i corsi d'acqua scompaiono per proseguire sottoterra; per questo le regioni carsiche, anche se piovose, sono spesso povere di acque superficiali. Nelle grotte avviene il processo inverso: quando l'acqua che gocciola dalla volta libera anidride carbonica, il carbonato si deposita. Dalla volta pendono le stalattiti, dal pavimento crescono le stalagmiti, e le une e le altre possono saldarsi formando colonne. La crescita è molto lenta, spesso di pochi centimetri in mille anni, e si arresta del tutto quando l'acqua smette di filtrare, come accade nei periodi più secchi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Le stalagmiti pendono dalla volta delle grotte, mentre le stalattiti crescono dal pavimento.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Nelle grotte il carbonato di calcio si deposita quando l'acqua che gocciola dalla volta assorbe anidride carbonica.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "C",
+    "text": "Nelle grotte le stalattiti crescono sempre più in fretta delle stalagmiti.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "D",
+    "text": "Nelle regioni carsiche le acque superficiali spesso scarseggiano perché scompaiono nel sottosuolo, anche dove le piogge sono abbondanti.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "per questo le regioni carsiche, anche se piovose, sono spesso povere di acque superficiali",
+  "explanation": "D è corretta: negli inghiottitoi i corsi d'acqua «scompaiono per proseguire sottoterra», e «per questo le regioni carsiche, anche se piovose, sono spesso povere di acque superficiali». A scambia i due termini: dalla volta «pendono le stalattiti», mentre dal pavimento «crescono le stalagmiti» (parafrasi). B rovescia il processo: nelle grotte il carbonato si deposita quando l'acqua «libera» anidride carbonica; è l'acqua piovana che la assorbe a sciogliere la roccia (inferenza). C confronta la velocità di crescita delle due formazioni, ma il brano dà un solo ordine di grandezza, riferito a entrambe (fuori-testo).",
+  "review": "Chiave D: aggiunto «spesso», come nel brano («sono spesso povere di acque superficiali»). Senza, la chiave era più forte del brano e la regola dell'app sul quantificatore («se è più forte, l'opzione cade») l'avrebbe fatta scartare. Spiegazione ed evidenza invariate."
+ },
+ {
+  "id": 1284,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 4,
+  "topic": "confini fluviali tra stati: talweg e linea mediana",
+  "passage": "Quando un fiume separa due stati, il confine può essere tracciato in modi diversi. Per i fiumi navigabili la prassi internazionale adotta di solito il talweg, cioè la linea che unisce i punti più profondi dell'alveo, lungo la quale si concentra la navigazione: in questo modo entrambi gli stati conservano l'accesso al canale principale. Per i fiumi non navigabili si usa più spesso la linea mediana, equidistante dalle due rive. Entrambe le regole valgono soltanto in mancanza di un trattato che disponga diversamente. La questione si complica perché i fiumi cambiano corso. Se il letto si sposta lentamente, per l'erosione di una riva e il deposito di sedimenti sull'altra, il confine segue il fiume; se invece il corso d'acqua abbandona d'improvviso il vecchio alveo, per esempio durante una piena, il confine resta dov'era, e un tratto di territorio può trovarsi così sulla riva «sbagliata». In diversi casi i paesi interessati hanno poi negoziato uno scambio di terreni per riportare il confine sul fiume.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Per i fiumi navigabili si adotta il talweg, per tutti gli altri la linea mediana.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "In mancanza di accordi, un confine lungo il talweg segue il fiume solo se questo si sposta lentamente.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Se il letto si sposta lentamente il confine resta dov'era, mentre segue il fiume quando questo cambia corso d'improvviso.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Tracciare il confine lungo il talweg assicura sempre ai due stati superfici d'acqua uguali.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "Se il letto si sposta lentamente, per l'erosione di una riva e il deposito di sedimenti sull'altra, il confine segue il fiume; se invece il corso d'acqua abbandona d'improvviso il vecchio alveo, per esempio durante una piena, il confine resta dov'era",
+  "explanation": "B è corretta: se il letto si sposta lentamente «il confine segue il fiume», mentre se il corso d'acqua «abbandona d'improvviso il vecchio alveo» il confine «resta dov'era»; la regola vale per qualsiasi confine fluviale, quindi anche per quello tracciato lungo il talweg. Lo «scambio di terreni» con cui in diversi casi i paesi hanno riportato il confine sul fiume è un accordo negoziato, che B esclude con la sua premessa. A generalizza due prassi che il brano presenta come abituali: il talweg si adotta «di solito», la linea mediana «più spesso», ed entrambe valgono solo in mancanza di un trattato (quantificatore). C inverte i due casi: con lo spostamento lento il confine segue il fiume, con quello improvviso resta dov'era (parafrasi). D ricava dal talweg un'uguaglianza che il brano non stabilisce: il talweg garantisce a entrambi gli stati «l'accesso al canale principale», non la stessa superficie d'acqua (inferenza).",
+  "review": "Chiave B: aggiunta la premessa «In mancanza di accordi,». Senza, il «solo se» poteva essere smentito dall'ultima frase del brano: dopo uno spostamento improvviso, in diversi casi i paesi hanno negoziato uno scambio di terreni «per riportare il confine sul fiume». Con la premessa B segue riga per riga dalla coppia lento/improvviso (e copre anche i trattati). Evidenza estesa alla frase con i due casi, spiegazione di B aggiornata. Trappola di C: inferenza → parafrasi (scambia i due esiti in una frase quasi identica al brano), spiegazione allineata. Fatti verificati: talweg, linea mediana, accrescimento/avulsione, scambi di terreni (Chamizal)."
+ },
+ {
+  "id": 1285,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 4,
+  "topic": "enclavi ed exclavi",
+  "passage": "In geografia politica si chiama enclave un territorio interamente circondato da un solo altro stato, mentre exclave è una parte di uno stato separata dal resto del suo territorio. I due termini descrivono spesso lo stesso luogo da due punti di vista: un villaggio che appartiene a un paese ma è racchiuso tutto entro i confini del vicino è un'exclave per il primo e un'enclave per il secondo. Non sempre, però, le due condizioni si presentano insieme. Un territorio staccato dalla madrepatria che si affaccia sul mare, o che confina con più stati, è un'exclave ma non un'enclave. Al contrario, stati sovrani come San Marino e la Città del Vaticano sono enclavi ma non exclavi, perché costituiscono l'intero territorio del proprio stato. Uno dei casi più intricati si trova in una cittadina al confine tra Belgio e Paesi Bassi, dove una ventina di frazioni belghe sono circondate da territorio olandese e alcune di esse racchiudono a loro volta piccole porzioni dei Paesi Bassi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "San Marino e la Città del Vaticano sono exclavi ma non enclavi, perché costituiscono l'intero territorio del proprio stato.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Ogni exclave circondata per intero da un unico stato è, per quello stato, un'enclave.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Un'exclave non è anche un'enclave soltanto quando si affaccia sul mare.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Le frazioni belghe della cittadina di confine sono exclavi ma non enclavi, perché confinano con più stati.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "un territorio interamente circondato da un solo altro stato",
+  "explanation": "B è corretta: un'enclave è «un territorio interamente circondato da un solo altro stato», e il brano precisa che un territorio racchiuso entro i confini del vicino «è un'exclave per il primo e un'enclave per il secondo». A scambia i due termini: San Marino e il Vaticano sono «enclavi ma non exclavi» (parafrasi). C riduce a un solo caso una regola che ne prevede due: un'exclave non è un'enclave anche quando «confina con più stati» (quantificatore). D applica alle frazioni belghe una condizione presa da un'altra frase: le frazioni sono «circondate da territorio olandese», cioè da un solo stato, e quindi sono anche enclavi (inferenza)."
+ },
+ {
+  "id": 1286,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 4,
+  "topic": "lingue pidgin e lingue creole",
+  "passage": "Quando gruppi che non hanno una lingua in comune devono comunicare con regolarità, per esempio nei porti o nelle piantagioni, può nascere un pidgin: una lingua di contatto con un lessico ridotto e una grammatica essenziale, che nessuno parla come lingua materna. La maggior parte delle parole proviene di solito dalla lingua del gruppo dominante, detta lessificatrice, mentre la pronuncia e la costruzione delle frasi risentono delle lingue degli altri parlanti. Se un pidgin diventa la prima lingua dei bambini di una comunità, si trasforma in un creolo: il vocabolario si amplia e la grammatica acquista regole stabili, per esempio per esprimere il tempo dei verbi. Non tutti i pidgin, tuttavia, compiono questo passaggio: molti scompaiono quando cessano i contatti che li avevano fatti nascere. Secondo un'ipotesi molto discussa, i creoli di origini diverse si somigliano perché i bambini, ricostruendo la grammatica, attingerebbero a una capacità innata. Una lingua del Pacifico nata come pidgin nell'Ottocento è oggi lingua ufficiale di uno stato e la lingua materna di molti bambini cresciuti nelle sue città.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "I creoli di origini diverse si somigliano perché i bambini, ricostruendo la grammatica, attingono a una capacità innata.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Un creolo dispone di un vocabolario più ampio di quello della sua lingua lessificatrice.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "C",
+    "text": "Un pidgin che non è ancora diventato la prima lingua di una comunità è destinato a scomparire.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "La lingua del Pacifico nata nell'Ottocento corrisponde oggi alla definizione di creolo data nel brano.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "la lingua materna di molti bambini cresciuti nelle sue città",
+  "explanation": "D è corretta: un pidgin si trasforma in creolo quando diventa «la prima lingua dei bambini di una comunità», e la lingua del Pacifico è oggi «la lingua materna di molti bambini cresciuti nelle sue città»; non è più, quindi, una lingua «che nessuno parla come lingua materna». A presenta come un fatto la spiegazione di «un'ipotesi molto discussa», che il brano riferisce al condizionale («attingerebbero») (parafrasi). B fa un confronto che il brano non fa: il vocabolario del creolo «si amplia» rispetto a quello del pidgin, non rispetto alla lingua lessificatrice (fuori-testo). C ricava una regola generale da un dato parziale: «molti» pidgin scompaiono quando cessano i contatti, ma il brano non dice che sia la sorte di tutti quelli che non diventano creoli (inferenza)."
+ },
+ {
+  "id": 1287,
+  "level": 2,
+  "format": "epso4",
+  "tag": "parafrasi",
+  "difficulty": 4,
+  "topic": "prestiti e calchi linguistici",
+  "passage": "Quando una lingua accoglie elementi di un'altra, i linguisti distinguono il prestito dal calco. Nel prestito la parola straniera entra con la propria forma: talvolta resta quasi invariata, come «computer», talvolta si adatta ai suoni e alla morfologia della lingua che la riceve, come «bistecca», dall'inglese «beefsteak». Nel calco, invece, si imita il modello straniero con materiali propri. Il calco strutturale crea una parola nuova traducendo pezzo per pezzo un composto straniero: «grattacielo» riproduce l'inglese «skyscraper», «ferrovia» il tedesco «Eisenbahn». Il calco semantico non crea parole, ma attribuisce un significato nuovo a una parola già esistente: «realizzare», a lungo usato nel senso di «rendere reale», ha preso anche quello di «rendersi conto» sul modello dell'inglese «to realize». Poiché usano materiali della lingua stessa, i calchi passano spesso inosservati, mentre i prestiti non adattati si riconoscono subito; le polemiche sulla difesa della lingua si concentrano infatti su questi ultimi, anche se, secondo alcuni studiosi, sono i calchi a trasformare il lessico in modo più profondo.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "«Grattacielo» e «realizzare» sono calchi, ma solo il secondo esisteva prima dell'influsso inglese.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "«Bistecca» è un calco dell'inglese «beefsteak», adattato ai suoni e alla morfologia dell'italiano.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Sono i calchi, più dei prestiti, a trasformare in profondità il lessico di una lingua.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "I prestiti adattati suscitano meno polemiche dei calchi.",
+    "trap": "fuori-testo"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "attribuisce un significato nuovo a una parola già esistente",
+  "explanation": "A è corretta: entrambi sono calchi, ma il calco strutturale «crea una parola nuova», come «grattacielo», mentre il calco semantico attribuisce un significato nuovo «a una parola già esistente», come «realizzare», usato «a lungo» nel senso di «rendere reale». B scambia le due categorie: «bistecca» è un prestito adattato, perché la parola straniera entra «con la propria forma» e si adatta ai suoni dell'italiano (parafrasi). C presenta come un fatto un'opinione che il brano attribuisce ad «alcuni studiosi» (parafrasi). D confronta prestiti adattati e calchi, ma il brano dice soltanto che le polemiche si concentrano sui prestiti non adattati (fuori-testo).",
+  "review": "Chiave A: «prima del modello inglese» → «prima dell'influsso inglese». Letta alla lettera, la vecchia formula chiedeva se «realizzare» fosse più antico della parola inglese «to realize», cosa che il brano non dice; ora conta solo ciò che il brano stabilisce (parola già esistente, che prende un significato nuovo). Spiegazione invariata."
+ },
+ {
+  "id": 1288,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 4,
+  "topic": "classificazione dei sistemi di scrittura",
+  "passage": "I sistemi di scrittura si classificano secondo l'unità linguistica che ciascun segno rappresenta. Nei sistemi logografici un segno corrisponde a una parola o a una sua parte dotata di significato; nei sillabari a una sillaba; negli alfabeti a un singolo suono, consonante o vocale. Una categoria a parte è l'abjad, in cui si scrivono soltanto le consonanti, mentre le vocali, se compaiono, sono indicate da segni facoltativi: è il caso dell'arabo e dell'ebraico. L'alfabeto greco nacque proprio da un abjad, quello fenicio, quando alcuni segni per consonanti assenti in greco furono riutilizzati per le vocali. Le classificazioni descrivono però tendenze più che tipi puri: la maggior parte dei caratteri cinesi, l'esempio classico di scrittura logografica, contiene anche un elemento che suggerisce la pronuncia, e il giapponese combina caratteri di origine cinese con due sillabari. Il numero dei segni varia di conseguenza: poche decine in un alfabeto, migliaia in una scrittura logografica.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "In un abjad come quello arabo sono le consonanti a essere indicate da segni facoltativi.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "I caratteri cinesi differiscono dai segni di un alfabeto soltanto per il loro numero, che arriva alle migliaia.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "C",
+    "text": "Il giapponese non rientra in modo puro in nessuno dei tipi di scrittura descritti.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "L'abjad fenicio derivò dall'alfabeto greco, da cui furono eliminati i segni per le vocali.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "il giapponese combina caratteri di origine cinese con due sillabari",
+  "explanation": "C è corretta: il giapponese «combina caratteri di origine cinese», cioè i segni dell'«esempio classico di scrittura logografica», «con due sillabari»; unisce quindi due tipi diversi e non è un esempio puro di nessuno. A scambia consonanti e vocali: nell'abjad «si scrivono soltanto le consonanti», mentre sono le vocali a essere indicate da segni facoltativi (parafrasi). B riduce la differenza al numero dei segni, mentre il brano classifica i sistemi proprio per l'unità che ciascun segno rappresenta: una parola o una sua parte nei sistemi logografici, un singolo suono negli alfabeti (quantificatore). D rovescia la direzione della derivazione: è l'alfabeto greco a essere nato dall'abjad fenicio (inferenza)."
+ },
+ {
+  "id": 1289,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 4,
+  "topic": "il sonetto: origini e varianti",
+  "passage": "Il sonetto nacque nella prima metà del Duecento alla corte siciliana di Federico II, e la tradizione ne attribuisce l'invenzione a un notaio poeta, Giacomo da Lentini. Nella forma italiana è composto da quattordici endecasillabi, divisi in due quartine e due terzine; le quartine hanno rime alternate o incrociate, mentre per le terzine gli schemi sono più vari. Secondo un'ipotesi diffusa, ma non dimostrata, la forma deriverebbe da una singola strofa di canzone resa autonoma. Fu il Canzoniere di Petrarca, nel Trecento, a farne il metro lirico per eccellenza, e nel Cinquecento il modello petrarchesco si diffuse in tutta Europa. Passando ad altre lingue il sonetto cambiò: in Inghilterra si affermò una variante formata da tre quartine e da un distico finale a rima baciata, che conserva comunque il totale di quattordici versi. Anche il verso cambiò: al posto dell'endecasillabo i poeti inglesi usarono il pentametro giambico, e quelli francesi, spesso, l'alessandrino.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Nella variante inglese del sonetto, a differenza di quella italiana, nessun gruppo di versi forma una terzina.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Il sonetto nacque da una singola strofa di canzone resa autonoma.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Il sonetto inglese si distingue da quello italiano soltanto per il modo in cui i quattordici versi sono divisi in strofe.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "Fu la diffusione europea del modello petrarchesco, nel Cinquecento, a fare del sonetto il metro lirico per eccellenza.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "una variante formata da tre quartine e da un distico finale a rima baciata",
+  "explanation": "A è corretta: la variante inglese è formata «da tre quartine e da un distico finale», quindi non contiene terzine, che invece compaiono nella forma italiana, «divisi in due quartine e due terzine». B presenta come un fatto la derivazione da una strofa di canzone, che il brano riporta come «ipotesi diffusa, ma non dimostrata» e al condizionale (parafrasi). C riduce la differenza alla divisione in strofe, ma il sonetto inglese cambia anche il verso: il pentametro giambico «al posto dell'endecasillabo» (quantificatore). D rovescia causa ed effetto: fu il Canzoniere, nel Trecento, a fare del sonetto il metro lirico per eccellenza, e solo dopo, nel Cinquecento, il modello si diffuse in Europa (inferenza)."
+ },
+ {
+  "id": 1290,
+  "level": 2,
+  "format": "epso4",
+  "tag": "negazione",
+  "difficulty": 4,
+  "topic": "nascita del romanzo d'appendice",
+  "passage": "Negli anni Trenta dell'Ottocento alcuni quotidiani francesi dimezzarono il prezzo dell'abbonamento, contando di recuperare i mancati ricavi con la pubblicità, che però rendeva soltanto se i lettori aumentavano. Per attirarne di nuovi cominciarono a pubblicare romanzi a puntate nella parte bassa della pagina, separata da una linea dal resto del giornale: nacque così il romanzo d'appendice. Il successo di alcuni titoli fu tale che, secondo i resoconti dell'epoca, la tiratura dei giornali che li pubblicavano crebbe in pochi mesi di migliaia di copie. Il formato influì sulla scrittura: ogni puntata doveva chiudersi su un momento di tensione, per convincere il lettore a comprare il numero successivo, e molti autori scrivevano la storia man mano che usciva, tenendo conto delle lettere del pubblico. Si racconta che alcuni, pagati a riga, allungassero i dialoghi con battute brevissime. La critica guardò a lungo con sufficienza a questa produzione; solo nel Novecento gli studiosi hanno cominciato a considerarla una fonte preziosa sulla cultura popolare.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Un aumento dei lettori rendeva sempre redditizia la pubblicità.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "B",
+    "text": "Alcuni autori, pagati a riga, allungavano i dialoghi con battute brevissime.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Erano le lettere del pubblico a spingere gli autori a chiudere ogni puntata su un momento di tensione.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "Per i quotidiani il dimezzamento del prezzo poteva risultare conveniente soltanto con un aumento dei lettori.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "che però rendeva soltanto se i lettori aumentavano",
+  "explanation": "D è corretta: i quotidiani contavano di recuperare con la pubblicità i ricavi persi dimezzando il prezzo, e la pubblicità «rendeva soltanto se i lettori aumentavano»; senza nuovi lettori, quindi, il dimezzamento non poteva convenire. A trasforma una condizione necessaria in una sufficiente: il brano dice che senza un aumento dei lettori la pubblicità non rendeva, non che l'aumento bastasse sempre a renderla redditizia (negazione). B presenta come un fatto un aneddoto introdotto da «Si racconta che» (parafrasi). C collega due fatti che il brano tiene separati: le puntate si chiudevano sulla tensione «per convincere il lettore a comprare il numero successivo», mentre le lettere del pubblico influivano sullo sviluppo della storia (inferenza)."
+ },
+ {
+  "id": 1291,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 4,
+  "topic": "origine orale dei poemi omerici",
+  "passage": "Già nell'antichità alcuni studiosi dubitavano che l'Iliade e l'Odissea fossero opera dello stesso autore, ma per secoli il dibattito rimase limitato alla questione della paternità. La svolta arrivò tra gli anni Venti e Trenta del Novecento, quando un filologo americano osservò che gli epiteti fissi, come «Achille piè veloce», non sono scelti per il loro significato nel contesto, bensì perché occupano esattamente una certa porzione dell'esametro. Ne dedusse che i poemi erano stati composti da cantori che improvvisavano attingendo a un repertorio di formule tramandato oralmente. Per verificarlo registrò nei Balcani cantori in gran parte analfabeti, capaci di eseguire poemi di migliaia di versi senza alcun testo scritto e di ricomporli ogni volta in modo un po' diverso. La tesi dell'origine orale è oggi largamente accettata. Resta invece aperta la questione di come i poemi siano stati fissati per iscritto: secondo alcuni studiosi il testo che leggiamo conserverebbe l'esecuzione di un singolo cantore particolarmente dotato, dettata a uno scriba.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il filologo ricavò l'ipotesi dell'origine orale dall'ascolto dei cantori dei Balcani.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "B",
+    "text": "Il testo dei poemi omerici che leggiamo fu dettato a uno scriba da un singolo cantore.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "L'epiteto «piè veloce» può accompagnare Achille anche dove la sua velocità è irrilevante, perché risponde a un'esigenza del verso.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Poiché i cantori ricomponevano i poemi ogni volta in modo diverso, anche l'Iliade e l'Odissea ci sono giunte in più versioni.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "non sono scelti per il loro significato nel contesto, bensì perché occupano esattamente una certa porzione dell'esametro",
+  "explanation": "C è corretta: secondo l'osservazione del filologo, gli epiteti fissi «non sono scelti per il loro significato nel contesto, bensì perché occupano esattamente una certa porzione dell'esametro»; «piè veloce» può quindi comparire anche dove la velocità di Achille non ha rilievo. A inverte il rapporto tra ipotesi e verifica: il filologo dedusse l'origine orale dagli epiteti e registrò i cantori dei Balcani solo dopo, «Per verificarlo» (inferenza). B presenta come un fatto ciò che il brano attribuisce ad «alcuni studiosi» e scrive al condizionale («conserverebbe»), in una questione che, dice il brano, «Resta invece aperta» (parafrasi). D estende ai poemi omerici una caratteristica dei cantori balcanici: il brano non dice nulla sulle versioni dell'Iliade e dell'Odissea giunte fino a noi (inferenza)."
+ },
+ {
+  "id": 1292,
+  "level": 2,
+  "format": "epso4",
+  "tag": "negazione",
+  "difficulty": 4,
+  "topic": "falsificabilità e ipotesi ausiliarie",
+  "passage": "Secondo un criterio proposto negli anni Trenta del Novecento da un filosofo della scienza, una teoria è scientifica soltanto se vieta qualche evento osservabile, cioè se esiste almeno un'osservazione possibile che la smentirebbe. Il criterio poggia su un'asimmetria logica: nessun numero di conferme basta a dimostrare vera un'affermazione universale come «tutti i cigni sono bianchi», mentre un solo cigno nero basta a confutarla. Nella pratica, tuttavia, le cose sono meno nette. Nell'Ottocento le irregolarità dell'orbita di Urano non portarono ad abbandonare la meccanica di Newton: gli astronomi ipotizzarono l'esistenza di un pianeta sconosciuto, calcolarono dove avrebbe dovuto trovarsi e lo osservarono quasi esattamente in quel punto, scoprendo Nettuno. Un'ipotesi analoga, avanzata per spiegare un'anomalia dell'orbita di Mercurio, non portò invece ad alcuna scoperta; l'anomalia fu spiegata solo nel Novecento da una nuova teoria della gravitazione. Questi casi mostrano che di fronte a un'osservazione contraria si può difendere una teoria modificando un'ipotesi ausiliaria, e che la scelta si rivela giusta o sbagliata soltanto a posteriori.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Secondo il criterio, è scientifica una teoria che nessuna osservazione possibile potrebbe smentire.",
+    "trap": "negazione"
+   },
+   {
+    "letter": "B",
+    "text": "La stessa strategia per salvare la meccanica di Newton, cioè ipotizzare un pianeta sconosciuto, riuscì con Urano e fallì con Mercurio.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "La scoperta di Nettuno dimostrò una volta per sempre che la meccanica di Newton era vera.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "La nuova teoria della gravitazione del Novecento spiegò sia l'anomalia di Mercurio sia le irregolarità dell'orbita di Urano.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "Un'ipotesi analoga, avanzata per spiegare un'anomalia dell'orbita di Mercurio, non portò invece ad alcuna scoperta",
+  "explanation": "B è corretta: per Urano gli astronomi ipotizzarono un pianeta sconosciuto e scoprirono Nettuno; per Mercurio «Un'ipotesi analoga», cioè un altro pianeta sconosciuto, «non portò invece ad alcuna scoperta», e l'anomalia fu spiegata solo da una nuova teoria della gravitazione. In entrambi i casi la meccanica di Newton veniva difesa «modificando un'ipotesi ausiliaria»: la stessa mossa riuscì con Urano e fallì con Mercurio. A rovescia il criterio: una teoria è scientifica «soltanto se» esiste «almeno un'osservazione possibile che la smentirebbe»; una teoria che nessuna osservazione potrebbe smentire non lo è (negazione). C contraddice l'asimmetria descritta nel brano: «nessun numero di conferme basta a dimostrare vera» un'affermazione universale, e quindi neppure la scoperta di Nettuno (inferenza). D attribuisce alla teoria del Novecento anche la spiegazione dell'orbita di Urano, che il brano ricava invece dalla scoperta di Nettuno (inferenza).",
+  "review": "Solo spiegazione di B: resi espliciti i due passaggi che la chiave richiede, cioè che «Un'ipotesi analoga» è un altro pianeta sconosciuto e che in entrambi i casi si difendeva la meccanica di Newton «modificando un'ipotesi ausiliaria». Chiave unica: A rovescia il criterio, C contraddice l'asimmetria, D attribuisce alla nuova teoria la spiegazione di Urano, che il brano dà a Nettuno. Fatti verificati (Popper anni Trenta; Nettuno 1846; pianeta ipotizzato per Mercurio mai trovato; relatività generale 1915)."
+ },
+ {
+  "id": 1293,
+  "level": 2,
+  "format": "epso4",
+  "tag": "fuori-testo",
+  "difficulty": 4,
+  "topic": "riforma gregoriana del calendario",
+  "passage": "Il calendario giuliano, entrato in vigore nel 45 a.C., attribuiva all'anno una durata media di 365 giorni e un quarto, grazie a un anno bisestile ogni quattro. L'anno solare è però più breve di circa undici minuti, e lo scarto, accumulandosi, aveva spostato l'equinozio di primavera: nel Cinquecento cadeva intorno all'11 marzo anziché il 21, la data su cui si basava il calcolo della Pasqua. La riforma promulgata nel 1582 eliminò dieci giorni, per cui al giovedì 4 ottobre seguì direttamente il venerdì 15, e modificò la regola dei bisestili: gli anni secolari, come il 1700 o il 1900, sono bisestili soltanto se divisibili per 400. Gli stati cattolici adottarono subito il nuovo calendario, mentre molti paesi protestanti e ortodossi lo accolsero più tardi, quando lo scarto era ormai cresciuto: la Gran Bretagna nel 1752, saltando undici giorni, la Russia soltanto nel 1918. Ancora oggi diverse Chiese ortodosse fissano le proprie feste secondo il calendario giuliano.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La riforma del 1582 si limitò a eliminare dieci giorni dal calendario.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "Nel Cinquecento l'equinozio di primavera si era già spostato in avanti, dall'11 al 21 marzo.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "I paesi ortodossi non adottarono il calendario gregoriano prima di quelli protestanti.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "D",
+    "text": "Tra il 1582 e il 1752 la differenza tra calendario giuliano e calendario gregoriano è aumentata di un giorno.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "la Gran Bretagna nel 1752, saltando undici giorni",
+  "explanation": "D è corretta: nel 1582 la riforma eliminò «dieci giorni», mentre nel 1752 la Gran Bretagna, che adottò il calendario quando «lo scarto era ormai cresciuto», dovette saltarne «undici»: in quel periodo la differenza tra i due calendari è aumentata di un giorno. A ignora la seconda parte della riforma, che «modificò la regola dei bisestili» (quantificatore). B inverte la direzione dello spostamento: l'equinozio cadeva «intorno all'11 marzo anziché il 21», cioè era arretrato (parafrasi). C confronta due gruppi di paesi che il brano non mette a confronto: dice soltanto che molti paesi protestanti e ortodossi adottarono il calendario più tardi degli stati cattolici e cita due date, una per gruppo, che non bastano a ordinarli tra loro; quello che si sa della storia fuori dal brano non conta (fuori-testo).",
+  "review": "Trappola di B: inferenza → parafrasi (date dello spostamento invertite in una frase quasi identica al brano), spiegazione allineata. Spiegazione di C estesa: due sole date, una per gruppo, non ordinano protestanti e ortodossi, e la conoscenza esterna non conta. C è in gran parte vera nella realtà (stati protestanti 1700–1753, ortodossi dal 1916): trappola fuori-testo voluta e accettabile, come 1252 C. Chiave D verificata: 10 giorni nel 1582, 11 nel 1752 (il 1700 non è bisestile nel gregoriano). Fatti del brano corretti."
+ },
+ {
+  "id": 1294,
+  "level": 2,
+  "format": "epso4",
+  "tag": "fuori-testo",
+  "difficulty": 4,
+  "topic": "dalla deriva dei continenti alla tettonica a placche",
+  "passage": "Nel 1912 un meteorologo tedesco propose che i continenti, un tempo uniti in un'unica massa, si fossero lentamente separati. A sostegno citava la corrispondenza tra le coste dell'Africa e del Sud America, la presenza degli stessi fossili su continenti oggi lontani e le tracce di antichi ghiacciai in regioni ora tropicali. La maggior parte dei geologi respinse l'ipotesi, non tanto per le prove, quanto perché le forze indicate per spiegare lo spostamento erano troppo deboli. Il quadro cambiò negli anni Cinquanta e Sessanta, quando l'esplorazione degli oceani rivelò lunghe dorsali sottomarine, dove si forma nuova crosta, e mostrò che le rocce del fondale sono tanto più giovani quanto più sono vicine alle dorsali. Anche le inversioni del campo magnetico terrestre, registrate nelle rocce, formano bande simmetriche ai due lati delle dorsali. In pochi anni si affermò così la teoria della tettonica a placche. Il motore del movimento è invece ancora discusso: molti geofisici attribuiscono oggi un ruolo importante al peso delle placche che sprofondano nel mantello.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il punto debole che portò a respingere la proposta del 1912 riguarda una questione ancora oggi discussa.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Fu la teoria della tettonica a placche a far scoprire le dorsali sottomarine e le bande magnetiche simmetriche.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "C",
+    "text": "Il peso delle placche che sprofondano nel mantello è ormai riconosciuto come il motore del movimento e non è più discusso.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "D",
+    "text": "Furono le bande magnetiche simmetriche, più dell'età delle rocce del fondale, a far accettare la tettonica a placche.",
+    "trap": "fuori-testo"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "Il motore del movimento è invece ancora discusso",
+  "explanation": "A è corretta: i geologi respinsero la proposta del 1912 soprattutto «perché le forze indicate per spiegare lo spostamento erano troppo deboli», e proprio su questo punto il brano conclude: «Il motore del movimento è invece ancora discusso». B inverte il rapporto tra scoperte e teoria: furono le dorsali e le bande magnetiche, rivelate dall'esplorazione degli oceani, a far affermare la tettonica a placche (inferenza). C presenta come accertato il ruolo che «molti geofisici» attribuiscono al peso delle placche, mentre per il brano il motore del movimento è «ancora discusso» (parafrasi). D stabilisce tra le due prove una gerarchia che il brano non fa: le bande magnetiche sono introdotte da «Anche», accanto all'età delle rocce, e nessuna delle due è indicata come decisiva (fuori-testo)."
+ },
+ {
+  "id": 1295,
+  "level": 2,
+  "format": "epso4",
+  "tag": "scope",
+  "difficulty": 4,
+  "topic": "navigazione satellitare e relatività",
+  "passage": "Un ricevitore di navigazione satellitare calcola la propria posizione misurando il tempo impiegato dai segnali per arrivare da più satelliti, ciascuno dotato di orologi atomici: poiché i segnali viaggiano alla velocità della luce, un errore di un milionesimo di secondo corrisponde a circa 300 metri. Servono almeno quattro satelliti, perché oltre alle tre coordinate il ricevitore deve ricavare lo scarto del proprio orologio, molto meno preciso. Gli orologi in orbita sono soggetti a due effetti previsti dalla relatività, di segno opposto: la velocità del satellite li fa rallentare di circa 7 microsecondi al giorno rispetto a un orologio a terra, mentre la gravità più debole, a circa 20.000 chilometri di quota, li fa accelerare di circa 45 microsecondi. Per compensare l'effetto complessivo, la frequenza degli orologi viene regolata prima del lancio. Secondo una stima spesso citata, senza questa correzione l'errore di posizione crescerebbe di oltre dieci chilometri al giorno; alcuni fisici obiettano però che una parte dell'errore verrebbe comunque assorbita dal calcolo del ricevitore.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La velocità del satellite fa accelerare gli orologi in orbita di circa 7 microsecondi al giorno, mentre la gravità più debole li fa rallentare.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "B",
+    "text": "Senza la regolazione prima del lancio, l'errore di posizione crescerebbe di oltre dieci chilometri al giorno.",
+    "trap": "parafrasi"
+   },
+   {
+    "letter": "C",
+    "text": "Senza correzione un orologio in orbita andrebbe avanti rispetto a uno a terra, perché l'effetto della gravità supera quello della velocità.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Il ricevitore ha bisogno di un quarto satellite perché gli orologi atomici in orbita non sono abbastanza precisi.",
+    "trap": "scope"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "li fa accelerare di circa 45 microsecondi",
+  "explanation": "C è corretta: la velocità fa rallentare gli orologi in orbita di circa 7 microsecondi al giorno, mentre la gravità più debole «li fa accelerare di circa 45 microsecondi»; prevale il secondo effetto, quindi senza correzione l'orologio in orbita andrebbe avanti di circa 38 microsecondi al giorno. A scambia i due effetti: è la velocità a far rallentare gli orologi e la gravità più debole a farli accelerare (parafrasi). B presenta come certa una «stima spesso citata», che «alcuni fisici» contestano (parafrasi). D attribuisce agli orologi dei satelliti l'imprecisione che il brano riferisce all'orologio del ricevitore, «molto meno preciso» (ambito)."
+ },
+ {
+  "id": 1296,
+  "level": 2,
+  "format": "epso4",
+  "tag": "scope",
+  "difficulty": 4,
+  "topic": "crittografia a chiave pubblica e firma digitale",
+  "passage": "Nella crittografia simmetrica la stessa chiave serve a cifrare e a decifrare un messaggio, e le due parti devono quindi scambiarsela in modo sicuro prima di comunicare. La crittografia a chiave pubblica, sviluppata negli anni Settanta, risolve il problema assegnando a ogni utente due chiavi collegate: una pubblica, che può essere diffusa liberamente, e una privata, che resta segreta. Un messaggio cifrato con la chiave pubblica di una persona può essere decifrato soltanto con la sua chiave privata. Per la firma digitale il procedimento si rovescia: il mittente firma con la propria chiave privata e chiunque può verificare la firma con la chiave pubblica corrispondente. Poiché le operazioni asimmetriche sono lente, nella pratica servono di solito a scambiare una chiave simmetrica, che cifra poi il resto della comunicazione. La sicurezza di molti di questi sistemi si basa sulla difficoltà di scomporre in fattori numeri molto grandi; secondo diversi esperti, futuri computer quantistici potrebbero risolvere il problema in tempi brevi, e per questo sono già in corso di adozione nuovi algoritmi.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Per firmare un messaggio il mittente usa la chiave pubblica del destinatario, che verifica poi la firma con la propria chiave privata.",
+    "trap": "scope"
+   },
+   {
+    "letter": "B",
+    "text": "Una firma digitale si verifica con una chiave che può circolare liberamente.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "La chiave privata di un utente serve soltanto a decifrare i messaggi che riceve.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "D",
+    "text": "I futuri computer quantistici renderanno insicuri i sistemi basati sulla scomposizione in fattori di numeri molto grandi.",
+    "trap": "parafrasi"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "chiunque può verificare la firma con la chiave pubblica corrispondente",
+  "explanation": "B è corretta: «chiunque può verificare la firma con la chiave pubblica corrispondente», e la chiave pubblica è quella che «può essere diffusa liberamente». A scambia i ruoli e le chiavi: è il mittente a firmare, «con la propria chiave privata», e chiunque verifica con la sua chiave pubblica (ambito). C dimentica il secondo uso della chiave privata, che serve anche a firmare (quantificatore). D presenta come certa una previsione che il brano attribuisce a «diversi esperti» e formula al condizionale («potrebbero») (parafrasi)."
+ },
+ {
+  "id": 1297,
+  "level": 2,
+  "format": "epso4",
+  "tag": "quantificatore",
+  "difficulty": 4,
+  "topic": "fibre ottiche monomodali e multimodali",
+  "passage": "Una fibra ottica è formata da un nucleo di vetro sottilissimo rivestito da un mantello, anch'esso di vetro, con un indice di rifrazione leggermente inferiore. La luce che colpisce la superficie di separazione con un'inclinazione sufficiente viene riflessa interamente verso il nucleo e procede così lungo la fibra anche quando questa si curva, purché la curvatura non sia troppo stretta. Il vetro, tuttavia, assorbe una piccola parte della luce: nelle fibre migliori, alle lunghezze d'onda dell'infrarosso usate nelle telecomunicazioni, la potenza del segnale si dimezza ogni 15 chilometri circa, e sulle linee lunghe il segnale va amplificato a intervalli regolari. Nelle fibre multimodali, che hanno un nucleo più largo, la luce segue percorsi di lunghezza diversa e gli impulsi si allargano lungo il tragitto: per questo si usano soltanto su brevi distanze, per esempio all'interno di un edificio. Le fibre monomodali, con un nucleo di circa un centesimo di millimetro, evitano questo problema. Su una sola fibra, inoltre, possono viaggiare insieme decine di segnali, ciascuno su una lunghezza d'onda diversa.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Lungo una fibra la luce si perde soltanto quando la curvatura è troppo stretta.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "Le fibre monomodali costano più di quelle multimodali, che per questo si preferiscono all'interno degli edifici.",
+    "trap": "fuori-testo"
+   },
+   {
+    "letter": "C",
+    "text": "Nelle fibre monomodali, che hanno il nucleo più sottile, la luce segue percorsi di lunghezza diversa.",
+    "trap": "scope"
+   },
+   {
+    "letter": "D",
+    "text": "Le fibre multimodali non si usano sulle lunghe distanze perché gli impulsi si allargano.",
+    "trap": null
+   }
+  ],
+  "correct": [
+   "D"
+  ],
+  "evidence": "per questo si usano soltanto su brevi distanze",
+  "explanation": "D è corretta: nelle fibre multimodali «gli impulsi si allargano lungo il tragitto: per questo si usano soltanto su brevi distanze»; dunque non si usano sulle lunghe distanze, e la causa è l'allargamento degli impulsi. A trascura l'assorbimento: il vetro «assorbe una piccola parte della luce», tanto che la potenza si dimezza ogni 15 chilometri circa (quantificatore). B introduce un confronto di costi che il brano non fa e una causa diversa da quella indicata (fuori-testo). C attribuisce alle fibre monomodali il difetto delle multimodali, che le monomodali «evitano» (ambito)."
+ },
+ {
+  "id": 1298,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 4,
+  "topic": "superconduttività",
+  "passage": "Nel 1911 si scoprì che il mercurio, raffreddato a circa 269 gradi sotto zero, perde del tutto la resistenza elettrica: è la superconduttività. Al di sotto della temperatura detta critica, una corrente avviata in un anello superconduttore può circolare per anni senza indebolirsi. Un superconduttore, inoltre, espelle il campo magnetico dal proprio interno, e per questo un piccolo magnete può restare sospeso sopra di esso; un campo troppo intenso, però, distrugge lo stato superconduttivo anche sotto la temperatura critica. Per decenni il fenomeno fu osservato solo vicino allo zero assoluto, usando come refrigerante il costoso elio liquido. Dal 1986 sono stati scoperti materiali ceramici superconduttori a temperature più alte, e alcuni lo sono anche sopra i 196 gradi sotto zero, la temperatura dell'azoto liquido, molto più economico. Eppure i magneti delle apparecchiature per la risonanza magnetica usano ancora quasi tutti leghe metalliche raffreddate con l'elio, più facili da lavorare in forma di filo. Negli ultimi anni sono stati annunciati più volte superconduttori a temperatura ambiente, ma nessuno è stato confermato.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Restare al di sotto della temperatura critica non basta a garantire lo stato superconduttivo.",
+    "trap": null
+   },
+   {
+    "letter": "B",
+    "text": "Tutti i materiali ceramici superconduttori scoperti dal 1986 lo sono anche sopra i 196 gradi sotto zero.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "C",
+    "text": "Le apparecchiature per la risonanza magnetica usano leghe metalliche perché sono più economiche da raffreddare dei materiali ceramici.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "Sono già stati scoperti superconduttori che funzionano a temperatura ambiente.",
+    "trap": "parafrasi"
+   }
+  ],
+  "correct": [
+   "A"
+  ],
+  "evidence": "un campo troppo intenso, però, distrugge lo stato superconduttivo anche sotto la temperatura critica",
+  "explanation": "A è corretta: «un campo troppo intenso, però, distrugge lo stato superconduttivo anche sotto la temperatura critica»; trovarsi sotto quella temperatura è quindi necessario ma non sufficiente. B generalizza a tutti i nuovi materiali ceramici ciò che il brano dice solo di «alcuni» (quantificatore). C inventa un vantaggio economico delle leghe metalliche, che si raffreddano con il «costoso elio liquido», mentre è l'azoto, sufficiente per alcuni materiali ceramici, a essere «molto più economico»; il motivo indicato dal brano è un altro: le leghe sono «più facili da lavorare in forma di filo» (inferenza). D presenta come scoperti superconduttori che sono stati soltanto «annunciati», mentre il brano precisa che «nessuno è stato confermato» (parafrasi)."
+ },
+ {
+  "id": 1299,
+  "level": 2,
+  "format": "epso4",
+  "tag": "inferenza",
+  "difficulty": 4,
+  "topic": "datazione con il carbonio 14",
+  "passage": "Gli organismi viventi assorbono carbonio dall'ambiente, e una piccolissima parte di esso è carbonio 14, un isotopo radioattivo prodotto continuamente nell'alta atmosfera dai raggi cosmici. Finché l'organismo è in vita, la proporzione di carbonio 14 nei suoi tessuti resta simile a quella dell'atmosfera; dopo la morte gli scambi cessano e l'isotopo decade, dimezzandosi ogni 5.730 anni circa. Misurando quanto ne resta in un campione si stima quindi il tempo trascorso dalla morte. Il metodo si applica solo a materiali di origine organica, come legno, ossa o tessuti, e oltre i 50.000 anni circa il carbonio 14 residuo è troppo scarso per essere misurato con affidabilità. Le date ottenute vanno inoltre calibrate, perché la quantità di carbonio 14 nell'atmosfera non è stata costante nel tempo: a questo scopo si usano soprattutto gli anelli degli alberi, datati anno per anno. Nel Novecento i test nucleari nell'atmosfera ne hanno temporaneamente quasi raddoppiato la concentrazione, mentre la combustione di carbone e petrolio, che non ne contengono più, tende a diluirlo.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "La combustione di carbone e petrolio fa aumentare la concentrazione di carbonio 14 nell'atmosfera.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "B",
+    "text": "Le date ottenute con il carbonio 14 vanno calibrate soltanto per tenere conto dei test nucleari del Novecento.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "C",
+    "text": "Un organismo morto da circa 11.500 anni conserva circa un quarto del carbonio 14 che aveva in vita.",
+    "trap": null
+   },
+   {
+    "letter": "D",
+    "text": "Il limite dei 50.000 anni non vale per i campioni calibrati con gli anelli degli alberi.",
+    "trap": "inferenza"
+   }
+  ],
+  "correct": [
+   "C"
+  ],
+  "evidence": "dimezzandosi ogni 5.730 anni circa",
+  "explanation": "C è corretta: dopo la morte il carbonio 14 decade «dimezzandosi ogni 5.730 anni circa»; circa 11.500 anni corrispondono a due dimezzamenti, e ne resta quindi circa un quarto. A rovescia l'effetto dei combustibili fossili, che non contengono più carbonio 14 e per questo tendono «a diluirlo» (inferenza). B riduce a un solo caso il motivo della calibrazione, che vale in generale perché la quantità di carbonio 14 nell'atmosfera «non è stata costante nel tempo» (quantificatore). D unisce due informazioni che il brano tiene distinte: gli anelli degli alberi servono a calibrare le date, mentre il limite dei 50.000 anni dipende dal carbonio 14 residuo, «troppo scarso per essere misurato con affidabilità», e nessuna calibrazione lo aumenta (inferenza)."
+ },
+ {
+  "id": 1300,
+  "level": 2,
+  "format": "epso4",
+  "tag": "tempo",
+  "difficulty": 4,
+  "topic": "secondo intercalare e rotazione terrestre",
+  "passage": "Dal 1967 il secondo non è più definito in base al moto della Terra, ma in base alle oscillazioni degli atomi di cesio, che gli orologi atomici misurano con una regolarità di gran lunga superiore a quella della rotazione terrestre. La Terra, infatti, non gira a velocità costante: in media rallenta, soprattutto per l'attrito delle maree, ma con fluttuazioni imprevedibili. Per evitare che il tempo atomico si allontani troppo da quello scandito dalla rotazione, nel 1972 è stato introdotto il «secondo intercalare»: quando lo scarto si avvicina a 0,9 secondi, al tempo usato nella vita civile si aggiunge un secondo. Da allora ne sono stati inseriti 27, tutti positivi; l'ultimo risale alla fine del 2016. Negli ultimi anni la rotazione ha accelerato leggermente, e si è cominciato a discutere di un possibile secondo intercalare negativo, mai applicato finora. Poiché queste correzioni causano malfunzionamenti nei sistemi informatici, nel 2022 è stato deciso di abbandonarle entro il 2035, lasciando crescere lo scarto.",
+  "question": "Quale delle seguenti affermazioni è corretta?",
+  "options": [
+   {
+    "letter": "A",
+    "text": "Il rallentamento medio della rotazione terrestre si deve soltanto all'attrito delle maree.",
+    "trap": "quantificatore"
+   },
+   {
+    "letter": "B",
+    "text": "Il primo secondo intercalare fu inserito quando il secondo era già definito con il cesio.",
+    "trap": null
+   },
+   {
+    "letter": "C",
+    "text": "Si discute di un secondo intercalare negativo perché negli ultimi anni la rotazione terrestre ha rallentato ancora di più.",
+    "trap": "inferenza"
+   },
+   {
+    "letter": "D",
+    "text": "L'ultimo secondo intercalare è stato inserito dopo la decisione di abbandonare queste correzioni.",
+    "trap": "tempo"
+   }
+  ],
+  "correct": [
+   "B"
+  ],
+  "evidence": "nel 1972 è stato introdotto il «secondo intercalare»",
+  "explanation": "B è corretta: il secondo è definito in base al cesio «Dal 1967», mentre il secondo intercalare «è stato introdotto» nel 1972; il primo è stato quindi inserito quando la nuova definizione era già in vigore. A trasforma in causa unica quella che il brano indica come principale: la Terra rallenta «soprattutto» per l'attrito delle maree (quantificatore). C rovescia la direzione del cambiamento: si discute di un secondo negativo perché negli ultimi anni la rotazione «ha accelerato» (inferenza). D inverte l'ordine dei fatti: l'ultimo secondo intercalare risale alla fine del 2016, la decisione di abbandonarli al 2022 (tempo)."
+ }
+]

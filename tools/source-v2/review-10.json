@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1281,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "C segue da «la linea è soltanto il risultato delle scelte dei singoli paesi sul proprio fuso orario» e dal caso del 2011. Trappola di A da inferenza a scope: è uno scambio di gruppo (est/ovest), non un'inferenza. Fatti corretti (Samoa, 29 → 31 dicembre 2011; nessun trattato sulla linea)."
+ },
+ {
+  "id": 1282,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A unisce in modo lecito due frasi: monsone estivo = venti dall'oceano al continente, e porta «circa tre quarti» delle piogge annue. C è il condizionale «contribuirebbe» preso per fatto; D trasforma «ruolo decisivo» in «soltanto». Fatti corretti (circa 75% delle piogge indiane tra giugno e settembre)."
+ },
+ {
+  "id": 1283,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Senza «spesso» la chiave D era più forte del brano: aggiunto. La trappola fine è B (assorbe/libera); il tag inferenza è accettabile come fusione dei due processi. Fatti corretti (stalattiti calcaree di solito sotto i 10 cm per millennio)."
+ },
+ {
+  "id": 1284,
+  "blind": "B",
+  "key": "B",
+  "confidence": "media",
+  "verdict": "fixed",
+  "note": "Il dubbio dell'autore è fondato: il «solo se» di B poteva cadere per gli scambi di terreni negoziati «per riportare il confine sul fiume». Aggiunto «In mancanza di accordi,», evidenza estesa ai due casi; C da inferenza a parafrasi. Gli altri distrattori sono netti. Fatti corretti (talweg, linea mediana, accrescimento e avulsione)."
+ },
+ {
+  "id": 1285,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B segue dalla definizione («un territorio interamente circondato da un solo altro stato») e dall'esempio del villaggio. D cade perché le frazioni sono «circondate da territorio olandese», cioè da un solo stato. Fatti corretti (Baarle: 22 exclavi belghe e 7 controenclavi olandesi)."
+ },
+ {
+  "id": 1286,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "La lingua è oggi la lingua materna di molti bambini di città: soddisfa la condizione «prima lingua dei bambini di una comunità» e non è più un pidgin («che nessuno parla come lingua materna»). B fa un confronto con la lessificatrice che il brano non fa; per C, «molti» non vuol dire tutti. Fatti corretti (Tok Pisin)."
+ },
+ {
+  "id": 1287,
+  "blind": "A",
+  "key": "A",
+  "confidence": "media",
+  "verdict": "fixed",
+  "note": "«Prima del modello inglese» si poteva leggere come «prima che esistesse la parola inglese», cosa che il brano non dice: ora «prima dell'influsso inglese». B scambia il prestito adattato con il calco, C è l'opinione di «alcuni studiosi», D un confronto non fatto. Fatti corretti."
+ },
+ {
+  "id": 1288,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "C segue da «tendenze più che tipi puri» e dal giapponese, che unisce caratteri cinesi (logografici) e due sillabari. B («soltanto per il numero») ignora il criterio dell'unità rappresentata. Fatti corretti (dall'abjad fenicio all'alfabeto greco; caratteri cinesi con componente fonetica)."
+ },
+ {
+  "id": 1289,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A: la variante inglese ha tre quartine e un distico, quindi nessuna terzina. C ignora il cambio di verso; D sposta al Cinquecento ciò che il brano attribuisce al Canzoniere, nel Trecento. Fatti corretti."
+ },
+ {
+  "id": 1290,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D segue da «contando di recuperare i mancati ricavi con la pubblicità, che però rendeva soltanto se i lettori aumentavano». A scambia condizione necessaria e sufficiente (negazione, tag ideale); B è l'aneddoto di «Si racconta che». Fatti corretti (La Presse, 1836; aneddoto degli autori pagati a riga)."
+ },
+ {
+  "id": 1291,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "C è un'inferenza lecita da «non sono scelti per il loro significato nel contesto». A inverte ipotesi e verifica («Per verificarlo»); D è un non sequitur. Fatti corretti (Milman Parry, cantori jugoslavi 1933–35); «per secoli limitato alla paternità» è una semplificazione accettabile."
+ },
+ {
+  "id": 1292,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Dubbio dell'autore verificato: la chiave è unica. Il punto delicato è che «Un'ipotesi analoga» indica un altro pianeta sconosciuto, cioè la stessa mossa usata per Urano: ora la spiegazione lo dice. D è falsa nel brano, che spiega Urano con Nettuno, anche se un fisico potrebbe obiettare che la relatività riproduce Newton: è un'obiezione esterna al testo."
+ },
+ {
+  "id": 1293,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "Dubbio dell'autore verificato: D regge riga per riga (10 giorni nel 1582, 11 nel 1752, in linea con la regola dei secolari). C è la trappola: il brano non la stabilisce (due sole date), ma è in gran parte vera nella realtà; fuori-testo voluto, spiegazione resa esplicita. B da inferenza a parafrasi."
+ },
+ {
+  "id": 1294,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A collega «le forze indicate per spiegare lo spostamento erano troppo deboli» a «Il motore del movimento è invece ancora discusso». B inverte la causa; D crea una gerarchia che il brano non dà («Anche»). Fatti corretti (Wegener 1912; dorsali e inversioni magnetiche; trazione delle placche in subduzione)."
+ },
+ {
+  "id": 1295,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "45 − 7 = 38 µs al giorno in anticipo, margine netto. B è una stima «spesso citata» e contestata; D scambia l'orologio del ricevitore con quelli dei satelliti (scope, tag ideale). Fatti corretti (−7 e +45 µs; 1 µs ≈ 300 m; circa 20.000 km)."
+ },
+ {
+  "id": 1296,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B: la firma si verifica con la chiave pubblica, che «può essere diffusa liberamente». C dimentica la firma; D prende per certo il condizionale degli esperti. Fatti corretti."
+ },
+ {
+  "id": 1297,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D è una quasi citazione, con il nesso causale del brano («per questo»). A ignora l'assorbimento; C attribuisce alle monomodali il difetto delle multimodali. Fatti corretti (0,2 dB/km: metà della potenza ogni 15 km circa; nucleo di circa 9–10 µm)."
+ },
+ {
+  "id": 1298,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A segue da «un campo troppo intenso, però, distrugge lo stato superconduttivo anche sotto la temperatura critica». C dà una causa sbagliata (il brano dice «più facili da lavorare in forma di filo»). Fatti corretti (mercurio nel 1911 a −269 °C; ceramici dal 1986; azoto a −196 °C; leghe NbTi nelle risonanze)."
+ },
+ {
+  "id": 1299,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "11.500 / 5.730 = 2,007 dimezzamenti, ne resta 0,249: «circa un quarto» con margine netto. A rovescia la diluizione; D fonde calibrazione e limite di misura. Fatti corretti (effetto Suess; test nucleari, concentrazione quasi raddoppiata)."
+ },
+ {
+  "id": 1300,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B: cesio dal 1967, secondo intercalare dal 1972, quindi il primo è venuto dopo. D inverte 2016 e 2022; C inverte accelerazione e rallentamento. Fatti corretti (27 secondi intercalari, l'ultimo il 31/12/2016; decisione del 2022 con scadenza 2035)."
+ }
+]

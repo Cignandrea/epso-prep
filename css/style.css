@@ -266,6 +266,7 @@ mark.evidence { background: var(--hl-soft); color: inherit; border-bottom: 2px s
 .chart-svg text { fill: currentColor; font-family: inherit; }
 .chart-svg .cat { font-size: 15px; }
 .chart-svg .val { font-size: 14px; font-weight: 600; }
+.nchart-line .chart-svg .val { paint-order: stroke; stroke: var(--sheet); stroke-width: 4px; stroke-linejoin: round; } /* alone: le cifre restano leggibili sulle righe della griglia */
 .chart-svg .tick { font-size: 13px; fill: var(--ink-2); }
 .chart-svg .axis { stroke: var(--line-strong); stroke-width: 1.2; }
 .chart-svg .grid { stroke: var(--line); stroke-width: 1; }

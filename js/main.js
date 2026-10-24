@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b6';
+  const VERSION = '1.2.0-b7';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -112,7 +112,9 @@ App.main = (() => {
     switch (nx.kind) {
       case 'lesson': case 'drill': case 'review': {
         const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : `${nx.phase} · tappa ${c.total + 1}`;
-        const note = first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.' : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
+        const note = first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.'
+          : nx.boosted ? 'In questa prova vai forte: la scheda resta, le domande sono di livello prova.'
+          : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
         setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: simAlt });
         break;
       }

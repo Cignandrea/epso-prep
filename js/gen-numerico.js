@@ -737,7 +737,7 @@ App.gen.numerico = (() => {
       for (let k = 0; k < 8; k++) {
         const step = Math.max(Math.abs(truth) * r.f(0.04, 0.12), u * r.i(3, 9));
         const v = roundTo(truth + sign * step, sc.dec);
-        if (plausible(v) && far(v, truth)) return { v, trap: sc.tag, why: 'è vicino al risultato ma deriva da un errore di calcolo o di arrotondamento', near: true };
+        if (plausible(v) && far(v, truth)) return { v, trap: 'calcolo', why: 'è vicino al risultato: viene da una stima troppo grossolana o da un arrotondamento fatto a metà calcolo; con opzioni così vicine serve il calcolo esatto', near: true };
       }
       return null;
     };
@@ -784,11 +784,21 @@ App.gen.numerico = (() => {
     if (new Set(options.map((o) => o.text)).size !== 5) return null;
     // Spiegazione: il calcolo, poi perché ogni cifra sbagliata è sbagliata.
     const wrong = all.map((c, k) => ({ c, letter: letters[k] })).filter((x) => !x.c.key).map((x) => `${x.letter} (${sc.fmt(x.c.v)}) ${x.c.why}.`);
+    // E sbagliata: chi sbaglia il calcolo e non trova il suo numero finisce su E. Un esempio fra gli errori tipici che non
+    // sono tra le opzioni (nessuna chiamata al generatore casuale: l'item resta identico).
+    let eLine = null;
+    if (!noneCorrect) {
+      const miss = sc.cands.find((c) => Number.isFinite(c.v) && (!sc.positive || c.v > 0) && far(c.v, truth) && all.every((o) => far(o.v, c.v)));
+      eLine = miss
+        ? `E è sbagliata perché il risultato giusto c'è (${key}). Chi sbaglia il calcolo e non trova il suo numero tende a scegliere E: per esempio ${sc.fmt(roundTo(miss.v, sc.dec))} ${miss.why}, e non è tra le opzioni.`
+        : `E è sbagliata perché il risultato giusto c'è (${key}): prima di scegliere E, ricontrolla il calcolo.`;
+    }
     const explanation = [
       `${sc.steps.join('; ')}.`,
       noneCorrect ? `Il risultato è ${sc.fmt(truth)}, che non compare tra A e D: la risposta è E.` : `Il risultato è ${sc.fmt(truth)}: la risposta è ${key}.`,
       ...wrong,
-    ].join(' ');
+      eLine,
+    ].filter(Boolean).join(' ');
     return { options, key, explanation, truth };
   }
 

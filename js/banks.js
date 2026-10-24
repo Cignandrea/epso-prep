@@ -96,7 +96,7 @@ window.App = window.App || {};
     'fuori-testo': 'Vero nel mondo ma assente dal brano vuol dire sbagliato.',
     tempo: 'Previsto, proposto o stimato non è avvenuto: controlla tempi e date.',
     scope: 'Il dato vale solo per chi il brano indica: soggetto, gruppo, luogo.',
-    parafrasi: 'Opzione quasi uguale al brano: confrontala parola per parola.',
+    parafrasi: 'Opzione quasi uguale al brano: confrontala parola per parola; «secondo X» o «si ritiene» non diventano un fatto.',
     percentuali: 'Variazione = (nuovo − vecchio) ÷ vecchio; i punti percentuali sono una differenza.',
     rapporti: 'Scrivi «parte ÷ totale» prima dei numeri; il totale spesso va sommato.',
     'unita-misura': 'Fissa l\'unità del risultato prima del calcolo; converti una volta sola.',

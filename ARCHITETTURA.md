@@ -36,7 +36,7 @@ Fasi:
 Gli id dei generati sono **seme + livello**: lo stesso id ricostruisce lo stesso item ovunque. Non cambiare l'uscita di un modello esistente: si aggiunge un prefisso nuovo.
 
 ## Contenuti: come aggiungerne
-- **Verbale L2**: nuovo lotto `tools/source-v2/verbale-l2-N.json` (schema in `tools/build-l2.js`), revisione alla cieca di un revisore diverso da chi scrive, poi `node tools/build-l2.js`. Id a blocchi di 20 da 1101; nei lotti 1–4 (1101–1180) la seconda metà di ogni blocco è riservata alle simulazioni; dal lotto 5 tutto va all'allenamento.
+- **Verbale L2**: nuovo lotto `tools/source-v2/verbale-l2-N.json` (schema in `tools/build-l2.js`), revisione alla cieca di un revisore diverso da chi scrive, poi `node tools/build-l2.js`. Id a blocchi di 20 da 1101; nei lotti 1–4 (1101–1180) la seconda metà di ogni blocco è riservata alle simulazioni; dal lotto 5 tutto va all'allenamento. I lotti 9–10 (1261–1300) sono di **livello alto** (`difficulty: 4`, brani scientifici e storici, distrattori a una parola di distanza): li pesca chi va forte nel verbale.
 - **Numerico e astratto**: nuovi modelli o regole nei generatori; i test `tests/gen_*.test.js` controllano chiave unica, ricalcolo indipendente ed euristiche cieche.
 
 ## Dati di Andrea

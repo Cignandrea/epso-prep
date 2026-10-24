@@ -200,7 +200,13 @@ App.path = (() => {
     const last = done.length ? done[done.length - 1].slice(4, 14) : null;
     if (last && daysUntil(k, new Date(`${last}T12:00:00`)) < 2) return null;
     const bank = ['verbale', 'numerico', 'astratto'][done.length % 3];
-    return { id: `blk-${k}-${bank[0]}`, kind: 'block', bank, ...BLOCKS[bank], phase: 'Allenamento' };
+    const b = BLOCKS[bank];
+    // Chi va forte allena un margine: il 10% di tempo in meno del ritmo della prova.
+    if (strong(st, bank)) {
+      const minutes = Math.round(b.minutes * 0.9 * 2) / 2;
+      return { id: `blk-${k}-${bank[0]}`, kind: 'block', bank, ...b, minutes, sub: `${b.sub.split(',')[0].replace(/in [\d′″]+/, `in ${minutes % 1 ? `${Math.floor(minutes)}′30″` : `${minutes}′`}`)}: ritmo stretto, il 10% più veloce della prova; la correzione alla fine`, phase: 'Allenamento' };
+    }
+    return { id: `blk-${k}-${bank[0]}`, kind: 'block', bank, ...b, phase: 'Allenamento' };
   }
 
   // La prossima cosa da fare, in base alla data e a ciò che è già fatto.

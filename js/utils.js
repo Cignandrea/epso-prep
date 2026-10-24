@@ -145,7 +145,9 @@ App.utils = (() => {
     const all = c.series.flatMap((s) => s.values);
     const ticks = niceTicks(Math.min(...all), Math.max(...all));
     const lo = ticks[0], hi = ticks[ticks.length - 1];
-    const x = (i) => padL + (i * (W - padL - padR)) / (c.categories.length - 1);
+    // I punti non stanno sul bordo dell'asse: l'etichetta del primo valore non si sovrappone ai numeri dell'asse y.
+    const inset = 30;
+    const x = (i) => padL + inset + (i * (W - padL - padR - 2 * inset)) / (c.categories.length - 1);
     const y = (v) => padT + (1 - (v - lo) / (hi - lo || 1)) * (H - padT - padB);
     const svg = svgEl('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart-svg', role: 'img', 'aria-label': `Grafico a linee: ${c.title}` });
     for (const t of ticks) {
