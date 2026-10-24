@@ -1,4 +1,4 @@
-// EU Prep — banca "verbale", livello prova (180 quesiti). FILE GENERATO da tools/build-l2.js: non modificare a mano.
+// EU Prep — banca "verbale", livello prova (200 quesiti). FILE GENERATO da tools/build-l2.js: non modificare a mano.
 registerBank({
  "id": "verbale",
  "questions": [
@@ -6081,6 +6081,766 @@ registerBank({
    ],
    "evidence": "quelle già presenti potranno restare dove sono",
    "explanation": "B è corretta: il divieto riguarda l'installazione di nuove antenne e unità esterne, mentre «quelle già presenti potranno restare dove sono». A attribuisce l'approvazione del catalogo alle associazioni dei commercianti, mentre il catalogo è «approvato dalla soprintendenza» (ambito). C considera sufficiente il termine di tre anni, mentre il contributo spetta solo a chi sostituisce le insegne «entro il primo anno» (tempo). D trasforma una «riduzione dei tributi locali» in un'esenzione (parafrasi)."
+  },
+  {
+   "id": 1261,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 4,
+   "topic": "analisi per intenzione di trattare in una sperimentazione clinica",
+   "passage": "In una sperimentazione clinica, 2.000 pazienti con ipertensione sono stati assegnati per sorteggio a due gruppi: il primo ha ricevuto un nuovo farmaco, il secondo il trattamento standard. Nei due anni dello studio, il 15% dei pazienti del primo gruppo ha smesso di assumere il nuovo farmaco, in gran parte per effetti collaterali come vertigini e stanchezza. I risultati sono stati elaborati con l'analisi «per intenzione di trattare»: ogni paziente viene conteggiato nel gruppo a cui era stato assegnato, anche se ha interrotto la terapia o è passato all'altro trattamento. Questa scelta preserva i vantaggi del sorteggio, perché i pazienti che abbandonano una terapia tendono a differire da quelli che la proseguono, per esempio per età o gravità della malattia. Ha però un costo: l'effetto stimato in questo modo è in genere inferiore a quello che si osserverebbe se tutti seguissero la terapia fino in fondo. Con questa analisi, nel primo gruppo gli infarti sono stati un quinto in meno che nel secondo.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I pazienti che hanno smesso di assumere il nuovo farmaco erano in media più anziani o più gravi di quelli che lo hanno proseguito.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Nei risultati del primo gruppo sono conteggiati tutti i suoi pazienti, compreso il 15% che ha smesso il nuovo farmaco.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "L'analisi per intenzione di trattare misura l'effetto del farmaco nei pazienti che lo hanno effettivamente assunto.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "I pazienti che hanno interrotto la terapia non sono stati conteggiati, per preservare i vantaggi del sorteggio.",
+     "trap": "negazione"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "ogni paziente viene conteggiato nel gruppo a cui era stato assegnato, anche se ha interrotto la terapia",
+   "explanation": "B è corretta: con questa analisi «ogni paziente viene conteggiato nel gruppo a cui era stato assegnato, anche se ha interrotto la terapia»; quindi tutti i pazienti assegnati al primo gruppo, compreso il 15% che ha smesso il nuovo farmaco, restano nei risultati di quel gruppo. A unisce due informazioni vere, la tendenza generale di chi abbandona una terapia a «differire» per età o gravità e il 15% di abbandoni dello studio, in un dato che il brano non fornisce: non dice se in questo studio chi ha smesso fosse diverso dagli altri, né in quale direzione (inferenza). C scambia i pazienti assegnati a un trattamento con quelli che lo hanno effettivamente assunto: l'analisi conta anche chi ha interrotto la terapia (parafrasi). D rovescia la regola: chi interrompe viene conteggiato nel gruppo assegnato, ed è proprio questo a preservare i vantaggi del sorteggio (negazione)."
+  },
+  {
+   "id": 1262,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 4,
+   "topic": "telomeri, telomerasi e limite delle divisioni cellulari",
+   "passage": "Le cellule umane non si dividono all'infinito. Coltivate in laboratorio, le cellule della pelle o del tessuto connettivo compiono in genere alcune decine di divisioni, poi entrano in senescenza: restano vive ma smettono di dividersi. Uno dei meccanismi responsabili riguarda i telomeri, sequenze ripetute di DNA che proteggono le estremità dei cromosomi. A ogni divisione i telomeri si accorciano, perché il sistema che copia il DNA non riesce a duplicare l'ultimo tratto di ciascun cromosoma; quando diventano troppo corti, la cellula smette di dividersi. Un enzima, la telomerasi, può riallungarli, ma nella maggior parte delle cellule adulte è quasi inattiva. È invece attiva nelle cellule da cui derivano i gameti, in alcune cellule staminali e in circa nove tumori su dieci, dove contribuisce alla capacità delle cellule malate di moltiplicarsi senza limite. Alcuni gruppi di ricerca hanno proposto farmaci che bloccano la telomerasi come terapia contro il cancro; altri temono che possano danneggiare anche le cellule staminali.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I farmaci che bloccano la telomerasi si sono rivelati efficaci contro il cancro, ma danneggiano anche le cellule staminali.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Nelle cellule coltivate in laboratorio è l'ingresso in senescenza a provocare l'accorciamento dei telomeri.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "L'accorciamento dei telomeri è l'unico motivo per cui le cellule di un adulto smettono di dividersi.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "In circa un tumore su dieci la telomerasi non è attiva.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "in circa nove tumori su dieci",
+   "explanation": "D è corretta: la telomerasi è attiva «in circa nove tumori su dieci»; nel decimo restante, quindi, non lo è. A presenta come risultati accertati una proposta e un timore: alcuni gruppi «hanno proposto» questi farmaci, altri «temono» danni alle staminali (parafrasi). B inverte il nesso: sono i telomeri troppo corti a far smettere la cellula di dividersi, non la senescenza ad accorciarli, che si accorciano «a ogni divisione» (inferenza). C trasforma «uno dei meccanismi responsabili» nell'unica causa (quantificatore)."
+  },
+  {
+   "id": 1263,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 4,
+   "topic": "licheni come indicatori della qualità dell'aria",
+   "passage": "I licheni sono organismi composti, formati dall'associazione stabile tra un fungo e un'alga o un cianobatterio: il fungo fornisce la struttura e trattiene l'umidità, il partner fotosintetico produce gli zuccheri. Poiché non hanno radici né una cuticola protettiva, assorbono acqua e sali minerali direttamente dall'aria e dalla pioggia, insieme alle sostanze inquinanti; per questo sono usati come indicatori della qualità dell'aria. Le specie più sensibili all'anidride solforosa scompaiono già a concentrazioni basse, mentre poche specie tolleranti sopravvivono anche nei centri industriali. In una città europea una mappa del 1975 indicava un «deserto lichenico» in tutto il centro storico; il rilevamento ripetuto nel 2020, dopo la chiusura delle centrali a carbone, ha trovato licheni su quasi tutti gli alberi esaminati, comprese due specie sensibili. Poiché crescono di pochi millimetri l'anno, però, i licheni ricompaiono con un ritardo di anni rispetto al miglioramento dell'aria. Inoltre reagiscono soprattutto ai composti dello zolfo e molto meno ad altri inquinanti, come le polveri sottili.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "A causa della crescita lenta, i licheni segnalano un'aria più pulita con anni di ritardo.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Tra gli inquinanti presenti nell'aria, i licheni reagiscono esclusivamente ai composti dello zolfo.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Nei licheni è il fungo a produrre gli zuccheri, mentre il partner fotosintetico trattiene l'umidità.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Nel 2020 nel centro storico crescevano più specie di licheni che nelle zone industriali della città.",
+     "trap": "fuori-testo"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Poiché crescono di pochi millimetri l'anno, però, i licheni ricompaiono con un ritardo di anni rispetto al miglioramento dell'aria",
+   "explanation": "A è corretta: il brano lega il ritardo alla crescita lenta: «Poiché crescono di pochi millimetri l'anno, però, i licheni ricompaiono con un ritardo di anni rispetto al miglioramento dell'aria». B trasforma «soprattutto» in «esclusivamente»: i licheni reagiscono anche ad altri inquinanti, sia pure «molto meno» (quantificatore). C scambia i ruoli dei due partner: è il fungo a trattenere l'umidità e il partner fotosintetico a produrre gli zuccheri (parafrasi). D fa un confronto che il brano non fa: per il 2020 descrive solo il centro storico e non dà dati sulle zone industriali della città (fuori testo)."
+  },
+  {
+   "id": 1264,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 4,
+   "topic": "svilimento delle monete e «moneta cattiva che scaccia la buona»",
+   "passage": "Nelle economie in cui circolavano monete d'oro e d'argento, il valore di una moneta dipendeva in larga parte dal metallo che conteneva. Per finanziare guerre e debiti, molti sovrani ricorsero allo svilimento: ritiravano le monete in circolazione e le riconiavano con la stessa denominazione ma con meno metallo prezioso, trattenendo la differenza. Quando monete vecchie e nuove avevano per legge lo stesso valore, il pubblico spendeva le nuove e conservava, fondeva o esportava le vecchie, più ricche di metallo: è il fenomeno riassunto nella formula «la moneta cattiva scaccia la buona». Il meccanismo operava però soltanto se la legge imponeva di accettare le due monete allo stesso valore; dove i mercanti erano liberi di valutarle a peso, la moneta buona continuava a circolare, scambiata con un premio. Nel lungo periodo gli svilimenti ripetuti fecero aumentare i prezzi espressi in quella moneta, perché per comprare la stessa merce servivano più pezzi. Il guadagno del sovrano, immediato, era quindi destinato a ridursi: le imposte fissate in moneta perdevano valore reale con l'aumento dei prezzi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La moneta svilita faceva sparire quella buona anche dove i mercanti erano liberi di valutare le monete a peso.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "L'aumento dei prezzi costringeva i sovrani a ritirare le monete e a riconiarle con meno metallo prezioso.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Dove le monete si valutavano a peso, una moneta buona poteva valere più di una svilita di pari denominazione.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Con lo svilimento i sovrani cambiavano soltanto il valore nominale delle monete, non il contenuto di metallo.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "dove i mercanti erano liberi di valutarle a peso, la moneta buona continuava a circolare, scambiata con un premio",
+   "explanation": "C è corretta: dove i mercanti «erano liberi di valutarle a peso, la moneta buona continuava a circolare, scambiata con un premio», cioè per un valore superiore a quello della moneta svilita di pari denominazione. A rovescia la condizione: il meccanismo operava «soltanto se la legge imponeva di accettare le due monete allo stesso valore», non dove le monete si valutavano a peso (negazione). B inverte il nesso causale: nel brano sono gli svilimenti a far aumentare i prezzi, e i sovrani svilivano le monete «per finanziare guerre e debiti» (inferenza). D scambia la denominazione con il contenuto di metallo: a cambiare era il metallo, non la denominazione, perché le monete riconiate avevano «la stessa denominazione ma con meno metallo prezioso» (parafrasi)."
+  },
+  {
+   "id": 1265,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 4,
+   "topic": "paradosso di Simpson nel confronto tra ospedali",
+   "passage": "Due ospedali, X e Y, hanno pubblicato la mortalità a trenta giorni dopo uno stesso tipo di intervento chirurgico. Nel complesso l'ospedale X registra il 6% di decessi e l'ospedale Y il 4%. Separando però i pazienti in base alla gravità al momento del ricovero, il quadro si rovescia: tra i pazienti in condizioni lievi la mortalità è dell'1% in X e del 2% in Y; tra quelli in condizioni gravi è del 10% in X e del 15% in Y. La contraddizione è solo apparente ed è un esempio del cosiddetto paradosso di Simpson: X, che dispone di un reparto di terapia intensiva, riceve una quota molto maggiore di casi gravi, e la sua media complessiva risente di questa composizione. Per questo gli statistici raccomandano di confrontare le strutture a parità di gravità dei pazienti, o con metodi che ne tengano conto. Resta però un limite: anche le classi «lieve» e «grave» possono nascondere differenze, per esempio se un ospedale classifica i pazienti con criteri diversi dall'altro.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nell'ospedale X la mortalità dei pazienti gravi è dieci volte quella dei lievi perché X riceve una quota maggiore di casi gravi.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "L'ospedale Y riceve una quota maggiore di casi gravi perché dispone di un reparto di terapia intensiva.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "In ogni classe di gravità, la mortalità è più bassa nell'ospedale che ha la mortalità complessiva più alta.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Confrontando gli ospedali a parità di gravità si eliminano tutte le differenze tra i loro pazienti.",
+     "trap": "quantificatore"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "tra i pazienti in condizioni lievi la mortalità è dell'1% in X e del 2% in Y; tra quelli in condizioni gravi è del 10% in X e del 15% in Y",
+   "explanation": "C è corretta: X ha la mortalità complessiva più alta (6% contro 4%), ma la sua mortalità è più bassa sia tra i pazienti lievi (1% contro 2%) sia tra i gravi (10% contro 15%). A unisce due dati veri, il rapporto tra il 10% e l'1% e la quota maggiore di casi gravi, in un nesso che il brano non stabilisce: la composizione dei pazienti spiega la media complessiva di X, non la differenza di mortalità tra le due classi (inferenza). B scambia i due ospedali: è X a disporre della terapia intensiva e a ricevere più casi gravi (parafrasi). D va oltre il brano: il confronto a parità di gravità neutralizza la diversa composizione per gravità, ma il brano avverte che anche all'interno delle classi possono restare differenze (quantificatore)."
+  },
+  {
+   "id": 1266,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 4,
+   "topic": "fotosintesi C3 e C4",
+   "passage": "La maggior parte delle piante, tra cui frumento, riso e quasi tutti gli alberi, fissa l'anidride carbonica con il metabolismo detto C3, perché il primo composto prodotto contiene tre atomi di carbonio. L'enzima che cattura la CO2 in queste piante può però legare anche l'ossigeno, soprattutto quando fa caldo e gli stomi, i pori delle foglie, si chiudono per limitare la perdita d'acqua: ne deriva la fotorespirazione, un processo che spreca energia e carbonio. Circa il 3% delle specie, tra cui mais, canna da zucchero e sorgo, usa invece il metabolismo C4: la CO2 viene catturata prima da un altro enzima, che non reagisce con l'ossigeno, e poi concentrata nelle cellule in cui avviene la fotosintesi vera e propria. Il meccanismo riduce quasi del tutto la fotorespirazione, ma richiede energia supplementare; per questo le piante C4 sono avvantaggiate nei climi caldi e luminosi, mentre nei climi freschi le piante C3 restano in genere più efficienti. Alcuni gruppi di ricerca tentano di trasferire il metabolismo C4 nel riso.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Rispetto al frumento, il mais spende più energia per concentrare la CO2 ma spreca meno carbonio.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Nel riso, come nel mais, la CO2 viene catturata da un enzima che non reagisce con l'ossigeno.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Nei climi caldi e luminosi le piante C4 consumano meno acqua delle piante C3 per crescere.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Quando fa caldo, è la fotorespirazione a provocare la chiusura degli stomi delle foglie.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "Il meccanismo riduce quasi del tutto la fotorespirazione, ma richiede energia supplementare",
+   "explanation": "A è corretta: il mais è una pianta C4 e il frumento una C3; il metabolismo C4 «riduce quasi del tutto la fotorespirazione, ma richiede energia supplementare», e la fotorespirazione è un processo che «spreca energia e carbonio». B attribuisce al riso, che è una pianta C3, il meccanismo C4: il brano dice solo che alcuni gruppi di ricerca «tentano» di trasferirlo (ambito). C fa un confronto sul consumo d'acqua che il brano non fa: la perdita d'acqua compare solo per spiegare la chiusura degli stomi (fuori testo). D inverte il nesso: sono il caldo e gli stomi chiusi a favorire la fotorespirazione, non il contrario (inferenza)."
+  },
+  {
+   "id": 1267,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 4,
+   "topic": "numero di riproduzione di base e immunità di gregge",
+   "passage": "In epidemiologia, il numero di riproduzione di base, indicato con R0, è il numero medio di persone che un individuo infetto contagia in una popolazione in cui nessuno è immune. Se ogni contagiato infetta in media meno di una persona, l'epidemia si esaurisce. Da qui deriva la soglia dell'immunità di gregge, cioè la quota di popolazione immune oltre la quale ogni caso genera in media meno di un nuovo caso: è pari a 1 − 1/R0. Per una malattia con R0 pari a 4 la soglia è del 75%; per il morbillo, con un R0 stimato tra 12 e 18, supera il 90%. La formula presuppone però che le persone si mescolino in modo uniforme: se i non vaccinati sono concentrati in alcune comunità o scuole, possono verificarsi focolai locali anche quando la copertura nazionale supera la soglia. Inoltre R0 non è una costante biologica del patogeno, perché dipende anche dalla frequenza dei contatti e quindi dalle abitudini sociali.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "R0 è il numero medio di persone che un individuo infetto contagia in una popolazione già in parte immune.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Una copertura vaccinale nazionale superiore alla soglia non lascia spazio a nessun focolaio della malattia.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Più una malattia è contagiosa, più bassa è la quota di popolazione che deve essere immune per fermarla.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Una stessa malattia può avere soglie di immunità di gregge diverse in società con abitudini diverse.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "R0 non è una costante biologica del patogeno, perché dipende anche dalla frequenza dei contatti e quindi dalle abitudini sociali",
+   "explanation": "D è corretta: la soglia si calcola da R0 (1 − 1/R0), e R0 «dipende anche dalla frequenza dei contatti e quindi dalle abitudini sociali»; collegando le due frasi, la soglia di una stessa malattia può variare tra società con abitudini diverse. A scambia R0 con il numero di contagi in una popolazione già in parte immune: R0 si riferisce a una popolazione «in cui nessuno è immune» (parafrasi). B ignora l'avvertenza sui focolai locali, che «possono verificarsi» anche oltre la soglia nazionale se i non vaccinati sono concentrati in alcune comunità (quantificatore). C inverte la relazione: con un R0 più alto la soglia sale, dal 75% con R0 pari a 4 a oltre il 90% per il morbillo (inferenza)."
+  },
+  {
+   "id": 1268,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 4,
+   "topic": "la lettera di cambio nel commercio medievale",
+   "passage": "Nel Medioevo i mercanti che commerciavano tra città lontane cercavano di evitare il trasporto di grandi quantità di monete, esposte a furti e naufragi. Dal XIII secolo si diffuse la lettera di cambio: un mercante versava una somma a un banchiere della propria città, che gli rilasciava un ordine scritto rivolto a un corrispondente di un'altra piazza; questi, alla scadenza, pagava l'equivalente nella moneta locale. Il pagamento avveniva dopo un intervallo fissato dall'uso, tanto più lungo quanto più le due città erano distanti: da alcune settimane a qualche mese. Poiché la Chiesa condannava il prestito a interesse, il guadagno del banchiere non compariva come tale ma era incluso nel tasso di cambio tra le due monete; i teologi tolleravano l'operazione perché comportava un rischio, legato alle variazioni dei cambi. Con il tempo la lettera divenne anche uno strumento di credito, e nel Seicento si affermò la girata, che permetteva di trasferirla ad altri prima della scadenza con una nota sul retro.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Fin dal XIII secolo la lettera di cambio poteva essere ceduta ad altri prima della scadenza con una nota sul retro.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "B",
+     "text": "Il banchiere guadagnava sul tasso di cambio perché la Chiesa condannava il prestito a interesse.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Agli occhi dei teologi, il guadagno del banchiere era giustificato dal rischio di furti e naufragi.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Il corrispondente pagava la somma nella moneta della città in cui il mercante l'aveva versata.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "Poiché la Chiesa condannava il prestito a interesse, il guadagno del banchiere non compariva come tale ma era incluso nel tasso di cambio tra le due monete",
+   "explanation": "B è corretta: «Poiché la Chiesa condannava il prestito a interesse, il guadagno del banchiere non compariva come tale ma era incluso nel tasso di cambio tra le due monete». A anticipa al XIII secolo la girata, che il brano colloca nel Seicento: nel Duecento si diffuse la lettera di cambio, non la possibilità di cederla con una nota sul retro (tempo). C unisce due rischi diversi: furti e naufragi spiegano perché i mercanti evitavano di trasportare monete, mentre i teologi tolleravano l'operazione per il rischio «legato alle variazioni dei cambi» (inferenza). D scambia le due monete: il corrispondente pagava «nella moneta locale», cioè in quella della propria piazza, non della città del mercante (parafrasi)."
+  },
+  {
+   "id": 1269,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 4,
+   "topic": "DNA mitocondriale ed ereditarietà materna",
+   "passage": "Quasi tutto il DNA di una cellula umana si trova nel nucleo, organizzato in 23 coppie di cromosomi, metà ereditati dalla madre e metà dal padre. Una piccola parte, circa 16.500 coppie di basi, si trova invece nei mitocondri, gli organelli che producono gran parte dell'energia della cellula. Il DNA mitocondriale si eredita per via materna: i mitocondri dello spermatozoo, che pure entrano nell'ovulo durante la fecondazione, vengono di norma eliminati nei giorni successivi. Sono stati descritti soltanto rarissimi casi di trasmissione paterna. Poiché non si rimescola a ogni generazione, questo DNA cambia solo per mutazione, ed è quindi usato per ricostruire le linee materne e le migrazioni delle popolazioni antiche. Le malattie dovute a mutazioni del DNA mitocondriale colpiscono soprattutto gli organi che consumano molta energia, come muscoli e cervello; la loro gravità può variare anche tra fratelli, perché ogni cellula contiene centinaia di copie di questo DNA e la quota di copie mutate può essere diversa.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Un uomo malato per una mutazione del DNA mitocondriale, di norma, non la trasmette ai figli.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Il DNA mitocondriale di un figlio proviene sempre e soltanto dalla madre.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Il DNA mitocondriale va incontro a mutazioni più spesso del DNA contenuto nel nucleo.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Gli organi che consumano molta energia contengono una quota più alta di copie mutate del DNA mitocondriale.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "i mitocondri dello spermatozoo, che pure entrano nell'ovulo durante la fecondazione, vengono di norma eliminati nei giorni successivi",
+   "explanation": "A è corretta: il DNA mitocondriale «si eredita per via materna» e i mitocondri dello spermatozoo «vengono di norma eliminati» dopo la fecondazione; quindi un padre malato, salvo rarissime eccezioni, non trasmette la mutazione ai figli. B trasforma la regola in un assoluto: il brano cita «rarissimi casi di trasmissione paterna» (quantificatore). C confronta la frequenza delle mutazioni nei due DNA, confronto che il brano non fa: dice solo che il DNA mitocondriale cambia «solo per mutazione» perché non si rimescola (fuori testo). D unisce due informazioni vere in un nesso che il brano non stabilisce: gli organi ad alto consumo sono i più colpiti, mentre la quota variabile di copie mutate serve a spiegare le differenze di gravità tra fratelli, non quali organi si ammalano (inferenza)."
+  },
+  {
+   "id": 1270,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 4,
+   "topic": "regressione verso la media nella valutazione degli autovelox",
+   "passage": "Un'amministrazione stradale ha installato autovelox in 50 incroci, scelti perché nell'anno precedente vi si era registrato un numero di incidenti insolitamente alto. L'anno dopo l'installazione, gli incidenti in quegli incroci sono diminuiti del 35%. Gli statistici invitano però alla cautela: quando luoghi, pazienti o studenti vengono scelti proprio per un valore estremo, la misura successiva tende di solito ad avvicinarsi alla media anche senza alcun intervento, perché una parte del valore estremo era dovuta al caso. È la cosiddetta regressione verso la media. Per separarla dall'effetto degli autovelox, un gruppo di ricerca ha esaminato altri 50 incroci che nello stesso anno avevano avuto un picco di incidenti simile, ma nei quali non era stato installato nulla: lì gli incidenti sono diminuiti del 20%. I ricercatori attribuiscono quindi agli autovelox una riduzione inferiore a quella osservata, pur avvertendo che i due gruppi di incroci potevano differire anche per il volume di traffico.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Gli autovelox hanno ridotto gli incidenti esattamente del 15%.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "B",
+     "text": "Negli incroci in cui non era stato installato nulla, gli incidenti sono diminuiti del 35%.",
+     "trap": "scope"
+    },
+    {
+     "letter": "C",
+     "text": "Gli incroci con gli autovelox avevano un volume di traffico maggiore di quelli usati per il confronto.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "D",
+     "text": "Secondo i ricercatori, gli autovelox hanno fatto diminuire gli incidenti meno del 35%.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "I ricercatori attribuiscono quindi agli autovelox una riduzione inferiore a quella osservata",
+   "explanation": "D è corretta: i ricercatori «attribuiscono quindi agli autovelox una riduzione inferiore a quella osservata», e la riduzione osservata negli incroci con gli autovelox è del 35%. A ricava dalla sottrazione 35 − 20 una cifra esatta che il brano non dà: i ricercatori indicano solo una riduzione «inferiore a quella osservata» e avvertono che i due gruppi di incroci potevano differire per il traffico (inferenza). B attribuisce agli incroci senza interventi la diminuzione del 35%, che riguarda quelli con gli autovelox; nei primi il calo è del 20% (ambito). C trasforma la possibilità di una differenza di traffico in un confronto preciso che il brano non fa: non dice quale gruppo avesse più traffico (fuori testo)."
+  },
+  {
+   "id": 1271,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 4,
+   "topic": "cascata trofica dopo la reintroduzione di un predatore",
+   "passage": "In ecologia si parla di cascata trofica quando un cambiamento al vertice della catena alimentare si ripercuote sui livelli inferiori. Un caso molto studiato riguarda una regione montana in cui il lupo era scomparso da circa settant'anni. In sua assenza i cervi erano aumentati e brucavano intensamente i giovani salici e pioppi lungo i torrenti, che non riuscivano più a crescere. Dopo la reintroduzione di alcune decine di lupi, i ricercatori hanno osservato che in diversi tratti i salici tornavano a superare l'altezza raggiungibile dai cervi e che lungo le sponde ricomparivano i castori, che si nutrono di quei rami e li usano per le loro dighe. Secondo alcuni studi, il cambiamento si deve non solo al calo del numero di cervi, ma anche al fatto che questi evitano le zone in cui sono più esposti agli attacchi. Altri ricercatori ritengono però che l'effetto dei lupi sia stato sopravvalutato: anche la caccia praticata dall'uomo e una serie di anni siccitosi hanno ridotto i cervi. In molti tratti, comunque, la vegetazione non si è ripresa.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La caccia praticata dall'uomo ha ridotto il numero di cervi più della presenza dei lupi.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "La reintroduzione dei lupi è stata seguita da una ripresa dei salici soltanto in una parte dei tratti dei torrenti.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "È stato accertato che i cervi evitano le zone in cui sono più esposti agli attacchi dei lupi.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "La ricomparsa dei castori ha permesso ai salici di superare l'altezza raggiungibile dai cervi.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "In molti tratti, comunque, la vegetazione non si è ripresa",
+   "explanation": "B è corretta: i salici sono tornati a crescere «in diversi tratti», ma, precisa il brano, in molti tratti «la vegetazione non si è ripresa»; la ripresa, quindi, ha riguardato soltanto una parte dei tratti. A fa un confronto che il brano non fa: la caccia compare tra le cause del calo dei cervi, ma il brano non dice se abbia pesato più dei lupi (fuori testo). C presenta come accertato ciò che il brano attribuisce ad «alcuni studi», in un quadro in cui altri ricercatori ritengono l'effetto dei lupi «sopravvalutato» (parafrasi). D inverte il legame tra i due fatti: il brano non dice che i castori abbiano favorito i salici; semmai sono i castori a dipendere dai rami dei salici, di cui «si nutrono» (inferenza)."
+  },
+  {
+   "id": 1272,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 4,
+   "topic": "sensibilità, specificità e falsi positivi in uno screening",
+   "passage": "Un test di screening per una malattia rara è stato valutato su 10.000 persone senza sintomi, tutte sottoposte anche all'esame di conferma. La malattia era presente in 50 persone: il test ne ha riconosciute 45, quindi la sua sensibilità, cioè la capacità di individuare i malati, è del 90%. Tra le 9.950 persone sane il test è risultato negativo in 9.751 casi e positivo in 199: la specificità, cioè la capacità di riconoscere i sani, è quindi del 98%. Nonostante queste prestazioni, meno di un positivo su cinque era davvero malato, perché quando una malattia è rara anche una piccola percentuale di errori sui sani produce molti falsi allarmi. Per questo gli autori raccomandano di usare il test soltanto come primo filtro, seguito sempre dall'esame di conferma. Osservano inoltre che in un gruppo ad alto rischio, dove la malattia è più frequente, la quota di positivi davvero malati sarebbe più alta, mentre la sensibilità e la specificità del test resterebbero le stesse.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La sensibilità del test indica la quota di persone sane che risultano negative.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Poiché la specificità del test è del 98%, solo il 2% delle persone positive al test era sano.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "La maggior parte delle persone risultate positive al test, in realtà, era sana.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "In un gruppo ad alto rischio, il test riconoscerebbe una quota più alta dei malati.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "meno di un positivo su cinque era davvero malato",
+   "explanation": "C è corretta: «meno di un positivo su cinque era davvero malato», quindi più di quattro positivi su cinque erano sani (199 su 244). A scambia la sensibilità con la specificità: la sensibilità è la capacità di individuare i malati, mentre la quota di sani che risultano negativi corrisponde alla specificità (parafrasi). B confonde due proporzioni: il 2% è la quota dei sani risultati positivi (199 su 9.950), non la quota dei sani tra i positivi, che supera i quattro quinti (inferenza). D scambia la quota di positivi davvero malati, che in un gruppo ad alto rischio sarebbe più alta, con la quota di malati riconosciuti, cioè la sensibilità, che secondo gli autori resterebbe la stessa (parafrasi)."
+  },
+  {
+   "id": 1273,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "fuori-testo",
+   "difficulty": 4,
+   "topic": "legge di Engel e spesa alimentare come indicatore storico",
+   "passage": "Nel 1857 uno statistico tedesco, analizzando i bilanci di famiglie operaie belghe, osservò che la quota del reddito destinata all'alimentazione diminuiva con l'aumentare del reddito, anche se la spesa alimentare in valore assoluto cresceva. La regolarità, nota come legge di Engel, è stata confermata da indagini successive in molti paesi e periodi. La spiegazione più comune è che la domanda di cibo cresce meno che in proporzione al reddito, perché il bisogno di alimentarsi ha un limite. Nelle economie industriali dell'Ottocento le famiglie operaie destinavano al cibo spesso più della metà del bilancio; nell'Europa occidentale di oggi la quota è in genere compresa tra un decimo e un sesto. Per questo gli storici usano la quota della spesa alimentare come indicatore indiretto del tenore di vita quando mancano dati affidabili sui redditi. L'indicatore va però usato con cautela, perché la quota dipende anche dai prezzi relativi del cibo e dalle abitudini: per esempio dalla diffusione dei pasti consumati fuori casa, che le indagini non sempre classificano come spesa alimentare.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le famiglie operaie belghe destinavano al cibo una quota del reddito maggiore di quelle tedesche.",
+     "trap": "fuori-testo"
+    },
+    {
+     "letter": "B",
+     "text": "Secondo la legge di Engel, quando il reddito aumenta la spesa per il cibo diminuisce anche in valore assoluto.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "C",
+     "text": "Poiché la quota alimentare dipende anche dai prezzi del cibo, gli storici non la usano più come indicatore.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Una famiglia più ricca di un'altra spende in genere per il cibo più denaro, ma una parte minore del proprio reddito.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "la quota del reddito destinata all'alimentazione diminuiva con l'aumentare del reddito, anche se la spesa alimentare in valore assoluto cresceva",
+   "explanation": "D è corretta: con l'aumentare del reddito la quota destinata al cibo diminuiva, «anche se la spesa alimentare in valore assoluto cresceva»; una famiglia più ricca spende quindi di più per il cibo, ma una parte minore del reddito. A fa un confronto che il brano non fa: le famiglie studiate erano belghe e tedesco era lo statistico, ma di famiglie tedesche il brano non parla (fuori testo). B scambia la quota con il valore assoluto: è la quota a diminuire, mentre la spesa in valore assoluto cresce (parafrasi). C ricava da un invito alla cautela una conclusione che il brano non stabilisce: l'indicatore «va però usato con cautela», non è stato abbandonato, e gli storici lo usano tuttora quando mancano dati sui redditi (inferenza)."
+  },
+  {
+   "id": 1274,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "quantificatore",
+   "difficulty": 4,
+   "topic": "pigne serotine e adattamenti delle piante al fuoco",
+   "passage": "In molti ecosistemi mediterranei e boreali il fuoco è un evento ricorrente, a cui alcune piante si sono adattate. Diverse specie di pino producono pigne serotine, che restano chiuse sull'albero anche per anni, sigillate da una resina che si scioglie soltanto a temperature elevate, in genere oltre i 50 gradi. Quando un incendio uccide l'albero adulto, le pigne si aprono e liberano i semi su un terreno ripulito dalla vegetazione concorrente e arricchito di ceneri. La proporzione di pigne serotine varia però anche all'interno della stessa specie: è più alta nelle popolazioni esposte a incendi frequenti, mentre dove il fuoco è raro prevalgono gli alberi con pigne che si aprono ogni anno. Altre piante seguono strategie diverse: alcune querce sopravvivono grazie a una corteccia spessa e isolante, molti arbusti ricacciano dalla base dopo che la parte aerea è bruciata. Se però gli incendi diventano troppo ravvicinati, i pini serotini possono scomparire, perché i giovani alberi bruciano prima di aver prodotto pigne.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nelle popolazioni esposte di rado al fuoco, la maggior parte dei pini libera i semi senza attendere un incendio.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Tutti i pini di una specie con pigne serotine tengono le pigne chiuse fino al passaggio del fuoco.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "La presenza di pigne serotine rende più frequenti gli incendi nelle popolazioni di pini.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Grazie alla corteccia spessa e isolante, alcune querce ricacciano dalla base dopo che la parte aerea è bruciata.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "dove il fuoco è raro prevalgono gli alberi con pigne che si aprono ogni anno",
+   "explanation": "A è corretta: dove il fuoco è raro «prevalgono gli alberi con pigne che si aprono ogni anno», cioè che liberano i semi senza bisogno del calore di un incendio. B ignora che la proporzione di pigne serotine «varia però anche all'interno della stessa specie»: non tutti i pini di queste specie tengono le pigne chiuse (quantificatore). C inverte il nesso: sono gli incendi frequenti ad accompagnarsi a una proporzione più alta di pigne serotine, non le pigne a rendere più frequenti gli incendi (inferenza). D scambia le due strategie: la corteccia spessa permette ad alcune querce di sopravvivere, mentre a ricacciare dalla base sono molti arbusti (parafrasi)."
+  },
+  {
+   "id": 1275,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 4,
+   "topic": "distorsione da sopravvivenza nei rendimenti dei fondi",
+   "passage": "Un'analisi dei fondi d'investimento di un paese ha calcolato che negli ultimi quindici anni i fondi azionari hanno ottenuto in media un rendimento annuo del 7%, superiore a quello dell'indice di mercato. Il calcolo considerava però soltanto i fondi ancora attivi alla fine del periodo. Nel frattempo circa un terzo dei fondi era stato chiuso o fuso con altri, di solito dopo alcuni anni di risultati deludenti. Includendo anche questi fondi fino alla data della chiusura, il rendimento medio scende al 5,5%, sotto quello dell'indice. L'errore prende il nome di distorsione da sopravvivenza: si giudica un gruppo osservando solo chi ha superato una selezione, ignorando chi ne è stato escluso proprio a causa del risultato che si vuole misurare. Lo stesso problema si presenta, per esempio, negli studi sulle imprese di successo o sui pazienti che completano una terapia. Gli autori notano che le banche dati più recenti conservano anche la storia dei fondi chiusi, ma molte analisi diffuse dalla stampa continuano a non usarle.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "I fondi chiusi o fusi con altri avevano ottenuto, fino alla data della chiusura, un rendimento medio annuo del 5,5%.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Contando anche i fondi chiusi o fusi con altri, il vantaggio dei fondi azionari sull'indice scompare.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Tutti i fondi chiusi o fusi con altri nel periodo esaminato avevano avuto alcuni anni di risultati deludenti.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Correggendo la distorsione da sopravvivenza, il rendimento medio calcolato per i fondi azionari risulta più alto.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "Includendo anche questi fondi fino alla data della chiusura, il rendimento medio scende al 5,5%, sotto quello dell'indice",
+   "explanation": "B è corretta: includendo i fondi chiusi o fusi con altri, «il rendimento medio scende al 5,5%, sotto quello dell'indice»; il vantaggio calcolato sui soli fondi attivi scompare. A attribuisce ai soli fondi chiusi il 5,5%, che è invece la media di tutti i fondi, attivi e chiusi insieme (ambito). C trasforma «di solito» in «tutti»: non ogni chiusura o fusione era seguita a risultati deludenti (quantificatore). D inverte la direzione della correzione: tenere conto dei fondi esclusi abbassa il rendimento medio, dal 7% al 5,5% (inferenza)."
+  },
+  {
+   "id": 1276,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "parafrasi",
+   "difficulty": 4,
+   "topic": "placebo, nocebo e doppio cieco",
+   "passage": "Nelle sperimentazioni controllate con placebo, una parte dei pazienti riceve una sostanza priva di principio attivo, identica nell'aspetto al farmaco. Il confronto è necessario perché le condizioni di molti pazienti migliorano anche con il placebo: in parte per l'andamento naturale della malattia, in parte per le aspettative di guarigione. L'effetto opposto, detto nocebo, si osserva quando chi riceve il placebo riferisce disturbi come mal di testa o nausea: in alcuni studi su farmaci contro il colesterolo, molti degli effetti indesiderati segnalati sono comparsi con la stessa frequenza nei due gruppi. Per evitare che le aspettative influenzino i risultati, negli studi in doppio cieco né i pazienti né i medici che li seguono sanno chi riceve il farmaco; il codice viene aperto solo alla fine. Il doppio cieco non è però sempre possibile, per esempio in chirurgia o in fisioterapia. L'uso del placebo è inoltre considerato non etico quando esiste già un trattamento efficace e il ritardo della cura potrebbe causare danni gravi.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Si parla di effetto nocebo quando un paziente migliora pur ricevendo una sostanza priva di principio attivo.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Il placebo non può essere usato quando per la malattia esiste già un trattamento efficace.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "C",
+     "text": "Il miglioramento osservato nel gruppo del placebo non dipende soltanto dalle aspettative di guarigione dei pazienti.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "Negli interventi chirurgici, dove il doppio cieco non è sempre possibile, l'effetto placebo non si osserva.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "in parte per l'andamento naturale della malattia, in parte per le aspettative di guarigione",
+   "explanation": "C è corretta: chi riceve il placebo migliora «in parte per l'andamento naturale della malattia, in parte per le aspettative di guarigione»; le aspettative, quindi, non sono l'unica causa. A scambia il nocebo con l'effetto placebo: il nocebo è la comparsa di disturbi in chi riceve il placebo, non un miglioramento (parafrasi). B omette la seconda condizione e rende la regola più ampia di quella del brano: il placebo è considerato non etico quando esiste già un trattamento efficace «e» il ritardo della cura potrebbe causare danni gravi (quantificatore). D ricava dall'impossibilità del doppio cieco l'assenza dell'effetto placebo, conclusione che il brano non autorizza: in chirurgia è difficile nascondere il trattamento, ma il brano non dice che l'effetto manchi (inferenza)."
+  },
+  {
+   "id": 1277,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "negazione",
+   "difficulty": 4,
+   "topic": "micorrize: simbiosi tra funghi e radici",
+   "passage": "Circa l'80% delle piante terrestri vive in simbiosi con funghi del suolo che formano le micorrize, associazioni tra i filamenti del fungo e le radici. I filamenti, molto più sottili delle radici, esplorano un volume di terreno assai maggiore e trasferiscono alla pianta acqua e sali minerali, in particolare fosforo; in cambio il fungo riceve zuccheri prodotti dalla fotosintesi, fino a un quinto del carbonio fissato dalla pianta secondo alcune stime. Il rapporto non è sempre vantaggioso per entrambi: nei terreni molto ricchi di fosforo, per esempio dopo forti concimazioni, alcune piante riducono la colonizzazione delle radici, e il fungo può diventare per loro un costo. Alcune famiglie, come quella dei cavoli e della senape, non formano micorrize. In un esperimento in serra, piantine di pino coltivate in terreno sterilizzato sono cresciute meno della metà di quelle coltivate in terreno contenente il fungo; la differenza si è però annullata quando al terreno sterilizzato è stato aggiunto fosforo.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Nei terreni concimati con molto fosforo, il fungo non rappresenta alcun costo per la pianta che lo ospita.",
+     "trap": "negazione"
+    },
+    {
+     "letter": "B",
+     "text": "Nell'esperimento, le piantine senza fungo sono cresciute quanto le altre quando hanno ricevuto fosforo.",
+     "trap": null
+    },
+    {
+     "letter": "C",
+     "text": "Il fungo riceve un quinto del carbonio che la pianta fissa con la fotosintesi.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "D",
+     "text": "Riducendo la colonizzazione delle radici, alcune piante rendono il terreno più ricco di fosforo.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "B"
+   ],
+   "evidence": "la differenza si è però annullata quando al terreno sterilizzato è stato aggiunto fosforo",
+   "explanation": "B è corretta: la differenza di crescita «si è però annullata quando al terreno sterilizzato è stato aggiunto fosforo»; con il fosforo, quindi, le piantine senza fungo sono cresciute quanto le altre. A rovescia ciò che il brano dice dei terreni molto ricchi di fosforo, dove il fungo «può diventare» un costo per la pianta (negazione). C trasforma una stima massima in un dato certo: il fungo riceve «fino a» un quinto del carbonio, e solo «secondo alcune stime» (parafrasi). D inverte il nesso: è il terreno già ricco di fosforo a portare alcune piante a ridurre la colonizzazione, non la riduzione ad arricchire il terreno (inferenza)."
+  },
+  {
+   "id": 1278,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "inferenza",
+   "difficulty": 4,
+   "topic": "rivoluzione dei prezzi del Cinquecento",
+   "passage": "Tra l'inizio del Cinquecento e la metà del Seicento i prezzi in Europa occidentale aumentarono di quattro-sei volte secondo i paesi, con forti differenze anche tra i beni: i cereali rincararono più dei manufatti, mentre i salari crebbero meno dei prezzi, così che il potere d'acquisto dei lavoratori diminuì. Il fenomeno, chiamato «rivoluzione dei prezzi», coincise con l'arrivo in Europa di grandi quantità di argento dalle miniere americane, che si intensificò dopo la metà del Cinquecento. Secondo una spiegazione classica, fu l'aumento della moneta in circolazione a far salire i prezzi. Molti storici osservano però che in alcune regioni i prezzi avevano cominciato a crescere prima dell'arrivo massiccio dell'argento, e attribuiscono un ruolo importante alla crescita della popolazione, che accrebbe la domanda di cereali a fronte di una produzione agricola poco capace di espandersi. Gli studi più recenti tendono a combinare le due spiegazioni, ritenendo che l'argento abbia amplificato una tendenza già in atto.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "La rivoluzione dei prezzi fu causata dall'aumento della moneta in circolazione dovuto all'argento americano.",
+     "trap": "parafrasi"
+    },
+    {
+     "letter": "B",
+     "text": "Il rincaro dei cereali fece crescere la popolazione dell'Europa occidentale.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Durante la rivoluzione dei prezzi i manufatti diventarono più economici di prima.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "D",
+     "text": "Per i lavoratori, l'aumento dei salari fu insufficiente a compensare quello dei prezzi.",
+     "trap": null
+    }
+   ],
+   "correct": [
+    "D"
+   ],
+   "evidence": "i salari crebbero meno dei prezzi, così che il potere d'acquisto dei lavoratori diminuì",
+   "explanation": "D è corretta: «i salari crebbero meno dei prezzi, così che il potere d'acquisto dei lavoratori diminuì»; l'aumento dei salari, quindi, fu insufficiente a compensare quello dei prezzi. A presenta come accertata la «spiegazione classica», che molti storici contestano e che gli studi più recenti combinano con la crescita della popolazione (parafrasi). B inverte il nesso: è la crescita della popolazione ad accrescere la domanda di cereali, non il rincaro dei cereali a far crescere la popolazione (inferenza). C trae da un confronto tra rincari una conclusione che il brano non autorizza: i cereali rincararono «più dei manufatti», il che non significa che i manufatti siano diventati più economici (inferenza)."
+  },
+  {
+   "id": 1279,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "scope",
+   "difficulty": 4,
+   "topic": "ereditarietà autosomica recessiva e portatori sani",
+   "passage": "Molte malattie genetiche, come la fibrosi cistica, si trasmettono con modalità autosomica recessiva: si manifestano soltanto in chi eredita una copia alterata del gene da entrambi i genitori. Chi possiede una sola copia alterata è un portatore sano: non ha sintomi, ma può trasmetterla ai figli. Ogni genitore trasmette a ciascun figlio una sola delle sue due copie del gene, scelta a caso. Se entrambi i genitori sono portatori, per ogni figlio la probabilità di essere malato è di una su quattro, quella di essere portatore sano di due su quattro e quella di non avere alcuna copia alterata di una su quattro. Queste probabilità valgono per ogni gravidanza in modo indipendente: avere già avuto un figlio malato non cambia il rischio per i successivi. In alcune popolazioni europee circa una persona su 25 è portatrice del gene alterato della fibrosi cistica; poiché la maggior parte dei portatori non sa di esserlo, alcuni paesi offrono un test alle coppie che programmano una gravidanza.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Se entrambi i genitori sono portatori, ogni figlio ha soltanto una probabilità su quattro di essere portatore sano.",
+     "trap": "scope"
+    },
+    {
+     "letter": "B",
+     "text": "Per una coppia di portatori che ha già avuto un figlio malato, il rischio per il figlio successivo è più basso.",
+     "trap": "inferenza"
+    },
+    {
+     "letter": "C",
+     "text": "Se un genitore è portatore sano e l'altro è privo di copie alterate del gene, nessuno dei loro figli può essere malato.",
+     "trap": null
+    },
+    {
+     "letter": "D",
+     "text": "In alcune popolazioni europee circa una persona su 25 è malata di fibrosi cistica.",
+     "trap": "parafrasi"
+    }
+   ],
+   "correct": [
+    "C"
+   ],
+   "evidence": "si manifestano soltanto in chi eredita una copia alterata del gene da entrambi i genitori",
+   "explanation": "C è corretta: la malattia si manifesta «soltanto in chi eredita una copia alterata del gene da entrambi i genitori»; se uno dei genitori non ha copie alterate, non può trasmetterne nessuna, quindi nessun figlio della coppia può ammalarsi. A attribuisce alla condizione di portatore sano la probabilità di una su quattro, che riguarda invece i figli malati e quelli senza copie alterate; per i portatori è di due su quattro (ambito). B contraddice l'indipendenza delle gravidanze: avere già avuto un figlio malato «non cambia il rischio per i successivi» (inferenza). D scambia i portatori con i malati: circa una persona su 25 è portatrice del gene alterato, non malata (parafrasi)."
+  },
+  {
+   "id": 1280,
+   "batch": "L2",
+   "level": 2,
+   "format": "epso4",
+   "tag": "tempo",
+   "difficulty": 4,
+   "topic": "dormienza dei semi e banca di semi del suolo",
+   "passage": "Molte piante producono semi che non germinano subito, anche quando trovano acqua e temperatura adatte: sono in uno stato di dormienza, che si interrompe solo dopo un segnale preciso. In diverse specie dei climi temperati il segnale è un periodo prolungato di freddo umido, che indica che l'inverno è passato; in altre è la luce, che raggiunge i semi quando il terreno viene smosso; in altre ancora il fumo di un incendio. I semi dormienti si accumulano nel suolo formando una «banca di semi», che in alcune specie resta vitale per decenni. Per questo, dopo l'aratura di un prato abbandonato, possono ricomparire piante assenti da molti anni dalla vegetazione visibile. In un esperimento, campioni di terreno prelevati da un bosco cresciuto su un campo di cereali abbandonato quarant'anni prima hanno prodotto piantine di tre specie infestanti dei cereali, che nel bosco non crescevano più; altre specie, anch'esse un tempo comuni nel campo ma con semi a vita breve, non sono invece ricomparse.",
+   "question": "Quale delle seguenti affermazioni è corretta?",
+   "options": [
+    {
+     "letter": "A",
+     "text": "Le tre specie infestanti erano già cresciute in quel terreno prima che vi si formasse il bosco.",
+     "trap": null
+    },
+    {
+     "letter": "B",
+     "text": "Quando sono stati prelevati i campioni, le tre specie infestanti crescevano ancora tra gli alberi del bosco.",
+     "trap": "tempo"
+    },
+    {
+     "letter": "C",
+     "text": "In tutte le specie dei climi temperati la dormienza dei semi si interrompe dopo un periodo prolungato di freddo umido.",
+     "trap": "quantificatore"
+    },
+    {
+     "letter": "D",
+     "text": "Le specie con semi a vita breve non sono ricomparse nei campioni perché nel bosco non crescevano più da anni.",
+     "trap": "inferenza"
+    }
+   ],
+   "correct": [
+    "A"
+   ],
+   "evidence": "tre specie infestanti dei cereali, che nel bosco non crescevano più",
+   "explanation": "A è corretta: le tre specie sono infestanti dei cereali che «nel bosco non crescevano più», e il brano le accomuna alle altre specie, «anch'esse un tempo comuni nel campo»: vi erano quindi cresciute quando il terreno era ancora un campo di cereali, prima che si formasse il bosco. B rovescia «non crescevano più» in «crescevano ancora»: al momento del prelievo le tre specie non crescevano nel bosco (tempo). C estende a tutte le specie dei climi temperati un segnale che il brano attribuisce a «diverse specie» (quantificatore). D dà una causa che il brano non stabilisce: anche le tre specie ricomparse non crescevano più nel bosco; ciò che distingue le specie non ricomparse sono i «semi a vita breve» (inferenza)."
   },
   {
    "id": 1281,

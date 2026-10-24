@@ -1,0 +1,162 @@
+[
+ {
+  "id": 1261,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B parafrasa «ogni paziente viene conteggiato nel gruppo a cui era stato assegnato, anche se ha interrotto la terapia»; «tutti» = «ogni», limitato al primo gruppo (correzione dell'autore verificata). A non dà la direzione della differenza; C e D rovesciano la regola. Etichette corrette."
+ },
+ {
+  "id": 1262,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "D è il complemento di «circa nove tumori su dieci». Corretto un fatto nel brano: 40–60 divisioni valgono per le cellule fetali (Hayflick), quelle adulte ne fanno circa 20; ora «alcune decine». Distrattori netti (proposta/timore presi per fatto, nesso invertito, «unico» vs «uno dei»)."
+ },
+ {
+  "id": 1263,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A ricalca la frase sul ritardo dovuto alla crescita lenta. B «esclusivamente» vs «soprattutto… molto meno»; C ruoli scambiati; D confronto non fatto (i «centri industriali» sono generici, non zone della città). Fatti su licheni e SO2 plausibili."
+ },
+ {
+  "id": 1264,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "C da «scambiata con un premio»; «poteva» non è più forte del brano. A rovescia la condizione legale; B inverte il nesso svilimento → prezzi; D scambia denominazione e metallo. Legge di Gresham descritta correttamente."
+ },
+ {
+  "id": 1265,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "C verificata sui numeri (6>4; 1<2; 10<15). Dati coerenti: quota di gravi ≈56% in X e ≈15% in Y. A numeri giusti ma nesso causale inventato; B ospedali scambiati; D «tutte» contro il limite finale."
+ },
+ {
+  "id": 1266,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A: mais C4 (energia supplementare, fotorespirazione quasi azzerata = meno carbonio sprecato) vs frumento C3. C è vera nella realtà (efficienza idrica delle C4) ma non è nel brano: trappola fuori testo legittima, A è l'unica sostenuta riga per riga. Fatti C3/C4 (3% delle specie, riso C4) corretti."
+ },
+ {
+  "id": 1267,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D collega 1 − 1/R0 e la dipendenza di R0 dalle abitudini sociali; «può» non è più forte del brano. A popolazione «in cui nessuno è immune»; B ignora i focolai locali (quantificatore, come dichiarato dall'autore); C inverte. R0 del morbillo 12–18 e soglia >90% corretti."
+ },
+ {
+  "id": 1268,
+  "blind": "B",
+  "key": "B",
+  "confidence": "medio-alta",
+  "verdict": "ok",
+  "note": "B parafrasa la frase «Poiché la Chiesa condannava…»; il «perché» regge il modo del guadagno (sul cambio, non come interesse). A girata nel Seicento; C rischio dei cambi, non furti; D moneta della piazza del corrispondente. Fatti storici corretti (lettera di cambio dal XIII secolo, girata affermata nel XVII)."
+ },
+ {
+  "id": 1269,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A tiene il «di norma» del brano. B «sempre e soltanto» contro i rarissimi casi paterni. C è vera nella realtà (mtDNA muta più in fretta) ma il brano non fa il confronto: fuori testo legittimo. D fonde organi colpiti e quota di copie mutate. 16.569 pb ≈ «circa 16.500»."
+ },
+ {
+  "id": 1270,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D = «riduzione inferiore a quella osservata» (35%). Dubbio dell'autore su A: «esattamente del 15%» cade sia per la riserva sul traffico sia perché il brano non fa la sottrazione. B gruppi scambiati; C solo «potevano differire»."
+ },
+ {
+  "id": 1271,
+  "blind": "B",
+  "key": "B",
+  "confidence": "media",
+  "verdict": "fixed",
+  "note": "B si reggeva su «in molti tratti la vegetazione non si è ripresa», che stava dentro la tesi riportata di «altri ricercatori» (la stessa distinzione che fa cadere C). Spezzata la frase: ora è una constatazione del brano («In molti tratti, comunque, …»). Evidenza e spiegazione allineate. A confronto non fatto; D nesso invertito."
+ },
+ {
+  "id": 1272,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "C: 45/244 ≈ 18% malati tra i positivi; margine netto sotto 1/5. Numeri coerenti (9.751 + 199 = 9.950; specificità 98,0%). A è la specificità; B confonde 2% dei sani con 2% dei positivi; D la sensibilità resta uguale."
+ },
+ {
+  "id": 1273,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D = quota che cala e spesa assoluta che cresce, con «in genere». A confronto con famiglie tedesche non fatto; B quota/valore assoluto scambiati; C «non la usano più» contro «con cautela». Fatti: Engel 1857, dati belgi; quote UE attuali 10–17% per gran parte dell'Europa occidentale (Irlanda e Lussemburgo sotto, ma il brano dice «in genere»)."
+ },
+ {
+  "id": 1274,
+  "blind": "A",
+  "key": "A",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "A: «prevalgono» = maggioranza; pigne che si aprono ogni anno = semi liberati senza incendio. B «tutti» contro la variabilità intraspecifica; C nesso invertito; D strategie di querce e arbusti scambiate. Fatti sulla serotinia corretti."
+ },
+ {
+  "id": 1275,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B: con i fondi chiusi la media scende al 5,5%, «sotto quello dell'indice». A attribuisce ai soli fondi chiusi la media di tutti; C «di solito» → «tutti»; D direzione invertita."
+ },
+ {
+  "id": 1276,
+  "blind": "C",
+  "key": "C",
+  "confidence": "alta",
+  "verdict": "fixed",
+  "note": "C: miglioramento «in parte» per l'andamento naturale. Trappola di B da negazione a quantificatore: omette la condizione del danno grave e generalizza il divieto; spiegazione allineata. A nocebo/placebo scambiati; D non autorizzata. Fatti (nocebo con le statine) corretti."
+ },
+ {
+  "id": 1277,
+  "blind": "B",
+  "key": "B",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "B = «la differenza si è però annullata» con il fosforo nel terreno sterilizzato. A rovescia «può diventare un costo»; C toglie «fino a» e «secondo alcune stime»; D nesso invertito. Fatti (≈80% delle piante, Brassicacee senza micorrize, fino al 20% del carbonio) corretti."
+ },
+ {
+  "id": 1278,
+  "blind": "D",
+  "key": "D",
+  "confidence": "alta",
+  "verdict": "ok",
+  "note": "D ricalca «i salari crebbero meno dei prezzi… il potere d'acquisto diminuì». Dubbio dell'autore su C: «rincararono più dei manufatti» dentro un rialzo generale di 4–6 volte implica che anche i manufatti rincararono; C non ha alcun appoggio. A spiegazione classica presa per fatto; B nesso invertito."
+ },
+ {
+  "id": 1279,
+  "blind": "C",
+  "key": "C",
+  "confidence": "medio-alta",
+  "verdict": "ok",
+  "note": "C segue per deduzione da «soltanto in chi eredita una copia alterata… da entrambi i genitori»: «nessuno» non è più forte del «soltanto» del brano. A 1/4 invece di 2/4; B contro l'indipendenza; D portatori/malati. Fatti sulla fibrosi cistica (1 su 25 portatori) corretti."
+ },
+ {
+  "id": 1280,
+  "blind": "A",
+  "key": "A",
+  "confidence": "media",
+  "verdict": "fixed",
+  "note": "Dubbio dell'autore: A si reggeva sul solo presupposto di «non crescevano più» (i semi potevano sembrare arrivati da fuori). Aggiunto «anch'esse» («altre specie, anch'esse un tempo comuni nel campo ma con semi a vita breve»): ora il brano dice che anche le tre specie erano nel campo. D cade più nettamente (la causa che indica vale per entrambi i gruppi). Spiegazione di A aggiornata."
+ }
+]
