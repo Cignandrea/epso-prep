@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b7';
+  const VERSION = '1.2.0-b8';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -89,12 +89,13 @@ App.main = (() => {
       setCard({ label: 'Simulazione completata', title: 'Rivedi i risultati', sub: 'La revisione resta qui finché non premi «Chiudi».', btn: 'Rivedi i risultati', onClick: () => App.sim.resume() });
     } else if (sim) {
       setCard({ label: 'In corso', title: 'Simulazione', sub: 'Il tempo continua a scorrere, come nella prova vera: riprendi subito.', btn: 'Riprendi la simulazione', onClick: () => App.sim.resume() });
-    } else if (cur) {
-      const title = cur.step ? cur.step.title : App.session.MODE_LABEL[cur.mode];
+    } else if (cur && cur.step) {
+      // In pausa c'è una tappa del percorso: riprenderla È la prossima tappa.
       const where = cur.lessonId && !cur.lessonSeen ? 'dalla scheda' : `dalla domanda ${Math.min(cur.answers.length + 1, cur.items.length)} di ${cur.items.length}`;
-      setCard({ label: 'In pausa', title, sub: `Riprendi ${where}: niente è andato perso.`, btn: 'Riprendi', onClick: () => App.session.resume() });
+      setCard({ label: 'In pausa', title: cur.step.title, sub: `Riprendi ${where}: niente è andato perso.`, btn: 'Riprendi', onClick: () => App.session.resume() });
     } else {
-      pathCard(App.path.next(), c);
+      // Un allenamento libero in pausa non copre il percorso: la tappa resta in primo piano, la sessione va sotto.
+      pathCard(App.path.next(), c, cur);
     }
     paintToday(c);
     paintTodo();
@@ -102,18 +103,22 @@ App.main = (() => {
     App.ui.show('home', { title: '' });
   }
 
-  function pathCard(nx, c) {
-    const start = () => App.path.start(nx);
+  function pathCard(nx, c, paused = null) {
+    // Con una sessione libera in pausa, iniziare una tappa chiede prima di chiuderla (le risposte date restano).
+    const go = (step) => async () => { if (paused && !(await closePausedIfAny())) return; App.path.start(step); };
+    const start = go(nx);
     const first = c.total === 0;
-    const later = () => { const s = shortStep(); return { text: `Non ora: ${s.title} · ${s.min}′`, onClick: () => App.path.start(s) }; };
+    const resumeAlt = paused ? { text: `In pausa: ${App.session.MODE_LABEL[paused.mode] || 'sessione'}, ${paused.answers.length} di ${paused.items.length} fatte · Riprendi`, onClick: () => App.session.resume() } : null;
+    const later = () => { if (resumeAlt) return resumeAlt; const s = shortStep(); return { text: `Non ora: ${s.title} · ${s.min}′`, onClick: go(s) }; };
     // In settimana la simulazione resta a portata di mano accanto alla tappa del giorno.
-    const simAlt = nx.simAlt ? { text: `Oppure: ${nx.simAlt.title} · 65′`, onClick: () => App.path.start(nx.simAlt) } : null;
+    const simAlt = resumeAlt || (nx.simAlt ? { text: `Oppure: ${nx.simAlt.title} · 65′`, onClick: go(nx.simAlt) } : null);
     const meta = (min) => (min ? `${min}′ →` : '→');
     switch (nx.kind) {
       case 'lesson': case 'drill': case 'review': {
         const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : `${nx.phase} · tappa ${c.total + 1}`;
         const note = first ? 'Puoi fermarti quando vuoi: alla riapertura riparti dallo stesso punto.'
-          : nx.boosted ? 'In questa prova vai forte: la scheda resta, le domande sono di livello prova.'
+          : nx.boosted === 'forte' ? 'In questa prova vai forte: la scheda resta, le domande sono di livello prova, prima le più difficili.'
+          : nx.boosted ? 'Nella misura sei sopra la soglia: la scheda resta, le domande sono di livello prova.'
           : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
         setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: simAlt });
         break;
@@ -126,9 +131,9 @@ App.main = (() => {
         break;
       case 'sim':
         if (nx.mode === 'baseline') {
-          setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Serve a capire da dove parti: il percorso darà più spazio a ciò che serve. Meglio sul PC o sul telefono aperto, senza pause.', alt: later() });
+          setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Serve a capire da dove parti: il percorso darà più spazio a ciò che serve. Falla senza pause e sul dispositivo dove segui il percorso: i dati restano lì.', alt: later() });
         } else {
-          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, schermo intero, niente carta e niente pause: come mercoledì 11/11.', alt: later() });
+          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, schermo intero, niente carta e niente pause: come mercoledì 11/11. Poi esporta i dati e importali sul telefono.', alt: later() });
         }
         break;
       case 'rest':
@@ -146,6 +151,8 @@ App.main = (() => {
       default:
         setCard({ label: 'Parte 1', title: 'Parte 1 sostenuta', sub: 'I risultati della Parte 1 arrivano da EPSO dopo la Parte 1. Per la Parte 2 si riparte dal Project.', btn: null });
     }
+    // Nei giorni senza alternativa (riposo, scarico) la sessione in pausa resta comunque raggiungibile.
+    if (resumeAlt && $('btn-alt').hidden) { $('btn-alt').hidden = false; $('btn-alt').textContent = resumeAlt.text; $('btn-alt').onclick = resumeAlt.onClick; }
   }
   // Alternativa breve a una tappa lunga (simulazione, misura, blocco): la prossima tappa vera del percorso.
   const shortStep = () => App.path.shortStep();

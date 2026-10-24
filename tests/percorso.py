@@ -165,6 +165,22 @@ def run(p, vp):
     page.screenshot(path=f'{OUT}/percorso-{name}-sim-risultati.png', full_page=True)
     page.click('#sim-close'); page.wait_for_timeout(200)
     check(f'{tag} home dopo la sim: percorso intatto', 'tappa 4 di 14' in page.text_content('#next-label'), page.text_content('#next-label'))
+
+    # Allenamento libero in pausa: la tappa del percorso resta in primo piano e la sessione va nel link sotto
+    # (sul Fold, il 24/10, un allenamento in pausa nascondeva la misura di partenza).
+    page.click('#btn-train-v'); page.wait_for_timeout(250)
+    answer_current(page); page.click('#s-next'); page.wait_for_timeout(150)
+    page.click('#s-quit'); page.wait_for_timeout(150)
+    page.click('#modal-root .modal-actions .btn-primary'); page.wait_for_timeout(250)  # «Metti in pausa»
+    check(f'{tag} allenamento in pausa: la tappa resta in primo piano', 'tappa 4 di 14' in page.text_content('#next-label') and not page.text_content('#btn-next').strip().startswith('Riprendi'), page.text_content('#next-label') + ' / ' + page.text_content('#btn-next'))
+    check(f'{tag} allenamento in pausa: link «Riprendi» sotto', page.is_visible('#btn-alt') and 'In pausa' in page.text_content('#btn-alt') and 'Riprendi' in page.text_content('#btn-alt'), page.text_content('#btn-alt'))
+    page.screenshot(path=f'{OUT}/percorso-{name}-home-pausa-libera.png')
+    page.click('#btn-next'); page.wait_for_timeout(250)
+    check(f'{tag} tappa con un allenamento in pausa: chiede di chiuderlo', page.is_visible('#modal-root .modal') and 'pausa' in page.text_content('#modal-title'), page.text_content('#modal-root'))
+    page.click('#modal-root .modal-actions .btn-primary'); page.wait_for_timeout(250)
+    check(f'{tag} tappa avviata dopo la chiusura', page.is_visible('#view-lesson'), page.text_content('#lesson-title') if page.is_visible('#view-lesson') else '')
+    page.click('#lesson-back'); page.wait_for_timeout(200)
+    check(f'{tag} home: ora in pausa c\'è la tappa', page.text_content('#btn-next').strip().startswith('Riprendi') and not page.is_visible('#btn-alt'), page.text_content('#next-title'))
     page.click('#nav-stato'); page.wait_for_timeout(200)
     check(f'{tag} Stato: si apre', page.is_visible('#view-stato'))
     check(f'{tag} Stato: righelli delle soglie', len(page.query_selector_all('#stato-gauges .gauge')) == 2)

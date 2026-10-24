@@ -58,21 +58,25 @@ App.sim = (() => {
     startWith(bank, 'section', step, { kind: 'block', training: true, counts: { [bank]: { n, minutes } } });
   }
   // Domande dall'allenamento (misura di partenza e blocchi): verbale nuovo prima, generati al livello della prova.
-  function pickTraining(bank, n) {
+  // hard (chi va forte nei blocchi del percorso): verbale dai brani più difficili, numerico e astratto ai livelli 2–3.
+  function pickTraining(bank, n, hard = false) {
     if (bank === 'verbale') {
-      const items = App.select.pickVerbal(n, { levels: [2, 1], due: false });
+      const items = App.select.pickVerbal(n, { levels: hard ? [2] : [2, 1], due: false, hard });
       const stats = App.store.itemStats();
       return { items, fresh: items.filter((q) => !stats.has(`${q.bank}#${q.id}`)).length };
     }
-    const items = App.select.genPick(bank, n, bank === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
+    const items = App.select.genPick(bank, n, hard ? [2, 3, 3] : bank === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
     return { items, fresh: items.length };
   }
 
   function startWith(scope, timerMode, step, opts = {}) {
     const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef).map((d) => ({ ...d, ...((opts.counts || {})[d.bank] || {}) }));
     const sections = [];
+    const st = step ? App.path.state() : null;
     for (const d of defs) {
-      const pick = opts.training ? pickTraining(d.bank, d.n) : App.select.pickSim(d.bank, d.n, { reserveFirst: Boolean(step) });
+      // Blocchi e simulazioni del percorso più difficili nelle prove dove vai forte; la misura di partenza resta uguale per tutti.
+      const hard = Boolean(st) && step.id !== 'bm' && App.path.strong(st, d.bank);
+      const pick = opts.training ? pickTraining(d.bank, d.n, hard) : App.select.pickSim(d.bank, d.n, { reserveFirst: Boolean(step), hard });
       for (const q of pick.items) App.banks.remember(q);
       if (pick.items.length < d.n) {
         App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}.`);
@@ -575,6 +579,7 @@ App.sim = (() => {
       });
     }
     $('sim-copy').onclick = async () => { (await copyText(summaryText())) ? App.ui.toast('Riepilogo copiato: incollalo in chat.') : App.ui.toast('Copia non riuscita.'); };
+    $('sim-export').onclick = () => $('st-export').click(); // stesso export dello Stato
     $('sim-close').onclick = () => { App.store.setSim(null); SIM = null; App.main.home(); };
     App.ui.show('sim-results', { title: 'Simulazione' });
   }

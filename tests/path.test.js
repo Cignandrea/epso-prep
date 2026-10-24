@@ -150,6 +150,23 @@ PATH.p2 = { i: 0 };
 n = P.next(at('2026-10-26T10:00:00+01:00'));
 check('drill verbale: prima i brani più difficili', n.slot === 'v' && n.pick.hard === true, JSON.stringify(n.pick));
 
+// ── 8c. Verbale solido (misura 7/10): brani di livello prova senza la priorità ai difficili; numerico e astratto forti:
+// una tappa di verbale in più nel ciclo ──
+reset();
+mark(['b01', 'bm']);
+PATH.done.bm.by = { verbale: { n: 10, correct: 7 }, numerico: { n: 5, correct: 5 }, astratto: { n: 5, correct: 4 } };
+n = P.next(at('2026-10-24T12:00:00+02:00'));
+check('verbale 7/10 nella misura: scheda con brani di livello prova, non i più difficili', n.id === 'b02' && n.pick.levels.join() === '2' && n.pick.hard === false && n.boosted === 'solido' && /livello prova/.test(n.sub), JSON.stringify(n));
+mark(['b02']);
+n = P.next(at('2026-10-24T12:10:00+02:00'));
+check('astratto 4/5: forte, livelli 2 e 3', n.id === 'b03' && n.pick.gen.join() === '2,3' && n.boosted === 'forte', JSON.stringify(n.pick));
+const cyc = P.cycleFor(P.state());
+check('numerico e astratto forti, verbale al 70%: un verbale in più nel ciclo', cyc.keys.join() === 'v,n,v,a5,v,r' && /più verbale/.test(cyc.why), JSON.stringify(cyc));
+PATH.done.bm.by = { verbale: { n: 10, correct: 5 }, numerico: { n: 5, correct: 3 }, astratto: { n: 5, correct: 2 } };
+mark(['b03', 'b04']);
+n = P.next(at('2026-10-24T12:20:00+02:00'));
+check('verbale 5/10: la scheda resta al livello base', n.id === 'b05' && n.pick.levels.join() === '1' && !n.boosted, JSON.stringify(n));
+
 // ── 9. Simulazione 2 e scarico ──
 reset();
 mark(basiIds());

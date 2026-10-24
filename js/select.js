@@ -14,7 +14,11 @@ App.select = (() => {
   // Brani di livello prova riservati alle simulazioni: la seconda metà di ogni lotto da 20 (id 1111–1120, 1131–1140…).
   // Riserve per le due simulazioni complete: 40 brani di livello prova dei primi quattro lotti (id 1101–1180, metà di
   // ogni lotto). I lotti successivi vanno tutti all'allenamento.
-  const isSimReserve = (q) => q.bank === 'verbale' && q.level >= 2 && typeof q.id === 'number' && q.id <= 1180 && ((q.id - 1101) % 20 + 20) % 20 >= 10;
+  // Riserve delle simulazioni: nei lotti 1–4 la seconda metà di ogni blocco da 20; nei lotti di livello alto (1261–1300)
+  // gli ultimi 5 di ogni lotto, così le simulazioni hanno brani difficili anche dopo molti drill.
+  const isSimReserve = (q) => q.bank === 'verbale' && q.level >= 2 && typeof q.id === 'number' && (
+    (q.id <= 1180 && ((q.id - 1101) % 20 + 20) % 20 >= 10) ||
+    (q.id >= 1261 && q.id <= 1300 && (q.id - 1261) % 20 >= 15));
 
   // Pesi delle trappole: 1 + errori veri negli ultimi 14 giorni (max 5); un errore dato da «Sicuro» conta doppio,
   // perché è la trappola che non si vede. Le bianche non contano.
@@ -281,15 +285,21 @@ App.select = (() => {
   // Simulazione: verbale mai visto (prima le riserve del livello prova); numerico e astratto generati.
   // Le riserve vanno prima solo nelle simulazioni del percorso: una simulazione a scelta usa prima gli altri brani nuovi,
   // così non consuma i brani tenuti per la simulazione n. 2.
-  function pickSim(bankId, n, { reserveFirst = true } = {}) {
+  // hard: chi va forte in questa prova (path.strong) ha numerico e astratto ai livelli 2–3 e, nel verbale, un quarto
+  // della prova dai brani di livello alto riservati.
+  function pickSim(bankId, n, { reserveFirst = true, hard = false } = {}) {
     if (bankId !== 'verbale') {
-      const items = genPick(bankId, n, bankId === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
+      const items = genPick(bankId, n, hard ? [2, 3, 3] : bankId === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
       return { items, fresh: items.length, available: Infinity };
     }
     const stats = App.store.itemStats();
     const all = pool('verbale', { formats: ['epso4'] });
     const unseen = all.filter((q) => !stats.has(key(q)));
-    const reserve = shuffle(unseen.filter((q) => q.level >= 2 && isSimReserve(q)));
+    let reserve = shuffle(unseen.filter((q) => q.level >= 2 && isSimReserve(q)));
+    if (hard) {
+      const top = reserve.filter((q) => (q.difficulty || 0) >= 4).slice(0, Math.round(n / 4));
+      reserve = [...top, ...reserve.filter((q) => !top.includes(q))];
+    }
     const other = shuffle(unseen.filter((q) => q.level >= 2 && !isSimReserve(q)));
     const order = [...(reserveFirst ? [...reserve, ...other] : [...other, ...reserve]), ...shuffle(unseen.filter((q) => q.level < 2))];
     const chosen = order.slice(0, n);

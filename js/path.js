@@ -120,6 +120,9 @@ App.path = (() => {
     const keys = ['v', 'n', 'v', a != null && a >= 0.8 ? 'a5' : 'a', 'r'];
     const why = [];
     if (v != null && v < 0.6) { keys.splice(4, 0, 'v'); why.push('più verbale'); }
+    // Numerico e astratto ben sopra la soglia (80% o più tutti e due): una tappa di verbale in più, perché è l'unico
+    // punteggio che entra in graduatoria.
+    else if (v != null && v < 0.9 && n != null && n >= 0.8 && a != null && a >= 0.8) { keys.splice(4, 0, 'v'); why.push('più verbale, perché numerico e astratto sono già ben sopra la soglia'); }
     if (n != null && n < 0.5) { keys.splice(2, 0, 'n'); why.push('più numerico'); }
     if (a != null && a < 0.5) { keys.splice(keys.length - 1, 0, 'a'); why.push('più astratto'); }
     if (a != null && a >= 0.8) why.push('astratto più breve');
@@ -158,14 +161,23 @@ App.path = (() => {
     if (m && m.n && m.correct / m.n >= 0.75) return true;
     return (recentRate(bank) || 0) >= 0.85;
   }
+  // Verbale «solido»: misura di partenza al 60% o più (sopra la soglia con margine), oppure almeno il 70% delle ultime
+  // 8 risposte. Le domande di livello base non allenano più nulla: si passa ai brani di livello prova.
+  function solid(st, bank) {
+    const m = st.done.bm && st.done.bm.by && st.done.bm.by[bank];
+    if (m && m.n && m.correct / m.n >= 0.6) return true;
+    return (recentRate(bank) || 0) >= 0.7;
+  }
   // Le schede delle Basi di una prova in cui vai forte passano a domande di livello prova (nel verbale prima i brani
-  // più difficili): il metodo resta, la difficoltà no.
+  // più difficili); nel verbale basta essere «solidi» per i brani di livello prova. Il metodo resta, la difficoltà no.
   function boost(step, st) {
     const p = step.pick;
-    if (!p || !p.bank || !strong(st, p.bank)) return step;
-    const pick = p.bank === 'verbale' ? { ...p, levels: [2], formats: ['epso4'], hard: true } : { ...p, gen: [2, 3] };
+    if (!p || !p.bank) return step;
+    const isStrong = strong(st, p.bank);
+    if (!isStrong && !(p.bank === 'verbale' && solid(st, p.bank))) return step;
+    const pick = p.bank === 'verbale' ? { ...p, levels: [2], formats: ['epso4'], hard: isStrong } : { ...p, gen: [2, 3] };
     const sub = step.sub.replace(/(\d+) domande/, '$1 domande di livello prova').replace(/(\d+) serie di figure/, '$1 serie di livello prova');
-    return { ...step, pick, sub, boosted: true };
+    return { ...step, pick, sub, boosted: isStrong ? 'forte' : 'solido' };
   }
 
   function cycleStep(st, now, basiLeft = null) {
