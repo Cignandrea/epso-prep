@@ -28,13 +28,15 @@ App.lessons = (() => {
         '1) Leggi il brano una volta, per capire di che cosa parla. 2) Leggi le quattro opzioni. 3) Per ognuna cerca **la frase che la dimostra o la smentisce**. 4) Scarta: resta quella con una prova nel testo.',
         '**Plausibile non basta**: un\'affermazione vera nel mondo ma assente dal brano è sbagliata.',
         'Decidono le parole piccole: «tutti» o «alcuni», «può» o «deve», «previsto» o «avvenuto», «stimato» o «misurato».',
+        '**Due opzioni plausibili?** Vince quella che riprende il brano con più precisione: niente parole aggiunte, nessuna sfumatura cambiata. Leggile sempre tutte prima di scegliere.',
       ],
       example: [
         'Brano: «Il 70% dei comuni ha aderito al progetto.»',
         '✓ «Non tutti i comuni hanno aderito»: segue per forza, il 30% no.',
         '✗ «La maggior parte dei cittadini sostiene il progetto»: il brano parla di comuni, non di cittadini.',
       ],
-      tip: 'Se dopo 2′ restano due opzioni, scegli quella che puoi indicare riga per riga, metti il segnalibro e vai avanti.',
+      tip: 'Se dopo 2′ restano due opzioni, scegli quella che puoi indicare riga per riga, metti il segnalibro e vai avanti. Se sei in ritardo (meno di 1′ a domanda), passa alla scansione: cerca nel brano le parole chiave dell\'opzione e leggi solo quelle frasi; è più veloce ma sbaglia di più, serve solo a recuperare tempo.',
+      src: 'Lettura analitica e scansione: idea del manuale Maggioli, Libro I, cap. 2, rielaborata per il ritmo EPSO (1′45″ a domanda)',
     },
     {
       id: 'v-quant', test: 'Verbale', title: 'Quantificatori e negazioni',

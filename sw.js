@@ -1,7 +1,7 @@
 // Service worker: cache dell'app per l'uso offline, versionata.
 // VERSION deve coincidere con App.main.VERSION (js/main.js): è il nome della cache, quindi ogni build
 // invalida la precedente (T-061). Il controllo è in tests/smoke.py.
-const VERSION = '1.2.0-b12';
+const VERSION = '1.2.0-b13';
 const CACHE = `euprep-${VERSION}`;
 // CSS e script con ?v=VERSION, come in index.html: un HTML nuovo non pesca mai file vecchi dalla cache (tools/bump.py).
 const V = (u) => `${u}?v=${VERSION}`;

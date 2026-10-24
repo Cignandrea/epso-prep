@@ -44,3 +44,9 @@ Sulla PWA (GitHub Pages) i dati stanno nel `localStorage` del dispositivo: expor
 
 ## Test
 `TZ=Europe/Rome node tests/path.test.js` · `node tests/twins.test.js` · `node tests/gen_numerico.test.js` · `node tests/gen_multi.test.js` · `node tests/gen_astratto.test.js` · `node tests/gen_astratto2.test.js` · `python3 tests/percorso.py` (end-to-end sul Fold 8 in 4 posture + PC) · `python3 tests/sync.py`. Versione: `App.main.VERSION` = `VERSION` in `sw.js`.
+
+## Banca privata (v1.2.0-b12)
+- Quesiti che non possono stare in un repository pubblico (per esempio trascritti dal proprio libro) si caricano da **Progressi › Dati › Importa JSON**: un file con `"kind": "eps-private-bank"`, `bank: "verbale"` e `questions` nello stesso schema della banca verbale (id ≥ 5000, formato `epso4` a 4 opzioni o `mag5` a 5, `correct`, `explanation`, `src` con libro e pagina).
+- Restano solo nel browser (`eps2.privbank`): niente export, niente sincronizzazione, «Azzera tutto» non li tocca; «Rimuovi» li toglie.
+- Entrano nell'allenamento verbale; le simulazioni usano solo il formato a 4 opzioni. Sotto la spiegazione compare la fonte (libro e pagina).
+- Il file della banca non va mai nel repository (`.gitignore`).
