@@ -1,4 +1,4 @@
-# EU Prep Suite — v1.2 «Percorso» (Parte 1)
+# EU Prep Suite — v1.3 «Ultima settimana» (Parte 1)
 
 Mappa per chi lavora sull'app dopo (persona o AI). Una pagina.
 
@@ -11,6 +11,9 @@ Fasi:
 - **Scarico** 08–09/11, riposo 10/11, prova.
 - **Recupero**: a 12 giorni o meno dalla prova, le schede delle Basi rimaste si leggono dentro i drill della stessa prova.
 - **Obiettivo del giorno**: 3 tappe nei feriali, 6 nel fine settimana; misura e simulazione valgono 3.
+
+## Ultima settimana (v1.3, dal 03/11)
+Dal 03/11 `js/path.js` non propone più Basi e ciclo: `SPRINT` è una **coda di 6 sessioni da 30′** nel formato della prova (blocchi nel clone TAO con `counts` su una o due prove, ognuna col suo timer, difficoltà esatta `exact`: verbale di livello prova a 4 opzioni, numerico e astratto ai livelli 2–3), ognuna preceduta da una scheda di 2′. Una sessione al giorno: fatta quella, la home dice «Per stasera basta» e tiene la successiva a un tocco; una sera saltata non si accumula. Sabato 07 e domenica 08 la **simulazione completa** (`SPRINT_SIM`, 65′, exact) viene prima, con la sessione da 30′ come «Non oggi». Lunedì 09 chiude «Prima della prova» (`SPRINT_FINAL`), martedì riposo. Obiettivo del giorno: 1 (`targetFor`). Test: `tests/path.test.js` §9 e `python3 tests/sprint.py` (PC e Fold; `--date` per simulare un giorno).
 
 ## Design
 «Registro d'esame»: carta e inchiostro, IBM Plex Sans/Mono/Serif in `fonts/` (OFL, in locale per l'uso offline), il giallo dell'evidenziatore come unico accento, verde e rosso solo per corretto e sbagliato. Brani in serif, numeri e tempi in monospazio, opzioni come bolle del foglio risposte. Tema chiaro e scuro con gli stessi token (`css/style.css`, inizio file). Il **clone TAO** (in fondo al CSS) resta bianco e fedele alla piattaforma, con Answer Elimination e Answer Masking.

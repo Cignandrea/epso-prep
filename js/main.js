@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.2.0-b13';
+  const VERSION = '1.3.0-b1';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -35,10 +35,11 @@ App.main = (() => {
     when.textContent = 'mer 11/11 · 14:00';
   }
 
-  // Calendario fino alla prova: una casella per giorno, la barra sono le tappe fatte rispetto all'obiettivo del giorno.
-  const CAL_START = '2026-10-23';
-  const CAL_MARKS = { '2026-10-31': 'S1', '2026-11-07': 'S2', '2026-11-06': 'PR', '2026-11-10': 'R', '2026-11-11': 'P1' };
-  const MARK_LABEL = { S1: 'simulazione n. 1', S2: 'simulazione n. 2', PR: 'test dei prerequisiti entro le 11:59', R: 'riposo', P1: 'Parte 1 alle 14:00' };
+  // Calendario dell'ultima settimana: una casella per giorno, la barra è la sessione fatta rispetto all'obiettivo del
+  // giorno (una sessione da 30′; nel fine settimana la simulazione).
+  const CAL_START = '2026-11-02';
+  const CAL_MARKS = { '2026-11-07': 'S', '2026-11-08': 'S', '2026-11-09': 'PP', '2026-11-10': 'R', '2026-11-11': 'P1' };
+  const MARK_LABEL = { S: 'simulazione completa, sabato o domenica', PP: '«Prima della prova»', R: 'riposo', P1: 'Parte 1 alle 14:00' };
   function paintCalendar(now = new Date()) {
     const today = todayKey(now);
     const counts = App.path.dayCounts();
@@ -50,7 +51,7 @@ App.main = (() => {
     strip.replaceChildren(...days.map((d) => {
       const k = todayKey(d), dow = d.getDay(), weekend = dow === 0 || dow === 6;
       const n = counts[k] || 0;
-      const target = weekend ? App.path.PER_DAY_WEEKEND : App.path.PER_DAY;
+      const target = App.path.targetFor(d);
       const cls = ['cal-day', k < today ? 'is-past' : k === today ? 'is-today' : 'is-future', weekend && 'is-weekend', k === App.path.EXAM.day && 'is-exam', k === App.path.REST && 'is-rest'].filter(Boolean).join(' ');
       const fill = el('i');
       fill.style.setProperty('--fill', String(Math.min(1, n / target)));
@@ -96,7 +97,7 @@ App.main = (() => {
       // Un allenamento libero in pausa non copre il percorso: la tappa resta in primo piano, la sessione va sotto.
       pathCard(App.path.next(), c, cur);
     }
-    paintToday(c);
+    paintToday(c, App.path.next());
     paintNudge();
     App.ui.show('home', { title: '' });
   }
@@ -110,17 +111,36 @@ App.main = (() => {
     const later = () => { if (resumeAlt) return resumeAlt; const s = shortStep(); return { text: `Non ora: ${s.title} · ${s.min}′`, onClick: go(s) }; };
     // In settimana la simulazione resta a portata di mano accanto alla tappa del giorno.
     const simAlt = resumeAlt || (nx.simAlt ? { text: `Oppure: ${nx.simAlt.title} · 65′`, onClick: go(nx.simAlt) } : null);
+    // Ultima settimana: l'alternativa è nella tappa stessa (la sessione da 30′ accanto alla simulazione, o viceversa).
+    const sprintAlt = resumeAlt || (nx.alt ? { text: `${nx.kind === 'sim' ? 'Non oggi' : 'Oppure'}: ${nx.alt.title} · ${nx.alt.min}′`, onClick: go(nx.alt) } : null);
+    const sprint = nx.phase === 'Ultima settimana' || nx.id === 'sp-sim';
     const meta = (min) => (min ? `${min}′ →` : '→');
     switch (nx.kind) {
       case 'lesson': case 'drill': case 'review': {
-        const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : `${nx.phase} · tappa ${c.total + 1}`;
-        const note = first ? 'Puoi fermarti quando vuoi: riparti dallo stesso punto.'
+        const label = nx.phase === 'Basi' && nx.index ? `Basi · tappa ${nx.index} di ${nx.of}` : sprint ? 'Ultima settimana · chiusura' : `${nx.phase} · tappa ${c.total + 1}`;
+        const note = sprint ? 'Poi prepara il PC con la checklist: domani riposo, mercoledì la prova.'
+          : first ? 'Puoi fermarti quando vuoi: riparti dallo stesso punto.'
           : (nx.lesson && nx.phase !== 'Basi' ? 'Prima del drill, la scheda di questa prova che non avevi ancora letto.' : nx.why || '');
-        setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: simAlt });
+        setCard({ label, title: nx.title, sub: nx.sub, btn: first ? 'Inizia' : 'Continua', meta: meta(nx.min), onClick: start, note, alt: sprint ? sprintAlt : simAlt });
         break;
       }
       case 'block':
+        if (sprint) {
+          setCard({ label: `Ultima settimana · sessione ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la sessione', meta: meta(nx.min), onClick: start, note: 'Prima una scheda di 2′, poi il clone di TAO: la correzione arriva alla fine. Meglio sul PC della prova.', alt: sprintAlt });
+          break;
+        }
         setCard({ label: 'Allenamento · blocco a tempo', title: nx.title, sub: nx.sub, btn: 'Inizia il blocco', meta: meta(nx.min), onClick: start, note: 'Come in TAO: la correzione arriva alla fine.', alt: simAlt || later() });
+        break;
+      case 'sprint-done': {
+        const t = new Date(); t.setDate(t.getDate() + 1);
+        const nxt = App.path.next(t);
+        const tomorrow = nxt.kind === 'rest' ? 'riposo' : nxt.kind === 'examday' ? 'la prova alle 14:00' : nxt.title ? `${nxt.title}${nxt.min ? ` · ${nxt.min}′` : ''}` : 'niente';
+        const more = nx.more ? { text: `Ne vuoi un'altra? ${nx.more.title} · ${nx.more.min}′`, onClick: go(nx.more) } : null;
+        setCard({ label: 'Ultima settimana', title: 'Per stasera basta', sub: `Domani: ${tomorrow}.`, btn: null, alt: resumeAlt || more });
+        break;
+      }
+      case 'sprint-empty':
+        setCard({ label: 'Ultima settimana', title: 'Sessioni finite', sub: 'Hai fatto tutte le sessioni. Fino alla prova restano la simulazione del fine settimana, «Prima della prova» lunedì e il riposo di martedì.', btn: null, alt: resumeAlt || { text: 'Ripasso facoltativo degli errori', onClick: () => startReview() } });
         break;
       case 'official':
         setCard({ label: 'Fuori dall\'app', title: nx.title, sub: nx.sub, btn: 'Apri', meta: meta(0), onClick: () => showOfficial(nx), alt: later() });
@@ -129,7 +149,7 @@ App.main = (() => {
         if (nx.mode === 'baseline') {
           setCard({ label: `Basi · tappa ${nx.index} di ${nx.of}`, title: nx.title, sub: nx.sub, btn: 'Inizia la misura', meta: meta(nx.min), onClick: start, note: 'Senza pause, sul dispositivo dove segui il percorso.', alt: later() });
         } else {
-          setCard({ label: 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: 'Sul PC, a schermo intero, senza pause. Alla fine esporta i dati e importali sul telefono.', alt: later() });
+          setCard({ label: sprint ? 'Ultima settimana · simulazione' : 'Simulazione · Parte 1 completa', title: nx.title, sub: nx.sub, btn: 'Inizia la simulazione', meta: '65′ →', onClick: start, note: sprint ? 'Sul PC, a schermo intero, senza pause: l\'unica prova generale dell\'intera sequenza di 65′. Se oggi non puoi, c\'è la sessione da 30′.' : 'Sul PC, a schermo intero, senza pause. Alla fine esporta i dati e importali sul telefono.', alt: sprint ? sprintAlt : later() });
         }
         break;
       case 'rest':
@@ -137,12 +157,6 @@ App.main = (() => {
         break;
       case 'examday':
         setCard({ label: 'Mercoledì 11/11', title: 'Oggi alle 14:00: la prova', sub: 'Durante la prova non aprire quest\'app né Claude. In bocca al lupo.', btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
-        break;
-      case 'taper-wait':
-        setCard({ label: 'Scarico', title: 'Per oggi basta', sub: 'Domani, lunedì 09/11, le ultime tappe leggere: un verbale breve e «Prima della prova», con il PC da preparare.', btn: null, alt: { text: 'Ripasso facoltativo degli errori', onClick: () => startReview() } });
-        break;
-      case 'taper-done':
-        setCard({ label: 'Scarico', title: 'Fatto: basta così', sub: 'Fino alla prova solo riposo. Se vuoi, un ripasso leggero degli errori.', btn: 'Ripasso facoltativo', meta: meta(0), onClick: () => startReview() });
         break;
       default:
         setCard({ label: 'Parte 1', title: 'Parte 1 sostenuta', sub: 'I risultati della Parte 1 arrivano da EPSO dopo la Parte 1. Per la Parte 2 si riparte dal Project.', btn: null });
@@ -153,8 +167,13 @@ App.main = (() => {
   // Alternativa breve a una tappa lunga (simulazione, misura, blocco): la prossima tappa vera del percorso.
   const shortStep = () => App.path.shortStep();
 
-  function paintToday(c) {
-    $('today-dots').replaceChildren(...Array.from({ length: c.target }, (_, i) => el('span', { class: `seg${i < c.today ? ' on' : ''}` })));
+  function paintToday(c, nx = null) {
+    // Giorni senza sessione (riposo, prova, sessioni finite): niente obiettivo del giorno.
+    const idle = nx && ['rest', 'examday', 'after', 'sprint-empty'].includes(nx.kind);
+    $('today-dots').replaceChildren(...(idle ? [] : Array.from({ length: c.target }, (_, i) => el('span', { class: `seg${i < c.today ? ' on' : ''}` }))));
+    if (idle) { $('today-text').textContent = ''; return; }
+    // Ultima settimana: una sessione al giorno.
+    if (c.target === 1) { $('today-text').textContent = c.today >= 1 ? `Sessione di oggi fatta${c.today > 1 ? ` (${c.today})` : ''}` : 'Sessione di oggi: da fare'; return; }
     $('today-text').textContent = c.today >= c.target ? `Oggi ${c.today} tappe: obiettivo fatto` : `Oggi ${c.today} di ${c.target} tappe`;
   }
 
@@ -194,9 +213,10 @@ App.main = (() => {
   }
   // Le date che contano, in ordine; quelle passate restano in grigio.
   const DATES = [
-    { key: '2026-10-31', text: 'Simulazione n. 1, sul PC (fino a ven 06/11)' },
-    { key: '2026-11-06', text: 'Scadenza dei prerequisiti su TAO, alle 11:59' },
-    { key: '2026-11-07', text: 'Simulazione n. 2, sul PC, se puoi alle 14:00' },
+    { key: '2026-11-03', text: 'Ultima settimana: una sessione da 30′ a sera, nel formato della prova' },
+    { key: '2026-11-06', text: 'Scadenza dei prerequisiti su TAO, alle 11:59 (fatti il 27/10); in GUUE la decisione EPSO sulle chiusure automatiche dei test' },
+    { key: '2026-11-07', text: 'Simulazione completa, sul PC, alle 14:00 se puoi (oppure domenica 08/11)' },
+    { key: '2026-11-09', text: '«Prima della prova»: checklist del PC' },
     { key: '2026-11-10', text: 'Riposo' },
     { key: '2026-11-11', text: 'Parte 1, alle 14:00 (ora di Bruxelles, la stessa dell\'Italia)' },
     { key: '2026-11-14', text: 'Ultimo giorno per i reclami' },

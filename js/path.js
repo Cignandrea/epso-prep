@@ -1,8 +1,9 @@
 // Il percorso della Parte 1 — namespace App.path
 // Una sola sequenza di tappe fino alla prova: la home propone sempre e solo la prossima.
-// Fasi: Basi (una misura di partenza e 12 schede con poche domande e correzione subito) → Allenamento a ritmo di
-// prova (ciclo verbale, numerico, verbale, astratto, ripasso, tarato sulla misura più recente; blocchi a tempo ogni
-// due giorni) con due simulazioni complete → Scarico → riposo → prova.
+// Fasi fino al 02/11: Basi (una misura di partenza e 12 schede con poche domande e correzione subito) → Allenamento a
+// ritmo di prova (ciclo verbale, numerico, verbale, astratto, ripasso, tarato sulla misura più recente; blocchi a
+// tempo ogni due giorni) con una simulazione completa. Dal 03/11 (v1.3): l'ultima settimana, una sessione da 30′ a
+// sera nel formato della prova, la simulazione completa nel fine settimana, «Prima della prova» lunedì, riposo martedì.
 // Lo stato sta in App.store.path(): { done: { [id]: { t, n, correct, by? } }, p2: { i } }.
 window.App = window.App || {};
 App.path = (() => {
@@ -20,11 +21,12 @@ App.path = (() => {
   const PREREQ_SOON = '2026-10-27'; // consigliato entro martedì 27/10 [S, Piano di studio]
   const TAPER = '2026-11-08';   // scarico da domenica 08/11 [S, Piano di studio]
   const REST = '2026-11-10';    // il giorno prima: niente
-  // Tappe al giorno: 3 nei feriali (circa 35′, il budget deciso l'08/10), 6 nel fine settimana (sessioni lunghe).
+  // Tappe al giorno: 3 nei feriali (circa 35′, il budget deciso l'08/10), 6 nel fine settimana (sessioni lunghe);
+  // nell'ultima settimana una sessione da 30′ al giorno (decisione del 03/11).
   const PER_DAY = 3;
   const PER_DAY_WEEKEND = 6;
   const isWeekend = (now) => now.getDay() === 0 || now.getDay() === 6;
-  const targetFor = (now) => (isWeekend(now) ? PER_DAY_WEEKEND : PER_DAY);
+  const targetFor = (now) => (todayKey(now) >= SPRINT_FROM ? 1 : isWeekend(now) ? PER_DAY_WEEKEND : PER_DAY);
 
   // Basi: prima com'è fatta la prova, poi una misura di partenza nel formato vero (le sessioni pubbliche TAO non danno
   // punteggio [V istruzioni TAO §2.5.9]), poi le schede, a turno sulle tre prove.
@@ -67,17 +69,34 @@ App.path = (() => {
     astratto: { title: 'Blocco a tempo · astratto', sub: '10 serie in 10′, la correzione alla fine', min: 14, n: 10, minutes: 10 },
   };
 
+  // Simulazione del percorso lungo (fino al 02/11): dal 03/11 vale l'ultima settimana (sotto).
   const SIMS = [
-    { id: 's1', kind: 'sim', lesson: 'strategia', from: '2026-10-31', until: '2026-11-06', title: 'Simulazione completa n. 1', sub: 'sul PC: verbale 35′ → numerico 20′ → astratto 10′', min: 65 },
-    { id: 's2', kind: 'sim', from: '2026-11-07', until: '2026-11-08', title: 'Simulazione completa n. 2', sub: 'sul PC, se puoi alle 14:00 come la prova', min: 65 },
+    { id: 's1', kind: 'sim', lesson: 'strategia', from: '2026-10-31', until: '2026-11-02', title: 'Simulazione completa n. 1', sub: 'sul PC: verbale 35′ → numerico 20′ → astratto 10′', min: 65 },
   ];
 
-  // Scarico: domenica 08/11 il ripasso; lunedì 09/11 un verbale leggero e la scheda «Prima della prova» (con il PC).
-  const TAPERS = [
-    { id: 't1', kind: 'review', title: 'Ripasso finale', sub: 'solo domande già viste: niente di nuovo', min: 10, final: true },
-    { id: 't3', kind: 'drill', from: '2026-11-09', title: 'Verbale leggero', sub: '5 brani brevi mai visti, a ritmo di prova, poi la correzione', min: 10, pick: { bank: 'verbale', n: 5, levels: [1] } },
-    { id: 't2', kind: 'lesson', from: '2026-11-09', lesson: 'fine', title: 'Prima della prova', sub: 'scheda + 3 domande leggere; poi prepara il PC con la checklist', min: 6, pick: { mix: true } },
+  // ── Ultima settimana (dal 03/11, decisione di Andrea del 03/11): una sessione da 30′ a sera, nel formato della prova ──
+  // Ogni sessione è un blocco nel clone di TAO con il ritmo esatto della prova (verbale 1′45″ a domanda, numerico 2′,
+  // astratto 1′), domande di livello prova a 4 opzioni, correzione solo alla fine; prima, una scheda di 2′ sulla
+  // trappola del giorno. Le sessioni sono una coda: ogni sera l'app propone la prima non fatta, una al giorno
+  // (un'altra resta a un tocco); una sera saltata non si accumula. Il verbale è 4 sessioni su 6: è l'unico punteggio
+  // in graduatoria [V bando]; numerico e astratto, già sopra la soglia nella misura del 24/10, si tengono caldi.
+  const SPRINT_FROM = '2026-11-03';
+  const V10 = { verbale: { n: 10, minutes: 17.5 } };
+  const NA = { numerico: { n: 5, minutes: 10 }, astratto: { n: 10, minutes: 10 } };
+  const SPRINT = [
+    { id: 'sp1', kind: 'block', lesson: 'v-metodo', counts: V10, title: 'Verbale · 10 domande in 17′30″', sub: 'metà prova al ritmo vero, poi la correzione', min: 28 },
+    { id: 'sp2', kind: 'block', lesson: 'n-metodo', counts: NA, title: 'Numerico 5 in 10′ + astratto 10 in 10′', sub: 'due prove di fila, ognuna col suo timer, poi la correzione', min: 30 },
+    { id: 'sp3', kind: 'block', lesson: 'v-tempo', counts: V10, title: 'Verbale · 10 domande in 17′30″', sub: 'metà prova al ritmo vero, poi la correzione', min: 28 },
+    { id: 'sp4', kind: 'block', lesson: 'v-quant', counts: V10, title: 'Verbale · 10 domande in 17′30″', sub: 'metà prova al ritmo vero, poi la correzione', min: 28 },
+    { id: 'sp5', kind: 'block', lesson: 'a-comb', counts: NA, title: 'Numerico 5 in 10′ + astratto 10 in 10′', sub: 'due prove di fila, ognuna col suo timer, poi la correzione', min: 30 },
+    { id: 'sp6', kind: 'block', lesson: 'v-infer', counts: V10, title: 'Verbale · 10 domande in 17′30″', sub: 'metà prova al ritmo vero, poi la correzione', min: 28 },
   ];
+  // Simulazione completa, consigliata nel fine settimana (65′, sul PC, alle 14:00 come la prova): nel sabato e nella
+  // domenica è la sessione principale; «Non oggi» porta alla sessione da 30′.
+  const SPRINT_SIM = { id: 'sp-sim', kind: 'sim', exact: true, lesson: 'strategia', from: '2026-11-07', until: '2026-11-08', title: 'Simulazione completa', sub: 'sul PC, alle 14:00 se puoi: verbale 35′ → numerico 20′ → astratto 10′, come la prova', min: 65 };
+  // Lunedì 09/11 chiude: la scheda «Prima della prova» (checklist del PC) con 3 domande leggere.
+  const SPRINT_FINAL = { id: 't2', kind: 'lesson', from: '2026-11-09', lesson: 'fine', title: 'Prima della prova', sub: 'scheda + 3 domande leggere; poi prepara il PC con la checklist', min: 6, pick: { mix: true } };
+  const isSprintId = (id) => id.startsWith('sp') || id === SPRINT_FINAL.id;
 
   const blank = () => ({ done: {}, p2: { i: 0 } });
   function state() {
@@ -85,7 +104,11 @@ App.path = (() => {
     return { ...blank(), ...s, done: { ...(s.done || {}) }, p2: { i: 0, ...(s.p2 || {}) } };
   }
 
-  // Quante tappe fatte in totale e oggi (una simulazione o la misura di partenza valgono 3).
+  // Peso di una tappa nel conteggio del giorno: nel percorso lungo una simulazione o la misura valgono 3 tappe;
+  // nell'ultima settimana ogni sessione (anche la simulazione) vale 1, perché l'obiettivo del giorno è 1.
+  const weightOf = (id) => (isSprintId(id) ? 1 : /^s\d$/.test(id) || id === 'bm' ? PER_DAY : 1);
+
+  // Quante tappe fatte in totale e oggi.
   function counts(now = new Date()) {
     const st = state();
     const k = todayKey(now);
@@ -93,20 +116,19 @@ App.path = (() => {
     for (const [id, d] of Object.entries(st.done)) {
       if (d && d.via) continue; // scheda letta dentro un'altra tappa: non è una tappa in più
       total++;
-      if (d && d.t && todayKey(new Date(d.t)) === k) today += id[0] === 's' || id === 'bm' ? PER_DAY : 1;
+      if (d && d.t && todayKey(new Date(d.t)) === k) today += weightOf(id);
     }
     const target = targetFor(now);
     return { total, today: Math.min(today, target * 3), target };
   }
 
-  // Tappe fatte per giorno (calendario della home): una simulazione o la misura valgono 3, le schede lette dentro un
-  // drill non contano.
+  // Tappe fatte per giorno (calendario della home); le schede lette dentro un drill non contano.
   function dayCounts() {
     const m = {};
     for (const [id, d] of Object.entries(state().done)) {
       if (!d || d.via || !d.t) continue;
       const k = todayKey(new Date(d.t));
-      m[k] = (m[k] || 0) + (id[0] === 's' || id === 'bm' ? PER_DAY : 1);
+      m[k] = (m[k] || 0) + weightOf(id);
     }
     return m;
   }
@@ -227,6 +249,28 @@ App.path = (() => {
     return { id: `blk-${k}-${bank[0]}`, kind: 'block', bank, ...b, phase: 'Allenamento' };
   }
 
+  // ── Ultima settimana: la sessione di stasera ──
+  // Coda delle sessioni: la prima non fatta. Una al giorno: fatta quella, «Per stasera basta» (un'altra resta a un
+  // tocco). Sabato e domenica la simulazione completa viene prima, con la sessione da 30′ come «Non oggi».
+  // Lunedì 09/11, dopo la sessione (o se le sessioni sono finite), chiude «Prima della prova».
+  function sprintNext(st, now) {
+    const k = todayKey(now);
+    const doneOn = (id) => Boolean(st.done[id] && st.done[id].t && todayKey(new Date(st.done[id].t)) === k);
+    const left = SPRINT.filter((s) => !st.done[s.id]);
+    const queued = left[0] ? { ...left[0], phase: 'Ultima settimana', index: SPRINT.length - left.length + 1, of: SPRINT.length } : null;
+    const sim = !st.done[SPRINT_SIM.id] && k >= SPRINT_SIM.from && k <= SPRINT_SIM.until ? { ...SPRINT_SIM, phase: 'Simulazione' } : null;
+    const final = !st.done[SPRINT_FINAL.id] && k >= SPRINT_FINAL.from ? { ...SPRINT_FINAL, phase: 'Ultima settimana' } : null;
+    const todayDone = Object.keys(st.done).some((id) => isSprintId(id) && doneOn(id));
+    if (!todayDone) {
+      if (sim) return { ...sim, alt: queued };
+      if (queued) return { ...queued, alt: sim };
+    }
+    if (final && (todayDone || !queued)) return final;
+    if (!todayDone) return { kind: 'sprint-empty' };
+    // Sessione di oggi fatta: basta così; chi vuole ne ha un'altra a un tocco.
+    return { kind: 'sprint-done', more: queued || (sim && !doneOn(SPRINT_SIM.id) ? sim : null) };
+  }
+
   // La prossima cosa da fare, in base alla data e a ciò che è già fatto.
   function next(now = new Date()) {
     const k = todayKey(now);
@@ -234,19 +278,10 @@ App.path = (() => {
     if (k > EXAM.day || (k === EXAM.day && now >= EXAM.at)) return { kind: 'after' };
     if (k === EXAM.day) return { kind: 'examday' };
     if (k === REST) return { kind: 'rest' };
-    // Senza la simulazione n. 1 fatta, la n. 2 è la prima: niente numero e la scheda di strategia prima di iniziare.
-    const simOf = (s) => (s.id === 's2' && !st.done.s1 ? { ...s, title: 'Simulazione completa', lesson: 'strategia' } : s);
-    if (k >= TAPER) {
-      const s2 = SIMS[1];
-      if (k <= s2.until && !st.done[s2.id]) return { ...simOf(s2), phase: 'Simulazione' };
-      const t = TAPERS.find((s) => !st.done[s.id] && (!s.from || k >= s.from));
-      if (t) return { ...t, phase: 'Scarico' };
-      return TAPERS.some((s) => !st.done[s.id]) ? { kind: 'taper-wait' } : { kind: 'taper-done' };
-    }
+    if (k >= SPRINT_FROM) return sprintNext(st, now);
     // Simulazioni per data, anche con le Basi a metà: nel fine settimana (o l'ultimo giorno utile) sono la tappa
     // principale; negli altri giorni restano a portata di mano come alternativa.
-    const found = SIMS.find((s) => k >= s.from && k <= s.until && !st.done[s.id]);
-    const sim = found ? simOf(found) : null;
+    const sim = SIMS.find((s) => k >= s.from && k <= s.until && !st.done[s.id]) || null;
     if (sim && (isWeekend(now) || k === sim.until)) return { ...sim, phase: 'Simulazione' };
     const basiLeft = BASI.filter((s) => !st.done[s.id]);
     // A 12 giorni o meno dalla prova, con più di 3 Basi da fare, le schede rimaste si leggono dentro i drill.
@@ -260,6 +295,10 @@ App.path = (() => {
   // Alternativa breve a una tappa lunga (simulazione, misura, blocco): la prossima tappa vera del ciclo.
   function shortStep(now = new Date()) {
     const st = state();
+    if (todayKey(now) >= SPRINT_FROM) {
+      const q = SPRINT.find((s) => !st.done[s.id]);
+      return q ? { ...q, phase: 'Ultima settimana' } : { ...SPRINT_FINAL, phase: 'Ultima settimana' };
+    }
     const basiLeft = BASI.filter((s) => !st.done[s.id] && s.kind === 'lesson');
     if (basiLeft.length && daysToExam(now) > 12) return boost({ ...basiLeft[0], phase: 'Basi' }, st);
     return cycleStep(st, now, basiLeft.length ? basiLeft : null);
@@ -281,12 +320,18 @@ App.path = (() => {
     if (!step) return;
     const meta = { id: step.id, title: step.title, ...(step.alsoDone ? { alsoDone: step.alsoDone } : {}) };
     if (step.kind === 'sim') {
-      const go = () => (step.mode === 'baseline' ? App.sim.startBaseline({ step: meta }) : App.sim.startFull({ step: meta }));
+      const go = () => (step.mode === 'baseline' ? App.sim.startBaseline({ step: meta }) : App.sim.startFull({ step: meta, exact: Boolean(step.exact) }));
       if (step.lesson) App.lessons.show(step.lesson, { kicker: step.title, goText: 'Inizia la simulazione', onGo: go, onBack: () => App.main.home() });
       else go();
       return;
     }
-    if (step.kind === 'block') { App.sim.startBlock({ step: meta, bank: step.bank, n: step.n, minutes: step.minutes }); return; }
+    if (step.kind === 'block') {
+      // Sessioni dell'ultima settimana: più prove di fila (counts), difficoltà esatta della prova, una scheda prima.
+      const go = () => (step.counts ? App.sim.startBlock({ step: meta, counts: step.counts, exact: true }) : App.sim.startBlock({ step: meta, bank: step.bank, n: step.n, minutes: step.minutes }));
+      if (step.lesson) App.lessons.show(step.lesson, { kicker: step.title, goText: 'Inizia la sessione', onGo: go, onBack: () => App.main.home() });
+      else go();
+      return;
+    }
     if (step.kind === 'official') { App.main.showOfficial(step); return; }
     const items = App.select.forStep(step);
     if (!items.length) { App.ui.toast('Nessuna domanda disponibile per questa tappa.'); return; }
@@ -314,5 +359,5 @@ App.path = (() => {
     return out.sort((a, b) => (b.urgent - a.urgent) || a.due.localeCompare(b.due));
   }
 
-  return { EXAM, PREREQ, COMPLAINTS, PORTAL, todos, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, BASI, CYCLE, DRILL, BLOCKS, SIMS, TAPERS, next, shortStep, complete, isDone, start, counts, dayCounts, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, strong, isWeekend };
+  return { EXAM, PREREQ, COMPLAINTS, PORTAL, todos, TAPER, REST, PER_DAY, PER_DAY_WEEKEND, SPRINT_FROM, SPRINT, SPRINT_SIM, SPRINT_FINAL, BASI, CYCLE, DRILL, BLOCKS, SIMS, next, shortStep, complete, isDone, start, counts, dayCounts, targetFor, daysToExam, prereqOpen, phaseOf, state, cycleFor, accuracy, strong, isWeekend };
 })();

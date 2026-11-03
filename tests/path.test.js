@@ -56,9 +56,7 @@ mark(['b01', 'bm', 'b02']);
 n = P.next(at('2026-10-31T10:00:00+01:00'));
 check('sab 31/10 con Basi a metà: simulazione 1', n.id === 's1' && n.kind === 'sim' && n.lesson === 'strategia', show(n));
 n = P.next(at('2026-11-02T10:00:00+01:00'));
-check('lun 02/11: blocco a tempo, simulazione come alternativa', n.kind === 'block' && n.simAlt && n.simAlt.id === 's1', show(n));
-n = P.next(at('2026-11-06T10:00:00+01:00'));
-check('ven 06/11, ultimo giorno utile: simulazione 1', n.id === 's1', show(n));
+check('lun 02/11, ultimo giorno utile della sim 1 nel percorso lungo: la simulazione viene prima', n.id === 's1' && n.kind === 'sim', show(n));
 
 // ── 4. Recupero: a 12 giorni o meno, con più di 3 Basi rimaste, le schede si leggono dentro i drill ──
 reset();
@@ -167,32 +165,51 @@ mark(['b03', 'b04']);
 n = P.next(at('2026-10-24T12:20:00+02:00'));
 check('verbale 5/10: la scheda resta al livello base', n.id === 'b05' && n.pick.levels.join() === '1' && !n.boosted, JSON.stringify(n));
 
-// ── 9. Simulazione 2 e scarico ──
+// ── 9. Ultima settimana (dal 03/11): una sessione da 30′ a sera, in coda; simulazione nel fine settimana; chiusura ──
 reset();
-mark(basiIds());
+mark(['b01', 'bm', 'b02']); // Basi a metà e simulazione 1 mai fatta: dal 03/11 non contano più
+n = P.next(at('2026-11-03T21:00:00+01:00'));
+check('mar 03/11: sessione 1, verbale 10 in 17′30″ con la scheda del metodo, senza alternativa', n.id === 'sp1' && n.kind === 'block' && n.counts.verbale.n === 10 && n.counts.verbale.minutes === 17.5 && n.lesson === 'v-metodo' && n.index === 1 && n.of === 6 && !n.alt, show(n));
+check('«Non ora» nell\'ultima settimana: la stessa sessione', P.shortStep(at('2026-11-03T21:00:00+01:00')).id === 'sp1');
+P.complete(n, { n: 10, correct: 7, by: { verbale: { n: 10, correct: 7 } } }); PATH.done.sp1.t = '2026-11-03T21:30:00+01:00';
+n = P.next(at('2026-11-03T21:40:00+01:00'));
+check('fatta la sessione: per stasera basta, un\'altra a un tocco', n.kind === 'sprint-done' && n.more && n.more.id === 'sp2', show(n));
+c = P.counts(at('2026-11-03T21:40:00+01:00'));
+check('ultima settimana: obiettivo 1 al giorno', c.target === 1 && c.today === 1, JSON.stringify(c));
+n = P.next(at('2026-11-04T21:00:00+01:00'));
+check('mer 04/11: sessione 2, numerico 5 in 10′ + astratto 10 in 10′', n.id === 'sp2' && n.counts.numerico.n === 5 && n.counts.numerico.minutes === 10 && n.counts.astratto.n === 10 && n.counts.astratto.minutes === 10 && n.lesson === 'n-metodo', show(n));
+n = P.next(at('2026-11-06T21:00:00+01:00'));
+check('una sera saltata non si accumula: venerdì propone sempre la prossima in coda', n.id === 'sp2', show(n));
 n = P.next(at('2026-11-07T10:00:00+01:00'));
-check('07/11 senza la sim 1: «Simulazione completa» con la scheda di strategia', n.id === 's2' && n.title === 'Simulazione completa' && n.lesson === 'strategia', show(n));
-mark(['s1'], '2026-10-31T12:00:00+01:00');
-n = P.next(at('2026-11-07T10:00:00+01:00'));
-check('07/11 con la sim 1 fatta: sim 2', n.id === 's2' && n.title === 'Simulazione completa n. 2' && !n.lesson, show(n));
+check('sab 07/11: la simulazione completa viene prima, con la sessione da 30′ come «Non oggi»', n.id === 'sp-sim' && n.kind === 'sim' && n.exact === true && n.lesson === 'strategia' && n.alt && n.alt.id === 'sp2', show(n));
+P.complete(n, { n: 40, correct: 30, by: { verbale: { n: 20, correct: 15 }, numerico: { n: 10, correct: 8 }, astratto: { n: 10, correct: 7 } } }); PATH.done['sp-sim'].t = '2026-11-07T15:00:00+01:00';
+n = P.next(at('2026-11-07T16:00:00+01:00'));
+check('dopo la simulazione: basta per oggi', n.kind === 'sprint-done' && n.more && n.more.id === 'sp2', show(n));
+c = P.counts(at('2026-11-07T16:00:00+01:00'));
+check('nell\'ultima settimana la simulazione vale 1', c.today === 1 && c.target === 1 && P.dayCounts()['2026-11-07'] === 1, JSON.stringify(c));
 n = P.next(at('2026-11-08T10:00:00+01:00'));
-check('08/11 con la sim 2 non fatta: sim 2', n.id === 's2', show(n));
-mark(['s2'], '2026-11-08T12:00:00+01:00');
-n = P.next(at('2026-11-08T15:00:00+01:00'));
-check('08/11: ripasso finale', n.id === 't1' && n.phase === 'Scarico', show(n));
-P.complete(n);
-n = P.next(at('2026-11-08T16:00:00+01:00'));
-check('08/11 dopo il ripasso: per oggi basta', n.kind === 'taper-wait', show(n));
-n = P.next(at('2026-11-09T10:00:00+01:00'));
-check('09/11: verbale leggero', n.id === 't3' && n.pick.levels.join() === '1', show(n));
-P.complete(n); n = P.next(at('2026-11-09T10:30:00+01:00'));
-check('poi «Prima della prova»', n.id === 't2' && n.lesson === 'fine', show(n));
-P.complete(n); n = P.next(at('2026-11-09T11:00:00+01:00'));
-check('scarico finito', n.kind === 'taper-done', show(n));
+check('dom 08/11 con la simulazione fatta: la sessione in coda, senza alternativa', n.id === 'sp2' && !n.alt, show(n));
+P.complete(n); PATH.done.sp2.t = '2026-11-08T11:00:00+01:00';
+n = P.next(at('2026-11-09T21:00:00+01:00'));
+check('lun 09/11: prima la sessione 3', n.id === 'sp3' && n.alt == null, show(n));
+P.complete(n); PATH.done.sp3.t = '2026-11-09T21:20:00+01:00';
+n = P.next(at('2026-11-09T21:30:00+01:00'));
+check('poi «Prima della prova» chiude', n.id === 't2' && n.lesson === 'fine' && n.phase === 'Ultima settimana', show(n));
+P.complete(n); PATH.done.t2.t = '2026-11-09T21:35:00+01:00';
+n = P.next(at('2026-11-09T21:40:00+01:00'));
+check('lunedì, tutto fatto: per stasera basta', n.kind === 'sprint-done', show(n));
 reset();
-mark(basiIds());
+for (const s of P.SPRINT) mark([s.id], '2026-11-05T21:00:00+01:00');
+n = P.next(at('2026-11-06T21:00:00+01:00'));
+check('tutte le sessioni fatte prima del fine settimana: niente da fare venerdì', n.kind === 'sprint-empty', show(n));
+n = P.next(at('2026-11-08T10:00:00+01:00'));
+check('domenica resta la simulazione, senza alternativa', n.id === 'sp-sim' && !n.alt, show(n));
 n = P.next(at('2026-11-09T10:00:00+01:00'));
-check('09/11 senza ripasso fatto: si parte da t1', n.id === 't1', show(n));
+check('lunedì resta «Prima della prova»', n.id === 't2', show(n));
+reset();
+mark(['sp-sim'], '2026-11-07T15:00:00+01:00');
+n = P.next(at('2026-11-08T10:00:00+01:00'));
+check('simulazione fatta sabato: domenica la coda riparte da sp1', n.id === 'sp1' && !n.alt, show(n));
 
 // ── 10. Riposo, giorno della prova, dopo ──
 check('10/11 riposo', P.next(at('2026-11-10T09:00:00+01:00')).kind === 'rest');

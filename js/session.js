@@ -264,7 +264,7 @@ App.session = (() => {
     const c = App.path.counts();
     const nx = App.path.next();
     const startable = nx && ['lesson', 'drill', 'review', 'sim', 'block'].includes(nx.kind);
-    $('e-today').textContent = `Oggi ${Math.min(c.today, c.target)} di ${c.target} tappe${c.today >= c.target ? ': obiettivo del giorno fatto.' : '.'}`;
+    $('e-today').textContent = c.target === 1 ? (c.today >= 1 ? 'Sessione di oggi fatta.' : 'La sessione di stasera è ancora da fare.') : `Oggi ${Math.min(c.today, c.target)} di ${c.target} tappe${c.today >= c.target ? ': obiettivo del giorno fatto.' : '.'}`;
     // Obiettivo del giorno raggiunto: il traguardo diventa l'azione principale, la tappa in più resta a un tocco.
     const enough = c.today >= c.target;
     $('e-next').hidden = !startable;

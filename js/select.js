@@ -288,9 +288,10 @@ App.select = (() => {
   // così non consuma i brani tenuti per la simulazione n. 2.
   // hard: chi va forte in questa prova (path.strong) ha numerico e astratto ai livelli 2–3 e, nel verbale, un quarto
   // della prova dai brani di livello alto riservati.
-  function pickSim(bankId, n, { reserveFirst = true, hard = false } = {}) {
+  // exact: difficoltà della prova e basta (ultima settimana): astratto senza il livello a una regola sola.
+  function pickSim(bankId, n, { reserveFirst = true, hard = false, exact = false } = {}) {
     if (bankId !== 'verbale') {
-      const items = genPick(bankId, n, hard ? [2, 3, 3] : bankId === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
+      const items = genPick(bankId, n, hard ? [2, 3, 3] : exact ? [2, 2, 3] : bankId === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
       return { items, fresh: items.length, available: Infinity };
     }
     const stats = App.store.itemStats();

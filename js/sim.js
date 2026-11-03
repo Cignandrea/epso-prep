@@ -47,36 +47,45 @@ App.sim = (() => {
     startWith(scope, timerMode, null);
   }
   // Dal percorso: la simulazione completa parte subito, con un timer per prova come nella prova vera [V TAO §6.3.5].
-  function startFull({ step = null } = {}) { startWith('full', 'section', step, { kind: 'full' }); }
+  // exact (ultima settimana): difficoltà della prova e basta, anche per chi va forte.
+  function startFull({ step = null, exact = false } = {}) { startWith('full', 'section', step, { kind: 'full', exact }); }
   // Misura di partenza: le tre prove con metà delle domande e metà del tempo (10 in 17′30″, 5 in 10′, 5 in 5′),
   // domande prese dall'allenamento: le riserve restano per le due simulazioni complete.
   function startBaseline({ step = null } = {}) {
     startWith('full', 'section', step, { kind: 'baseline', training: true, counts: { verbale: { n: 10, minutes: 17.5 }, numerico: { n: 5, minutes: 10 }, astratto: { n: 5, minutes: 5 } } });
   }
-  // Blocco a tempo: una prova sola, correzione solo alla fine.
-  function startBlock({ step = null, bank = 'verbale', n = 10, minutes = 17.5 } = {}) {
-    startWith(bank, 'section', step, { kind: 'block', training: true, counts: { [bank]: { n, minutes } } });
+  // Blocco a tempo: una prova sola (bank, n, minutes) oppure più prove di fila (counts: { prova: { n, minutes } }),
+  // ognuna col suo timer; correzione solo alla fine. exact: difficoltà della prova e basta (ultima settimana).
+  function startBlock({ step = null, bank = 'verbale', n = 10, minutes = 17.5, counts = null, exact = false } = {}) {
+    const c = counts || { [bank]: { n, minutes } };
+    const banks = FULL.filter((b) => c[b]);
+    startWith(banks, 'section', step, { kind: 'block', training: true, counts: c, exact });
   }
   // Domande dall'allenamento (misura di partenza e blocchi): verbale nuovo prima, generati al livello della prova.
   // hard (chi va forte nei blocchi del percorso): verbale dai brani più difficili, numerico e astratto ai livelli 2–3.
-  function pickTraining(bank, n, hard = false) {
+  // exact: come la prova e basta: verbale di livello prova a 4 opzioni, numerico e astratto ai livelli 2–3 senza il
+  // livello base (astratto a una regola sola) e senza i brani più difficili in testa.
+  function pickTraining(bank, n, hard = false, exact = false) {
     if (bank === 'verbale') {
-      const items = App.select.pickVerbal(n, { levels: hard ? [2] : [2, 1], due: false, hard });
+      const items = exact ? App.select.pickVerbal(n, { levels: [2, 1], formats: ['epso4'], due: false }) : App.select.pickVerbal(n, { levels: hard ? [2] : [2, 1], due: false, hard });
       const stats = App.store.itemStats();
       return { items, fresh: items.filter((q) => !stats.has(`${q.bank}#${q.id}`)).length };
     }
-    const items = App.select.genPick(bank, n, hard ? [2, 3, 3] : bank === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
+    const items = App.select.genPick(bank, n, hard ? [2, 3, 3] : exact ? [2, 2, 3] : bank === 'astratto' ? [1, 2, 2, 3] : [2, 2, 3]);
     return { items, fresh: items.length };
   }
 
+  // scope: 'full', una prova, o un elenco di prove (blocchi su più prove).
   function startWith(scope, timerMode, step, opts = {}) {
-    const defs = (scope === 'full' ? FULL : [scope]).map(sectionDef).map((d) => ({ ...d, ...((opts.counts || {})[d.bank] || {}) }));
+    const banks = scope === 'full' ? FULL : Array.isArray(scope) ? scope : [scope];
+    const defs = banks.map(sectionDef).map((d) => ({ ...d, ...((opts.counts || {})[d.bank] || {}) }));
     const sections = [];
     const st = step ? App.path.state() : null;
     for (const d of defs) {
-      // Blocchi e simulazioni del percorso più difficili nelle prove dove vai forte; la misura di partenza resta uguale per tutti.
-      const hard = Boolean(st) && step.id !== 'bm' && App.path.strong(st, d.bank);
-      const pick = opts.training ? pickTraining(d.bank, d.n, hard) : App.select.pickSim(d.bank, d.n, { reserveFirst: Boolean(step), hard });
+      // Blocchi e simulazioni del percorso più difficili nelle prove dove vai forte; la misura di partenza resta uguale per
+      // tutti; nell'ultima settimana (exact) la difficoltà è quella della prova e basta.
+      const hard = !opts.exact && Boolean(st) && step.id !== 'bm' && App.path.strong(st, d.bank);
+      const pick = opts.training ? pickTraining(d.bank, d.n, hard, Boolean(opts.exact)) : App.select.pickSim(d.bank, d.n, { reserveFirst: Boolean(step), hard, exact: Boolean(opts.exact) });
       for (const q of pick.items) App.banks.remember(q);
       if (pick.items.length < d.n) {
         App.ui.toast(`Domande insufficienti per ${App.BANK_LABEL[d.bank]}: ${pick.items.length}/${d.n}.`);
@@ -90,7 +99,7 @@ App.sim = (() => {
     const units = timerMode === 'single'
       ? [{ sections: sections.map((_, i) => i), minutes: sections.reduce((s, x) => s + x.minutes, 0) }]
       : sections.map((_, i) => ({ sections: [i], minutes: sections[i].minutes }));
-    SIM = { id: uid(), kind: opts.kind || 'custom', startedAt: new Date().toISOString(), scope, timerMode, step, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false, tools: { elim: false, mask: false } };
+    SIM = { id: uid(), kind: opts.kind || 'custom', startedAt: new Date().toISOString(), scope: Array.isArray(scope) ? scope.join('+') : scope, timerMode, step, sections, units, unit: 0, pos: 0, phase: 'intro', deadline: null, byTimeout: false, tools: { elim: false, mask: false } };
     persist();
     resetUi();
     App.ui.show('sim');
