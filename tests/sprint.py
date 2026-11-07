@@ -70,7 +70,7 @@ with sync_playwright() as p:
         page.on('pageerror', lambda e: errors.append(str(e)))
         page.goto(f'http://127.0.0.1:{PORT}/index.html'); page.wait_for_timeout(600)
         label = page.text_content('#next-label')
-        check(f'[{name}] home: sessione 1 di 6', 'sessione 1 di 6' in label and 'Verbale' in page.text_content('#next-title'), label + ' / ' + page.text_content('#next-title'))
+        check(f'[{name}] home: sessione da 30′ di verbale', 'sessione da 30′' in label and 'Verbale' in page.text_content('#next-title'), label + ' / ' + page.text_content('#next-title'))
         page.screenshot(path=f'{OUT}/sprint-{name}-home.png')
         page.click('#btn-next'); page.wait_for_timeout(300)
         run_block(page, f'{name}-v10', 1)
@@ -86,7 +86,7 @@ with sync_playwright() as p:
         check(f'[{name}] oggi: sessione fatta', 'Sessione di oggi fatta' in today, today)
         page.click('#nav-agenda'); page.wait_for_timeout(300)
         page.screenshot(path=f'{OUT}/sprint-{name}-agenda.png', full_page=True)
-        check(f'[{name}] agenda: date aggiornate', 'Simulazione completa' in page.text_content('#date-list') and 'Prima della prova' in page.text_content('#date-list'))
+        check(f'[{name}] agenda: date aggiornate', 'simulazione completa' in page.text_content('#date-list').lower() and 'Prima della prova' in page.text_content('#date-list'))
         ctx.close()
     browser.close()
 

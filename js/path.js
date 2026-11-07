@@ -4,6 +4,8 @@
 // ritmo di prova (ciclo verbale, numerico, verbale, astratto, ripasso, tarato sulla misura più recente; blocchi a
 // tempo ogni due giorni) con una simulazione completa. Dal 03/11 (v1.3): l'ultima settimana, una sessione da 30′ a
 // sera nel formato della prova, la simulazione completa nel fine settimana, «Prima della prova» lunedì, riposo martedì.
+// Dal 07/11 (v1.3.1, decisione di Andrea del 07/11: «la userò oggi e domani e basta, 2 o 3 ore in tutto»): piano a due
+// giorni, sabato la simulazione completa, domenica una sessione di verbale e «Prima della prova», poi riposo fino alla prova.
 // Lo stato sta in App.store.path(): { done: { [id]: { t, n, correct, by? } }, p2: { i } }.
 window.App = window.App || {};
 App.path = (() => {
@@ -20,7 +22,7 @@ App.path = (() => {
   const PORTAL = { every: 3, seed: '2026-10-24' };
   const PREREQ_SOON = '2026-10-27'; // consigliato entro martedì 27/10 [S, Piano di studio]
   const TAPER = '2026-11-08';   // scarico da domenica 08/11 [S, Piano di studio]
-  const REST = '2026-11-10';    // il giorno prima: niente
+  const REST = '2026-11-09';    // riposo da lunedì 09/11 fino alla prova (piano a due giorni del 07/11)
   // Tappe al giorno: 3 nei feriali (circa 35′, il budget deciso l'08/10), 6 nel fine settimana (sessioni lunghe);
   // nell'ultima settimana una sessione da 30′ al giorno (decisione del 03/11).
   const PER_DAY = 3;
@@ -94,8 +96,8 @@ App.path = (() => {
   // Simulazione completa, consigliata nel fine settimana (65′, sul PC, alle 14:00 come la prova): nel sabato e nella
   // domenica è la sessione principale; «Non oggi» porta alla sessione da 30′.
   const SPRINT_SIM = { id: 'sp-sim', kind: 'sim', exact: true, lesson: 'strategia', from: '2026-11-07', until: '2026-11-08', title: 'Simulazione completa', sub: 'sul PC, alle 14:00 se puoi: verbale 35′ → numerico 20′ → astratto 10′, come la prova', min: 65 };
-  // Lunedì 09/11 chiude: la scheda «Prima della prova» (checklist del PC) con 3 domande leggere.
-  const SPRINT_FINAL = { id: 't2', kind: 'lesson', from: '2026-11-09', lesson: 'fine', title: 'Prima della prova', sub: 'scheda + 3 domande leggere; poi prepara il PC con la checklist', min: 6, pick: { mix: true } };
+  // Domenica 08/11 chiude (dal 07/11; prima era lunedì): la scheda «Prima della prova» (checklist del PC) con 3 domande leggere.
+  const SPRINT_FINAL = { id: 't2', kind: 'lesson', from: '2026-11-08', lesson: 'fine', title: 'Prima della prova', sub: 'scheda + 3 domande leggere; poi prepara il PC con la checklist', min: 6, pick: { mix: true } };
   const isSprintId = (id) => id.startsWith('sp') || id === SPRINT_FINAL.id;
 
   const blank = () => ({ done: {}, p2: { i: 0 } });
@@ -252,7 +254,7 @@ App.path = (() => {
   // ── Ultima settimana: la sessione di stasera ──
   // Coda delle sessioni: la prima non fatta. Una al giorno: fatta quella, «Per stasera basta» (un'altra resta a un
   // tocco). Sabato e domenica la simulazione completa viene prima, con la sessione da 30′ come «Non oggi».
-  // Lunedì 09/11, dopo la sessione (o se le sessioni sono finite), chiude «Prima della prova».
+  // Domenica 08/11, dopo la sessione (o se le sessioni sono finite), chiude «Prima della prova». Da lunedì riposo (next).
   function sprintNext(st, now) {
     const k = todayKey(now);
     const doneOn = (id) => Boolean(st.done[id] && st.done[id].t && todayKey(new Date(st.done[id].t)) === k);
@@ -277,7 +279,7 @@ App.path = (() => {
     const st = state();
     if (k > EXAM.day || (k === EXAM.day && now >= EXAM.at)) return { kind: 'after' };
     if (k === EXAM.day) return { kind: 'examday' };
-    if (k === REST) return { kind: 'rest' };
+    if (k >= REST) return { kind: 'rest' };
     if (k >= SPRINT_FROM) return sprintNext(st, now);
     // Simulazioni per data, anche con le Basi a metà: nel fine settimana (o l'ultimo giorno utile) sono la tappa
     // principale; negli altri giorni restano a portata di mano come alternativa.
