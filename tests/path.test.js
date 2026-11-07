@@ -216,6 +216,23 @@ mark(['sp-sim'], '2026-11-07T15:00:00+01:00');
 n = P.next(at('2026-11-08T10:00:00+01:00'));
 check('simulazione fatta sabato: domenica la coda riparte da sp1', n.id === 'sp1' && !n.alt, show(n));
 
+// Telefono (dal 07/11): la simulazione non viene prima, resta come «Oppure, sul PC»; la chiusura di domenica è la stessa.
+reset();
+n = P.next(at('2026-11-07T11:00:00+01:00'), true);
+check('telefono, sab 07/11: la sessione da 30′ viene prima, simulazione come alternativa', n.id === 'sp1' && n.alt && n.alt.id === 'sp-sim', show(n));
+check('PC, stesso stato: la simulazione viene prima', P.next(at('2026-11-07T11:00:00+01:00'), false).id === 'sp-sim');
+mark(['sp1'], '2026-11-07T11:30:00+01:00'); mark(['sp2'], '2026-11-07T12:05:00+01:00');
+n = P.next(at('2026-11-07T12:10:00+01:00'), true);
+check('telefono, due sessioni fatte in aereo: basta per oggi, sp3 a un tocco', n.kind === 'sprint-done' && n.more && n.more.id === 'sp3', show(n));
+n = P.next(at('2026-11-08T10:00:00+01:00'), true);
+check('telefono, dom 08/11: sessione 3 (verbale), simulazione come alternativa', n.id === 'sp3' && n.alt && n.alt.id === 'sp-sim', show(n));
+mark(['sp3'], '2026-11-08T10:30:00+01:00');
+check('telefono, dom 08/11 dopo la sessione: «Prima della prova»', P.next(at('2026-11-08T10:40:00+01:00'), true).id === 't2');
+reset();
+for (const s of P.SPRINT) mark([s.id], '2026-11-05T21:00:00+01:00');
+n = P.next(at('2026-11-07T11:00:00+01:00'), true);
+check('telefono, coda vuota: la simulazione, senza alternativa', n.id === 'sp-sim' && !n.alt, show(n));
+
 // ── 10. Riposo, giorno della prova, dopo ──
 check('09/11 riposo', P.next(at('2026-11-09T09:00:00+01:00')).kind === 'rest');
 check('10/11 riposo', P.next(at('2026-11-10T09:00:00+01:00')).kind === 'rest');

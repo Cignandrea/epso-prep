@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.3.1-b1';
+  const VERSION = '1.3.1-b2';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -112,7 +112,7 @@ App.main = (() => {
     // In settimana la simulazione resta a portata di mano accanto alla tappa del giorno.
     const simAlt = resumeAlt || (nx.simAlt ? { text: `Oppure: ${nx.simAlt.title} · 65′`, onClick: go(nx.simAlt) } : null);
     // Ultima settimana: l'alternativa è nella tappa stessa (la sessione da 30′ accanto alla simulazione, o viceversa).
-    const sprintAlt = resumeAlt || (nx.alt ? { text: `${nx.kind === 'sim' ? 'Non oggi' : 'Oppure'}: ${nx.alt.title} · ${nx.alt.min}′`, onClick: go(nx.alt) } : null);
+    const sprintAlt = resumeAlt || (nx.alt ? { text: `${nx.kind === 'sim' ? 'Non oggi' : nx.alt.kind === 'sim' ? 'Oppure, sul PC' : 'Oppure'}: ${nx.alt.title} · ${nx.alt.min}′`, onClick: go(nx.alt) } : null);
     const sprint = nx.phase === 'Ultima settimana' || nx.id === 'sp-sim';
     const meta = (min) => (min ? `${min}′ →` : '→');
     switch (nx.kind) {

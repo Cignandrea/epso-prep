@@ -255,7 +255,11 @@ App.path = (() => {
   // Coda delle sessioni: la prima non fatta. Una al giorno: fatta quella, «Per stasera basta» (un'altra resta a un
   // tocco). Sabato e domenica la simulazione completa viene prima, con la sessione da 30′ come «Non oggi».
   // Domenica 08/11, dopo la sessione (o se le sessioni sono finite), chiude «Prima della prova». Da lunedì riposo (next).
-  function sprintNext(st, now) {
+  // Telefono o tablet (puntatore grossolano, come in sim.js): la simulazione completa si fa sul PC, e Fold e PC non
+  // condividono i dati. Quindi sul telefono la home propone la sessione da 30′ e tiene la simulazione come «Oppure,
+  // sul PC»; sul PC la simulazione viene prima (dal 07/11).
+  const onPhone = () => typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+  function sprintNext(st, now, phone = onPhone()) {
     const k = todayKey(now);
     const doneOn = (id) => Boolean(st.done[id] && st.done[id].t && todayKey(new Date(st.done[id].t)) === k);
     const left = SPRINT.filter((s) => !st.done[s.id]);
@@ -264,8 +268,9 @@ App.path = (() => {
     const final = !st.done[SPRINT_FINAL.id] && k >= SPRINT_FINAL.from ? { ...SPRINT_FINAL, phase: 'Ultima settimana' } : null;
     const todayDone = Object.keys(st.done).some((id) => isSprintId(id) && doneOn(id));
     if (!todayDone) {
-      if (sim) return { ...sim, alt: queued };
+      if (sim && !phone) return { ...sim, alt: queued };
       if (queued) return { ...queued, alt: sim };
+      if (sim) return { ...sim, alt: null };
     }
     if (final && (todayDone || !queued)) return final;
     if (!todayDone) return { kind: 'sprint-empty' };
@@ -274,13 +279,13 @@ App.path = (() => {
   }
 
   // La prossima cosa da fare, in base alla data e a ciò che è già fatto.
-  function next(now = new Date()) {
+  function next(now = new Date(), phone = undefined) {
     const k = todayKey(now);
     const st = state();
     if (k > EXAM.day || (k === EXAM.day && now >= EXAM.at)) return { kind: 'after' };
     if (k === EXAM.day) return { kind: 'examday' };
     if (k >= REST) return { kind: 'rest' };
-    if (k >= SPRINT_FROM) return sprintNext(st, now);
+    if (k >= SPRINT_FROM) return sprintNext(st, now, phone === undefined ? onPhone() : phone);
     // Simulazioni per data, anche con le Basi a metà: nel fine settimana (o l'ultimo giorno utile) sono la tappa
     // principale; negli altri giorni restano a portata di mano come alternativa.
     const sim = SIMS.find((s) => k >= s.from && k <= s.until && !st.done[s.id]) || null;
