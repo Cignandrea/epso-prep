@@ -123,10 +123,9 @@ App.select = (() => {
   // passa agli altri.
   function chooseMaker(bankId, level) {
     const gen = App.gen || {};
-    if (bankId === 'astratto') {
-      const v2 = gen.astratto2 && level >= 2 && Math.random() < (level >= 3 ? 0.5 : 0.35);
-      return v2 ? gen.astratto2 : gen.astratto;
-    }
+    // Dal 09/11 (1.3.2, «astratto duro»): sempre v2, cioè più elementi per figura, una regola ciascuno, esca nei distrattori.
+    // Le serie a una figura (v1) erano troppo facili e tutte uguali (≈9/10 in 8–23″ a item, Andrea 09/11).
+    if (bankId === 'astratto') return gen.astratto2 || gen.astratto;
     const n = gen.numerico;
     if (!n) return null;
     const r = Math.random();
@@ -175,6 +174,8 @@ App.select = (() => {
   function genPick(bankId, n, levels = [2], { tags = null, exclude = [] } = {}) {
     const g = bankId === 'astratto' ? App.gen && App.gen.astratto : App.gen && App.gen.numerico;
     if (!g || n <= 0) return [];
+    // «Astratto duro» (1.3.2): tre elementi, tre regole, in ogni sessione e in ogni allenamento.
+    if (bankId === 'astratto' && App.gen.astratto2) levels = [3];
     const out = [];
     const seen = new Set(exclude.map((q) => q.id));
     const kinds = {};
