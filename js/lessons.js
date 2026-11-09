@@ -176,11 +176,12 @@ App.lessons = (() => {
     {
       id: 'a-comb', test: 'Astratto', title: 'Regole combinate',
       points: [
-        'Nelle serie difficili valgono **2 o 3 regole insieme**, su elementi diversi: la freccia gira e intanto i punti aumentano.',
-        'Le opzioni sbagliate sbagliano **una cosa sola**, a volte un elemento che nella serie resta fisso. Elimina **per regola**: la prima su tutte e cinque, la seconda sulle rimaste, poi gli elementi fissi.',
-        'Comincia dalla regola più facile da verificare (di solito il conteggio), poi le altre.',
+        'Nelle serie difficili valgono **3 regole insieme**, una per elemento: la freccia gira, i pallini cambiano, la casella si sposta.',
+        'Oltre al passo fisso cerca: **passo che cresce** (1, 2, 3… caselle o spicchi); **una figura sì e una no** (le figure dispari e le pari come due serie); **elementi collegati** (i pallini tanti quanti gli spicchi colorati).',
+        'Le opzioni sbagliate sbagliano una o due cose, e spesso c\'è un\'**esca**: l\'opzione più simile a tutte le altre. Elimina **per regola**: la prima su tutte e cinque, la seconda sulle rimaste, poi gli elementi fissi.',
+        'Non vedi la regola in **30″**? Un elemento alla volta → conta → il passo cresce? → dispari e pari → un elemento dipende da un altro? A **50″** rispondi comunque e vai avanti.',
       ],
-      tip: 'Trovate due regole? Bastano quasi sempre due controlli per opzione.',
+      tip: 'Comincia dalla regola più facile da verificare, di solito il conteggio.',
     },
     {
       id: 'strategia', test: 'Parte 1', title: 'Strategia in prova',
