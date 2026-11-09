@@ -38,6 +38,7 @@ function expect(rp, k) {
       return rp.start + k * rp.step;
     }
     case 'sector': return rp.start + k * rp.step;
+    case 'link': return rp.start + k * rp.step;
     case 'secrot': { let a = rp.start; for (let j = 1; j <= k; j++) a += rp.mode === 'acc' ? rp.dir * j : rp.step; return mod(a, 8); }
     case 'ring': { const ring = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]; const [r, c] = ring[mod(rp.mode === 'acc' ? rp.start + rp.dir * (k * (k + 1)) / 2 : rp.start + k * rp.step, 8)]; return r * 3 + c; }
     case 'torus': return mod(rp.r0 + k * rp.dy, 3) * 3 + mod(rp.c0 + k * rp.dx, 3);
@@ -69,8 +70,8 @@ function visible(s) {
 const vkey = (s) => JSON.stringify(visible(s));
 const FEATS = ['els', 'shapeKind', 'shapeFill', 'shapeSize', 'arrowRot', 'arrowFill', 'dotsN', 'dotsFill', 'pieSet', 'pieFill', 'gridCell', 'gridFill'];
 const diffs = (a, b) => { const x = visible(a); const y = visible(b); return FEATS.filter((f) => x[f] !== y[f]).map((f) => `${f}=${x[f]}`); };
-const RULE_VF = { kind3: 'shapeKind', fill3: 'shapeFill', size: 'shapeSize', rot: 'arrowRot', rotacc: 'arrowRot', count: 'dotsN', sector: 'pieSet', secrot: 'pieSet', ring: 'gridCell', torus: 'gridCell', bounce: 'gridCell' };
-const RULE_TYPE = { kind3: 'alternanza', fill3: 'riempimento', size: 'dimensione', rot: 'rotazione', rotacc: 'rotazione', count: 'conteggio', sector: 'conteggio', secrot: 'rotazione', ring: 'posizione', torus: 'posizione', bounce: 'posizione' };
+const RULE_VF = { kind3: 'shapeKind', fill3: 'shapeFill', size: 'shapeSize', rot: 'arrowRot', rotacc: 'arrowRot', count: 'dotsN', link: 'dotsN', sector: 'pieSet', secrot: 'pieSet', ring: 'gridCell', torus: 'gridCell', bounce: 'gridCell' };
+const RULE_TYPE = { kind3: 'alternanza', fill3: 'riempimento', size: 'dimensione', rot: 'rotazione', rotacc: 'rotazione', count: 'conteggio', link: 'conteggio', sector: 'conteggio', secrot: 'rotazione', ring: 'posizione', torus: 'posizione', bounce: 'posizione' };
 function uniqueArg(scores, better) {
   const best = scores.reduce((m, s) => (better(s, m) ? s : m), scores[0]);
   const idx = scores.map((s, i) => (s === best ? i : -1)).filter((i) => i >= 0);
@@ -115,6 +116,7 @@ for (const lv of [2, 3]) {
     if (els.length < 2 || els.length > 3 || new Set(els).size !== els.length || (lv === 3 && els.length !== 3)) bad(`elementi ${tag}: ${els}`);
     if (els.length > lv) withConst++;
     for (const rp of q.ruleParams) rulesSeen[rp.name] = (rulesSeen[rp.name] || 0) + 1;
+    if (q.ruleParams.some((rp) => rp.name === 'link') && ![...q.series, q.options.find((o) => o.letter === q.correct[0]).fig].every((sp) => Number.isInteger(sp.state.dotsN) && sp.state.dotsN === sp.state.pieN)) bad(`pallini e spicchi non coincidono in ${tag}`);
     const combo = q.ruleParams.map((r) => r.name).sort().join('+');
     combos[combo] = (combos[combo] || 0) + 1;
     // ricalcolo indipendente: la serie segue le regole e il resto non cambia
@@ -192,7 +194,7 @@ for (const lv of [2, 3]) {
   if (heur.farthest / N > 0.25) bad(`L${lv}: «la più diversa dalla quinta» trova la risposta nel ${pct(heur.farthest)}% dei casi`);
   if (heur.pattern / N > 0.40) bad(`L${lv}: «lo schema dei cambi» trova la risposta nel ${pct(heur.pattern)}% dei casi`);
   if (heur.keySeen) bad(`L${lv}: risposta già comparsa nella serie in ${heur.keySeen} item`);
-  for (const r of Object.keys(g.RULES)) if (!rulesSeen[r]) bad(`L${lv}: la regola ${r} non compare mai`);
+  for (const r of Object.keys(g.RULES)) if (!rulesSeen[r] && !(r === 'link' && lv < 3)) bad(`L${lv}: la regola ${r} non compare mai`);
 }
 const ms = (Date.now() - t0) / made;
 console.log(`Tempo medio per item (con i controlli): ${ms.toFixed(2)} ms`);

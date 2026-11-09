@@ -142,6 +142,16 @@ App.gen.astratto2 = (() => {
       desc: (p) => (p.mode === 'par' ? 'i pallini seguono due serie intrecciate: nelle figure 1ª, 3ª, 5ª aumentano di uno, nelle figure 2ª, 4ª, 6ª calano di uno' : p.mode === 'zig' ? 'i pallini aumentano di due e poi calano di uno, a turno (+2, −1, +2, −1…)' : `i pallini ${p.step > 0 ? 'aumentano' : 'diminuiscono'} di uno a ogni passo`),
       broke: 'il numero di pallini è sbagliato',
     },
+    // Elementi collegati (1.3.2, livello 3): i pallini seguono il numero di spicchi colorati del disco. Non si estrae da
+    // EL_RULES: la mette setup() quando il disco ha la regola «sector» e c'è anche l'elemento pallini.
+    link: {
+      el: 'dots', feature: 'dotsN', type: 'conteggio',
+      init: () => ({ start: 1, step: 1 }),
+      at: (p, k) => p.start + k * p.step,
+      wrong: (p) => { const key = p.start + 5 * p.step; return [key - p.step, key + p.step, key + 2 * p.step, key - 2 * p.step]; },
+      desc: () => 'i pallini sono sempre tanti quanti gli spicchi colorati del disco: conta il disco e hai i pallini',
+      broke: 'il numero di pallini è sbagliato', // non «diverso dagli spicchi»: in un'opzione possono coincidere ed essere sbagliati tutti e due
+    },
     sector: {
       el: 'pie', feature: 'pieN', type: 'conteggio',
       init: (t) => (t.chance(0.6) ? { start: t.int(1, 2), step: 1 } : { start: t.int(6, 7), step: -1 }),
@@ -261,6 +271,8 @@ App.gen.astratto2 = (() => {
     const ruledEls = pool.slice(0, level);
     const extra = level === 2 && t.chance(0.5) ? [pool[2]] : [];
     const rules = ruledEls.map((el) => { const name = t.pick(EL_RULES[el]); return { name, p: RULES[name].init(t, level) }; });
+    const pieR = rules.find((ru) => ru.name === 'sector'); const dotR = rules.find((ru) => RULES[ru.name].el === 'dots');
+    if (level >= 3 && pieR && dotR && t.chance(0.6)) { dotR.name = 'link'; dotR.p = { ...pieR.p }; }
     const ruleOf = Object.fromEntries(rules.map((ru) => [RULES[ru.name].el, ru.name]));
     const base = { els: t.shuffle([...ruledEls, ...extra]) };
     for (const el of base.els) Object.assign(base, baseEl(t, el, ruleOf[el] || null));
