@@ -104,10 +104,20 @@ App.gen.astratto2 = (() => {
     },
     rot: {
       el: 'arrow', feature: 'arrowRot', type: 'rotazione',
-      init: (t) => ({ start: t.int(0, 7) * 45, step: t.pick([45, -45, 90, -90, 135, -135]) }),
-      at: (p, k) => mod(p.start + k * p.step, 360),
-      wrong: (p) => { const key = p.start + 5 * p.step; return [key - p.step, key + p.step, key + 45, key - 45, key + 180, p.start - 5 * p.step].map((x) => mod(x, 360)); },
-      desc: (p) => `la freccia ruota di ${Math.abs(p.step)}° a ogni passo, in senso ${verso(p.step)}`,
+      // Una figura sì e una no (1.3.2, livello 3): nelle figure 1ª, 3ª, 5ª ruota, nelle 2ª, 4ª, 6ª punta sempre nello stesso verso.
+      init: (t, level) => {
+        if (level >= 3 && t.chance(0.35)) {
+          const start = t.int(0, 7) * 45; const step = t.pick([90, -90, 135, -135]);
+          // La freccia fissa deve differire da tutte quelle che ruotano, così cambia a ogni figura.
+          const taken = [0, 1, 2].map((j) => mod(start + j * step, 360));
+          const fix = t.pick([0, 45, 90, 135, 180, 225, 270, 315].filter((d) => !taken.includes(d)));
+          return { mode: 'par', start, step, fix };
+        }
+        return { start: t.int(0, 7) * 45, step: t.pick([45, -45, 90, -90, 135, -135]) };
+      },
+      at: (p, k) => (p.mode === 'par' ? (k % 2 ? mod(p.fix, 360) : mod(p.start + (k / 2) * p.step, 360)) : mod(p.start + k * p.step, 360)),
+      wrong: (p) => { if (p.mode === 'par') return [p.start + 3 * p.step, p.start + 2 * p.step, p.fix + 90, p.fix - 90, p.fix + 180].map((x) => mod(x, 360)); const key = p.start + 5 * p.step; return [key - p.step, key + p.step, key + 45, key - 45, key + 180, p.start - 5 * p.step].map((x) => mod(x, 360)); },
+      desc: (p) => (p.mode === 'par' ? `la freccia cambia una figura sì e una no: nelle figure 1ª, 3ª, 5ª ruota di ${Math.abs(p.step)}° in senso ${verso(p.step)}, nelle figure 2ª, 4ª, 6ª punta sempre ${DIRS[mod(p.fix, 360) / 45]}` : `la freccia ruota di ${Math.abs(p.step)}° a ogni passo, in senso ${verso(p.step)}`),
       broke: 'la freccia ha l\'orientamento sbagliato',
     },
     rotacc: {
@@ -144,10 +154,11 @@ App.gen.astratto2 = (() => {
     },
     secrot: {
       el: 'pie', feature: 'pieAt', type: 'rotazione',
-      init: (t) => ({ start: t.int(0, 7), step: t.pick([1, -1, 2, -2, 3, -3]) }),
-      at: (p, k) => mod(p.start + k * p.step, 8),
-      wrong: (p) => { const key = p.start + 5 * p.step; return [key - p.step, key + p.step, p.start - 5 * p.step, key + 1, key - 1, key + 4].map((x) => mod(x, 8)); },
-      desc: (p, b) => (b.pieN === 1
+      // Passo che cresce (1.3.2, livello 3): 1, 2, 3, 4, 5 spicchi (spostamento totale k(k+1)/2).
+      init: (t, level) => (level >= 3 && t.chance(0.35) ? { mode: 'acc', start: t.int(0, 7), dir: t.pick([1, -1]) } : { start: t.int(0, 7), step: t.pick([1, -1, 2, -2, 3, -3]) }),
+      at: (p, k) => mod(p.mode === 'acc' ? p.start + p.dir * (k * (k + 1)) / 2 : p.start + k * p.step, 8),
+      wrong: (p) => { if (p.mode === 'acc') return [14, 16, 10, 5, 11].map((x) => mod(p.start + p.dir * x, 8)); const key = p.start + 5 * p.step; return [key - p.step, key + p.step, p.start - 5 * p.step, key + 1, key - 1, key + 4].map((x) => mod(x, 8)); },
+      desc: (p, b) => (p.mode === 'acc' ? `${b.pieN === 1 ? `lo spicchio ${FILL_M[b.pieFill]} del disco ruota` : `i ${b.pieN} spicchi ${FILL_MP[b.pieFill]} del disco ruotano insieme`} in senso ${verso(p.dir)} con un passo che cresce: 45°, poi 90°, 135°, 180°, 225°` : b.pieN === 1
         ? `lo spicchio ${FILL_M[b.pieFill]} del disco ruota di ${45 * Math.abs(p.step)}° a ogni passo, in senso ${verso(p.step)}`
         : `i ${b.pieN} spicchi ${FILL_MP[b.pieFill]} del disco ruotano insieme di ${45 * Math.abs(p.step)}° a ogni passo, in senso ${verso(p.step)}`),
       broke: 'il settore colorato del disco è nella posizione sbagliata',

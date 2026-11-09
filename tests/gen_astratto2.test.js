@@ -30,7 +30,7 @@ function expect(rp, k) {
       }
       return rp.mode === 'cycle3' ? rp.lo + mod(rp.start + k * rp.dir, 3) : mod(rp.start + k * rp.dir, 4);
     }
-    case 'rot': return mod(rp.start + k * rp.step, 360);
+    case 'rot': return rp.mode === 'par' ? (k % 2 ? mod(rp.fix, 360) : mod(rp.start + (k / 2) * rp.step, 360)) : mod(rp.start + k * rp.step, 360);
     case 'rotacc': { let a = rp.start; for (let j = 1; j <= k; j++) a += rp.dir * 45 * j; return mod(a, 360); }
     case 'count': {
       if (rp.mode === 'par') { const ev = [rp.a, rp.a + 1, rp.a + 2]; const od = [rp.b, rp.b - 1, rp.b - 2]; return k % 2 ? od[(k - 1) / 2] : ev[k / 2]; }
@@ -38,7 +38,7 @@ function expect(rp, k) {
       return rp.start + k * rp.step;
     }
     case 'sector': return rp.start + k * rp.step;
-    case 'secrot': return mod(rp.start + k * rp.step, 8);
+    case 'secrot': { let a = rp.start; for (let j = 1; j <= k; j++) a += rp.mode === 'acc' ? rp.dir * j : rp.step; return mod(a, 8); }
     case 'ring': { const ring = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]; const [r, c] = ring[mod(rp.mode === 'acc' ? rp.start + rp.dir * (k * (k + 1)) / 2 : rp.start + k * rp.step, 8)]; return r * 3 + c; }
     case 'torus': return mod(rp.r0 + k * rp.dy, 3) * 3 + mod(rp.c0 + k * rp.dx, 3);
     case 'bounce': { // simula: una casella a passo lungo la linea, si torna indietro al bordo
