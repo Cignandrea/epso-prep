@@ -33,6 +33,7 @@ function expect(rp, k) {
     case 'rot': return mod(rp.start + k * rp.step, 360);
     case 'rotacc': { let a = rp.start; for (let j = 1; j <= k; j++) a += rp.dir * 45 * j; return mod(a, 360); }
     case 'count': {
+      if (rp.mode === 'par') { const ev = [rp.a, rp.a + 1, rp.a + 2]; const od = [rp.b, rp.b - 1, rp.b - 2]; return k % 2 ? od[(k - 1) / 2] : ev[k / 2]; }
       if (rp.mode === 'zig') { let n = rp.start; for (let j = 1; j <= k; j++) n += j % 2 ? 2 : -1; return n; }
       return rp.start + k * rp.step;
     }

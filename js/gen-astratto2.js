@@ -123,11 +123,13 @@ App.gen.astratto2 = (() => {
       el: 'dots', feature: 'dotsN', type: 'conteggio',
       init: (t, level) => {
         if (level >= 3 && t.chance(0.35)) return { mode: 'zig', start: t.int(1, 3) };
+        // Due serie intrecciate (1.3.2): posizioni dispari +1, pari −1. Es. 1, 6, 2, 5, 3 → 4.
+        if (level >= 3 && t.chance(0.5)) { const a = t.int(1, 2); return { mode: 'par', a, b: a === 2 ? 7 : t.int(6, 7) }; } // b − a ≠ 4: la 6ª deve cambiare
         return t.chance(0.55) ? { mode: 'lin', start: t.int(1, 2), step: 1 } : { mode: 'lin', start: t.int(6, 7), step: -1 };
       },
-      at: (p, k) => (p.mode === 'zig' ? p.start + 2 * Math.ceil(k / 2) - Math.floor(k / 2) : p.start + k * p.step),
-      wrong: (p) => { if (p.mode === 'zig') return [p.start + 2, p.start + 3, p.start + 5, p.start + 1]; const key = p.start + 5 * p.step; return [key - p.step, key + p.step, key + 2 * p.step, key - 2 * p.step]; },
-      desc: (p) => (p.mode === 'zig' ? 'i pallini aumentano di due e poi calano di uno, a turno (+2, −1, +2, −1…)' : `i pallini ${p.step > 0 ? 'aumentano' : 'diminuiscono'} di uno a ogni passo`),
+      at: (p, k) => (p.mode === 'par' ? (k % 2 === 0 ? p.a + k / 2 : p.b - (k - 1) / 2) : p.mode === 'zig' ? p.start + 2 * Math.ceil(k / 2) - Math.floor(k / 2) : p.start + k * p.step),
+      wrong: (p) => { if (p.mode === 'par') return [p.a + 3, p.b - 1, p.b - 3, p.a + 2]; if (p.mode === 'zig') return [p.start + 2, p.start + 3, p.start + 5, p.start + 1]; const key = p.start + 5 * p.step; return [key - p.step, key + p.step, key + 2 * p.step, key - 2 * p.step]; },
+      desc: (p) => (p.mode === 'par' ? 'i pallini seguono due serie intrecciate: nelle figure 1ª, 3ª, 5ª aumentano di uno, nelle figure 2ª, 4ª, 6ª calano di uno' : p.mode === 'zig' ? 'i pallini aumentano di due e poi calano di uno, a turno (+2, −1, +2, −1…)' : `i pallini ${p.step > 0 ? 'aumentano' : 'diminuiscono'} di uno a ogni passo`),
       broke: 'il numero di pallini è sbagliato',
     },
     sector: {
