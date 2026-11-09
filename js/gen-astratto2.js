@@ -154,10 +154,11 @@ App.gen.astratto2 = (() => {
     },
     ring: {
       el: 'grid', feature: 'gridCell', type: 'posizione',
-      init: (t) => ({ start: t.int(0, 7), step: t.pick([1, -1, 2, -2]) }),
-      at: (p, k) => RINGC[mod(p.start + k * p.step, 8)],
-      wrong: (p) => { const q = p.start + 5 * p.step; return [q - p.step, q + p.step, p.start - 5 * p.step, q + 1, q - 1].map((x) => RINGC[mod(x, 8)]).concat([4]); },
-      desc: (p, b) => `la casella ${FILL_F[b.gridFill]} della griglia gira lungo il bordo di ${cells(Math.abs(p.step))} a ogni passo, in senso ${verso(p.step)}`,
+      // Passo che cresce (1.3.2): 1, 2, 3, 4, 5 caselle (spostamento totale k(k+1)/2), solo al livello 3.
+      init: (t, level) => (level >= 3 && t.chance(0.4) ? { mode: 'acc', start: t.int(0, 7), dir: t.pick([1, -1]) } : { start: t.int(0, 7), step: t.pick([1, -1, 2, -2]) }),
+      at: (p, k) => RINGC[mod(p.mode === 'acc' ? p.start + p.dir * (k * (k + 1)) / 2 : p.start + k * p.step, 8)],
+      wrong: (p) => { if (p.mode === 'acc') return [14, 16, 10, 5].map((x) => RINGC[mod(p.start + p.dir * x, 8)]).concat([4]); const q = p.start + 5 * p.step; return [q - p.step, q + p.step, p.start - 5 * p.step, q + 1, q - 1].map((x) => RINGC[mod(x, 8)]).concat([4]); },
+      desc: (p, b) => (p.mode === 'acc' ? `la casella ${FILL_F[b.gridFill]} della griglia gira lungo il bordo in senso ${verso(p.dir)} con un passo che cresce: 1, 2, 3, 4, 5 caselle` : `la casella ${FILL_F[b.gridFill]} della griglia gira lungo il bordo di ${cells(Math.abs(p.step))} a ogni passo, in senso ${verso(p.step)}`),
       broke: 'la casella colorata della griglia è nel posto sbagliato',
     },
     torus: {

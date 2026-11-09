@@ -39,7 +39,7 @@ function expect(rp, k) {
     }
     case 'sector': return rp.start + k * rp.step;
     case 'secrot': return mod(rp.start + k * rp.step, 8);
-    case 'ring': { const ring = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]; const [r, c] = ring[mod(rp.start + k * rp.step, 8)]; return r * 3 + c; }
+    case 'ring': { const ring = [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2], [2, 1], [2, 0], [1, 0]]; const [r, c] = ring[mod(rp.mode === 'acc' ? rp.start + rp.dir * (k * (k + 1)) / 2 : rp.start + k * rp.step, 8)]; return r * 3 + c; }
     case 'torus': return mod(rp.r0 + k * rp.dy, 3) * 3 + mod(rp.c0 + k * rp.dx, 3);
     case 'bounce': { // simula: una casella a passo lungo la linea, si torna indietro al bordo
       let u = [0, 1, 2, 1][rp.start]; let d = rp.start <= 1 ? 1 : -1;
