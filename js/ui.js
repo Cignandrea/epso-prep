@@ -3,7 +3,7 @@ window.App = window.App || {};
 App.ui = (() => {
   'use strict';
   const { el } = App.utils;
-  const VIEWS = ['home', 'train', 'agenda', 'lesson', 'lessons', 'official', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
+  const VIEWS = ['home', 'train', 'agenda', 'lesson', 'lessons', 'ripasso', 'official', 'session', 'end', 'sim-setup', 'sim', 'sim-results', 'external', 'stato'];
   const TABS = ['home', 'train', 'agenda', 'stato'];
   let currentView = 'home';
 

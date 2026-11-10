@@ -1,13 +1,13 @@
 // Service worker: cache dell'app per l'uso offline, versionata.
 // VERSION deve coincidere con App.main.VERSION (js/main.js): è il nome della cache, quindi ogni build
 // invalida la precedente (T-061). Il controllo è in tests/smoke.py.
-const VERSION = '1.3.2-b6';
+const VERSION = '1.3.3-b1';
 const CACHE = `euprep-${VERSION}`;
 // CSS e script con ?v=VERSION, come in index.html: un HTML nuovo non pesca mai file vecchi dalla cache (tools/bump.py).
 const V = (u) => `${u}?v=${VERSION}`;
 const ASSETS = [
   './', './index.html', './manifest.webmanifest', V('./css/style.css'),
-  ...['banks', 'gen-numerico', 'gen-astratto', 'gen-astratto2', 'utils', 'store', 'ui', 'plan', 'ready', 'select', 'lessons', 'path', 'session', 'calc', 'sim', 'stato', 'sync', 'main'].map((n) => V(`./js/${n}.js`)),
+  ...['banks', 'gen-numerico', 'gen-astratto', 'gen-astratto2', 'utils', 'store', 'ui', 'plan', 'ready', 'select', 'lessons', 'ripasso', 'path', 'session', 'calc', 'sim', 'stato', 'sync', 'main'].map((n) => V(`./js/${n}.js`)),
   ...['bank-verbale', 'bank-verbale-l2', 'bank-numerico'].map((n) => V(`./data/${n}.js`)),
   './fonts/ibm-plex-sans-latin-400-normal.woff2', './fonts/ibm-plex-sans-latin-500-normal.woff2', './fonts/ibm-plex-sans-latin-600-normal.woff2', './fonts/ibm-plex-sans-latin-700-normal.woff2',
   './fonts/ibm-plex-mono-latin-400-normal.woff2', './fonts/ibm-plex-mono-latin-500-normal.woff2', './fonts/ibm-plex-mono-latin-600-normal.woff2',

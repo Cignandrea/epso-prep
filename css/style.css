@@ -623,3 +623,27 @@ body[data-view="session"] .tao-widget { top: auto; bottom: 76px; right: auto; le
   .end-numbers { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── Ripassone: una prova per schermata, un blocco aperto alla volta ── */
+.rip-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
+.rip-tabs .chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.rip-fmt { font-family: var(--mono); font-size: .8rem; color: var(--ink-2); margin: 0 0 12px; font-variant-numeric: tabular-nums; }
+.rip-block { border-top: 1px solid var(--rule); }
+.rip-block:last-of-type { border-bottom: 1px solid var(--rule); margin-bottom: 16px; }
+.rip-block summary { cursor: pointer; min-height: 48px; padding: 12px 2px; font-weight: 600; display: flex; align-items: center; justify-content: space-between; gap: 12px; list-style: none; }
+.rip-block summary::-webkit-details-marker { display: none; }
+.rip-block summary::after { content: '+'; font-family: var(--mono); color: var(--ink-2); }
+.rip-block[open] summary::after { content: '−'; }
+.rip-block[open] summary { border-bottom: 2px solid var(--ink); margin-bottom: 10px; }
+.rip-block > :not(summary) { margin-bottom: 16px; }
+.rip-steps, .rip-list { margin: 0 0 16px; padding-left: 1.4rem; display: grid; gap: 8px; line-height: 1.5; }
+.rip-steps li::marker { font-family: var(--mono); font-size: .85em; color: var(--ink-2); }
+.rip-rows { display: grid; }
+.rip-row { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 2px 14px; padding: 9px 4px; border-bottom: 1px solid var(--rule); }
+.rip-row:last-child { border-bottom: 0; }
+.rip-row.is-mine { background: var(--hl-soft); padding-left: 8px; padding-right: 8px; }
+.rip-row p { margin: 0; line-height: 1.5; }
+.rip-name { font-weight: 600; }
+.rip-mine { display: inline-block; margin-left: 8px; font-family: var(--mono); font-size: .66rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; background: var(--hl); color: var(--hl-ink); padding: 0 5px; border-radius: 3px; vertical-align: 2px; white-space: nowrap; }
+.rip-ex { font-size: .92rem; color: var(--ink-2); margin-top: 3px !important; }
+@media (max-width: 560px) { .rip-row { grid-template-columns: minmax(0, 1fr); } }

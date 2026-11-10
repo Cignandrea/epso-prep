@@ -27,6 +27,7 @@ Decisione di Andrea del 07/11 («la userò oggi e domani e basta, 2 o 3 ore in t
 | `js/path.js` | percorso: tappe, date, taratura, blocchi, recupero, prossima tappa, conteggi per giorno |
 | `js/ready.js` | stima rispetto alle soglie dalla **prima** risposta agli item di livello prova degli ultimi 10 giorni (ripasso e gemelli esclusi) |
 | `js/lessons.js` | 15 schede di studio (testi nostri; regole della prova con la fonte) |
+| `js/ripasso.js` | **Ripassone** (v1.3.3, 10/11): tipi di domanda, metodo, trappole, formule e regole per le tre prove più la strategia; una prova per schermata, un blocco aperto alla volta. Si apre da Allenati e dalla home nei giorni di riposo e della prova |
 | `js/select.js` | scelta degli item: mai visti prima, trappole più sbagliate, modelli deboli (un terzo della sessione); ripasso Leitner con **gemelli** per numerico e astratto; riserve del verbale per le simulazioni del percorso |
 | `js/session.js` | tappe, Micro, allenamento, ripasso: un item per volta, ripresa esatta; regola della trappola sotto ogni errore |
 | `js/sim.js` | clone TAO: misura, blocchi, simulazioni; istruzioni con conto alla rovescia |

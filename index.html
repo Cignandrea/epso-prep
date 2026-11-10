@@ -17,7 +17,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="EU Prep">
-  <link rel="stylesheet" href="css/style.css?v=1.3.2-b6">
+  <link rel="stylesheet" href="css/style.css?v=1.3.3-b1">
 </head>
 <body>
   <a class="skip" href="#main">Vai al contenuto</a>
@@ -68,6 +68,7 @@
               <button type="button" class="chip" id="btn-train-a">Astratto <small>10</small></button>
             </span>
           </div>
+          <button type="button" class="tool-row" id="btn-ripasso"><span class="tool-title">Ripassone</span><span class="tool-sub">tipi di domanda, metodo, trappole e formule · una prova per schermata</span><span class="tool-go" aria-hidden="true">→</span></button>
           <button type="button" class="tool-row" id="btn-review"><span class="tool-title">Ripasso degli errori</span><span class="tool-sub">le domande sbagliate che tornano oggi</span><span class="tool-go" aria-hidden="true">→</span></button>
           <button type="button" class="tool-row" id="btn-micro"><span class="tool-title">Micro</span><span class="tool-sub">3 domande, una per prova · 5′</span><span class="tool-go" aria-hidden="true">→</span></button>
           <button type="button" class="tool-row" id="btn-lessons"><span class="tool-title">Schede di studio</span><span class="tool-sub">metodo e trappole, una per schermata</span><span class="tool-go" aria-hidden="true">→</span></button>
@@ -115,6 +116,17 @@
         <p class="muted">Le stesse schede che aprono le tappe del percorso: rileggile quando vuoi.</p>
         <div id="lessons-list"></div>
         <div class="end-actions"><button type="button" class="btn btn-ghost" id="lessons-back">Indietro</button></div>
+      </div>
+    </section>
+
+    <!-- ════════ RIPASSONE ════════ -->
+    <section id="view-ripasso" class="view" hidden>
+      <div class="card rip">
+        <h1 class="view-h">Ripassone</h1>
+        <div class="rip-tabs" id="rip-tabs" role="group" aria-label="Prova"></div>
+        <p class="rip-fmt" id="rip-fmt"></p>
+        <div id="rip-body"></div>
+        <div class="end-actions"><button type="button" class="btn btn-ghost" id="rip-back">Indietro</button></div>
       </div>
     </section>
 
@@ -400,26 +412,27 @@
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   <div id="modal-root"></div>
 
-  <script src="js/banks.js?v=1.3.2-b6"></script>
-  <script src="data/bank-verbale.js?v=1.3.2-b6"></script>
-  <script src="data/bank-verbale-l2.js?v=1.3.2-b6"></script>
-  <script src="data/bank-numerico.js?v=1.3.2-b6"></script>
-  <script src="js/gen-numerico.js?v=1.3.2-b6"></script>
-  <script src="js/gen-astratto.js?v=1.3.2-b6"></script>
-  <script src="js/gen-astratto2.js?v=1.3.2-b6"></script>
-  <script src="js/utils.js?v=1.3.2-b6"></script>
-  <script src="js/store.js?v=1.3.2-b6"></script>
-  <script src="js/ui.js?v=1.3.2-b6"></script>
-  <script src="js/plan.js?v=1.3.2-b6"></script>
-  <script src="js/ready.js?v=1.3.2-b6"></script>
-  <script src="js/select.js?v=1.3.2-b6"></script>
-  <script src="js/lessons.js?v=1.3.2-b6"></script>
-  <script src="js/path.js?v=1.3.2-b6"></script>
-  <script src="js/session.js?v=1.3.2-b6"></script>
-  <script src="js/calc.js?v=1.3.2-b6"></script>
-  <script src="js/sim.js?v=1.3.2-b6"></script>
-  <script src="js/stato.js?v=1.3.2-b6"></script>
-  <script src="js/sync.js?v=1.3.2-b6"></script>
-  <script src="js/main.js?v=1.3.2-b6"></script>
+  <script src="js/banks.js?v=1.3.3-b1"></script>
+  <script src="data/bank-verbale.js?v=1.3.3-b1"></script>
+  <script src="data/bank-verbale-l2.js?v=1.3.3-b1"></script>
+  <script src="data/bank-numerico.js?v=1.3.3-b1"></script>
+  <script src="js/gen-numerico.js?v=1.3.3-b1"></script>
+  <script src="js/gen-astratto.js?v=1.3.3-b1"></script>
+  <script src="js/gen-astratto2.js?v=1.3.3-b1"></script>
+  <script src="js/utils.js?v=1.3.3-b1"></script>
+  <script src="js/store.js?v=1.3.3-b1"></script>
+  <script src="js/ui.js?v=1.3.3-b1"></script>
+  <script src="js/plan.js?v=1.3.3-b1"></script>
+  <script src="js/ready.js?v=1.3.3-b1"></script>
+  <script src="js/select.js?v=1.3.3-b1"></script>
+  <script src="js/lessons.js?v=1.3.3-b1"></script>
+  <script src="js/ripasso.js?v=1.3.3-b1"></script>
+  <script src="js/path.js?v=1.3.3-b1"></script>
+  <script src="js/session.js?v=1.3.3-b1"></script>
+  <script src="js/calc.js?v=1.3.3-b1"></script>
+  <script src="js/sim.js?v=1.3.3-b1"></script>
+  <script src="js/stato.js?v=1.3.3-b1"></script>
+  <script src="js/sync.js?v=1.3.3-b1"></script>
+  <script src="js/main.js?v=1.3.3-b1"></script>
 </body>
 </html>

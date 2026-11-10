@@ -7,7 +7,7 @@ App.main = (() => {
   const { el, rich, daysUntil, todayKey, dateIt } = App.utils;
   const $ = (id) => document.getElementById(id);
   // Versione dell'app: deve coincidere con VERSION in sw.js (controllo nei test).
-  const VERSION = '1.3.2-b6';
+  const VERSION = '1.3.3-b1';
 
   // La home non deve mai restare vuota: se i dati salvati fanno cadere il calcolo, resta una via verso Stato (esporta, azzera) (F2-05).
   function home() {
@@ -155,11 +155,11 @@ App.main = (() => {
       case 'rest': {
         // Riposo da lunedì 09/11 (piano a due giorni del 07/11): la card dice il giorno e quanto manca.
         const d = App.path.daysToExam();
-        setCard({ label: shortDate(todayKey()), title: 'Oggi riposo', sub: `${d === 1 ? 'Domani' : 'Mercoledì'} alle 14:00 c'è la prova. Prepara il posto e dormi: gli esercizi di oggi non cambiano il risultato.`, btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
+        setCard({ label: shortDate(todayKey()), title: 'Oggi riposo', sub: `${d === 1 ? 'Domani' : 'Mercoledì'} alle 14:00 c'è la prova. Niente esercizi nuovi: se vuoi, una lettura del Ripassone, poi prepara il posto e dormi.`, btn: 'Apri il Ripassone', meta: meta(0), onClick: () => App.ripasso.open(), alt: resumeAlt || { text: 'Rileggi «Prima della prova»', onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) } });
         break;
       }
       case 'examday':
-        setCard({ label: 'Mercoledì 11/11', title: 'Oggi alle 14:00: la prova', sub: 'Durante la prova non aprire quest\'app né Claude. In bocca al lupo.', btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }) });
+        setCard({ label: 'Mercoledì 11/11', title: 'Oggi alle 14:00: la prova', sub: 'Durante la prova non aprire quest\'app né Claude. In bocca al lupo.', btn: 'Rileggi «Prima della prova»', meta: meta(0), onClick: () => App.lessons.show('fine', { goText: 'Chiudi' }), alt: resumeAlt || { text: 'Ripassone: tutto in una sezione', onClick: () => App.ripasso.open() } });
         break;
       default:
         setCard({ label: 'Parte 1', title: 'Parte 1 sostenuta', sub: 'I risultati della Parte 1 arrivano da EPSO dopo la Parte 1. Per la Parte 2 si riparte dal Project.', btn: null });
@@ -325,6 +325,8 @@ App.main = (() => {
     $('btn-train-a').addEventListener('click', () => startTraining('astratto', 10));
     $('btn-review').addEventListener('click', startReview);
     $('btn-lessons').addEventListener('click', () => App.lessons.openIndex());
+    $('btn-ripasso').addEventListener('click', () => App.ripasso.open());
+    $('rip-back').addEventListener('click', () => trainView());
     $('btn-sim').addEventListener('click', async () => { if (await closePausedIfAny()) App.sim.showSetup(); });
     $('btn-official').addEventListener('click', () => showOfficial({ id: 'extra-official', title: 'Test di esempio ufficiale su TAO' }));
     $('off-done').addEventListener('click', saveOfficial);
